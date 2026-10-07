@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°1 — Hola, JavaScript · Programación - HTML, CSS, JS</title>
+  <meta name="description" content="TP N°1 de Programación: qué es JavaScript, la carpeta plantilla y la consola, console.log() y alert(), variables y tipos de datos, prompt() y Number(). Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="1">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+    </symbol>
+    <symbol id="i-carpeta" viewBox="0 0 48 48">
+      <path d="M4 12a3 3 0 0 1 3-3h11l4 5h19a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" style="fill:var(--ac)"/>
+      <path d="M4 20h40"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-navegador" viewBox="0 0 48 48">
+      <ellipse cx="24" cy="24" rx="8" ry="19" style="fill:var(--ac)"/>
+      <circle cx="24" cy="24" r="19"/>
+      <path d="M5 24h38M8.5 14h31M8.5 34h31"/>
+    </symbol>
+    <symbol id="i-consola" viewBox="0 0 48 48">
+      <path d="M7 8h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="8" width="40" height="32" rx="3"/>
+      <path d="M12 22l6 5-6 5M22 33h12" style="stroke-width:3"/>
+    </symbol>
+    <symbol id="i-recargar" viewBox="0 0 48 48">
+      <path d="M39 26a15 15 0 1 1-4.4-10.6"/>
+      <path d="M37 6v10H27" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-mensaje" viewBox="0 0 48 48">
+      <rect x="5" y="9" width="38" height="29" rx="3"/>
+      <path d="M11 18h22M11 24h14"/>
+      <rect x="27" y="28" width="11" height="6" rx="2" style="fill:var(--ac)"/>
+    </symbol>
+    <symbol id="i-caja" viewBox="0 0 48 48">
+      <path d="M6 16l18 9v19L6 35z" style="fill:var(--ac)"/>
+      <path d="M6 16l18-9 18 9v19l-18 9-18-9zM6 16l18 9 18-9M24 25v19"/>
+    </symbol>
+    <symbol id="i-pregunta" viewBox="0 0 48 48">
+      <rect x="4" y="8" width="40" height="32" rx="3"/>
+      <path d="M10 16h20"/>
+      <rect x="10" y="22" width="28" height="9" rx="2" style="fill:var(--ac)"/>
+    </symbol>
+    <symbol id="i-alerta" viewBox="0 0 48 48">
+      <path d="M24 5 45 42H3z" style="fill:var(--ac)"/>
+      <path d="M24 18v11M24 35v.5" style="stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°1 — Hola, JavaScript</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°1">
+    <a href="#pag-1">1 · Hola, JS</a>
+    <a href="#pag-2">2 · Mensajes</a>
+    <a href="#pag-3">3 · Variables</a>
+    <a href="#pag-4">4 · Pedir datos</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°1 — Hola, JavaScript</h1>
+
+  <!-- =================== LÁMINA 1 =================== -->
+  <article class="lamina lamina--compacta" id="pag-1" aria-labelledby="t1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°1</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t1"><span class="tit__num">1.</span> Hola, JavaScript</h2>
+      <p class="tit__sub">Programar en el navegador</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-web"/></svg>
+      <p><strong>JavaScript</strong> es un lenguaje de programación, como Python. Sus programas corren en el <strong>navegador</strong> (Chrome, por ejemplo), sin instalar nada más.</p>
+    </div>
+
+    <section class="panel" aria-labelledby="s1">
+      <div class="panel__cab"><h3 class="subtitulo" id="s1">La carpeta plantilla</h3></div>
+      <div class="carpeta">
+        <p class="carpeta__raiz"><svg class="ico ico--carpeta" aria-hidden="true" focusable="false"><use href="#i-carpeta"/></svg>plantilla-js</p>
+        <ul class="carpeta__arch carpeta__arch--2col">
+          <li><span class="etq etq--html">index.html</span><span>Ya está armado. Lo abrimos en Chrome, pero <strong>no lo tocamos</strong>.</span></li>
+          <li><span class="etq etq--js">app.js</span><span>Empieza vacío. Acá <strong>escribimos el programa</strong>.</span></li>
+        </ul>
+      </div>
+      <p class="descarga">
+        <a class="boton boton--acento" href="../assets/descargas/plantilla-js.zip" download><svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span>Descargar la plantilla (.zip)</span></a>
+        <span class="descarga__nota">Antes de usarla, la extraemos: clic derecho sobre el .zip → <strong>Extraer todo…</strong></span>
+      </p>
+    </section>
+
+    <section aria-labelledby="s1b">
+      <h3 class="subtitulo" id="s1b">Cómo trabajamos</h3>
+      <ol class="pasos2">
+        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg><h3><span class="paso__n">1</span>VS Code</h3><p>En Visual Studio Code, <strong>Archivo → Abrir carpeta…</strong> y elegimos la carpeta. Escribimos en <code class="cod-js">app.js</code>.</p></li>
+        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-navegador"/></svg><h3><span class="paso__n">2</span>Chrome</h3><p>En el Explorador de archivos, clic derecho sobre <code>index.html</code> → <strong>Abrir con → Google Chrome</strong>.</p></li>
+        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-consola"/></svg><h3><span class="paso__n">3</span>La consola</h3><p>En Chrome tocamos <kbd>F12</kbd> y elegimos la pestaña <strong>Console</strong>. Ahí vemos lo que muestra el programa.</p></li>
+        <li class="paso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-recargar"/></svg><h3><span class="paso__n">4</span>Cada cambio</h3><p>Guardamos con <kbd>Ctrl</kbd> + <kbd>S</kbd> en VS Code y recargamos con <kbd>F5</kbd> en Chrome.</p></li>
+      </ol>
+    </section>
+
+    <section class="py-js" aria-labelledby="pj1">
+      <h3 class="py-js__tit" id="pj1">En Python <span class="py-js__flecha" aria-hidden="true">→</span> En JavaScript</h3>
+      <div class="py-js__cols">
+        <figure class="codigo codigo--py" id="py-1">
+          <figcaption><span class="codigo__archivo">Python</span></figcaption>
+          <pre tabindex="0" aria-label="Código en Python"><code><span class="c-fun">print</span>(<span class="c-str">"Hola, mundo"</span>)</code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="js-1">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code>console.<span class="c-fun">log</span>(<span class="c-str">"Hola, mundo"</span>);</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> escribimos el programa en <code class="cod-js">app.js</code> con VS Code y vemos el resultado en la consola de Chrome.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 1">1</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 2 =================== -->
+  <article class="lamina lamina--compacta" id="pag-2" aria-labelledby="t2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°1</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t2"><span class="tit__num">2.</span> Mostrar mensajes</h2>
+      <p class="tit__sub">console.log(), alert() y comentarios</p>
+    </div>
+
+    <ul class="comparar">
+      <li><div><h3>console.log()</h3><p>Escribe en la <strong>consola</strong>. La usamos para ver resultados y probar el programa.</p></div><svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-consola"/></svg></li>
+      <li><div><h3>alert()</h3><p>Abre una <strong>ventana</strong> con un mensaje. El programa espera hasta que tocamos <strong>Aceptar</strong>.</p></div><svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-mensaje"/></svg></li>
+    </ul>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-2">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-com">// Mi primer programa en JavaScript</span>
+console.<span class="c-fun">log</span>(<span class="c-str">"Hola, JavaScript"</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"Estoy en la escuela"</span>);
+console.<span class="c-fun">log</span>(<span class="c-num">7</span> + <span class="c-num">3</span>);  <span class="c-com">// también hace cuentas</span>
+<span class="c-fun">alert</span>(<span class="c-str">"¡Bienvenidos!"</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"Fin del programa"</span>);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-2">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Hola, JavaScript
+Estoy en la escuela
+10
+<span class="consola__guia">alert: ¡Bienvenidos!</span>
+Fin del programa</pre>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="s2">
+      <div class="panel__cab"><h3 class="subtitulo" id="s2">Reglas para escribir</h3></div>
+      <ol class="puntos puntos--2col">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span>Cada instrucción termina con <strong>punto y coma</strong>: <code class="cod-js">;</code></span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span>Los <strong>textos</strong> van entre comillas: <code class="cod-js">"Hola"</code>. Los <strong>números</strong>, no: <code class="cod-js">7</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span>Lo que sigue a <code class="cod-js">//</code> es un <strong>comentario</strong>: el programa lo saltea. Sirve para explicar el código.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span>Las <strong>mayúsculas</strong> importan: <code class="cod-js">Console.log</code> da error.</span></li>
+      </ol>
+    </section>
+
+    <section class="py-js" aria-labelledby="pj2">
+      <h3 class="py-js__tit" id="pj2">En Python <span class="py-js__flecha" aria-hidden="true">→</span> En JavaScript</h3>
+      <div class="py-js__cols">
+        <figure class="codigo codigo--py" id="py-2">
+          <figcaption><span class="codigo__archivo">Python</span></figcaption>
+          <pre tabindex="0" aria-label="Código en Python"><code><span class="c-com"># Saludo</span>
+<span class="c-fun">print</span>(<span class="c-str">"Hola"</span>)
+<span class="c-fun">print</span>(<span class="c-num">7</span> + <span class="c-num">3</span>)</code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="js-2">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-com">// Saludo</span>
+console.<span class="c-fun">log</span>(<span class="c-str">"Hola"</span>);
+console.<span class="c-fun">log</span>(<span class="c-num">7</span> + <span class="c-num">3</span>);</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <code class="cod-js">console.log()</code> muestra en la consola y <code class="cod-js">alert()</code>, en una ventana. Cada instrucción termina con <code class="cod-js">;</code></p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 2">2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 3 =================== -->
+  <article class="lamina lamina--compacta" id="pag-3" aria-labelledby="t3">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°1</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t3"><span class="tit__num">3.</span> Variables y tipos de datos</h2>
+      <p class="tit__sub">let, const y typeof</p>
+    </div>
+
+    <ul class="comparar comparar--3">
+      <li><div><h3>Variable</h3><p>Guarda un dato con un nombre, como en Python. La primera vez, la creamos con <code class="cod-js">let</code> o <code class="cod-js">const</code>.</p></div><svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-caja"/></svg></li>
+      <li><div><h3>let</h3><p>Para datos que <strong>cambian</strong>. Después se cambian sin <code class="cod-js">let</code>: <code class="cod-js">puntos = 10;</code></p></div></li>
+      <li><div><h3>const</h3><p>Para datos que <strong>no cambian</strong>: <code class="cod-js">const dias = 7;</code> Si lo cambiamos, da error.</p></div></li>
+    </ul>
+
+    <ul class="tipos">
+      <li class="tarjeta"><span class="tarjeta__cab">Número</span><p class="tipo__valor tipo__valor--acento">42 · 3.5</p><p>Enteros y decimales. El decimal va con punto.</p><p><code class="cod-js">typeof</code> → <code class="cod-js">"number"</code></p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Texto</span><p class="tipo__valor tipo__valor--acento">"Hola"</p><p>Letras, números o signos entre comillas.</p><p><code class="cod-js">typeof</code> → <code class="cod-js">"string"</code></p></li>
+      <li class="tarjeta"><span class="tarjeta__cab">Booleano</span><p class="tipo__valor tipo__valor--acento">true · false</p><p>Solo dos valores: verdadero o falso.</p><p><code class="cod-js">typeof</code> → <code class="cod-js">"boolean"</code></p></li>
+    </ul>
+
+    <div class="ej">
+      <figure class="codigo codigo--js" id="ej-3">
+        <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> nombre = <span class="c-str">"Lucía"</span>;
+<span class="c-etq">let</span> edad = <span class="c-num">16</span>;
+<span class="c-etq">const</span> ciudad = <span class="c-str">"Ushuaia"</span>;
+<span class="c-etq">let</span> presente = <span class="c-etq">true</span>;
+edad = edad + <span class="c-num">1</span>;  <span class="c-com">// cumplió años</span>
+console.<span class="c-fun">log</span>(nombre, edad, ciudad);
+console.<span class="c-fun">log</span>(<span class="c-etq">typeof</span> nombre);
+console.<span class="c-fun">log</span>(<span class="c-etq">typeof</span> edad);
+console.<span class="c-fun">log</span>(<span class="c-etq">typeof</span> presente);</code></pre>
+      </figure>
+      <div class="consola" data-codigo="ej-3">
+        <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+        <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Lucía 17 Ushuaia
+string
+number
+boolean</pre>
+      </div>
+    </div>
+
+    <section class="py-js" aria-labelledby="pj3">
+      <h3 class="py-js__tit" id="pj3">En Python <span class="py-js__flecha" aria-hidden="true">→</span> En JavaScript</h3>
+      <div class="py-js__cols">
+        <figure class="codigo codigo--py" id="py-3">
+          <figcaption><span class="codigo__archivo">Python</span></figcaption>
+          <pre tabindex="0" aria-label="Código en Python"><code>nombre = <span class="c-str">"Lucía"</span>
+edad = <span class="c-num">16</span></code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="js-3">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> nombre = <span class="c-str">"Lucía"</span>;
+<span class="c-etq">let</span> edad = <span class="c-num">16</span>;</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <code class="cod-js">let</code> para lo que cambia y <code class="cod-js">const</code> para lo que no. <code class="cod-js">typeof</code> nos dice de qué tipo es un dato.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 3">3</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 4 =================== -->
+  <article class="lamina lamina--compacta" id="pag-4" aria-labelledby="t4">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°1</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t4"><span class="tit__num">4.</span> Pedir datos y hacer cuentas</h2>
+      <p class="tit__sub">prompt(), Number() y operaciones</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-pregunta"/></svg>
+      <p><code class="cod-js">prompt()</code> abre una ventana con una pregunta y un casillero. Lo que escribe el usuario llega siempre como <strong>texto</strong>.</p>
+    </div>
+
+    <ul class="operaciones" aria-label="Operaciones aritméticas">
+      <li><b aria-hidden="true">+</b><span>Suma</span><p><code class="cod-js">7 + 2</code> → 9</p></li>
+      <li><b aria-hidden="true">-</b><span>Resta</span><p><code class="cod-js">7 - 2</code> → 5</p></li>
+      <li><b aria-hidden="true">*</b><span>Multiplicación</span><p><code class="cod-js">7 * 2</code> → 14</p></li>
+      <li><b aria-hidden="true">/</b><span>División</span><p><code class="cod-js">7 / 2</code> → 3.5</p></li>
+      <li><b aria-hidden="true">%</b><span>Resto</span><p><code class="cod-js">7 % 2</code> → 1</p></li>
+    </ul>
+
+    <section class="error-controlado" aria-labelledby="ec4">
+      <h3 class="error-controlado__tit" id="ec4"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alerta"/></svg>Error controlado: 5 + 3 da 53</h3>
+      <div class="error-controlado__cols">
+        <div class="ej-col">
+          <p class="error-controlado__paso">Así falla</p>
+          <figure class="codigo codigo--js" id="ej-4a">
+            <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+            <pre tabindex="0" aria-label="Código de app.js, versión con error"><code><span class="c-etq">let</span> a = <span class="c-fun">prompt</span>(<span class="c-str">"Número 1:"</span>);
+<span class="c-etq">let</span> b = <span class="c-fun">prompt</span>(<span class="c-str">"Número 2:"</span>);
+console.<span class="c-fun">log</span>(a + b);</code></pre>
+          </figure>
+          <div class="consola" data-codigo="ej-4a">
+            <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+            <p class="consola__nota">Con 5 y 3:</p>
+            <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">53</pre>
+          </div>
+        </div>
+        <div class="ej-col">
+          <p class="error-controlado__paso error-controlado__bien">Así se corrige</p>
+          <figure class="codigo codigo--js" id="ej-4b">
+            <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+            <pre tabindex="0" aria-label="Código de app.js, versión corregida"><code><span class="c-etq">let</span> a = <span class="c-fun">Number</span>(<span class="c-fun">prompt</span>(<span class="c-str">"Número 1:"</span>));
+<span class="c-etq">let</span> b = <span class="c-fun">Number</span>(<span class="c-fun">prompt</span>(<span class="c-str">"Número 2:"</span>));
+console.<span class="c-fun">log</span>(a + b);</code></pre>
+          </figure>
+          <div class="consola" data-codigo="ej-4b">
+            <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+            <p class="consola__nota">Con 5 y 3:</p>
+            <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">8</pre>
+          </div>
+        </div>
+      </div>
+      <p><strong>Qué pasó:</strong> <code class="cod-js">prompt()</code> devuelve texto: <code class="cod-js">"5"</code> y <code class="cod-js">"3"</code>. Entre dos textos, <code class="cod-js">+</code> no suma: los <strong>une</strong>. <strong>Cómo se corrige:</strong> <code class="cod-js">Number()</code> convierte el texto en número, y ahora <code class="cod-js">+</code> suma.</p>
+    </section>
+
+    <section class="py-js" aria-labelledby="pj4">
+      <h3 class="py-js__tit" id="pj4">En Python <span class="py-js__flecha" aria-hidden="true">→</span> En JavaScript</h3>
+      <div class="py-js__cols">
+        <figure class="codigo codigo--py" id="py-4">
+          <figcaption><span class="codigo__archivo">Python</span></figcaption>
+          <pre tabindex="0" aria-label="Código en Python"><code>edad = <span class="c-fun">int</span>(<span class="c-fun">input</span>(<span class="c-str">"Edad: "</span>))
+<span class="c-fun">print</span>(edad + <span class="c-num">1</span>)</code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="js-4">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> edad = <span class="c-fun">Number</span>(<span class="c-fun">prompt</span>(<span class="c-str">"Edad:"</span>));
+console.<span class="c-fun">log</span>(edad + <span class="c-num">1</span>);</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <code class="cod-js">prompt()</code> siempre devuelve texto. Para hacer cuentas, lo pasamos a número con <code class="cod-js">Number()</code>, que reemplaza a <code class="cod-py">int()</code> y <code class="cod-py">float()</code>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Página 4">4</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°1</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf1">
+      <p class="pf__etiqueta">Lámina 1</p>
+      <h3 class="pf__titulo" id="pf1">Extraer y comprimir la carpeta</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>La plantilla se descarga como un archivo <strong>.zip</strong>: una carpeta comprimida en un solo archivo. Antes de usarla, la extraemos: clic derecho sobre el .zip → <strong>Extraer todo…</strong> → <strong>Extraer</strong>.</p>
+          <p>Para entregar hacemos lo contrario: comprimimos nuestra carpeta en un .zip y lo subimos a Classroom.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Comprimir en .zip (Windows)</h4>
+          <ol class="pf__lista">
+            <li>En el Explorador de archivos, clic derecho sobre la carpeta.</li>
+            <li>En Windows 10: <strong>Enviar a → Carpeta comprimida (en zip)</strong>. En Windows 11: <strong>Comprimir en archivo ZIP</strong>.</li>
+            <li>Aparece un archivo .zip con el mismo nombre. Ese es el que subimos.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf2">
+      <p class="pf__etiqueta">Lámina 2</p>
+      <h3 class="pf__titulo" id="pf2">Cuando algo falla</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Si hay un error, la consola lo muestra <strong>en rojo</strong>, con el archivo y la línea (por ejemplo, <code class="cod-js">app.js:2</code>). El programa se detiene en esa línea.</p>
+          <div class="ej ej--pf">
+            <figure class="codigo codigo--js" id="ej-pf2">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js con un error"><code>console.<span class="c-fun">log</span>(<span class="c-str">"Uno"</span>);
+Console.<span class="c-fun">log</span>(<span class="c-str">"Dos"</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"Tres"</span>);</code></pre>
+            </figure>
+            <div class="consola" data-codigo="ej-pf2">
+              <div class="consola__barra"><span class="consola__titulo">Consola<span class="consola__estado"> · salida esperada</span></span></div>
+              <pre class="consola__salida" tabindex="0" aria-live="polite" aria-label="Salida de la consola">Uno
+<span class="consola__error">Uncaught ReferenceError: Console is not defined</span></pre>
+            </div>
+          </div>
+        </div>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Errores frecuentes</h4>
+          <ul class="pf__lista">
+            <li><code class="cod-js">console.log(Hola);</code> Faltan las comillas: <em>Hola is not defined</em>.</li>
+            <li><code class="cod-js">console.log("Hola";</code> Falta cerrar el paréntesis: <em>missing ) after argument list</em>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf3">
+      <p class="pf__etiqueta">Lámina 3</p>
+      <h3 class="pf__titulo" id="pf3">Nombres de variables</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Un buen nombre dice qué guarda la variable: <code class="cod-js">edad</code>, <code class="cod-js">precioFinal</code>. Si tiene dos o más palabras, usamos <strong>camelCase</strong>: todo junto y cada palabra nueva con mayúscula.</p>
+          <p>Cambiar una <code class="cod-js">const</code> da error: <em>Assignment to constant variable</em>.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Reglas</h4>
+          <ul class="pf__lista">
+            <li>Sin espacios ni guiones, y sin empezar con un número: <code class="cod-js">nota final</code>, <code class="cod-js">nota-final</code> y <code class="cod-js">1nota</code> dan error.</li>
+            <li>No podemos usar palabras de JavaScript, como <code class="cod-js">let</code> o <code class="cod-js">const</code>.</li>
+            <li><code class="cod-js">nota</code> y <code class="cod-js">Nota</code> son dos variables distintas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf4">
+      <p class="pf__etiqueta">Lámina 4</p>
+      <h3 class="pf__titulo" id="pf4">Más sobre números</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Si <code class="cod-js">Number()</code> recibe algo que no es un número, devuelve <strong>NaN</strong> (<em>Not a Number</em>: "no es un número"). Pasa, por ejemplo, si escribimos el decimal con coma.</p>
+          <p>Como en matemática, primero se hacen <code class="cod-js">*</code> y <code class="cod-js">/</code>, y después <code class="cod-js">+</code> y <code class="cod-js">-</code>. Los paréntesis cambian el orden.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Ejemplos</h4>
+          <ul class="pf__lista">
+            <li><code class="cod-js">Number("3.5")</code> → 3.5 · <code class="cod-js">Number("3,5")</code> → NaN</li>
+            <li><code class="cod-js">Number("hola")</code> → NaN</li>
+            <li><code class="cod-js">2 + 3 * 4</code> → 14 · <code class="cod-js">(2 + 3) * 4</code> → 20</li>
+            <li>Promedio de tres notas: <code class="cod-js">(n1 + n2 + n3) / 3</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 1</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°1</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°1 — Hola, JavaScript</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Hola, JavaScript</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Dónde corren los programas de JavaScript? ¿Hace falta instalar algo para ejecutarlos?</div></li>
+          <li><b class="act__letra">b)</b><div>Ordená los pasos: recargar con <kbd>F5</kbd> / abrir <code>index.html</code> en Chrome / escribir en <code class="cod-js">app.js</code> / abrir la carpeta en VS Code / guardar con <kbd>Ctrl</kbd> + <kbd>S</kbd>.</div></li>
+          <li><b class="act__letra">c)</b><div>Pasá a JavaScript: <code class="cod-py">print("Hola, mundo")</code></div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Mostrar mensajes</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Escribí qué muestra la consola:
+            <figure class="codigo codigo--js" id="act-2a">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code>console.<span class="c-fun">log</span>(<span class="c-str">"Hoy"</span>);
+<span class="c-com">// console.log("Mañana");</span>
+console.<span class="c-fun">log</span>(<span class="c-num">4</span> + <span class="c-num">5</span>);</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">b)</b><div>Encontrá el error de cada línea: <code class="cod-js">Console.log("Hola");</code> / <code class="cod-js">console.log(Chau);</code> / <code class="cod-js">console.log("Adiós";</code></div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué diferencia hay entre <code class="cod-js">console.log()</code> y <code class="cod-js">alert()</code>?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Variables y tipos de datos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿<code class="cod-js">let</code> o <code class="cod-js">const</code>? La edad de un alumno / los días de la semana / el puntaje de un juego.</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué devuelve <code class="cod-js">typeof</code> en cada caso? <code class="cod-js">25</code> / <code class="cod-js">"25"</code> / <code class="cod-js">false</code></div></li>
+          <li><b class="act__letra">c)</b><div>Hacé la prueba de escritorio y escribí qué muestra:
+            <figure class="codigo codigo--js" id="act-3c">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> puntos = <span class="c-num">10</span>;
+puntos = puntos + <span class="c-num">5</span>;
+<span class="c-etq">const</span> premio = <span class="c-num">3</span>;
+console.<span class="c-fun">log</span>(puntos + premio);</code></pre>
+            </figure></div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Pedir datos y hacer cuentas</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Pasá a JavaScript:
+            <figure class="codigo codigo--py" id="act-4a">
+              <figcaption><span class="codigo__archivo">Python</span></figcaption>
+              <pre tabindex="0" aria-label="Código en Python"><code>precio = <span class="c-fun">float</span>(<span class="c-fun">input</span>(<span class="c-str">"Precio: "</span>))
+<span class="c-fun">print</span>(precio * <span class="c-num">2</span>)</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">b)</b><div>El usuario escribe 4 y 6. ¿Qué muestra? ¿Por qué? Corregilo.
+            <figure class="codigo codigo--js" id="act-4b">
+              <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+              <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">let</span> a = <span class="c-fun">prompt</span>(<span class="c-str">"Número 1:"</span>);
+<span class="c-etq">let</span> b = <span class="c-fun">prompt</span>(<span class="c-str">"Número 2:"</span>);
+console.<span class="c-fun">log</span>(a + b);</code></pre>
+            </figure></div></li>
+          <li><b class="act__letra">c)</b><div>Calculá: <code class="cod-js">7 + 3 * 2</code> / <code class="cod-js">(7 + 3) * 2</code> / <code class="cod-js">10 % 3</code></div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 1</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-web"/></svg>
+      <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°1</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°1 — Hola, JavaScript</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé en JavaScript estos 8 ejercicios que ya resolviste en Python.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Cómo trabajar</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Creá la carpeta <code class="cod-carpeta">tp1-apellido</code> (por ejemplo, <code class="cod-carpeta">tp1-gomez</code>) con 8 copias de la plantilla: <code class="cod-carpeta">ejercicio-1</code> a <code class="cod-carpeta">ejercicio-8</code>.</div></li>
+          <li><b class="act__letra">b)</b><div>Cada <code class="cod-js">app.js</code> empieza con un comentario que dice qué hace el programa.</div></li>
+          <li><b class="act__letra">c)</b><div>Probá cada programa en Chrome con la consola abierta y con datos distintos. Si aparece un error en rojo, buscá la línea y corregilo.</div></li>
+          <li><b class="act__letra">d)</b><div>En el ejercicio 3, dejá la versión sin <code class="cod-js">Number()</code> como comentario y abajo, la corregida.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Los 8 ejercicios</h3>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">1</b><div>Programa que muestre tu nombre, edad y ciudad en 3 líneas.</div></li>
+          <li><b class="act__letra">2</b><div>Programa que pregunte el nombre y salude.</div></li>
+          <li><b class="act__letra">3</b><div>Programa que pida 2 números y muestre la suma (primero sin <code class="cod-js">Number()</code>, para ver el error; después corregido).</div></li>
+          <li><b class="act__letra">4</b><div>Programa que pida 2 números y muestre suma, resta, multiplicación y división.</div></li>
+          <li><b class="act__letra">5</b><div>Calculadora de área de un rectángulo (pide base y altura).</div></li>
+          <li><b class="act__letra">6</b><div>Conversor de pesos a dólares (cotización fija).</div></li>
+          <li><b class="act__letra">7</b><div>Programa que pida nombre y edad, y diga "Hola [nombre], en 10 años tendrás [edad+10] años".</div></li>
+          <li><b class="act__letra">8</b><div>Programa que pida 3 notas y muestre el promedio.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>Subí a la tarea de Classroom la carpeta <code class="cod-carpeta">tp1-apellido</code> con los 8 ejercicios comentados, comprimida en <strong>.zip</strong>.</p>
+            <p class="entrega__sub entrega__sub--sep">Cómo comprimir</p>
+            <p>Clic derecho sobre la carpeta → <strong>Enviar a → Carpeta comprimida (en zip)</strong> en Windows 10, o <strong>Comprimir en archivo ZIP</strong> en Windows 11.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li>Están las 8 carpetas de los ejercicios.</li>
+              <li>Cada <code class="cod-js">app.js</code> empieza con un comentario.</li>
+              <li>Ningún programa muestra errores en la consola.</li>
+              <li>El ejercicio 3 tiene las dos versiones.</li>
+              <li>Subí el .zip y toqué <strong>Entregar</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 1</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>
