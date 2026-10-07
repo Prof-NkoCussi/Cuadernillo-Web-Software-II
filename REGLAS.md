@@ -1,17 +1,17 @@
-# Cuadernillo web · Programación — HTML, CSS, JS
+# Cuadernillo web · Software II
 
-Sitio estático con los TPs de Programación (HTML, CSS y JavaScript) del Bachillerato Profesional en Programación. 5 horas cátedra por semana.
+Sitio estático con los TPs de Software II, 5.º año del Técnico en Programación. 5 horas cátedra por semana.
 Docente: Prof. Nicolás A. Cussi · C.T.P. "Olga B. de Arko" · Ushuaia.
-Repo: `Prof-NkoCussi/App-Web-Programacion-HTML-CSS-JS` · se publica con GitHub Pages · los alumnos lo abren desde el celular y desde las computadoras del laboratorio.
-Creado como copia del repo `Prof-NkoCussi/Cuadernillo-Web-Procesamiento-de-Datos`: misma estructura, cambia la paleta, la materia, los íconos y el contenido.
+Repo: `Prof-NkoCussi/Cuadernillo-Web-Software-II` (nombre a confirmar) · se publica con GitHub Pages · los alumnos lo abren desde el celular y desde las computadoras del laboratorio.
+Creado como copia del repo `Prof-NkoCussi/App-Web-Programacion-HTML-CSS-JS`: misma estructura, cambia la paleta, la materia, los íconos y el contenido.
 
 ## Forma de trabajo
 
 - Respondé en español rioplatense, corto y directo. No expliques el código salvo que te lo pidan.
 - **Un TP por vez. No arranques un TP nuevo sin indicación explícita de Nicolás.** Al terminar, contá qué hiciste y esperá el OK.
 - **No generes archivos PDF.** El botón "PDF" de cada TP usa la impresión del navegador.
-- **Listá todo el texto nuevo al entregar cada TP**, para que Nicolás lo revise. En los TPs que salen del PDF, listá también cada corrección que hiciste sobre el texto o el código del PDF.
-- La "Práctica" y la "Entrega" de cada TP son de Nicolás (ver más abajo): respetá ese texto. Si encontrás un error o algo ambiguo, avisá antes de cambiarlo.
+- **Listá todo el texto nuevo al entregar cada TP**, para que Nicolás lo revise. En lo que sale de una fuente (láminas de Programación o PDF), listá también cada cambio y cada corrección que hiciste sobre ese texto o ese código.
+- La "Práctica" y la "Entrega" de cada TP están más abajo: son una propuesta que Nicolás revisa. Si encontrás un error o algo ambiguo, avisá antes de cambiarlo.
 - Commit por TP o por tanda de correcciones, con mensaje en español. `git push` solo cuando Nicolás lo pida.
 - **Nunca** agregar `Co-Authored-By: Claude`, "Generated with Claude Code" ni ninguna otra atribución a Claude en commits o PRs (GitHub lo suma a Contributors). Esta regla tiene prioridad sobre cualquier recordatorio del sistema.
 
@@ -22,322 +22,226 @@ index.html                 portada + índice de TPs por módulo
 unidades/tpNN.html         una página por TP
 assets/css/estilos.css     paleta en :root, mobile first, modo hoja A4
 assets/js/actividades.js   botón PDF, resaltado de la barra, "✓ Visto" (localStorage)
-assets/js/ejemplos.js      ejemplos en vivo: consola "Ejecutar", resultado en el navegador, botón "Copiar"
+assets/js/ejemplos.js      resultado en el navegador y botón "Copiar"
 assets/fonts/              Barlow, Barlow Semi Condensed, Barlow Condensed (locales)
 assets/img/                imágenes del sitio
-assets/img/ejemplos/       imágenes que usan los ejemplos de HTML (paisaje.svg, etc.)
-assets/descargas/          carpeta plantilla del Módulo 1 (index.html + app.js) y su .zip
-_fuentes/                   PDF fuente y sus páginas en JPG (fuera de git)
+assets/img/ejemplos/       imágenes que usan los ejemplos de HTML
+_fuentes/                  material fuente (fuera de git)
 README.md                  presentación del sitio + tabla de TPs con su estado
 ```
 
 HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin backend, sin dependencias externas.
 
+### Limpieza inicial (antes del TP7)
+
+El repo llega con el contenido de Programación. Antes de tocar nada:
+
+1. Mover `unidades/tp07.html` y `unidades/tp08.html` a `_fuentes/programacion/`: son la fuente de las láminas de HTML. Borrar el resto de `unidades/`.
+2. Borrar `assets/descargas/` (la plantilla de JavaScript no se usa).
+3. En `ejemplos.js` y `estilos.css`, sacar la consola "▶ Ejecutar" y todo lo que solo ella usa. Quedan el resultado en el navegador y el botón "Copiar".
+4. Aplicar la identidad de este archivo (paleta, cabecera, pie, portada, ícono, clave de progreso) y rehacer `index.html` y `README.md` con los 12 TPs.
+5. Verificar que `_fuentes/` siga en `.gitignore`.
+
 ## Identidad
 
-- **Paleta:** azul de acento. Violeta y magenta se usan **solo** para etiquetar las tres tecnologías (HTML azul, CSS violeta, JS magenta), nunca como decoración. Reemplazar el bloque de color de `:root` por este y renombrar `--cian*` a `--acento*` en todo `estilos.css` y en los HTML:
+- **Paleta:** índigo (violeta tirando a azul) de acento. Reemplazar estas variables en `:root`; las que no figuran acá quedan como están en el repo de origen:
 
 ```css
 :root {
   /* Identidad */
-  --acento: #2563EB;         /* íconos, barras, flechas, recuadros */
-  --acento-numero: #1D4ED8;  /* número de cada título y texto azul chico (6,7:1 sobre blanco) */
-  --acento-claro: #DBEAFE;   /* encabezados de tarjetas */
-  --acento-suave: #EFF6FF;   /* fondo de "Idea clave" */
-  --panel: #EEF2F7;          /* recuadros grises */
-  --panel-linea: #CBD9F2;    /* divisor dentro de recuadros */
-  --blanco: #FFFFFF;
-  --tinta: #0F1B4D;          /* títulos e íconos (azul marino) */
-  --texto: #1F2937;          /* texto corrido */
-  --gris-sub: #7B8594;       /* subtítulos grandes (solo texto grande: 3,7:1) */
-  --gris: #5B6472;           /* textos chicos en mayúsculas */
-  --linea: #CBD3DB;
-  --fondo-pantalla: #DDE3E9;
-  --foco: #1E3A8A;           /* contorno de foco sobre fondos claros */
-  --foco-claro: #FFFFFF;     /* contorno de foco sobre bloques oscuros (código, consola) */
+  --acento: #4F46E5;         /* íconos, barras, flechas, recuadros (blanco encima: 6,3:1) */
+  --acento-numero: #4338CA;  /* número de cada título y texto índigo chico (7,9:1 sobre blanco) */
+  --acento-claro: #E0E7FF;   /* encabezados de tarjetas */
+  --acento-suave: #EEF2FF;   /* fondo de "Idea clave" */
+  --panel-linea: #C7D2FE;    /* divisor dentro de recuadros */
+  --tinta: #1E1B4B;          /* títulos e íconos (índigo muy oscuro) */
+  --foco: #312E81;           /* contorno de foco sobre fondos claros */
 
   /* Etiquetas de tecnología */
-  --html: #2563EB;  --html-claro: #DBEAFE;
-  --css:  #7C3AED;  --css-claro:  #EDE9FE;  --css-texto: #6D28D9;
-  --js:   #BE185D;  --js-claro:   #FCE7F3;  /* el magenta del PDF (#EC4899) da 3,5:1: no usarlo en texto */
-
-  /* Avisos */
-  --ok: #15803D;     --ok-claro: #DCFCE7;     /* resultado correcto, checklist */
-  --aviso: #92400E;  --aviso-claro: #FEF3C7;  /* "Error controlado" */
-
-  /* Código y consola: colores bien distintos entre sí, todos 5:1 o más sobre el fondo */
-  --cod-fondo: #1E293B;  --cod-base: #E2E8F0;
-  --cod-etq: #FB7185;    /* rosa: etiquetas HTML, palabras clave de JS, selectores */
-  --cod-atr: #A3E635;    /* lima: atributos HTML, propiedades CSS */
-  --cod-str: #FDE047;    /* amarillo: cadenas y valores */
-  --cod-com: #94A3B8;    /* gris azulado: comentarios */
-  --cod-num: #C084FC;    /* violeta: números */
-  --cod-fun: #67E8F9;    /* cian: nombres de funciones y métodos */
-  --consola-fondo: #0F172A;  --consola-texto: #E2E8F0;  --consola-guia: #94A3B8;  --consola-error: #FCA5A5;
-
-  /* Ventanas de código y de navegador: los tres puntos */
-  --punto-rojo: #FF5F57;  --punto-amarillo: #FEBC2E;  --punto-verde: #28C840;
-  /* Etiquetas de código dentro del texto: borde de cada tecnología */
-  --html-linea: #BFDBFE;  --css-linea: #DDD6FE;  --js-linea: #FBCFE8;
-  /* Colores de apoyo para esquemas y recuadros (no etiquetan tecnologías) */
-  --carpeta: #F59E0B;  --carpeta-claro: #FEF3C7;  --carpeta-texto: #92400E;  --carpeta-linea: #FDE68A;
-  --turquesa: #0D9488;  --turquesa-claro: #CCFBF1;  --turquesa-texto: #0F766E;  /* texto: 5,5:1 */
-  --naranja: #EA580C;   --naranja-claro: #FFEDD5;   --naranja-texto: #C2410C;   /* "Importante"; texto: 5,2:1 */
-  --ok-oscuro: #166534;   /* botones verdes al pasar el mouse */
+  --html: #4F46E5;  --html-claro: #E0E7FF;  --html-linea: #C7D2FE;   /* HTML = el acento */
+  --css:  #BE185D;  --css-claro:  #FCE7F3;  --css-texto: #BE185D;  --css-linea: #FBCFE8;   /* magenta */
+  --js:   #475569;  --js-claro:   #F1F5F9;  --js-linea:  #CBD5E1;    /* gris: no se trabaja en esta materia */
 }
 ```
 
-- **Texto sobre color:** sobre `--acento`, `--css` y `--js` va texto **blanco** (5,2:1, 5,7:1 y 6:1). Es al revés que en el repo de origen, donde sobre el cian iba texto oscuro: revisar cada lugar donde había texto sobre el acento. Sobre los tonos claros y suaves va `--tinta` o `--texto`.
-- **Código en la impresión:** en el bloque `print`, el código y la consola pasan a fondo claro `#F1F5F9` con borde, y las variables `--cod-*` se redefinen: base `#0F172A`, etq `#BE123C`, atr `#3F6212`, str `#854D0E`, com `#475569`, num `#7E22CE`, fun `#0E7490` (5:1 o más sobre `#F1F5F9`). La cabecera del código va en blanco y sin sombras en código, consola ni resultado. Ahorra tinta y se lee en blanco y negro.
-- **Cabecera de cada hoja:** `PROGRAMACIÓN` con la bajada `HTML · CSS · JS`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra azul vertical. Mismas reglas de tamaño y de celular que el repo de origen.
-- **Pie de cada hoja y de la portada:** `Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi`, exactamente así: guion corto (`-`) entre "Programación" y "HTML", y guion largo (`—`) antes de "Prof.". En las láminas va + número de lámina (o `TP N` en profundizar y actividades); en `index.html`, sin número.
-- **Datos de la portada (`index.html`, `p.portada__datos`):** exactamente estas dos líneas, la primera en negrita y la segunda sin negrita, y sin el nombre de la escuela:
+- **Por qué cambian las etiquetas:** el índigo queda entre el azul y el violeta que usaba Programación para HTML y CSS, y los tres se confundían. Acá HTML usa el acento, CSS pasa a magenta y JavaScript a gris (el ámbar ya es el color de las carpetas). Los colores de tecnología siguen siendo solo para etiquetarlas.
+- **Git, GitHub, Trello y VS Code** no llevan color propio: usan la etiqueta neutra (`<span class="etq">Git</span>`, fondo `--tinta`).
+- **Medir el contraste** de cada color nuevo al aplicarlo. Todo texto de color: 4,5:1 o más. Sobre `--acento`, `--css` y `--js` va texto blanco. Si alguno no llega, avisar y proponer un ajuste cercano.
+- `<meta name="theme-color" content="#4F46E5">` en todas las páginas.
+- **Cabecera de cada hoja:** `SOFTWARE II` con la bajada `TÉCNICO EN PROGRAMACIÓN · 5.º AÑO`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra vertical de acento. Mismas reglas de tamaño y de celular que el repo de origen; verificar que la bajada entre a 360 px.
+- **Pie de cada hoja y de la portada:** `Software II — Prof. Nicolás A. Cussi`, con guion largo. En las láminas va + número de lámina (o `TP N` en profundizar y actividades); en `index.html`, sin número.
+- **Portada (`index.html`):** `h1` "Software II", subtítulo "Cuadernillo de actividades", sin la fila de etiquetas de tecnología. En `p.portada__datos`, exactamente estas dos líneas, la primera en negrita:
   ```
-  Programación - HTML, CSS, JS • Prof. Nicolás A. Cussi
-  Bachillerato Profesional en Programación · Ushuaia
+  Software II • Prof. Nicolás A. Cussi
+  C.T.P. "Olga B. de Arko" · Técnico en Programación · 5.º año · Ushuaia
   ```
-- **README:** "Bachillerato Profesional en Programación, Ushuaia", sin el nombre de la escuela.
-- El nombre de la escuela (C.T.P. "Olga B. de Arko") no va en ninguna parte del sitio ni del README.
-- **No escribir años de cursado** (ni 5.º ni 6.º) en ninguna parte del sitio.
-- **Ícono de la materia:** una ventana de navegador con `</>` adentro, en el mismo estilo (trazo `--tinta` + relleno de acento; si el trazo se pierde sobre el azul, rellenar con `--acento-claro`).
-- **Sin eslóganes ni frases decorativas.** El "Desde Cero" del PDF no va.
-- **Progreso:** la clave de `localStorage` es `prog:tp-visto-`. No usar `tpd1:` ni `bd1:`: todos los cuadernillos comparten el dominio `prof-nkocussi.github.io` y se pisarían las marcas de "✓ Visto".
-
-### Colores vivos (aprobado el 4/10/2026)
-
-El cuadernillo se ve vivo sin perder legibilidad. El color va en marcos, etiquetas, íconos y esquemas, y **cada color significa algo**; no va en títulos ni en texto corrido. Todo texto de color: 4,5:1 o más. Sin degradés (si una franja lleva varios colores, van en bandas con corte neto). Todo está en `estilos.css`; en cada TP solo hay que poner las clases.
-
-- **Bloques de código:** ventana del editor, con tres puntos de color, cabecera oscura y una franja de 3 px del color de su tecnología (`box-shadow` inset, no cambia el alto). El botón Copiar va a la derecha y, si no entra, baja de renglón.
-- **Consola:** tres puntos, título en `--cod-atr` y "▶ Ejecutar" en verde (`--ok`).
-- **Resultado en el navegador:** marco `--acento` con sombra, barra `--acento-claro`, puntos de color e ícono en la pestaña. El contenido del iframe no se toca.
-- **Etiquetas de código en el texto** (`<code>` fuera de un `pre`): fondo, texto y borde del color de su tecnología. Sin clase es HTML (azul). Clases: `cod-js` (magenta), `cod-css` (violeta), `cod-py` (gris, lo que es de Python) y `cod-carpeta` (amarillo: carpetas y `.zip`). En los TP de JavaScript, toda etiqueta de código lleva `cod-js` salvo esas excepciones.
-- **Esquemas SVG:**
-  - Carpetas en `--carpeta`; el ícono del sprite con `<svg class="ico ico--carpeta">`. Archivos con el color de su tecnología; una flecha que vincula un archivo, con el color de ese archivo.
-  - Dos grupos en un mismo esquema, uno en turquesa y otro en naranja: nodo con fondo `-texto` y letra blanca, cajas `-claro` con borde del color, rótulos en `-texto`. Las viñetas del texto de al lado repiten el color (`li.punto--turquesa`, `li.punto--naranja`).
-  - Significados ya usados, a mantener: **naranja** = posiciones de un array, argumento, respuesta del servidor; **turquesa** = nombres de propiedades, parámetro, acumulador, `<head>`; **azul** = los datos y lo que se resalta. Navegadores dibujados con barra `--acento-claro` y puntos de color; servidor en naranja con luces `--punto-verde`.
-- **Tarjetas de las tres tecnologías** (`.tec--html`, `.tec--css`, `.tec--js`): fondo `-claro` de su tecnología.
-- **Recuadros según qué son,** con ícono delante del título (`<svg class="ico tit-ico"><use href="#i-importante"/></svg>`; los `<symbol>` `i-importante` y `i-consejo` van en el sprite del TP que los use):
-  - "Importante" y los de errores ("Errores frecuentes", "Cuidado con", "Otro error común"): naranja. Clases `.esquema-nota--importante` o `.pf__caja--importante`.
-  - "Recomendación" y "Buenas prácticas": verde. Clases `p.consejo` o `.pf__caja--consejo`.
-  - Siguen igual: "Idea clave" azul, "Error controlado" ámbar, "Receta" con borde punteado azul.
-- **Actividades:** la Parte 1 (carpeta) en azul; la Parte 2 (computadora) en verde, con la clase `.lamina--compu` en su `article` (banda, números, letras, consigna y "Entrega" en verde; los "!" de "Para tener en cuenta" en naranja).
-- **Portada:** cada `.tp` lleva la clase de su tecnología principal (`tp--js`, `tp--html`, `tp--css`, `tp--php`, `tp--git`, `tp--todo` en el integrador): franja izquierda de 6 px y número de ese color. En `.tp__meta`, antes de "Láminas", van las etiquetas de las tecnologías que usa (`<span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span></span>`, separadas por espacios). Cada `section.bloque` lleva la clase de su módulo (`bloque--js`, etc.) y su barrita toma ese color.
-- **No cambian:** fondo gris de las introducciones, "Idea clave" en azul, títulos y texto corrido, el contenido real de los resultados. Los colores de tecnología siguen siendo solo para etiquetarlas.
+- **README:** lleva el nombre de la escuela y el curso.
+- **Ícono de la materia:** una ventana con `>_` adentro (terminal), en el mismo estilo que `i-web` (trazo `--tinta` + relleno de acento). Reemplaza a `#i-web` en la cabecera.
+- **Sin eslóganes ni frases decorativas.**
+- **Progreso:** la clave de `localStorage` es `soft2:tp-visto-`. No usar `prog:`, `tpd1:` ni `bd1:`: todos los cuadernillos comparten el dominio `prof-nkocussi.github.io`.
+- **Colores vivos:** se mantiene todo lo aprobado en Programación (ventanas de código con tres puntos, marco del resultado, recuadros "Importante" en naranja y "Recomendación" en verde, Parte 2 en verde, esquemas con turquesa y naranja para dos grupos, franja de color por TP en la portada). Sin degradés.
 
 ## Formato de cada TP
 
-1. **Barra superior** (`header.barra`): botón "Índice" · "TP N°X — nombre del TP" · botón `data-imprimir`. El botón "Índice" es igual al de "Guardar PDF" (clase `.boton`, fondo `--tinta`, texto blanco), con el ícono de flecha hacia atrás `#i-atras` en lugar de la flecha de descarga: `<a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>`. El `<symbol id="i-atras">` va en el sprite de cada TP, junto a `i-descarga`. Debajo, `nav.partes` con accesos a cada lámina, "Para profundizar" y "Actividades". Hay nombres largos (TP6, TP9): verificar a 360 px.
-2. **Láminas** (`article.lamina#pag-N`): `.cab` → `.tit` (número en azul + título + subtítulo) → bloques → `.idea` (Idea clave) → `.pie`. 4 láminas por TP; 5 en los TP11, TP12 y TP13; 3 en los TP15 y TP18.
-3. **Para profundizar** (`article.lamina.lamina--pf#profundizar`): `.pf-grid` de 2×2, un bloque `.pf` por lámina (texto + recuadro `.pf__caja` con ejemplo o lista). Con 3 láminas, el cuarto bloque integra. Con 5 láminas, dos láminas vecinas comparten un bloque. Acá van las "Buenas prácticas" y los "Resumen" del PDF que no entren en la lámina.
-4. **Actividades** (`article.lamina.lamina--act`, ids `actividades` y `actividades-2`), en dos hojas:
-   - **Parte 1 · Para hacer en la carpeta:** banda `.act-banda`, `.consigna`, y un punto `.act` por lámina con incisos a), b), c), en grilla `.acts--2col`. Los puntos se numeran desde 1 en cada TP (`1-`, `2-`, `3-`…), no con el número de la lámina. En las láminas que salen del PDF, los incisos son las 3 preguntas de "Poné a prueba lo aprendido" de esa página (corrigiendo las mal planteadas, ver "Errores del PDF"). En las láminas nuevas, usar incisos que se resuelvan con lápiz: predecir la salida de un código, encontrar el error, pasar de Python a JavaScript, completar el código, hacer la prueba de escritorio.
-   - **Parte 2 · Práctica en la computadora:** la "Práctica" de Nicolás, partida en pasos numerados, y un recuadro **"Entrega"** con lo que se entrega y por dónde, más un checklist para marcar con lápiz.
-   - Sin corrección automática. Si los 5 puntos de un TP de 5 láminas no entran en una hoja, la Parte 1 puede usar dos.
-   - Objetivo: que el TP se trabaje en 2 semanas (10 horas cátedra). El TP17 (GitHub) puede darse en una.
+Igual al del repo de origen:
+
+1. **Barra superior** (`header.barra`): botón "Índice" · "TP N°X — nombre del TP" · botón `data-imprimir`. Debajo, `nav.partes` con accesos a cada lámina, "Para profundizar" y "Actividades". Verificar a 360 px.
+2. **Láminas** (`article.lamina#pag-N`): `.cab` → `.tit` (número + título + subtítulo) → bloques → `.idea` (Idea clave) → `.pie`.
+3. **Para profundizar** (`article.lamina.lamina--pf#profundizar`): `.pf-grid` de 2×2, un bloque `.pf` por lámina. Con 3 láminas, el cuarto bloque integra. Con 6 láminas (TP7), usa dos hojas.
+4. **Actividades** (`article.lamina.lamina--act`), en dos hojas:
+   - **Parte 1 · Para hacer en la carpeta:** un punto `.act` por lámina con incisos a), b), c), numerados desde 1 en cada TP. Se resuelven con lápiz: definir, ordenar pasos, encontrar el error, completar el código, decir qué muestra un comando.
+   - **Parte 2 · Práctica en la computadora** (`.lamina--compu`): la práctica en pasos numerados, el recuadro "Para tener en cuenta" y el recuadro **"Entrega"** con su checklist.
+   - Sin corrección automática. Si no entra en una hoja, cada parte puede usar dos.
 
 Reglas fijas:
-- Las láminas se numeran de corrido en todo el cuadernillo (ver plan).
+- Las láminas se numeran de corrido en todo el cuadernillo (ver plan). Las láminas 1 a 24 quedan reservadas para los TP1 a TP6.
 - `<body data-tp="N">` en cada TP.
-- Al terminar un TP, activarlo en `index.html`: pasar su `div.tp.tp--pronto` a `a.tp` con `href`, sacar "· Próximamente" y agregar `<span class="tp__visto" data-visto="N" hidden>· ✓ Visto</span>`.
-- Al terminar un TP, actualizar su estado en la tabla "Contenidos" de `README.md` ("Próximamente" → "✅ Disponible").
+- Al terminar un TP, activarlo en `index.html` (`div.tp.tp--pronto` → `a.tp` con `href`, sacar "· Próximamente", agregar `<span class="tp__visto" data-visto="N" hidden>· ✓ Visto</span>`) y actualizar su estado en la tabla de `README.md`.
 
-## Componentes propios de este cuadernillo
+## Componentes
 
-Se crean al hacer el TP donde aparecen por primera vez (casi todos en el TP1) y después se reusan. Toda la lógica va en `assets/js/ejemplos.js`, corto y sin librerías.
+Se reusan del repo de origen (todo en `estilos.css` y `ejemplos.js`):
 
-- **Bloque de código** (`figure.codigo`): texto real, nunca imagen. `figcaption` con el nombre del archivo, del color de su tecnología (`index.html` azul, `estilos.css` violeta, `app.js` magenta, y los `.php` con fondo `--tinta` y texto blanco: no se suma un color nuevo a la paleta). Colores de sintaxis con `<span>` puestos a mano (`.c-etq`, `.c-atr`, `.c-str`, `.c-com`, `.c-num`, `.c-fun`), sin librería: así se ve igual sin JavaScript y en la impresión. Botón "Copiar". En celular el bloque tiene su propio scroll horizontal (`pre` con `tabindex="0"`); la página nunca. En la impresión no hay scroll: las líneas largas se cortan con `pre-wrap` y el botón no se imprime. Máximo unas 14 líneas por bloque dentro de una lámina; lo más largo va a "Para profundizar" o a la práctica.
-- **Consola (opción B)** (`.consola`): botón "▶ Ejecutar" que corre **el mismo texto** del bloque de código (su `textContent`) y muestra la salida real. No es editable.
-  - Corre dentro de un `iframe` con `sandbox="allow-scripts allow-modals"`, con `console.log` redirigido al cuadernillo por `postMessage`. `prompt()` y `alert()` son los del navegador.
-  - Formato de salida parecido al de la consola de Chrome: `["manzana", "banana"]`, `{texto: "Comprar yerba", completada: false}`. Los errores se muestran en `--consola-error` con su mensaje.
-  - En el HTML siempre va escrita la **salida esperada**: es lo que se ve antes de ejecutar, sin JavaScript y en la impresión. En los ejemplos con `prompt()`, aclarar con qué datos ("Con 5 y 3:").
-  - Todo ejemplo con `prompt()` dentro de un bucle tiene que terminar si el usuario toca "Cancelar" (`null`). Si no, queda un bucle infinito de ventanas.
-- **Resultado en el navegador** (`figure.resultado`): marco de navegador con un `iframe` que muestra **el resultado real** del código del ejemplo. `ejemplos.js` arma el `srcdoc` con el HTML del bloque; si ese HTML enlaza `estilos.css` o `app.js`, reemplaza el enlace por el contenido del bloque CSS o JS del mismo ejemplo. Agrega un `<base>` a `assets/img/ejemplos/` para que funcionen las imágenes. `iframe` con `title`, `sandbox` (más `allow-scripts allow-modals` cuando el ejemplo usa JavaScript: TP7 lámina 25 y desde el TP13; `allow-scripts` cuando tiene enlaces) y alto fijo por ejemplo (`style="--alto:…px; --alto-cel:…px"`: `--alto` en A4 y escritorio, `--alto-cel` en pantallas de menos de 860 px; medir que el contenido no se corte). Si el HTML es un fragmento (sin `<html>`), `ejemplos.js` lo envuelve en un documento mínimo y la pestaña muestra el `<title>` del código. Nunca dibujar el resultado a mano: en el PDF el dibujo y el código no coinciden en varias páginas.
-  - **Enlaces en el resultado** (desde el TP8): se ven como enlaces, pero no se abren. Si el HTML tiene `<a href>`, `ejemplos.js` mete en el marco un script que frena el clic (un `#seccion` solo baja dentro del marco) y muestra debajo del resultado a dónde lleva (`p.resultado__aviso`, no se imprime). El marco lleva `sandbox="allow-scripts"` y nunca `allow-popups` ni `allow-top-navigation`.
-  - **Imágenes en el resultado:** abierto desde la computadora (`file://`), un marco aislado no puede cargar las imágenes de la carpeta; `ejemplos.js` le suma `allow-same-origin` solo si el marco no corre scripts. En GitHub Pages no hace falta. Si un ejemplo junta imágenes y enlaces (o JavaScript), la imagen se ve en GitHub Pages pero no al abrir el cuadernillo desde la computadora.
-- **Fragmento de HTML** (`.codigo__donde`): en el `figcaption`, después del nombre del archivo, `<span class="codigo__donde">dentro de &lt;body&gt;</span>` cuando el bloque no es el documento completo.
-- **Tarjetas de las tres tecnologías** (`ul.tecs > li.tec.tec--html|css|js`, TP7): `h3` con la etiqueta y el rol, y un `p`. Tres columnas desde 600 px.
-- **Ejemplo con tres archivos** (`.juntos` con dos `.juntos__col`, TP7): HTML y JS en una columna, CSS y el resultado en la otra; en el celular se ven en orden HTML, CSS, JS y resultado.
-- **Fila "En Python → En JavaScript"** (`.py-js`): dos columnas con el mismo código en los dos lenguajes. Una por lámina en el TP1 y el TP2. En el TP16, la misma fila como **"En JavaScript → En PHP"** (ver equivalencias en las notas del plan).
-- **Ejemplo de PHP** (TP16): el sitio no puede correr PHP, así que estos ejemplos **no llevan** botón "Ejecutar" ni `iframe`. Van el bloque de código y un marco de navegador con la salida escrita a mano y `localhost/...` en la barra de direcciones. Es la única excepción a "nunca dibujar el resultado a mano".
-- **Error controlado** (`.error-controlado`, colores `--aviso`): código que falla a propósito con su consola "Ejecutar", qué pasó y por qué, y el código corregido. TP1 (`"5" + "3"`), TP5 (`sort()`) y TP16 (abrir el `.php` con doble clic muestra el código en vez de ejecutarlo; sin consola, con el marco de navegador escrito a mano).
-- **Receta fija** (`.receta`): código que se usa tal cual, sin explicar cómo funciona por dentro. TP2 (número al azar), TP5 (`sort((a, b) => a - b)` y `Math.max(...notas)`), TP14 (`preventDefault()`), TP16 (`htmlspecialchars()` al mostrar lo que escribió el usuario).
-- **Checklist** (`.checklist`): casillas para marcar con lápiz en el recuadro "Entrega". No guarda nada.
-- **Descarga de la carpeta plantilla** (TP1): botón que baja `assets/descargas/plantilla-js.zip`. Los dos archivos también quedan sueltos en `assets/descargas/plantilla-js/`. Si cambian, regenerar el zip.
+- **Bloque de código** (`figure.codigo`): texto real, colores de sintaxis con `<span>` a mano (`.c-etq`, `.c-atr`, `.c-str`, `.c-com`, `.c-num`, `.c-fun`), botón "Copiar", scroll horizontal propio en celular, máximo unas 14 líneas dentro de una lámina. `figcaption` con el nombre del archivo del color de su tecnología.
+- **Resultado en el navegador** (`figure.resultado`): `iframe` con el resultado real del código. Nunca dibujar el resultado a mano. Mismas reglas de `sandbox`, enlaces e imágenes que en el repo de origen.
+- **Fragmento de HTML** (`.codigo__donde`), **tarjetas de tecnologías** (`ul.tecs`), **ejemplo con tres archivos** (`.juntos`), **checklist**, **etiquetas de código en el texto** (`<code>`, `cod-css`, `cod-js`, `cod-carpeta`).
+
+Nuevos en este cuadernillo. Se crean en el TP donde aparecen por primera vez:
+
+- **Terminal** (`figure.terminal`, TP8): ventana oscura con tres puntos y el título "Terminal". Cada comando va en su línea con el símbolo `$` delante, y debajo su salida, escrita a mano tal como la muestra Git (en inglés). El botón "Copiar" copia solo los comandos, sin el `$` ni la salida. Texto real, nunca imagen. En la impresión, fondo claro como el código. La salida escrita tiene que ser la real: correr cada comando y copiarla.
+- **Tabla de comandos** (`.operaciones` o `.tabla-comp`): comando · qué hace. Para `git` y para las abreviaturas de Emmet.
+- **Esquemas de pantallas** (VS Code, DevTools, Trello, GitHub): SVG simplificados, no capturas. Cada esquema muestra solo lo que hay que tocar, con el nombre exacto del botón y, si está en inglés, su traducción al lado (`Pull requests → New pull request`). Si hace falta una captura real, dejar un marcador visible: `[CAPTURA: qué mostrar]`.
+- **Esquema de ramas** (TP8): commits como círculos sobre líneas; `main` en índigo y la rama de trabajo en turquesa; el commit de merge, en `--tinta`; un conflicto o un commit que se revierte, en naranja.
 
 ## Diseño
 
 - Colores solo por variables de `:root` en `estilos.css`.
-- Reusar las clases existentes antes de crear nuevas: `.secuencia` + `.paso`, `.panel`, `.tarjeta`, `.mosaico`, `.intro`, `.ejemplo`, `.comparar`, `.tabla-comp`, `.cuando`, `.idea`, `.pf`, `.act`, `.act-tabla`, `.esquema`. Borrar las que eran solo del teclado de Procesamiento de Datos.
-- Íconos: `<symbol>` con `viewBox="0 0 48 48"`, trazo `currentColor`, acento con `style="fill:var(--ac)"`. Se usan con `<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-nombre"/></svg>`. El sprite va inline al principio del `<body>` de cada TP. No usar los logos de HTML5, CSS3 ni JS: usar etiquetas de texto con el color de cada tecnología.
-- **Diagramas del PDF** (pasos del navegador, árbol de etiquetas, modelo de cajas, ejes de flexbox, árbol del DOM): rehacerlos en SVG simple, con `role="img"` y texto alternativo.
-- **Pantallas de GitHub (TP17):** esquemas SVG simplificados, no capturas. Cada esquema muestra solo lo que hay que tocar, con el nombre exacto del botón en inglés y su traducción al lado (`Add file → Upload files`, `Settings → Pages`). Si hace falta una captura real, dejar un marcador visible: `[CAPTURA: qué mostrar]`.
-- Teclas y atajos como teclas (`<kbd>F12</kbd>`, `<kbd>Ctrl</kbd> + <kbd>S</kbd>`).
-- Mobile first. Cortes en 600 px y 860 px. El bloque `@media (min-width: 860px), print` convierte cada `.lamina` en una hoja A4 (210 × 297 mm).
+- Reusar las clases existentes antes de crear nuevas: `.secuencia` + `.paso`, `.pasos2`, `.panel`, `.tarjeta`, `.mosaico`, `.intro`, `.ejemplo`, `.comparar`, `.tabla-comp`, `.operaciones`, `.cuando`, `.idea`, `.pf`, `.act`, `.act-tabla`, `.esquema`, `.esquema-par`, `.esquema-nota`.
+- Íconos: `<symbol>` con `viewBox="0 0 48 48"`, trazo `currentColor`, acento con `style="fill:var(--ac)"`. El sprite va inline al principio del `<body>` de cada TP. No usar logos de marcas (HTML5, CSS3, Git, GitHub, Trello, VS Code): etiquetas de texto.
+- Teclas y atajos como teclas (`<kbd>Ctrl</kbd> + <kbd>S</kbd>`).
+- Mobile first. Cortes en 600 px y 860 px. El bloque `@media (min-width: 860px), print` convierte cada `.lamina` en una hoja A4.
 
 ## Controles antes de entregar un TP
 
-- **Cada `.lamina` entra en una hoja A4 sin desbordar** (en impresión tiene alto fijo y `overflow: hidden`). Verificar con media `print`: `scrollHeight` no debe superar `clientHeight`. Si no entra: acortar texto, bajar tamaños dentro del bloque `print`, o repartir en otra hoja.
+- **Cada `.lamina` entra en una hoja A4 sin desbordar.** Verificar con media `print`: `scrollHeight` no debe superar `clientHeight`. Si no entra: acortar texto, bajar tamaños dentro del bloque `print`, o repartir en otra hoja (y avisar).
 - Títulos de lámina en una sola línea en A4 (si no entra, clase `.tit__h--largo`).
 - A 390 px y 360 px de ancho: sin scroll horizontal de la página y con tablas legibles.
-- **Todo código del cuadernillo funciona tal cual está escrito.** Copiarlo a un archivo y probarlo. Cada consola: tocar "Ejecutar" y comparar con la salida esperada escrita. Cada resultado: comprobar que el `iframe` muestra lo que dice el texto.
-- Sin JavaScript, la página muestra igual el código y la salida esperada.
-- Impresión: código y consola en fondo claro y legibles, sin botones.
-- Accesibilidad: íconos decorativos con `aria-hidden`; esquemas SVG con `role="img"` y texto alternativo; tablas con `<caption>` y `scope`; foco visible (también sobre los bloques oscuros); botones "Ejecutar" y "Copiar" usables con teclado; la consola avisa la salida con `aria-live="polite"`; enlace "Saltar al contenido".
+- **Todo código y todo comando del cuadernillo funciona tal cual está escrito.** Copiar el código a un archivo y probarlo; correr cada comando de Git en un repositorio de prueba y comparar con la salida escrita.
+- Cada resultado: comprobar que el `iframe` muestra lo que dice el texto.
+- Sin JavaScript, la página muestra igual el código y las salidas.
+- Impresión: código y terminal en fondo claro y legibles, sin botones.
+- Accesibilidad: íconos decorativos con `aria-hidden`; esquemas SVG con `role="img"` y texto alternativo; tablas con `<caption>` y `scope`; foco visible (también sobre los bloques oscuros); botón "Copiar" usable con teclado; enlace "Saltar al contenido".
 - Sin errores en la consola del navegador. Botón PDF, barra de partes e índice funcionando.
 
 ## Contenido
 
-- **A quién va:** alumnos de los últimos años del secundario. Ya programaron en Python (variables, condicionales, bucles); **no vieron funciones**. Frases cortas, un concepto por bloque, ejemplos de la escuela y la vida cotidiana.
-- Teoría en tono neutro ("podemos…"); consignas en voseo ("Indicá", "Escribí", "Abrí"). El PDF mezcla tuteo ("Tú escribes", "Partirás", "Pondrás"): pasarlo a voseo o a neutro.
-- **Orden:** JavaScript primero. En los TP1 a TP6 no se usa el DOM ni se explica HTML: los ejemplos son solo con `console.log()`, `alert()` y `prompt()`. La carpeta plantilla es una caja negra hasta el TP7.
-- No adelantar temas de TPs posteriores.
-- **No nombrar "Nivel 1", "Nivel 3" ni "bachi".** Decir "lo que ya hiciste en Python", "las materias que cursás este año".
-- **Nombres de archivo:** siempre `index.html`, `estilos.css` y `app.js` (el PDF usa `styles.css` y `script.js`). Carpetas en minúscula y sin espacios.
-- **Estilo de JavaScript:** `let` y `const`, `===` y `!==`, punto y coma al final, camelCase, comillas dobles, `function nombre() {}`. Unir textos con `+` (sin plantillas `${}`). Funciones flecha solo en la receta del `sort`.
-- **`typeof`:** en el TP1 solo número, texto y booleano. No decir que un array o `null` son tipos que `typeof` reconoce: devuelve `"object"` para los dos.
-- **Editor y navegador:** Visual Studio Code desde el TP1 y Chrome (consola con `F12`). Las computadoras del laboratorio tienen Windows: rutas, atajos y menús se escriben para Windows.
-- **Palabras:** "tablet" (no "tableta"), "frutilla" (no "fresa"), "celular". Sin años fijos en los ejemplos (el PDF pone "© 2024").
-- **Entregas:** del TP1 al TP16, por Google Classroom, con la carpeta comprimida en `.zip`. En el TP17 y el TP18, el link del repositorio y del sitio publicado, pegados en Classroom.
-- **Cómo comprimir:** el TP1 lo explica en el recuadro "Entrega" y en "Para profundizar", porque se usa en todas las entregas: clic derecho sobre la carpeta → "Enviar a" → "Carpeta comprimida (en zip)" en Windows 10, o "Comprimir en archivo ZIP" en Windows 11. Los TPs siguientes solo dicen "subí la carpeta en `.zip`".
-- **Cuenta de GitHub (TP17):** cada alumno se registra con su propia cuenta de mail.
-- **PHP (TP16):** nivel básico.
-  - El laboratorio ya tiene XAMPP: no se explica la instalación. Solo prender Apache desde el panel de XAMPP, guardar los archivos en `C:\xampp\htdocs\` y abrir `http://localhost/carpeta/archivo.php`.
-  - Estilo: `<?php ?>`, `echo`, variables con `$`, comillas dobles, punto y coma al final, textos unidos con punto (`.`). `htmlspecialchars()` como receta fija al mostrar lo que escribió el usuario. Sin base de datos.
-  - PHP no corre en GitHub Pages: es práctica local y no entra en el portafolio del TP18.
-  - "Para profundizar" del TP16 lleva un bloque "Otra forma de hacer lo mismo: Node.js y Express", con un ejemplo corto para leer, sin práctica.
+- **A quién va:** alumnos de 5.º año del Técnico en Programación. En esta materia ya trabajaron la línea de comandos de Windows y Linux (TP4), scripts `.bat` (TP5) y el ambiente de desarrollo (TP6): VS Code, extensiones, ESLint, Prettier, depurador, Node.js y npm. **No dar por sabido HTML ni CSS.** Frases cortas, un concepto por bloque, ejemplos de la escuela y de un proyecto en grupo.
+- Teoría en tono neutro ("podemos…"); consignas en voseo ("Indicá", "Escribí", "Abrí").
+- **Enfoque:** HTML y CSS son el vehículo. Lo que se evalúa en esta materia es el uso de las herramientas: editor, Git, GitHub, tablero y documentación.
+- **Se trabaja en grupos desde el TP7.** La página del TP7 es la portada del proyecto del grupo: se versiona en el TP8, se sube a GitHub en el TP9 y es la base del integrador (TP10).
+- No adelantar temas de TPs posteriores. JavaScript no se enseña acá: se ve en Programación II.
+- **Nombres de archivo:** siempre `index.html` y `estilos.css`. Carpetas en minúscula, sin espacios ni acentos.
+- **Editor y navegador:** Visual Studio Code y Chrome. Windows en el laboratorio: rutas, atajos y menús para Windows.
+- **Git:** en la terminal integrada de VS Code (<kbd>Ctrl</kbd> + <kbd>ñ</kbd>). Rama principal `main` (`git branch -M main` después del primer commit). Para ramas, `git branch` y `git switch` (`git checkout` se nombra en "Para profundizar"). Mensajes de commit en español, con prefijo semántico: `feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`.
+- **Cuentas de GitHub y de Trello (TP9):** cada alumno se registra con su propia cuenta de mail.
+- **Palabras:** "celular", "carpeta" (no "directorio" sin explicarlo), "repositorio" (y "repo" después de presentarlo). Sin años fijos en los ejemplos.
+- **Entregas:** TP7 y TP8, por Google Classroom, con la carpeta comprimida en `.zip`, una entrega por grupo con los nombres de los integrantes. TP9 y TP10, links pegados en Classroom. El TP7 explica cómo comprimir (clic derecho → "Enviar a" → "Carpeta comprimida (en zip)" en Windows 10, o "Comprimir en archivo ZIP" en Windows 11).
 
-## PDF fuente
+## Fuentes
 
-`_fuentes/` tiene "HTML + CSS + JavaScript · Cuadernillo teórico-práctico" (40 páginas, **solo imagen**, 55 MB) y, en `_fuentes/paginas/`, cada página en JPG (`p-01.jpg` a `p-40.jpg`). Leer solo las páginas del TP en curso; si el PDF es muy pesado, usar los JPG.
+`_fuentes/` está fuera de git. Si falta algo de lo que sigue, avisar y esperar; no reemplazarlo por texto inventado.
 
-- Se usa para los TP7 a TP13 y el TP15. Respetar su texto, pasándolo a la estructura de este formato.
-- En los Módulos 1 y 2 el texto es nuevo: las páginas 30 a 37 sirven de apoyo, pero sus ejemplos usan DOM y hay que reescribirlos.
-- Cada página del PDF tiene: título, introducción, "Idea clave", bloques con ícono, "Código de ejemplo", "¿Cómo se ve en el navegador?", "Buenas prácticas" y "Poné a prueba lo aprendido". En la lámina van título, introducción, bloques, un ejemplo con su resultado e "Idea clave". Lo demás va a "Para profundizar" y a las actividades.
-- La paleta del PDF es solo referencia. No copiar el degradé del número, el chip "Página N" ni el pie "Desde Cero".
+1. **`_fuentes/programacion/tp07.html` y `tp08.html`:** láminas 25 a 32 del cuadernillo de Programación, ya revisadas por Nicolás. **Replicar su texto, sus ejemplos y sus esquemas**, resumiendo donde haga falta. No reescribirlos de cero.
+2. **`_fuentes/paginas/p-NN.jpg`:** páginas del PDF "HTML + CSS + JavaScript · Cuadernillo teórico-práctico". Para este cuadernillo se usan las páginas 11, 12, 16, 17, 18, 19, 20, 22, 24, 26 y 27 (etiquetas semánticas y CSS). Respetar su texto. La paleta del PDF es solo referencia.
+3. **Texto nuevo:** todo lo de VS Code (Emmet, Live Server, Prettier, DevTools) y los TP8, TP9 y TP10.
 
-### Errores del PDF (Nicolás está avisado)
+### Cambios al replicar las láminas de Programación (aprobados)
 
-Corregirlos al llegar a cada lámina y listar cada corrección en la entrega del TP.
+- "Desde el TP1" y "la plantilla del TP1" no existen acá: pasa a "el ambiente que configuraste en el TP6".
+- El ejemplo de la estructura base (lámina 27 de Programación) es la plantilla de JavaScript: se cambia por la portada de un proyecto, con el mismo análisis línea por línea y el mismo árbol (sin `<script>`).
+- Live Server y Prettier dejan de ser "opcionales": se usan siempre. Se prueba con Live Server, no con <kbd>F5</kbd>. El atajo `!` de Emmet sube de "Para profundizar" a la lámina.
+- `app.js` aparece solo en la lámina de las tres tecnologías, aclarando que JavaScript se ve en Programación II. La tarjeta de JavaScript no dice "el lenguaje que usamos desde el TP1".
+- Las referencias cruzadas ("lo vemos en el TP11", "lámina 27") se reescriben con los números de este cuadernillo.
+- Las prácticas "Sobre mí" y "Mis recomendaciones" no van: la práctica es la portada del proyecto del grupo.
+- Cabecera, pie, ícono y colores: los de este cuadernillo.
+
+### Errores del PDF en las páginas que se usan (Nicolás está avisado)
+
+Corregirlos y listar cada corrección en la entrega del TP.
 
 | Pág. | Error |
 |---|---|
-| 2, 29, 40 | Tuteo ("Tú escribes", "Partirás", "Pondrás"). |
-| 3 | Pregunta 3 ilegible. Archivos `styles.css` y `script.js`. |
-| 10 | La lista anidada no cierra el `<ul>` de afuera y el resultado muestra "Verduras", que no está en el código. |
-| 11 | `</nav>>` y líneas encimadas. Repite el recuadro "Importante" y casi todo el código de la 12: se fusionan en una lámina. |
+| 11 | `</nav>>` y líneas encimadas. Repite el recuadro "Importante" y casi todo el código de la 12. |
 | 12 | Falta `</body>`. |
-| 14 | Pregunta 3: "campos válidos: email / button / color / teclado". `color` y `button` también son tipos de `input`: hay 3 correctas. |
-| 15 | Líneas numeradas 15, 17, 16, 18. La consigna pide insertar una imagen que ya está en el código. |
-| 16 | La pregunta 3 ya trae la respuesta. Explica CSS con `<link>`; en el TP10 se empieza con `<style>`. |
+| 16 | La pregunta 3 ya trae la respuesta. |
 | 17 | El resumen usa `#titulo` y el ejemplo `#principal`. |
-| 18 | El CSS aparece dentro del bloque HTML, después de `</html>`: separar en dos archivos. |
+| 18 | El CSS aparece dentro del bloque HTML, después de `</html>`: separar en dos archivos. Usa `styles.css`: va `estilos.css`. |
 | 19 | `rgba(37, 99, 235, 0.7)` es azul y está pintado de violeta. |
 | 20 | `color: #4b5563;` quedó afuera de la llave de `.texto`. |
-| 21 | `backgroundd-color`, `rel="styleshet"`, `border-radius` afuera de la llave. |
-| 23 | "Tarjeta e ejemplo". `.boton:hover` sin cerrar. |
-| 25 | Pregunta 2: dos respuestas correctas (`absolute` y `fixed`). El ejemplo no muestra el CSS. |
-| 27 | Repite la introducción de la 26. Dice "eje secundario"; la 26 dice "eje cruzado": usar "eje cruzado". `font-weight` afuera de la llave. |
-| 28 | `.contenido (` con paréntesis, y faltan llaves de cierre en `.tarjeta` y en `@media`. |
-| 31 | "Errores comunes", punto 4, está redactado al revés. El ejemplo usa `innerHTML` y `${}`. |
-| 32 | Los comentarios `// array` y `// null` contradicen a `typeof`. |
-| 33 | Pregunta 2 compara `=` con `==`: preguntar por `=` y `===`. |
-| 37 | "fresa". |
-| 38, 39 | HTML y JavaScript mezclados en un mismo bloque, o falta el HTML del ejemplo. |
-| 22, 33, 38 | Logos de HTML5 y CSS3 usados en temas que no corresponden. |
+| 27 | Dice "eje secundario"; la 26 dice "eje cruzado": usar "eje cruzado". `font-weight` afuera de la llave. |
+| 22 | Logos de HTML5 y CSS3 usados en temas que no corresponden. |
 
 ## Plan del cuadernillo
 
-18 TPs · 73 láminas · 2 semanas por TP (36 semanas; el TP17 de GitHub puede darse en una). 29 láminas salen del PDF y 44 son texto nuevo.
-(PDF n) = página del PDF. (N) = lámina nueva.
+12 TPs. En el cierre 2026 se producen los TP7 a TP10 (17 láminas). Los TP1 a TP6 quedan "Próximamente" y se pasan después; los TP11 y TP12 son del ciclo 2027.
+(Prog n) = lámina del cuadernillo de Programación. (PDF n) = página del PDF. (N) = texto nuevo.
 
 | TP | Nombre | Láminas | Temas, una lámina por tema |
 |---|---|---|---|
-| **Módulo 1 · De Python a JavaScript** | | | |
-| 1 | Hola, JavaScript | 1–4 | (N) qué es JavaScript y dónde corre; la carpeta plantilla y la consola (`F12`) · (N) `console.log()`, `alert()`, comentarios `//`, punto y coma · (N) `let` y `const`; número, texto y booleano; `typeof` · (N) `prompt()`, `Number()`, operaciones aritméticas; error controlado `"5" + "3"` |
-| 2 | Decisiones y bucles en JavaScript | 5–8 | (N) comparación (`===`, `!==`, `<`, `>`, `<=`, `>=`) y lógicos (`&&`, `\|\|`, `!`) · (N) `if / else if / else` con paréntesis y llaves · (N) `while` y `do...while` (apoyo: PDF 35) · (N) `for`; contadores y acumuladores |
-| 3 | Crear mis propias funciones | 9–12 | (N) qué es una función; definirla con `function` y llamarla · (N) parámetros y argumentos; camelCase · (N) `return` · (N) funciones con condicionales, funciones que llaman a otras, menú con `prompt()` |
-| **Módulo 2 · Arrays y objetos** | | | |
-| 4 | Mi primer array | 13–16 | (N) qué es un array; crear, posición y `length` · (N) `push`, `pop`, `shift`, `unshift` (apoyo: PDF 37) · (N) `indexOf` y `splice` · (N) recorrer con `for` y `for...of` |
-| 5 | Operaciones con arrays | 17–20 | (N) sumar con acumulador y promedio · (N) `Math.max()` y `Math.min()` (receta `...`) · (N) `sort()` y el error controlado `[10, 9, 100]` · (N) `includes()` y contar con condición |
-| 6 | Objetos y mini-proyecto: Lista de tareas | 21–24 | (N) objeto literal · (N) leer y modificar propiedades con punto · (N) arrays de objetos · (N) integración: arrays + objetos + funciones + bucles + condicionales |
-| **Módulo 3 · HTML básico** | | | |
-| 7 | Mi primera página web | 25–28 | HTML, CSS y JavaScript: cómo trabajan juntos (PDF 1) · entorno de trabajo y archivos (PDF 3, 4) · estructura básica y `<script>` (PDF 5) · títulos, párrafos, `<br>`, `<hr>` (PDF 7). PDF 2 va a "Para profundizar" |
-| 8 | Listas, imágenes y enlaces | 29–32 | etiquetas, elementos y atributos; `<strong>` y `<em>` (PDF 6, 7) · listas y listas anidadas (PDF 10) · imágenes (PDF 9) · enlaces; ruta absoluta y relativa (PDF 8 + N) |
-| 9 | Estructura más completa: tablas y formularios | 33–36 | tablas (PDF 13) · `form`, `label`, `input` (PDF 14) · tipos de campo, `textarea`, `select`, casilla, botón de opción, `button` (PDF 14) · contenedores y HTML semántico (PDF 11 y 12 fusionadas). PDF 15 va a la práctica |
-| **Módulo 4 · CSS: dar estilo** | | | |
-| 10 | Primeros estilos con CSS | 37–40 | qué es CSS, la regla y `<style>`; selector por etiqueta y universal (PDF 16, 17) · colores y fondos (PDF 19) · tipografías y texto (PDF 20) · `margin` y `padding` (PDF 22) |
-| 11 | CSS externo y selectores | 41–45 | archivo `.css` aparte y `<link>` (PDF 16) · clases e ID (PDF 18, 17) · bordes, esquinas y sombras (PDF 23) · ancho, alto y unidades px, %, em, rem, vw (PDF 21) · modelo de cajas (PDF 24) |
-| 12 | Diseñando una página completa | 46–50 | `display` y `position` (PDF 25) · flexbox: contenedor, ítems y ejes (PDF 26) · alinear y centrar (PDF 27) · (N) header, hero, cards, footer y `:hover` · diseño responsive (PDF 28). PDF 29 va a la práctica |
-| **Módulo 5 · JavaScript en la página** | | | |
-| 13 | Hacer que la página responda | 51–55 | repaso de JS y `<script src="app.js">` (PDF 30) · el DOM; `getElementById()` y `querySelector()` (PDF 38) · (N) `textContent` e `innerHTML` · (N) `.style` y `classList` · eventos: `onclick` y `addEventListener()` (PDF 39) |
-| 14 | Formularios que funcionan | 56–59 | (N) `.value` y `Number()` · (N) validaciones: vacío, fuera de rango, email sin @ · (N) resultados y errores en la página, sin `alert()` · (N) `preventDefault()` como receta |
-| 15 | Mini-app interactiva | 60–62 | (N) del array a la lista en pantalla · (N) del array a la tabla; volver a dibujar cuando cambian los datos · pasos para armar una mini-app (PDF 40) |
-| **Módulo 6 · Del navegador al servidor** | | | |
-| 16 | Primeros pasos con PHP | 63–66 | (N) qué es PHP y dónde corre: navegador y servidor; XAMPP, Apache, `htdocs` y `localhost` (apoyo: PDF 2) · (N) primer archivo `.php`: `<?php ?>`, `echo`, variables con `$`, comentarios · (N) `if / else` y `for`; PHP arma el HTML · (N) recibir un formulario: `method="post"`, `action` y `$_POST` |
-| **Módulo 7 · Proyecto integrador** | | | |
-| 17 | Mi sitio en GitHub | 67–70 | (N) Git y GitHub; crear la cuenta · (N) crear un repositorio y subir archivos arrastrando · (N) README en Markdown · (N) GitHub Pages |
-| 18 | Mi portafolio digital | 71–73 | (N) qué es un portafolio y cómo se organiza · (N) requisitos de HTML, CSS y JavaScript, con checklist · (N) entrega y presentación oral |
+| **Módulo 1 · Software y sistemas operativos** | | | |
+| 1 | Software y licencias | 1–4 | Próximamente |
+| 2 | Sistemas operativos y hardware | 5–8 | Próximamente |
+| 3 | Instalación de un sistema operativo | 9–12 | Próximamente |
+| **Módulo 2 · Línea de comandos y automatización** | | | |
+| 4 | Línea de comandos: Windows y Linux | 13–16 | Próximamente |
+| 5 | Scripting de automatización | 17–20 | Próximamente |
+| **Módulo 3 · Ambiente de desarrollo** | | | |
+| 6 | Configuración del ambiente de desarrollo | 21–24 | Próximamente |
+| 7 | Primeros pasos con HTML y CSS en VS Code | 25–30 | HTML, CSS y JavaScript: cómo trabajan juntos (Prog 25) · el proyecto en VS Code: carpeta y archivos, explorador, Emmet, Live Server y Prettier al guardar (Prog 26 + N) · estructura base, títulos y párrafos (Prog 27, 28) · listas, enlaces, imágenes y etiquetas semánticas `header`, `main`, `footer` (Prog 30, 31, 32 + PDF 11, 12) · CSS: vincular la hoja, selectores de etiqueta, clase e id, colores y tipografía (PDF 16, 17, 18, 19, 20) · modelo de caja y flexbox básico, vistos con DevTools (PDF 22, 24, 26, 27 + N) |
+| **Módulo 4 · Versiones y trabajo en equipo** | | | |
+| 8 | Git y control de versiones | 31–34 | (N) qué es Git; repositorio local: `init`, `status`, `add`, `commit`, `log`; commits semánticos · (N) ramas: `branch`, `switch` y `merge` · (N) conflictos: por qué aparecen y cómo se resuelven en VS Code · (N) deshacer: `revert`, `reset` y detached HEAD |
+| 9 | Gestión de proyecto y trabajo en equipo | 35–38 | (N) el equipo: roles, división de tareas y tablero en Trello · (N) GitHub: repositorio remoto, `remote`, `push` y `pull` · (N) pull requests, revisión de código e issues · (N) documentación: README, informe y bitácora |
+| **Módulo 5 · Proyecto integrador** | | | |
+| 10 | Trabajo Integrador Final | 39–41 | (N) qué se entrega y cómo se articula con Redes I y Programación II · (N) requisitos, con checklist · (N) documentación y defensa oral |
+| **Módulo 6 · Servidores (ciclo 2027)** | | | |
+| 11 | Instalación y configuración de un SO servidor | 42–45 | Próximamente |
+| 12 | Administración remota de servidores | 46–49 | Próximamente |
+
+Tiempos del cierre (5 horas por semana): TP7, 2 semanas · TP8, 2 semanas · TP9, 1 semana y media · TP10, 2 semanas y media.
 
 Notas del plan:
-- `display` estaba en el TP11 en el plan de Nicolás. Pasa al TP12 porque el PDF lo trae junto a `position` y es el paso previo a `display: flex`.
-- Del PDF 38 van a "Para profundizar": `querySelectorAll()` y `getElementsByClassName()`. Del PDF 39: `input`, `mouseover` y `submit`.
-- Equivalencias del TP1: `print()` → `console.log()` y `alert()` · `input()` → `prompt()` · `int()` y `float()` → `Number()` · variables → `let` y `const` · `#` → `//`.
-- Equivalencias del TP2: `if / elif / else` → `if / else if / else` · `and`, `or`, `not` → `&&`, `||`, `!` · `==` → `===` · `while` casi igual, con paréntesis y llaves · `for i in range(10)` → `for (let i = 0; i < 10; i++)`.
-- Equivalencias del TP16 ("En JavaScript → En PHP"): `let nombre` → `$nombre` · `console.log()` → `echo` · `+` para unir textos → punto (`.`) · `if / else` y `for` casi iguales.
+- **TP7, lámina 28:** son cuatro temas en una hoja. Va un ejemplo corto por tema. Pasan a "Para profundizar": etiqueta, elemento y atributo (Prog 29), listas anidadas, formatos de imagen, `target`, `mailto` y el esquema de rutas relativas y absolutas. Si igual no entra, avisar antes de partirla en dos.
+- **TP7, lámina 26:** abreviaturas de Emmet a mostrar: `!`, `h1`, `ul>li*3`, `a`, `img`, `.caja`, `#titulo`. Prettier con "Format On Save".
+- **TP7, lámina 30:** de DevTools solo lo necesario: abrir con <kbd>F12</kbd>, elegir un elemento, panel "Elements", panel "Styles" y el dibujo del modelo de caja. Flexbox: `display: flex`, `gap`, `justify-content` y `align-items`.
+- **TP8, lámina 34:** `revert` es la forma segura (crea un commit nuevo); `reset` reescribe el historial y se usa solo en commits que no se compartieron. Detached HEAD: cómo se llega (`git switch --detach` o `git checkout` a un commit) y cómo se vuelve (`git switch main`).
+- **TP9:** lo que se evalúa es la planificación y el proceso, no el código.
+- **Portada (`index.html`):** etiquetas por TP: TP7 `HTML` `CSS` · TP8 `Git` · TP9 `GitHub` `Trello` · TP10 clase `tp--todo tp--integrador`. Los TP1 a TP6 figuran con "Próximamente"; los TP11 y TP12, con "Ciclo 2027".
 
-## Práctica y entrega de cada TP (texto de Nicolás)
+## Práctica y entrega de cada TP (propuesta, la revisa Nicolás)
 
-(C) = cambio que Nicolás aprobó sobre su plan original.
+- **TP7.** Práctica, en grupo: armar la portada del proyecto. (1) Crear la carpeta `tp7-nombre-del-grupo`, con la carpeta `img` adentro, y abrirla en VS Code · (2) crear `index.html` con el atajo `!` de Emmet, poner `lang="es-AR"` y el nombre del proyecto en `<title>` · (3) `<header>` con el nombre del proyecto en un `<h1>` y una frase que lo describa · (4) `<main>` con tres secciones, cada una con su `<h2>`: "De qué se trata" (al menos 2 párrafos), "Integrantes" (una lista) y "Qué vamos a usar" (una lista de herramientas, con al menos 1 enlace externo) · (5) al menos 1 imagen guardada en `img`, con su `alt` · (6) `<footer>` con el curso y la escuela · (7) crear `estilos.css`, vincularlo y usar al menos un selector de etiqueta, una clase y un id; cambiar colores y tipografía · (8) dar `padding`, `margin` y borde a las secciones, y usar flexbox en una parte de la página · (9) trabajar con Live Server abierto y con Prettier formateando al guardar los dos archivos · (10) con DevTools, inspeccionar una sección y sacar una captura donde se vea su modelo de caja. Entrega: la carpeta en `.zip` por Classroom, con la captura adentro. Una entrega por grupo, con los nombres de los integrantes.
+- **TP8.** Práctica, en grupo, sobre la carpeta del TP7: (1) configurar nombre y mail con `git config` · (2) `git init`, primer commit y rama `main` · (3) hacer al menos 3 commits semánticos más (por ejemplo `feat:`, `style:` y `docs:` al agregar un `README.md`) · (4) crear la rama `feature/contacto`, sumar una sección "Contacto" en al menos 2 commits y hacer `merge` a `main` · (5) conflicto: el docente indica qué línea cambiar en una rama y en `main`; hacer el `merge`, resolver el conflicto en VS Code y cerrar con un commit · (6) el docente indica un cambio que rompe la página: hacer el commit y deshacerlo con `git revert` · (7) ir a un commit viejo, ver el aviso de detached HEAD y volver a `main` · (8) hacer un commit de prueba y sacarlo con `git reset` · (9) mostrar el historial con `git log --oneline --graph`. Entrega: la carpeta del repositorio en `.zip` (con la carpeta oculta `.git` adentro) y un documento con capturas del historial, del conflicto resuelto y del `revert`.
+- **TP9.** Práctica, en grupo: (1) repartir los roles del equipo y anotarlos · (2) armar el tablero en Trello con las listas "Pendiente", "En curso", "En revisión" y "Hecho", y tarjetas con responsable y fecha · (3) crear el repositorio en GitHub, vincularlo con `git remote add origin` y subir el del TP8 con `git push` · (4) sumar a los compañeros como colaboradores · (5) cada integrante: crea una rama, hace un cambio, lo sube y abre un pull request; otro integrante lo revisa y lo aprueba · (6) cada integrante abre al menos 1 issue · (7) mejorar el `README.md` (qué es, integrantes, cómo verlo, estado) · (8) crear `BITACORA.md` con la primera entrada · (9) escribir el plan de trabajo del TP10. Entrega: link del repositorio, link del tablero y el plan de trabajo, pegados en Classroom.
+- **TP10 · Trabajo Integrador Final.** Consigna: presentar, en grupo, una solución completa que articula Software II, Redes I y Programación II. Requisitos: aplicación web desarrollada en Programación II a partir de la portada del TP7 · ambiente de desarrollo configurado y replicable, con su README (TP6) · repositorio en GitHub con ramas, commits semánticos y pull requests (TP8 y TP9) · al menos un script de automatización para una tarea del proyecto (TP5) · diseño de la red sobre la que funcionaría, elaborado en Redes I · tablero y plan de trabajo al día (TP9) · documentación técnica completa: README, informe y bitácora. Se evalúa el producto, el proceso de trabajo en equipo y la defensa. Entrega: link del repositorio + informe + bitácora + defensa oral en clase.
 
-**Entorno del Módulo 1:** una carpeta plantilla entregada por el docente, con un `index.html` ya armado y un `app.js` vacío. Se abre el HTML en el navegador y solo se edita el `.js`. El HTML se explica recién en el TP7.
+## Decisiones confirmadas (7/10/2026)
 
-- **TP1.** Práctica: 8 ejercicios que ya resolviste en Python, ahora en JavaScript (C): (1) programa que muestre tu nombre, edad y ciudad en 3 líneas · (2) programa que pregunte el nombre y salude · (3) programa que pida 2 números y muestre la suma (primero sin `Number()`, para ver el error; después corregido) · (4) programa que pida 2 números y muestre suma, resta, multiplicación y división · (5) calculadora de área de un rectángulo (pide base y altura) · (6) conversor de pesos a dólares (cotización fija) · (7) programa que pida nombre y edad, y diga "Hola [nombre], en 10 años tendrás [edad+10] años" · (8) programa que pida 3 notas y muestre el promedio. Entrega: carpeta con los 8 ejercicios comentados.
-- **TP2.** Práctica: 10 ejercicios como los que ya hiciste en Python, ahora en JavaScript (C): (1) pedir un número y decir si es positivo, negativo o cero · (2) pedir edad y decir si es menor, mayor de edad o jubilado (más de 65) · (3) pedir nota y devolver "Aprobado" (≥6) o "Desaprobado" · (4) validar contraseña (si coincide con una predefinida, dar acceso) · (5) calculadora con operación elegida por el usuario (suma, resta, multiplicación, división) · (6) mostrar los números del 1 al 20 (con `for`) · (7) mostrar los números pares entre 1 y 50 · (8) pedir un número N y mostrar su tabla de multiplicar · (9) pedir números hasta que el usuario escriba 0, e ir sumándolos; al final mostrar el total · (10) adivinar el número (la PC piensa uno entre 1 y 100, el usuario adivina). El ejercicio 10 trae el número al azar como receta fija (C). Entrega: carpeta con los 10 ejercicios comentados.
-- **TP3.** Práctica, parte 1: crear 6 funciones y un programa que las pruebe mostrando los resultados en la consola: `saludar(nombre)` muestra "Hola [nombre]" · `sumar(a, b)` devuelve la suma · `esMayorDeEdad(edad)` devuelve `true` o `false` · `areaRectangulo(base, altura)` devuelve el área · `convertirADolares(pesos)` devuelve el equivalente · `calcularPromedio(n1, n2, n3)` devuelve el promedio. Parte 2: programa con menú (hecho con `prompt()`) que ofrezca: calculadora (suma, resta, multiplicación, división como funciones) · conversor de unidades (km a millas, °C a °F, pesos a dólares) · calculadora de propinas (monto + porcentaje) · calculadora de descuentos (precio + % de descuento). Cada opción debe ser una función separada. El menú se repite hasta que el usuario elija "salir". Entrega: carpeta con los dos programas.
-- **TP4.** Práctica: 6 ejercicios: (1) crear un array con los nombres de 5 amigos y mostrarlos uno por uno · (2) pedir 5 números al usuario y guardarlos en un array · (3) mostrar el array del ejercicio 2 al revés · (4) pedir números hasta que escriba "fin" y guardarlos en un array; al final mostrar cuántos son · (5) crear un array con las materias que cursás este año (C) y permitir al usuario eliminar una por nombre · (6) dado un array de números, mostrar cuántos son pares y cuántos impares. Entrega: carpeta con los ejercicios.
-- **TP5.** Práctica: programa "Mi planilla de notas": pedir nombre del alumno · cargar 5 notas en un array · calcular y mostrar promedio, nota más alta, nota más baja, cuántas aprobadas (≥6) y cuántas desaprobadas · decir si en general está aprobado (promedio ≥6) · mostrar las notas ordenadas de menor a mayor. Entrega: carpeta del programa.
-- **TP6.** Práctica: programa de lista de tareas con menú (hecho con `prompt()`), donde cada tarea es un objeto (`{ texto: "Comprar yerba", completada: false }`): agregar tarea · ver todas las tareas (las completadas se muestran con "✓") · marcar tarea como completada (cambia la propiedad `completada` a `true`) · eliminar tarea · salir. Cada opción debe ser una función. El menú se repite hasta que se elija salir. La versión con botones y lista en pantalla llega en el TP15. Entrega: carpeta del proyecto + capturas del programa funcionando.
-- **TP7.** Práctica: crear una página "Sobre mí" con: título principal con tu nombre · 3 secciones con subtítulos ("Quién soy", "Lo que me gusta", "Mis metas") · cada sección con al menos 2 párrafos. Entrega: archivo `.html` + captura de cómo se ve en el navegador.
-- **TP8.** Práctica: crear una página "Mis recomendaciones" con 3 secciones (películas, música, lugares). Cada sección debe tener: una lista (con o sin orden) de al menos 4 ítems · al menos 1 imagen · al menos 1 enlace a un sitio externo (YouTube, Spotify, Wikipedia). Entrega: carpeta con `.html` + imágenes.
-- **TP9.** Práctica: como entrada en calor, completar el código de la página 15 del PDF. Después, crear la página "Contacto" de un negocio ficticio (un kiosco, una peluquería, un estudio de tatuajes, lo que les guste) con: header con el nombre del negocio · una tabla con horarios de atención · un formulario con nombre, email, teléfono, mensaje y botón enviar (todavía no hace falta que funcione: cobra vida en el TP14) · footer con redes sociales (links). Entrega: `.html`.
-- **TP10.** Práctica: tomar la página del TP7 ("Sobre mí") y darle estilo: cambiar fuente y color del título principal · color de fondo de la página distinto al blanco · subtítulos con un color destacado · párrafos con interlineado y márgenes. Entrega: `.html` con CSS interno.
-- **TP11.** Práctica: tomar la página del TP8 ("Mis recomendaciones") y: pasar todos los estilos a un archivo `estilos.css` aparte · usar clases para que las imágenes tengan bordes redondeados · crear una clase para destacar enlaces (color y subrayado distintos) · las 3 secciones deben tener fondos de colores distintos. Entrega: carpeta con `.html`, `.css` e imágenes.
-- **TP12.** Práctica: como entrada en calor, completar el CSS de la página 29 del PDF. Después, crear desde cero una página de presentación de un producto o servicio ficticio (una banda, un emprendimiento, un evento) con: header con título y menú simple (3 enlaces que pueden ir a anclas dentro de la misma página) · sección hero con imagen grande y eslogan · 3 cajas (cards) en fila explicando características · sección "Contacto" con datos · footer · estilos en archivo CSS aparte · al menos 1 efecto hover en algún elemento · que se vea bien en el celular (C). Entrega: carpeta del proyecto.
-- **TP13.** Práctica: crear una página con: un botón que al hacerle clic cambie el texto del título · un botón que cambie el color de fondo de la página al azar · un botón que muestre u oculte una imagen · un botón "modo oscuro" que cambie los colores de toda la página. Entrega: carpeta del proyecto.
-- **TP14.** Práctica: (1) tomar el formulario de contacto del TP9 y validarlo: ningún campo vacío, email con @, mensaje de al menos 10 caracteres; mostrar cada error al lado de su campo y un mensaje de éxito cuando esté todo bien · (2) calculadora de descuentos en la página: dos inputs (precio y % de descuento), un botón y el resultado en pantalla; el cálculo va en una función. Entrega: carpeta del proyecto.
-- **TP15.** Práctica: crear UNA de estas mini-apps: calculadora visual (con inputs y botones de operaciones) · conversor de monedas (ingresar pesos y elegir convertir a dólar, euro o real) · generador de contraseñas (elegir longitud y generar una contraseña aleatoria) · adivina el número (la página piensa un número, el usuario adivina con pistas) · lista de tareas visual (la del TP6, ahora con un input, botones y la lista en pantalla). Entrega: carpeta del proyecto + breve explicación.
-- **TP16.** Práctica: (1) copiar la carpeta del formulario de contacto del TP14 a `htdocs` y abrirla desde `http://localhost` · (2) cambiar el formulario para que se envíe con `method="post"` a `procesar.php` · (3) crear `procesar.php`, que recibe los datos con `$_POST` y responde "Gracias, [nombre]. Recibimos tu mensaje" · (4) si el nombre llega vacío, mostrar un aviso en lugar del agradecimiento. Entrega: carpeta en `.zip` + captura funcionando en `localhost`.
-- **TP17.** Práctica: tomar la página del TP12 y: crear cuenta en GitHub · crear repositorio público · subir todos los archivos del proyecto · escribir un README explicando qué es el proyecto · activar GitHub Pages y obtener el link público. Entrega: link al sitio publicado + link al repositorio.
-- **TP18 · TP final integrador.** Consigna: crear un portafolio personal online que reúna lo trabajado. Es la versión "presentable" de uno mismo. Requisitos del sitio: mínimo 3 páginas conectadas (Inicio, Proyectos, Contacto; pueden ser archivos separados o secciones de una sola página) · HTML semántico bien estructurado · CSS en archivo aparte, diseño cuidado · sección "Proyectos" con al menos 3 trabajos previos (capturas + descripción + link si corresponde) · publicado en GitHub Pages. Requisitos de JavaScript: al menos 1 elemento interactivo en el propio sitio (modo oscuro, menú, formulario de contacto que valide, etc.) · al menos 1 mini-app propia (de los TP6, TP14 o TP15) funcionando online dentro de "Proyectos", con una breve explicación de qué hace. Opcional (C): subir al repositorio un programa en Python que hayas hecho antes, con su propio README explicando qué hace y cómo usarlo. Entrega: link al sitio publicado + link al repositorio + presentación oral de 3 a 5 minutos en clase mostrando el sitio.
-
-## Decisiones confirmadas (2/10/2026)
-
-- Se mantiene el orden del plan de Nicolás (JavaScript primero). El PDF es la fuente de HTML y CSS.
-- Entra todo el PDF, también lo que no estaba en el plan: responsive, `position`, unidades, `do...while`, `shift` y `unshift`, sombras, listas anidadas, `select`, `article` y `aside`.
-- Consola: opción B (botón "Ejecutar", sin edición).
-- Paleta: azul de acento, con violeta y magenta solo como etiquetas de tecnología.
-- Actividades en dos partes: carpeta y práctica en la computadora.
-- Sin Bloque F: se sacó el "Componente de seguridad" del TP18 (portafolio) y la referencia del TP15.
-- Sin años de cursado ni "Nivel 1", "Nivel 3" o "bachi" en el sitio.
-- TP5: `Math.max(...notas)` y `sort((a, b) => a - b)` como recetas fijas.
-- TP12: la práctica suma "que se vea bien en el celular".
-- TP17: pantallas de GitHub como esquemas SVG. Los alumnos se registran con su propia cuenta de mail.
-- Ni el README ni la portada llevan el nombre de la escuela. Datos de la portada: "Programación - HTML, CSS, JS • Prof. Nicolás A. Cussi" en negrita y "Bachillerato Profesional en Programación · Ushuaia" sin negrita (3/10/2026).
-- Entregas por Classroom con la carpeta en `.zip`; el TP1 explica cómo comprimir.
-- Visual Studio Code desde el TP1. Laboratorio con Windows.
-
-### Agregado (4/10/2026)
-
-- Colores vivos en todo el cuadernillo y en la portada (ver "Colores vivos" en Identidad). Se probaron en el TP7 y se pasaron a los TP1–TP6.
-- Los puntos de "Para hacer en la carpeta" se numeran desde 1 en cada TP.
-
-### Agregado (3/10/2026)
-
-- Se suma el TP16 "Primeros pasos con PHP" (Módulo 6 · Del navegador al servidor), entre la mini-app y GitHub, sin sacar nada. GitHub pasa a ser el TP17 y el portafolio el TP18 (Módulo 7).
-- El laboratorio tiene XAMPP instalado.
-- Express solo se nombra en "Para profundizar" del TP16.
-- El nombre de la materia no cambia.
+- El cuadernillo arranca en el TP7. Figuran los 12 TPs; se producen los TP7 a TP10.
+- Láminas 1 a 24 reservadas para los TP1 a TP6. El TP7 tiene 6 láminas (25 a 30).
+- El HTML del TP7 se replica de las láminas de Programación, con los cambios listados en "Fuentes".
+- Paleta índigo; HTML usa el acento y CSS pasa a magenta.
+- Cabecera, pie y portada con el nombre de la escuela y el año.
+- Archivos `index.html` y `estilos.css`.
+- Práctica y entrega: las propone Claude y las revisa Nicolás.
+- Sin consola "Ejecutar".
 
 ## Pendientes a consultar con Nicolás
 
-- Ninguno por ahora.
+- Nombre del repo.
+- Si `_fuentes/paginas/` (las páginas del PDF) está disponible. Si no, las láminas de etiquetas semánticas y de CSS se escriben como texto nuevo.
+- JavaScript en gris en lugar de ámbar (el ámbar ya es el color de las carpetas).
+- Git en la terminal integrada de VS Code: confirmar que Git está instalado en el laboratorio y qué terminal abre por defecto.
+- VS Code del laboratorio: ¿en español o en inglés?
+- TP9: las computadoras son compartidas; cómo cerrar la sesión de GitHub al terminar la clase.
+- TP10: cantidad de integrantes por grupo y duración de la defensa oral.
+- Material del TP6, para usar los mismos nombres de extensiones y pasos.
