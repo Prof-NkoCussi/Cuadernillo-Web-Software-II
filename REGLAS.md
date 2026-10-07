@@ -72,10 +72,10 @@ El repo llega con el contenido de Programación. Antes de tocar nada:
 - `<meta name="theme-color" content="#4F46E5">` en todas las páginas.
 - **Cabecera de cada hoja:** `SOFTWARE II` con la bajada `TÉCNICO EN PROGRAMACIÓN · 5.º AÑO`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra vertical de acento. Mismas reglas de tamaño y de celular que el repo de origen; verificar que la bajada entre a 360 px.
 - **Pie de cada hoja y de la portada:** `Software II — Prof. Nicolás A. Cussi`, con guion largo. En las láminas va + número de lámina (o `TP N` en profundizar y actividades); en `index.html`, sin número.
-- **Portada (`index.html`):** `h1` "Software II" (`Software <span>II</span>`: el "II" en `--acento-numero`, como en Redes I), subtítulo "Cuadernillo de actividades", sin la fila de etiquetas de tecnología. En `p.portada__datos`, exactamente estas dos líneas, la primera en negrita:
+- **Portada (`index.html`):** `h1` "Software II" (`Software <span>II</span>`: el "II" en `--acento-numero`, como en Redes I), subtítulo "Cuadernillo de actividades · 5.º año", sin la fila de etiquetas de tecnología. En `p.portada__datos`, exactamente estas dos líneas (cambiado el 7/10/2026): la primera en negrita (`<strong>`, `--tinta`) y la segunda en gris y negrita (`<b>`, `--gris`):
   ```
-  Software II • Prof. Nicolás A. Cussi
-  C.T.P. "Olga B. de Arko" · Técnico en Programación · 5.º año · Ushuaia
+  Técnico en Programación · C.T.P. “Olga B. de Arko” · Ushuaia
+  Prof. Nicolás A. Cussi
   ```
 - **Índice:** con el formato de `App-Web-Redes-1/indice.html`. Dos unidades (ver plan), sin color propio. Cada TP: título, temas en una línea separados por " · " y meta "Láminas X–Y · Próximamente" (TP1 a TP6: "Láminas X–Y · Material en Classroom"). "Cómo usarlo": "cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades."
 - **TP "Próximamente":** como en Redes I, tarjeta "apagada" sin opacidad (con `opacity: .62` el texto bajaba a 2,5:1): fondo transparente, borde `--panel`, franja `--acento-claro`, número `--gris-sub`, título y temas `--gris` (6,0:1). Solo los TP activados (`a.tp`) reaccionan al puntero, con borde `--acento`; los no disponibles no cambian (corrección del 7/10/2026). El TP10 mantiene sus tres bandas.
