@@ -43,12 +43,11 @@
 
   /* Código: colores bien distintos entre sí, todos 5:1 o más sobre el fondo */
   --cod-fondo: #1E293B;  --cod-base: #E2E8F0;
-  --cod-etq: #FB7185;    /* rosa: etiquetas HTML, palabras clave de JS, selectores */
+  --cod-etq: #FF6666;    /* rojo: etiquetas HTML, palabras clave de JS, selectores (5,1:1) */
   --cod-atr: #A3E635;    /* lima: atributos HTML, propiedades CSS */
   --cod-str: #FDE047;    /* amarillo: cadenas y valores */
   --cod-com: #94A3B8;    /* gris azulado: comentarios */
-  --cod-num: #C084FC;    /* violeta: números */
-  --cod-fun: #67E8F9;    /* cian: nombres de funciones y métodos */
+  --cod-num: #C084FC;    /* violeta: números */  --cod-fun: #67E8F9;    /* cian: nombres de funciones y métodos */
   --consola-fondo: #0F172A;  --consola-guia: #94A3B8;   /* barra de la ventana de código y nota "dentro de <body>" */
 
   /* Ventanas de código y de navegador: los tres puntos */
@@ -397,6 +396,7 @@ kbd {
 
 /* Esquema con un recuadro que lo explica al lado */
 .esquema-par { display: grid; gap: 10px; align-items: center; }
+.esquema-par > * { min-width: 0; }   /* un código largo hace scroll adentro, no ensancha la columna */
 .esquema-nota { background: var(--acento-suave); border-radius: var(--radio); padding: 10px 14px; }
 .esquema-nota h3 { font-family: var(--fuente-titulo); font-weight: 700; font-size: 18px; line-height: 1.15; color: var(--tinta); margin-bottom: 6px; }
 .esquema-nota li { font-size: 15.5px; line-height: 1.35; }
@@ -568,6 +568,7 @@ ol.pf__lista li::before {
 code.cod-css { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 code.cod-js { background: var(--js-claro); color: var(--js); box-shadow: inset 0 0 0 1px var(--js-linea); }
 code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto); box-shadow: inset 0 0 0 1px var(--carpeta-linea); }
+code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }   /* <head>, <br>…: mismo color que styles.css (5,1:1) */
 
 /* Tres puntos de ventana (código y navegador) */
 .codigo figcaption::before {
@@ -755,6 +756,33 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 .pf__lista li.punto--turquesa::before { background: var(--turquesa-texto); }
 .pf__lista li.punto--naranja::before { background: var(--naranja-texto); }
 
+/* Esquemas de pantallas (VS Code, DevTools): letras que señalan cada parte, en el esquema y en el texto */
+.marca {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.35em; height: 1.35em; border-radius: 50%; vertical-align: .08em;
+  background: var(--tinta); color: var(--blanco); font-size: .76em; font-weight: 700; line-height: 1;
+}
+.esquema-nota .puntos li { grid-template-columns: 22px 1fr; padding: 4px 8px; font-size: 15.5px; line-height: 1.3; }
+.esquema-nota .puntos__n { width: 22px; height: 22px; font-size: 12.5px; }
+.puntos--pasos .puntos__n { background: var(--acento); }   /* pasos en índigo; las letras del esquema, en --tinta */
+.esquema-nota__p--sep { margin-top: 6px; }
+
+/* Tabla de comandos: abreviatura o comando · qué hace */
+.tabla-comp--cmd { table-layout: auto; width: calc(100% + 6px); margin: 2px -3px -3px; border-spacing: 3px; }
+.tabla-comp--cmd th, .tabla-comp--cmd td { background: var(--blanco); text-align: left; padding: 4px 8px; font-size: 15px; }
+.tabla-comp--cmd thead th { background: var(--acento-claro); font-size: 14px; }
+.tabla-comp--cmd thead th:first-child, .tabla-comp--cmd tbody th { width: 1%; white-space: nowrap; }
+
+/* Un tema por bloque: título en línea con el texto, y debajo el ejemplo */
+.tema { display: grid; gap: 6px; }
+.tema__txt { font-size: 16px; line-height: 1.38; }
+.tema__txt h3 { display: inline; font-family: var(--fuente-titulo); font-weight: 700; font-size: 20px; color: var(--tinta); margin-right: 2px; }
+.tema__txt p { display: inline; }
+.comparar--chico h3 { font-size: 20px; }
+
+/* Cuenta escrita (por ejemplo, el ancho total de una caja) */
+.cuenta { background: var(--blanco); border-radius: 6px; padding: 4px 8px; text-align: center; font-family: var(--fuente-codigo); }
+
 /* ==========================================================
    Pantallas medianas
    ========================================================== */
@@ -804,9 +832,11 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .tecs { grid-template-columns: repeat(3, 1fr); }
   .juntos { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: start; }
   .juntos__col { display: grid; gap: 8px; }
-  .ej--est { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }   /* código largo + qué hace cada línea */
+  .ej--est { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; }   /* código largo + qué hace cada línea */
   .ej--res { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }      /* código + resultado */
-  .esquema-par--res { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+  .esquema-par--res { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
+  .ej.tema { align-items: start; }   /* lámina con un tema por fila: el resultado no se estira */
+  .ej--res-ancho { grid-template-columns: fit-content(45%) minmax(0, 1fr); align-items: start; }   /* código corto (ancho de su línea más larga) + resultado */
 }
 
 /* ==========================================================
@@ -958,6 +988,20 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .ej--chico .codigo pre { font-size: 12.5px; line-height: 1.35; padding-top: 6px; padding-bottom: 8px; }   /* láminas con dos ejemplos o código y nota en la misma columna */
   .ej--est .codigo pre { font-size: 12.5px; }
   .ej--est .esquema-nota li { font-size: 14.5px; line-height: 1.32; }
+
+  /* TP7: tabla de abreviaturas y notas de la lámina del proyecto en VS Code */
+  .tabla-comp--cmd th, .tabla-comp--cmd td { font-size: 14px; padding: 2px 8px; }
+  .tabla-comp--cmd thead th { font-size: 14px; padding: 2px 8px; }
+  .comparar--chico li { padding: 8px 14px; }
+  .comparar--chico h3 { font-size: 20px; }
+  .comparar--chico p { font-size: 15px; }
+  .tema__txt { font-size: 15.5px; line-height: 1.35; }
+  .esquema-nota .codigo pre { font-size: 12.5px; }   /* código de una línea dentro de una nota */
+  /* "Para profundizar" con más contenido por bloque (TP7, dos hojas) */
+  .lamina--pf-denso .pf { padding: 9px 12px 9px 14px; gap: 3px; }
+  .lamina--pf-denso .pf__titulo { font-size: 19px; }
+  .lamina--pf-denso .pf p, .lamina--pf-denso .pf li { font-size: 13.5px; line-height: 1.3; }
+  .lamina--pf-denso .pf .codigo pre { font-size: 12px; }
 }
 
 /* ==========================================================
@@ -969,7 +1013,7 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
     --cod-fondo: #F1F5F9; --consola-fondo: #F1F5F9;
     --cod-base: #0F172A;
     /* en papel: código claro y colores oscuros (5:1 o más sobre #F1F5F9) */
-    --cod-etq: #BE123C;   --cod-atr: #3F6212;  --cod-str: #854D0E;
+    --cod-etq: #B91C1C;   --cod-atr: #3F6212;  --cod-str: #854D0E;
     --cod-com: #475569;   --cod-num: #7E22CE;  --cod-fun: #0E7490;
     --consola-guia: #475569;
   }

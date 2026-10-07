@@ -34,7 +34,7 @@ Un cuadernillo web para leer desde el celular y trabajar en la computadora. Se o
 | 5 | Scripting de automatización | Próximamente |
 | **Unidad 2 · Ambiente de desarrollo, trabajo en equipo y servidores** | | |
 | 6 | Configuración del ambiente de desarrollo | Próximamente |
-| 7 | Primeros pasos con HTML y CSS en VS Code | Próximamente |
+| 7 | Primeros pasos con HTML y CSS en VS Code | ✅ Disponible |
 | 8 | Git y control de versiones | Próximamente |
 | 9 | Gestión de proyecto y trabajo en equipo | Próximamente |
 | 10 | Trabajo Integrador Final | Próximamente |

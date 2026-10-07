@@ -132,9 +132,15 @@
       html = "<!DOCTYPE html>\n<html lang=\"es-AR\">\n<head>\n<meta charset=\"utf-8\">\n</head>\n<body>\n" + html + "\n</body>\n</html>";
     }
     /* Se reemplaza con funciones para que un "$" del código no se tome como patrón */
+    var conLink = false;
     html = html.replace(/<link\b[^>]*href="styles\.css"[^>]*>/gi, function () {
+      conLink = true;
       return css === null ? "" : "<style>\n" + css + "\n</style>";
     });
+    /* Fragmento sin <link> (solo lo de <body>): el CSS va igual, como si la hoja estuviera vinculada */
+    if (!conLink && css !== null) {
+      html = html.replace(/<\/head>/i, function () { return "<style>\n" + css + "\n</style>\n</head>"; });
+    }
     html = html.replace(/<script\b[^>]*src="app\.js"[^>]*>\s*<\/script>/gi, function () {
       return js === null ? "" : "<script>\n" + js.replace(/<\/script/gi, "<\\/script") + "\n<\/script>";
     });

@@ -108,13 +108,13 @@ Se reusan del repo de origen (todo en `estilos.css` y `ejemplos.js`):
 
 - **Bloque de código** (`figure.codigo`): texto real, colores de sintaxis con `<span>` a mano (`.c-etq`, `.c-atr`, `.c-str`, `.c-com`, `.c-num`, `.c-fun`), botón "Copiar", scroll horizontal propio en celular, máximo unas 14 líneas dentro de una lámina. `figcaption` con el nombre del archivo del color de su tecnología.
 - **Resultado en el navegador** (`figure.resultado`): `iframe` con el resultado real del código. Nunca dibujar el resultado a mano. Mismas reglas de `sandbox`, enlaces e imágenes que en el repo de origen. `ejemplos.js` reemplaza el `<link>` a `styles.css` por el bloque CSS que indica `data-css`.
-- **Fragmento de HTML** (`.codigo__donde`), **tarjetas de tecnologías** (`ul.tecs`), **ejemplo con tres archivos** (`.juntos`), **checklist**, **etiquetas de código en el texto** (`<code>`, `cod-css`, `cod-js`, `cod-carpeta`).
+- **Fragmento de HTML** (`.codigo__donde`), **tarjetas de tecnologías** (`ul.tecs`), **ejemplo con tres archivos** (`.juntos`), **checklist**, **etiquetas de código en el texto** (`<code>`, `cod-css`, `cod-js`, `cod-carpeta`). Toda etiqueta HTML con `<…>` en el texto lleva `class="cod-etq"` (magenta, como `cod-css`).
 
 Nuevos en este cuadernillo. Se crean en el TP donde aparecen por primera vez:
 
 - **Terminal** (`figure.terminal`, TP8): ventana oscura con tres puntos y el título "Terminal". Cada comando va en su línea con el símbolo `$` delante, y debajo su salida, escrita a mano tal como la muestra Git (en inglés). El botón "Copiar" copia solo los comandos, sin el `$` ni la salida. Texto real, nunca imagen. En la impresión, fondo claro como el código. La salida escrita tiene que ser la real: correr cada comando y copiarla.
-- **Tabla de comandos** (`.operaciones` o `.tabla-comp`): comando · qué hace. Para `git` y para las abreviaturas de Emmet.
-- **Esquemas de pantallas** (VS Code, DevTools, Trello, GitHub): SVG simplificados, no capturas. Cada esquema muestra solo lo que hay que tocar, con el nombre exacto del botón y, si está en inglés, su traducción al lado (`Pull requests → New pull request`). Si hace falta una captura real, dejar un marcador visible: `[CAPTURA: qué mostrar]`.
+- **Tabla de comandos** (`.operaciones` o `.tabla-comp`): comando · qué hace. Para `git` y para las abreviaturas de Emmet. Hecha en el TP7 como `table.tabla-comp.tabla-comp--cmd`, con `caption` (puede ser `sr-only`) y `th scope`.
+- **Esquemas de pantallas** (VS Code, DevTools, Trello, GitHub): SVG simplificados, no capturas. Cada esquema muestra solo lo que hay que tocar, con el nombre exacto del botón y, si está en inglés, su traducción al lado (`Pull requests → New pull request`). Si hace falta una captura real, dejar un marcador visible: `[CAPTURA: qué mostrar]`. En el TP7, cada parte se señala con una letra (círculo `--tinta`) y el texto la repite con `<span class="marca">A</span>`; los pasos van en `ol.puntos.puntos--pasos` (números en índigo).
 - **Esquema de ramas** (TP8): commits como círculos sobre líneas; `main` en índigo y la rama de trabajo en turquesa; el commit de merge, en `--tinta`; un conflicto o un commit que se revierte, en naranja.
 
 ## Diseño
@@ -156,7 +156,7 @@ Nuevos en este cuadernillo. Se crean en el TP donde aparecen por primera vez:
 `_fuentes/` está fuera de git. Si falta algo de lo que sigue, avisar y esperar; no reemplazarlo por texto inventado.
 
 1. **`_fuentes/programacion/tp07.html` y `tp08.html`:** láminas 25 a 32 del cuadernillo de Programación, ya revisadas por Nicolás. **Replicar su texto, sus ejemplos y sus esquemas**, resumiendo donde haga falta. No reescribirlos de cero.
-2. **`_fuentes/paginas/p-NN.jpg`:** páginas del PDF "HTML + CSS + JavaScript · Cuadernillo teórico-práctico". Para este cuadernillo se usan las páginas 11, 12, 16, 17, 18, 19, 20, 22, 24, 26 y 27 (etiquetas semánticas y CSS). Respetar su texto. La paleta del PDF es solo referencia.
+2. **`p-NN.jpg`:** páginas del PDF "HTML + CSS + JavaScript · Cuadernillo teórico-práctico". No se copian a este repo: se leen desde `../../Programacion-HTML,CSS,JS/App-Web-Programacion-HTML-CSS-JS/_fuentes/paginas/` (decidido el 7/10/2026). Para este cuadernillo se usan las páginas 11, 12, 16, 17, 18, 19, 20, 22, 24, 26 y 27 (etiquetas semánticas y CSS). Respetar su texto. La paleta del PDF es solo referencia.
 3. **Texto nuevo:** todo lo de VS Code (Emmet, Live Server, Prettier, DevTools) y los TP8, TP9 y TP10.
 
 ### Cambios al replicar las láminas de Programación (aprobados)
@@ -238,10 +238,10 @@ Notas del plan:
 - Índice con el formato de Redes I, en dos unidades: Unidad 1 (TP1 a TP5) y Unidad 2 (TP6 a TP12). Todos "Próximamente", también los TP11 y TP12.
 - TP "Próximamente" con el estilo de Redes I (apagados, sin opacidad), y color de la paleta al pasar el puntero.
 - Repo: `Prof-NkoCussi/Cuadernillo-Web-Software-II`.
+- Etiquetas `<…>` en rojo (7/10/2026, pedido de Nicolás): en los bloques de código, `--cod-etq` `#FF6666` (5,1:1; en el PDF `#B91C1C`), que también colorea selectores de CSS y palabras clave de JS; en el texto, `code.cod-etq`, con los mismos colores que `cod-css` (`#BE185D` sobre `#FCE7F3`, 5,1:1). Las abreviaturas de Emmet (`h1`, `ul>li*3`) no son etiquetas: quedan en índigo. Los esquemas SVG mantienen sus colores.
 
 ## Pendientes a consultar con Nicolás
 
-- Si `_fuentes/paginas/` (las páginas del PDF) está disponible. Si no, las láminas de etiquetas semánticas y de CSS se escriben como texto nuevo.
 - JavaScript en gris en lugar de ámbar (el ámbar ya es el color de las carpetas).
 - Git en la terminal integrada de VS Code: confirmar que Git está instalado en el laboratorio y qué terminal abre por defecto.
 - VS Code del laboratorio: ¿en español o en inglés?

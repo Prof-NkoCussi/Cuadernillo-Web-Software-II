@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°7 — Primeros pasos con HTML y CSS en VS Code · Software II</title>
+  <meta name="description" content="TP N°7 de Software II: cómo trabajan juntos HTML, CSS y JavaScript, el proyecto en VS Code con Emmet, Live Server y Prettier, y la estructura base de HTML con títulos y párrafos. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="7">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-terminal" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M12 23l7 6-7 6M23 35h12"/>
+    </symbol>
+    <symbol id="i-capas" viewBox="0 0 48 48">
+      <path d="M24 5 44 15 24 25 4 15z" style="fill:var(--ac)"/>
+      <path d="M4 24l20 10 20-10M4 33l20 10 20-10"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-consejo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M14 24.5l7 7 13-14" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°7 — Primeros pasos con HTML y CSS en VS Code</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°7">
+    <a href="#pag-25">25 · HTML, CSS y JS</a>
+    <a href="#pag-26">26 · VS Code</a>
+    <a href="#pag-27">27 · Estructura</a>
+    <a href="#pag-28">28 · Listas y más</a>
+    <a href="#pag-29">29 · CSS</a>
+    <a href="#pag-30">30 · Caja y flexbox</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°7 — Primeros pasos con HTML y CSS en VS Code</h1>
+
+  <!-- =================== LÁMINA 25 =================== -->
+  <article class="lamina lamina--compacta" id="pag-25" aria-labelledby="t25">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t25"><span class="tit__num">25.</span> HTML, CSS y JavaScript</h2>
+      <p class="tit__sub">Cómo trabajan juntos</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-capas"/></svg>
+      <p>Una página web se construye con <strong>tres tecnologías</strong> que trabajan en conjunto. Cada una tiene un rol específico:</p>
+    </div>
+
+    <ul class="tecs">
+      <li class="tec tec--html">
+        <h3><span class="etq etq--html">HTML</span> Estructura</h3>
+        <p>HTML (<span lang="en">HyperText Markup Language</span>) crea la estructura de la página. Define el contenido y su organización: títulos, párrafos, imágenes, enlaces, formularios.</p>
+      </li>
+      <li class="tec tec--css">
+        <h3><span class="etq etq--css">CSS</span> Diseño</h3>
+        <p>CSS (<span lang="en">Cascading Style Sheets</span>) da estilo y diseño a la página. Controla colores, tipografías, tamaños, espaciados, posiciones y mucho más.</p>
+      </li>
+      <li class="tec tec--js">
+        <h3><span class="etq etq--js">JavaScript</span> Interactividad</h3>
+        <p>En la página, responde a acciones del usuario, modifica el contenido, valida formularios y muestra mensajes. En esta materia no lo usamos: lo vemos en Programación II.</p>
+      </li>
+    </ul>
+
+    <div class="juntos">
+      <div class="juntos__col">
+        <figure class="codigo codigo--html" id="ej-25h">
+          <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Mi sitio web<span class="c-etq">&lt;/title&gt;</span>
+  <span class="c-etq">&lt;link</span> <span class="c-atr">rel</span>=<span class="c-str">"stylesheet"</span> <span class="c-atr">href</span>=<span class="c-str">"styles.css"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;h1&gt;</span>Bienvenido<span class="c-etq">&lt;/h1&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Esta es mi página web.<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;button</span> <span class="c-atr">id</span>=<span class="c-str">"btn"</span><span class="c-etq">&gt;</span>Saludar<span class="c-etq">&lt;/button&gt;</span>
+  <span class="c-etq">&lt;script</span> <span class="c-atr">src</span>=<span class="c-str">"app.js"</span><span class="c-etq">&gt;&lt;/script&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="ej-25j">
+          <figcaption><span class="codigo__archivo">app.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-etq">function</span> <span class="c-fun">saludar</span>() {
+  <span class="c-fun">alert</span>(<span class="c-str">"¡Hola!"</span>);
+}
+<span class="c-etq">const</span> boton = document.<span class="c-fun">getElementById</span>(<span class="c-str">"btn"</span>);
+boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</span>, saludar);</code></pre>
+        </figure>
+      </div>
+      <div class="juntos__col">
+        <figure class="codigo codigo--css" id="ej-25c">
+          <figcaption><span class="codigo__archivo">styles.css</span></figcaption>
+          <pre tabindex="0" aria-label="Código de styles.css"><code><span class="c-etq">h1</span> {
+  <span class="c-atr">color</span>: <span class="c-str">#2563eb</span>;
+  <span class="c-atr">font-size</span>: <span class="c-num">32px</span>;
+}
+<span class="c-etq">button</span> {
+  <span class="c-atr">background</span>: <span class="c-str">#be185d</span>;
+  <span class="c-atr">color</span>: <span class="c-str">white</span>;
+  <span class="c-atr">padding</span>: <span class="c-num">10px 20px</span>;
+  <span class="c-atr">border</span>: <span class="c-str">none</span>;
+  <span class="c-atr">border-radius</span>: <span class="c-num">8px</span>;
+}</code></pre>
+        </figure>
+        <figure class="resultado" data-html="ej-25h" data-css="ej-25c" data-js="ej-25j" style="--alto:158px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Mi sitio web</span></div>
+          <iframe title="Resultado en el navegador: el título Bienvenido en azul, un párrafo y el botón Saludar. Al tocar el botón aparece el mensaje ¡Hola!" sandbox="allow-scripts allow-modals"></iframe>
+          <figcaption class="resultado__nota">Tocá <strong>Saludar</strong>. El CSS lo vemos en las láminas 29 y 30; JavaScript, en Programación II.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> la <b>estructura</b> (HTML), el <b>diseño</b> (CSS) y la <b>interactividad</b> (JavaScript) se complementan para crear páginas web completas.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 25">25</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 26 =================== -->
+  <article class="lamina lamina--compacta" id="pag-26" aria-labelledby="t26">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t26"><span class="tit__num">26.</span> El proyecto en VS Code</h2>
+      <p class="tit__sub">Carpeta, explorador, Emmet, Live Server y Prettier</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <p>Usamos el ambiente que configuraste en el TP6: el <strong>editor</strong> (VS Code), una <strong>carpeta</strong> para los archivos y el <strong>navegador</strong> (Chrome) para probar la página. Lo nuevo: ahora <strong>creamos los archivos desde cero</strong>.</p>
+    </div>
+
+    <div class="esquema-par esquema-par--pantalla">
+      <div class="ej-col">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 178" style="max-width:420px;margin:0 auto" role="img" aria-labelledby="esq26">
+          <title id="esq26">La pantalla de VS Code con la carpeta mi-sitio abierta. A: a la izquierda, el Explorador muestra la carpeta con img, index.html y styles.css. B: al lado del nombre de la carpeta, los botones Nuevo archivo y Nueva carpeta. A la derecha, el editor con index.html abierto. C: abajo, en la barra de estado, el botón Go Live de Live Server. D: al lado, Prettier.</title>
+          <!-- Ventana -->
+          <rect x="1" y="1" width="338" height="176" rx="6" style="fill:var(--cod-fondo)"/>
+          <path d="M7 1h326a6 6 0 0 1 6 6v13H1V7a6 6 0 0 1 6-6z" style="fill:var(--consola-fondo)"/>
+          <text x="170" y="14.5" text-anchor="middle" style="font-family:var(--fuente);font-size:10.5px;fill:var(--cod-com)">mi-sitio - Visual Studio Code</text>
+          <!-- Barra de actividades y Explorador -->
+          <rect x="1" y="20" width="137" height="140" style="fill:var(--consola-fondo)"/>
+          <path d="M23.5 20v140" style="stroke:var(--cod-fondo);stroke-width:1.5"/>
+          <rect x="1" y="27" width="2.5" height="20" style="fill:var(--acento)"/>
+          <g style="fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M9 31h6l3 3v10H9zM12 31v-2h6l3 3v10h-3" style="stroke:var(--cod-base)"/>
+            <path d="M15.5 60.5l3 3M10 57a4 4 0 1 0 8 0a4 4 0 1 0-8 0" style="stroke:var(--cod-com)"/>
+            <path d="M9 77h5v5H9zM16 77h5v5h-5zM9 84h5v5H9z" style="stroke:var(--cod-com)"/>
+          </g>
+          <text x="31" y="35" style="font-family:var(--fuente);font-size:10px;font-weight:700;letter-spacing:.04em;fill:var(--cod-com)">EXPLORADOR</text>
+          <path d="M32 47l3 3 3-3" style="fill:none;stroke:var(--cod-base);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round"/>
+          <text x="42" y="52.5" style="font-family:var(--fuente);font-size:10.5px;font-weight:700;fill:var(--cod-base)">MI-SITIO</text>
+          <!-- B: Nuevo archivo y Nueva carpeta -->
+          <rect x="96" y="41" width="38" height="16" rx="4" style="fill:none;stroke:var(--acento);stroke-width:2"/>
+          <g style="fill:none;stroke:var(--cod-base);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M101 44h4.5l2.5 2.5v7.5h-7zM104 50h4M106 48v4"/>
+            <path d="M118 45.5a1 1 0 0 1 1-1h3l1.5 1.5h5a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H119a1 1 0 0 1-1-1zM123 50.5h4M125 48.5v4"/>
+          </g>
+          <!-- Árbol de la carpeta -->
+          <rect x="24" y="80" width="114" height="16" style="fill:var(--acento);opacity:.4"/>
+          <path d="M33 66l3 3-3 3" style="fill:none;stroke:var(--cod-base);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round"/>
+          <path d="M41 65.5a1 1 0 0 1 1-1h3.5l1.5 1.5h5.5a1 1 0 0 1 1 1v5.5a1 1 0 0 1-1 1H42a1 1 0 0 1-1-1z" style="fill:var(--carpeta)"/>
+          <rect x="42" y="82.5" width="9" height="11" rx="1.5" style="fill:var(--html)"/>
+          <rect x="42" y="100.5" width="9" height="11" rx="1.5" style="fill:var(--css)"/>
+          <g style="font-family:var(--fuente-codigo);font-size:11px;fill:var(--cod-base)">
+            <text x="58" y="73">img</text>
+            <text x="58" y="91.5">index.html</text>
+            <text x="58" y="109.5">styles.css</text>
+          </g>
+          <!-- Editor -->
+          <rect x="138" y="20" width="201" height="18" style="fill:var(--consola-fondo)"/>
+          <rect x="138" y="20" width="76" height="18" style="fill:var(--cod-fondo)"/>
+          <rect x="138" y="20" width="76" height="2" style="fill:var(--acento)"/>
+          <text x="148" y="33" style="font-family:var(--fuente-codigo);font-size:10.5px;fill:var(--cod-base)">index.html</text>
+          <g style="fill:var(--cod-etq)"><rect x="148" y="48" width="70" height="5" rx="2.5"/><rect x="148" y="132" width="34" height="5" rx="2.5"/></g>
+          <g style="fill:var(--cod-etq)"><rect x="148" y="62" width="24" height="5" rx="2.5"/><rect x="156" y="76" width="30" height="5" rx="2.5"/><rect x="156" y="104" width="22" height="5" rx="2.5"/><rect x="148" y="118" width="26" height="5" rx="2.5"/></g>
+          <g style="fill:var(--cod-atr)"><rect x="190" y="76" width="34" height="5" rx="2.5"/><rect x="164" y="90" width="20" height="5" rx="2.5"/></g>
+          <g style="fill:var(--cod-str)"><rect x="228" y="76" width="44" height="5" rx="2.5"/><rect x="188" y="90" width="72" height="5" rx="2.5"/><rect x="182" y="104" width="86" height="5" rx="2.5"/></g>
+          <!-- Barra de estado: C Go Live, D Prettier -->
+          <path d="M1 160h338v11a6 6 0 0 1-6 6H7a6 6 0 0 1-6-6z" style="fill:var(--acento)"/>
+          <g style="fill:none;stroke:var(--blanco);stroke-width:1.3;stroke-linecap:round">
+            <circle cx="220" cy="168.5" r="1.4" style="fill:var(--blanco)"/>
+            <path d="M216.5 165a5 5 0 0 0 0 7M223.5 165a5 5 0 0 1 0 7"/>
+            <path d="M275 168.5l2 2 3.5-4M279 170.5l1 0 3.5-4"/>
+          </g>
+          <g style="font-family:var(--fuente);font-size:10.5px;font-weight:600;fill:var(--blanco)">
+            <text x="228" y="172">Go Live</text>
+            <text x="287" y="172">Prettier</text>
+          </g>
+          <rect x="1" y="1" width="338" height="176" rx="6" style="fill:none;stroke:var(--tinta);stroke-width:2"/>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="112" cy="31" r="7.5"/>
+            <circle cx="134" cy="66" r="7.5"/>
+            <circle cx="243" cy="150" r="7.5"/>
+            <circle cx="307" cy="150" r="7.5"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:10.5px;font-weight:700">
+            <text x="112" y="34.8">A</text><text x="134" y="69.8">B</text><text x="243" y="153.8">C</text><text x="307" y="153.8">D</text>
+          </g>
+        </svg>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n26a">
+        <h3 id="n26a">Live Server</h3>
+        <p class="esquema-nota__p">Abre la página en una dirección como <code>127.0.0.1:5500/index.html</code>: es nuestra propia computadora. Para cerrarlo, tocamos el mismo botón <span class="marca">C</span>, que ahora dice <strong lang="en">Port&nbsp;:&nbsp;5500</strong>.</p>
+      </aside>
+      </div>
+      <section class="esquema-nota" aria-labelledby="s26">
+        <h3 id="s26">Paso a paso</h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span><strong>Crear la carpeta:</strong> clic derecho → <strong>Nuevo → Carpeta</strong>. La llamamos <code class="cod-carpeta">mi-sitio</code>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span><strong>Abrirla en VS Code:</strong> <strong>Archivo → Abrir carpeta…</strong> Aparece en el Explorador <span class="marca">A</span>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>Crear los archivos</strong> con <span class="marca">B</span>: <code>index.html</code>, <code class="cod-css">styles.css</code> y la carpeta <code class="cod-carpeta">img</code>. Cada archivo, con su extensión.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span><strong>Probar con Live Server:</strong> <strong>Go Live</strong> <span class="marca">C</span> abre la página en el navegador. Con cada <kbd>Ctrl</kbd> + <kbd>S</kbd>, se recarga sola.</span></li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="ej ej--res">
+      <section class="esquema-nota" aria-labelledby="n26b">
+        <h3 id="n26b">Emmet: abreviaturas</h3>
+        <p class="esquema-nota__p">Viene con VS Code. Escribimos la abreviatura y tocamos <kbd>Enter</kbd>.</p>
+        <table class="tabla-comp tabla-comp--cmd">
+          <caption class="sr-only">Abreviaturas de Emmet y lo que escribe cada una</caption>
+          <thead><tr><th scope="col">Escribimos</th><th scope="col">Aparece</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><code>!</code></th><td>la estructura base (lámina 27)</td></tr>
+            <tr><th scope="row"><code>h1</code></th><td><code class="cod-etq">&lt;h1&gt;&lt;/h1&gt;</code></td></tr>
+            <tr><th scope="row"><code>ul&gt;li*3</code></th><td><code class="cod-etq">&lt;ul&gt;</code> con tres <code class="cod-etq">&lt;li&gt;&lt;/li&gt;</code></td></tr>
+            <tr><th scope="row"><code>a</code></th><td><code class="cod-etq">&lt;a href=""&gt;&lt;/a&gt;</code></td></tr>
+            <tr><th scope="row"><code>img</code></th><td><code class="cod-etq">&lt;img src="" alt=""&gt;</code></td></tr>
+            <tr><th scope="row"><code>.caja</code></th><td><code class="cod-etq">&lt;div class="caja"&gt;&lt;/div&gt;</code></td></tr>
+            <tr><th scope="row"><code>#titulo</code></th><td><code class="cod-etq">&lt;div id="titulo"&gt;&lt;/div&gt;</code></td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="esquema-nota" aria-labelledby="n26c">
+        <h3 id="n26c">Prettier: formato al guardar</h3>
+        <ol class="pf__lista">
+          <li><kbd>Ctrl</kbd> + <kbd>,</kbd> abre la <strong>Configuración</strong>.</li>
+          <li>Buscamos “format on save” y tildamos <strong lang="en">Editor: Format On Save</strong>.</li>
+          <li>En <strong lang="en">Editor: Default Formatter</strong>, elegimos <strong lang="en">Prettier - Code formatter</strong>.</li>
+        </ol>
+        <p class="esquema-nota__p esquema-nota__p--sep">Si está activo, se ve <strong>Prettier</strong> <span class="marca">D</span> en la barra de abajo. Con cada <kbd>Ctrl</kbd> + <kbd>S</kbd>, ordena la sangría y los espacios. También agrega una barra a las etiquetas que no se cierran: <code class="cod-etq">&lt;br&gt;</code> pasa a <code class="cod-etq">&lt;br /&gt;</code>. Las dos formas son correctas.</p>
+      </section>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> para empezar a desarrollar necesitamos un editor de código, un navegador web y una carpeta ordenada para guardar los archivos.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 26">26</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 27 =================== -->
+  <article class="lamina lamina--compacta" id="pag-27" aria-labelledby="t27">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h tit__h--largo" id="t27"><span class="tit__num">27.</span> Estructura base, títulos y párrafos</h2>
+      <p class="tit__sub">La portada de un proyecto, línea por línea</p>
+    </div>
+
+    <div class="ej ej--est">
+      <figure class="codigo codigo--html" id="ej-27">
+        <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+        <pre tabindex="0" aria-label="Código de index.html de la portada"><code><span class="c-etq">&lt;!DOCTYPE html&gt;</span>
+<span class="c-etq">&lt;html</span> <span class="c-atr">lang</span>=<span class="c-str">"es-AR"</span><span class="c-etq">&gt;</span>
+<span class="c-etq">&lt;head&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">charset</span>=<span class="c-str">"utf-8"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;meta</span> <span class="c-atr">name</span>=<span class="c-str">"viewport"</span> <span class="c-atr">content</span>=<span class="c-str">"width=device-width, initial-scale=1"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;title&gt;</span>Biblioteca escolar<span class="c-etq">&lt;/title&gt;</span>
+<span class="c-etq">&lt;/head&gt;</span>
+<span class="c-etq">&lt;body&gt;</span>
+  <span class="c-etq">&lt;h1&gt;</span>Biblioteca escolar<span class="c-etq">&lt;/h1&gt;</span>
+  <span class="c-etq">&lt;h2&gt;</span>De qué se trata<span class="c-etq">&lt;/h2&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Préstamos de libros de la escuela.<span class="c-etq">&lt;/p&gt;</span>
+  <span class="c-etq">&lt;hr&gt;</span>
+  <span class="c-etq">&lt;p&gt;</span>Grupo 3<span class="c-etq">&lt;br&gt;</span>Ushuaia, Tierra del Fuego<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;/body&gt;</span>
+<span class="c-etq">&lt;/html&gt;</span></code></pre>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n27">
+        <h3 id="n27">Qué hace cada línea</h3>
+        <ul class="pf__lista">
+          <li><code class="cod-etq">&lt;!DOCTYPE html&gt;</code>: es un documento HTML5. Va primero.</li>
+          <li><code class="cod-etq">&lt;html lang="es-AR"&gt;</code> contiene todo. <code>lang</code> es el idioma: español de Argentina.</li>
+          <li class="punto--turquesa"><code class="cod-etq">&lt;head&gt;</code>: datos que <strong>no se ven</strong>. En las dos <code class="cod-etq">&lt;meta&gt;</code>, <code>charset</code> hace que se vean bien los acentos y la ñ, y <code>viewport</code>, que la página se adapte al celular. <code class="cod-etq">&lt;title&gt;</code> es el título de la pestaña.</li>
+          <li class="punto--naranja"><code class="cod-etq">&lt;body&gt;</code>: el contenido <strong>visible</strong>.</li>
+          <li><code class="cod-etq">&lt;/head&gt;</code>, <code class="cod-etq">&lt;/body&gt;</code>, <code class="cod-etq">&lt;/html&gt;</code> cierran lo que se abrió, con <code>/</code>.</li>
+          <li>Con <code>!</code> + <kbd>Enter</kbd>, VS Code la escribe sola: cambiamos <code>en</code> por <code>es-AR</code> y <code>Document</code> por el título.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="esquema-par esquema-par--res">
+      <div class="ej-col">
+      <figure class="esquema">
+        <svg viewBox="0 0 320 206" style="max-width:290px;margin:0 auto" role="img" aria-labelledby="esq27">
+          <title id="esq27">Árbol de la portada. html contiene a head y a body. Dentro de head están las dos etiquetas meta y title: son datos para el navegador. Dentro de body están h1, h2, un párrafo p, la línea hr y otro párrafo p: es el contenido de la página.</title>
+          <rect x="110" y="2" width="100" height="32" rx="6" style="fill:var(--acento)"/>
+          <text x="160" y="23" text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:16px;font-weight:700;fill:var(--blanco)">&lt;html&gt;</text>
+          <g style="fill:none;stroke-width:2.5">
+            <path d="M160 34v11" style="stroke:var(--acento)"/>
+            <path d="M160 45H65v11M65 86v10" style="stroke:var(--turquesa)"/>
+            <path d="M160 45h95v11M255 86v10" style="stroke:var(--naranja)"/>
+          </g>
+          <rect x="15" y="56" width="100" height="30" rx="6" style="fill:var(--turquesa-texto)"/>
+          <rect x="195" y="56" width="120" height="30" rx="6" style="fill:var(--naranja-texto)"/>
+          <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:16px;font-weight:700;fill:var(--blanco)">
+            <text x="65" y="76">&lt;head&gt;</text>
+            <text x="255" y="76">&lt;body&gt;</text>
+          </g>
+          <rect x="15" y="96" width="100" height="84" rx="6" style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:1.5"/>
+          <rect x="195" y="96" width="120" height="84" rx="6" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5"/>
+          <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:14.5px;fill:var(--tinta)">
+            <text x="65" y="119">&lt;meta&gt;</text>
+            <text x="65" y="142">&lt;meta&gt;</text>
+            <text x="65" y="165">&lt;title&gt;</text>
+            <text x="255" y="119">&lt;h1&gt;</text>
+            <text x="255" y="142">&lt;h2&gt;</text>
+            <text x="255" y="165">&lt;p&gt; &lt;hr&gt; &lt;p&gt;</text>
+          </g>
+          <g class="tt" text-anchor="middle" style="font-size:13.5px;font-weight:700">
+            <text x="65" y="199" style="fill:var(--turquesa-texto)">datos del navegador</text>
+            <text x="255" y="199" style="fill:var(--naranja-texto)">contenido de la página</text>
+          </g>
+        </svg>
+      </figure>
+      <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n27b">
+        <h3 id="n27b"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Títulos: de h1 a h6</h3>
+        <p class="esquema-nota__p">Van del <code class="cod-etq">&lt;h1&gt;</code>, el más importante, al <code class="cod-etq">&lt;h6&gt;</code>, el de menor jerarquía. Usá <strong>un solo</strong> <code class="cod-etq">&lt;h1&gt;</code> por página y mantené el orden.</p>
+      </aside>
+      </div>
+      <figure class="resultado" data-html="ej-27" style="--alto:226px;--alto-cel:250px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">Biblioteca escolar</span></div>
+        <iframe title="Resultado en el navegador: el título Biblioteca escolar, el subtítulo De qué se trata, un párrafo, una línea horizontal y un párrafo en dos renglones: Grupo 3 y, abajo, Ushuaia, Tierra del Fuego. Lo que está en el head no se ve." sandbox=""></iframe>
+        <figcaption class="resultado__nota">Solo se ve lo que está dentro de <code class="cod-etq">&lt;body&gt;</code>.</figcaption>
+      </figure>
+    </div>
+
+    <ul class="comparar comparar--3">
+      <li><div><h3>Párrafo <code class="cod-etq">&lt;p&gt;</code></h3><p>Define un párrafo de texto, con espacio arriba y abajo.</p></div></li>
+      <li><div><h3>Salto <code class="cod-etq">&lt;br&gt;</code></h3><p>Corta la línea dentro de un texto. No se cierra.</p></div></li>
+      <li><div><h3>Línea <code class="cod-etq">&lt;hr&gt;</code></h3><p>Separa dos partes con una línea. No se cierra.</p></div></li>
+    </ul>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> todo documento HTML parte de una estructura base, con <b>doctype</b>, <b>html</b>, <b>head</b> y <b>body</b>. En body van los <b>títulos</b> y los <b>párrafos</b>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 27">27</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 28 =================== -->
+  <article class="lamina lamina--compacta" id="pag-28" aria-labelledby="t28">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t28"><span class="tit__num">28.</span> Listas, enlaces e imágenes</h2>
+      <p class="tit__sub">Y las etiquetas semánticas: header, main y footer</p>
+    </div>
+
+    <section class="ej ej--chico tema" aria-labelledby="s28a">
+      <div class="ej-col">
+        <div class="tema__txt"><h3 id="s28a">Listas.</h3> <p>Cada ítem va en un <code class="cod-etq">&lt;li&gt;</code>. En <code class="cod-etq">&lt;ul&gt;</code> (viñetas) el orden <strong>no importa</strong>; en <code class="cod-etq">&lt;ol&gt;</code> (números), <strong>sí</strong>.</p></div>
+        <figure class="codigo codigo--html" id="ej-28a">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;ul&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Leer<span class="c-etq">&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Escuchar música<span class="c-etq">&lt;/li&gt;</span>
+<span class="c-etq">&lt;/ul&gt;</span>
+<span class="c-etq">&lt;ol&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Mezclar los ingredientes<span class="c-etq">&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Servir y disfrutar<span class="c-etq">&lt;/li&gt;</span>
+<span class="c-etq">&lt;/ol&gt;</span></code></pre>
+        </figure>
+      </div>
+      <figure class="resultado" data-html="ej-28a" style="--alto:114px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: Leer y Escuchar música marcados con viñetas, y abajo Mezclar los ingredientes y Servir y disfrutar numerados 1 y 2." sandbox=""></iframe>
+      </figure>
+    </section>
+
+    <section class="ej ej--chico tema" aria-labelledby="s28b">
+      <div class="ej-col">
+        <div class="tema__txt"><h3 id="s28b">Imágenes.</h3> <p><code class="cod-etq">&lt;img&gt;</code> necesita la <strong>ruta</strong> del archivo (<code>src</code>) y un <strong>texto alternativo</strong> (<code>alt</code>) que describa su contenido.</p></div>
+        <figure class="codigo codigo--html" id="ej-28b">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;img</span> <span class="c-atr">src</span>=<span class="c-str">"img/paisaje.svg"</span>
+     <span class="c-atr">alt</span>=<span class="c-str">"Montañas con nieve y un lago"</span>
+     <span class="c-atr">width</span>=<span class="c-str">"180"</span><span class="c-etq">&gt;</span></code></pre>
+        </figure>
+      </div>
+      <figure class="resultado" data-html="ej-28b" style="--alto:130px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: la ilustración de unas montañas con nieve junto a un lago." sandbox=""></iframe>
+      </figure>
+    </section>
+
+    <section class="ej ej--chico tema" aria-labelledby="s28c">
+      <div class="ej-col">
+        <div class="tema__txt"><h3 id="s28c">Enlaces.</h3> <p>Con <code class="cod-etq">&lt;a&gt;</code>: <code>href</code> es el destino. A otro sitio, la dirección completa (<strong>ruta absoluta</strong>); a una página nuestra, el nombre del archivo (<strong>ruta relativa</strong>).</p></div>
+        <figure class="codigo codigo--html" id="ej-28c">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"https://ejemplo.com"</span><span class="c-etq">&gt;</span>Sitio externo<span class="c-etq">&lt;/a&gt;</span>
+<span class="c-etq">&lt;a</span> <span class="c-atr">href</span>=<span class="c-str">"nosotros.html"</span><span class="c-etq">&gt;</span>Sobre nosotros<span class="c-etq">&lt;/a&gt;</span></code></pre>
+        </figure>
+      </div>
+      <figure class="resultado" data-html="ej-28c" style="--alto:40px">
+        <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+        <iframe title="Resultado en el navegador: dos enlaces en azul y subrayados, uno al lado del otro: Sitio externo y Sobre nosotros." sandbox="allow-scripts"></iframe>
+        <figcaption class="resultado__nota">Tocá un enlace para ver a dónde lleva.</figcaption>
+      </figure>
+    </section>
+
+    <section class="ej ej--chico tema" aria-labelledby="s28d">
+      <div class="ej-col">
+        <div class="tema__txt"><h3 id="s28d">Etiquetas semánticas.</h3> <p>Tienen <strong>significado</strong>: describen el contenido de cada parte de la página.</p></div>
+        <figure class="codigo codigo--html" id="ej-28d">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;header&gt;&lt;h1&gt;</span>Biblioteca escolar<span class="c-etq">&lt;/h1&gt;&lt;/header&gt;</span>
+<span class="c-etq">&lt;main&gt;</span>
+  <span class="c-etq">&lt;section&gt;&lt;h2&gt;</span>Integrantes<span class="c-etq">&lt;/h2&gt;&lt;/section&gt;</span>
+<span class="c-etq">&lt;/main&gt;</span>
+<span class="c-etq">&lt;footer&gt;&lt;p&gt;</span>5.º año · Ushuaia<span class="c-etq">&lt;/p&gt;&lt;/footer&gt;</span></code></pre>
+        </figure>
+      </div>
+      <figure class="esquema">
+        <svg viewBox="0 0 220 160" style="max-width:240px;margin:0 auto" role="img" aria-labelledby="esq28">
+          <title id="esq28">Cómo se organiza la página. Arriba, header: el encabezado de la página. En el medio, main: el contenido principal, con dos section adentro, una por tema. Abajo, footer: el pie de página, con información complementaria.</title>
+          <rect x="2" y="2" width="216" height="32" rx="6" style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:1.5"/>
+          <rect x="2" y="40" width="216" height="78" rx="6" style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:1.5"/>
+          <rect x="10" y="66" width="96" height="44" rx="5" style="fill:var(--blanco);stroke:var(--turquesa);stroke-width:1.5"/>
+          <rect x="114" y="66" width="96" height="44" rx="5" style="fill:var(--blanco);stroke:var(--turquesa);stroke-width:1.5"/>
+          <rect x="2" y="124" width="216" height="34" rx="6" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5"/>
+          <g style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700">
+            <text x="10" y="23" style="fill:var(--acento-numero)">&lt;header&gt;</text>
+            <text x="10" y="58" style="fill:var(--turquesa-texto)">&lt;main&gt;</text>
+            <text x="10" y="146" style="fill:var(--naranja-texto)">&lt;footer&gt;</text>
+          </g>
+          <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:12px;font-weight:700;fill:var(--turquesa-texto)">
+            <text x="58" y="84">&lt;section&gt;</text>
+            <text x="162" y="84">&lt;section&gt;</text>
+          </g>
+          <g class="tt" style="font-size:11.5px">
+            <text x="86" y="23">encabezado</text>
+            <text x="68" y="58">contenido principal</text>
+            <text x="86" y="146">pie de página</text>
+          </g>
+          <g class="tt" text-anchor="middle" style="font-size:11.5px">
+            <text x="58" y="101">un tema</text>
+            <text x="162" y="101">otro tema</text>
+          </g>
+        </svg>
+      </figure>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> listas, enlaces e imágenes organizan el contenido; las etiquetas <b>semánticas</b> dicen qué es cada parte de la página.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 28">28</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 29 =================== -->
+  <article class="lamina lamina--compacta" id="pag-29" aria-labelledby="t29">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t29"><span class="tit__num">29.</span> CSS: la hoja de estilos</h2>
+      <p class="tit__sub">Vincular la hoja, selectores, colores y tipografía</p>
+    </div>
+
+    <div class="esquema-par">
+      <div class="ej-col">
+        <figure class="esquema">
+          <svg viewBox="0 0 320 92" style="max-width:360px;margin:0 auto" role="img" aria-labelledby="esq29">
+            <title id="esq29">Regla CSS básica: h1, llave, color dos puntos #2563eb punto y coma, llave. h1 es el selector, color es la propiedad y #2563eb es el valor.</title>
+            <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+              <path d="M30 34v-6h40v6" style="stroke:var(--turquesa)"/>
+              <path d="M110 34v-6h66v6" style="stroke:var(--acento)"/>
+              <path d="M196 34v-6h94v6" style="stroke:var(--naranja)"/>
+            </g>
+            <g class="tt" text-anchor="middle" style="font-size:14px;font-weight:700">
+              <text x="50" y="19" style="fill:var(--turquesa-texto)">Selector</text>
+              <text x="143" y="19" style="fill:var(--acento-numero)">Propiedad</text>
+              <text x="243" y="19" style="fill:var(--naranja-texto)">Valor</text>
+            </g>
+            <rect x="2" y="40" width="316" height="44" rx="6" style="fill:var(--cod-fondo)"/>
+            <text x="30" y="69" style="font-family:var(--fuente-codigo);font-size:24px;fill:var(--cod-base)"><tspan style="fill:var(--cod-etq)">h1</tspan> {  <tspan style="fill:var(--cod-atr)">color</tspan>: <tspan style="fill:var(--cod-str)">#2563eb</tspan>; }</text>
+          </svg>
+        </figure>
+        <ul class="pf__lista">
+          <li class="punto--turquesa"><strong>Selector:</strong> indica a qué elemento se aplica el estilo.</li>
+          <li><strong>Propiedad:</strong> define qué característica se va a modificar.</li>
+          <li class="punto--naranja"><strong>Valor:</strong> el valor que toma la propiedad (un color, un tamaño…).</li>
+        </ul>
+      </div>
+      <aside class="esquema-nota" aria-labelledby="n29a">
+        <h3 id="n29a">CSS y HTML</h3>
+        <p class="esquema-nota__p">CSS (<span lang="en">Cascading Style Sheets</span>) es el lenguaje que define la <strong>apariencia visual</strong> de una página web. Se conecta con HTML mediante la etiqueta <code class="cod-etq">&lt;link&gt;</code>, en el <code class="cod-etq">&lt;head&gt;</code>: indica al navegador qué archivo CSS debe cargar.</p>
+        <figure class="codigo codigo--html" id="ej-29link">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;head&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de head"><code><span class="c-etq">&lt;link</span> <span class="c-atr">rel</span>=<span class="c-str">"stylesheet"</span> <span class="c-atr">href</span>=<span class="c-str">"styles.css"</span><span class="c-etq">&gt;</span></code></pre>
+        </figure>
+      </aside>
+    </div>
+
+    <ul class="comparar comparar--3 comparar--chico" aria-label="Selectores de etiqueta, de clase y de id">
+      <li><div><h3>Etiqueta <code class="cod-css">h1</code></h3><p>Selecciona todos los elementos de esa etiqueta.</p></div></li>
+      <li><div><h3>Clase <code class="cod-css">.destacado</code></h3><p>Todos los que tienen esa clase. Se puede repetir.</p></div></li>
+      <li><div><h3>Id <code class="cod-css">#titulo</code></h3><p>El elemento con ese id. Es único en la página.</p></div></li>
+    </ul>
+
+    <div class="ej ej--res ej--chico">
+      <div class="ej-col">
+        <figure class="codigo codigo--html" id="ej-29h">
+          <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+          <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;h1</span> <span class="c-atr">id</span>=<span class="c-str">"titulo"</span><span class="c-etq">&gt;</span>Biblioteca escolar<span class="c-etq">&lt;/h1&gt;</span>
+<span class="c-etq">&lt;p&gt;</span>Préstamos de libros de la escuela.<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;p</span> <span class="c-atr">class</span>=<span class="c-str">"destacado"</span><span class="c-etq">&gt;</span>Abre de 8 a 12.<span class="c-etq">&lt;/p&gt;</span></code></pre>
+        </figure>
+        <figure class="codigo codigo--css" id="ej-29c">
+          <figcaption><span class="codigo__archivo">styles.css</span></figcaption>
+          <pre tabindex="0" aria-label="Código de styles.css"><code><span class="c-etq">body</span> {
+  <span class="c-atr">font-family</span>: <span class="c-str">Arial, sans-serif</span>;
+  <span class="c-atr">color</span>: <span class="c-str">#374151</span>;
+}
+<span class="c-etq">#titulo</span> {
+  <span class="c-atr">color</span>: <span class="c-str">#2563eb</span>;
+  <span class="c-atr">font-size</span>: <span class="c-num">32px</span>;
+}
+<span class="c-etq">.destacado</span> {
+  <span class="c-atr">background-color</span>: <span class="c-str">#fef3c7</span>;
+  <span class="c-atr">font-weight</span>: <span class="c-str">bold</span>;
+}</code></pre>
+        </figure>
+      </div>
+      <div class="ej-col">
+        <figure class="resultado" data-html="ej-29h" data-css="ej-29c" style="--alto:150px">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+          <iframe title="Resultado en el navegador: el título Biblioteca escolar en azul, un párrafo en gris oscuro con letra Arial y el párrafo Abre de 8 a 12 en negrita, con fondo amarillo claro." sandbox=""></iframe>
+        </figure>
+        <table class="tabla-comp tabla-comp--cmd">
+          <caption class="sr-only">Propiedades de color y de texto, y qué cambia cada una</caption>
+          <tbody>
+            <tr><th scope="row"><code class="cod-css">color</code></th><td>El color del texto.</td></tr>
+            <tr><th scope="row"><code class="cod-css">background-color</code></th><td>El color de fondo.</td></tr>
+            <tr><th scope="row"><code class="cod-css">font-family</code></th><td>El tipo de letra.</td></tr>
+            <tr><th scope="row"><code class="cod-css">font-size</code></th><td>El tamaño del texto.</td></tr>
+            <tr><th scope="row"><code class="cod-css">font-weight</code></th><td>El grosor (normal, negrita).</td></tr>
+            <tr><th scope="row"><code class="cod-css">text-align</code></th><td>La alineación del texto.</td></tr>
+            <tr><th scope="row"><code class="cod-css">line-height</code></th><td>El espacio entre líneas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> CSS define la apariencia de HTML y se conecta con <code class="cod-etq">&lt;link&gt;</code>. Los <b>selectores</b> eligen a qué elementos se aplica cada regla.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 29">29</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 30 =================== -->
+  <article class="lamina lamina--compacta" id="pag-30" aria-labelledby="t30">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t30"><span class="tit__num">30.</span> Modelo de caja y flexbox</h2>
+      <p class="tit__sub">Vistos con las DevTools de Chrome</p>
+    </div>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 300 150" style="max-width:330px;margin:0 auto" role="img" aria-labelledby="esq30a">
+          <title id="esq30a">El modelo de caja. Afuera, el margin: espacio externo. Después, el borde. Dentro del borde, el padding: espacio interno. En el centro, el contenido: texto, imágenes, etc.</title>
+          <rect x="2" y="2" width="296" height="146" rx="4" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5;stroke-dasharray:6 4"/>
+          <rect x="34" y="26" width="232" height="98" style="fill:var(--ok-claro);stroke:var(--carpeta);stroke-width:8"/>
+          <rect x="74" y="54" width="152" height="44" rx="3" style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:1.5"/>
+          <g class="tt" text-anchor="middle" style="font-size:13px;font-weight:700">
+            <text x="150" y="17" style="fill:var(--naranja-texto)">margin: espacio externo</text>
+            <text x="150" y="46" style="fill:var(--ok)">padding: espacio interno</text>
+            <text x="150" y="73" style="fill:var(--acento-numero)">contenido</text>
+            <text x="150" y="142" style="fill:var(--carpeta-texto)">border: el borde</text>
+          </g>
+          <text class="tt" x="150" y="89" text-anchor="middle" style="font-size:11.5px">texto, imágenes, etc.</text>
+        </svg>
+      </figure>
+      <div class="esquema-nota">
+        <p class="esquema-nota__p">En CSS, todos los elementos son <strong>cajas</strong> rectangulares, con cuatro partes:</p>
+        <ul class="pf__lista">
+          <li><strong>Contenido:</strong> texto, imágenes u otros elementos.</li>
+          <li><code class="cod-css">padding</code>: espacio interno, hasta el borde.</li>
+          <li><code class="cod-css">border</code>: el borde. <code class="cod-css">2px solid #2563eb</code></li>
+          <li><code class="cod-css">margin</code>: espacio externo, entre cajas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="esquema-par esquema-par--pantalla">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 196" style="max-width:420px;margin:0 auto" role="img" aria-labelledby="esq30b">
+          <title id="esq30b">Chrome con las DevTools abiertas abajo. Arriba, la página, con una sección marcada: el contenido en azul, el padding en verde y el margin en naranja. A: el botón con la flecha para elegir un elemento. B: la pestaña Elements, con la etiqueta section marcada. C: la pestaña Styles, con las reglas de la sección. D: la pestaña Computed, donde está el dibujo del modelo de caja.</title>
+          <!-- Ventana y página -->
+          <rect x="1" y="1" width="338" height="194" rx="6" style="fill:var(--blanco)"/>
+          <path d="M7 1h326a6 6 0 0 1 6 6v12H1V7a6 6 0 0 1 6-6z" style="fill:var(--acento-claro)"/>
+          <circle cx="11" cy="10" r="2.5" style="fill:var(--punto-rojo)"/><circle cx="19" cy="10" r="2.5" style="fill:var(--punto-amarillo)"/><circle cx="27" cy="10" r="2.5" style="fill:var(--punto-verde)"/>
+          <rect x="18" y="27" width="190" height="50" style="fill:var(--naranja-claro)"/>
+          <rect x="30" y="35" width="166" height="34" style="fill:var(--ok-claro)"/>
+          <rect x="42" y="43" width="142" height="18" style="fill:var(--acento-claro)"/>
+          <text class="tt" x="48" y="56" style="font-size:11px;font-weight:700">De qué se trata</text>
+          <g style="fill:var(--linea)"><rect x="224" y="30" width="96" height="6" rx="3"/><rect x="224" y="44" width="80" height="6" rx="3"/><rect x="224" y="58" width="90" height="6" rx="3"/></g>
+          <!-- DevTools -->
+          <rect x="1" y="84" width="338" height="111" style="fill:var(--panel)"/>
+          <path d="M1 84h338" style="stroke:var(--tinta);stroke-width:1.5"/>
+          <path d="M1 100h338M196 100v95" style="stroke:var(--linea);stroke-width:1.2"/>
+          <g style="fill:none;stroke:var(--tinta);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round">
+            <rect x="8" y="87" width="10" height="10" rx="1.5" style="stroke-dasharray:2 1.6"/>
+            <path d="M14 93l5 5M14 93v4.5M14 93h4.5"/>
+          </g>
+          <g class="tt" style="font-size:11px;font-weight:700">
+            <text x="40" y="96">Elements</text>
+            <text x="114" y="96" style="font-weight:500;fill:var(--gris)">Console</text>
+            <text x="204" y="112">Styles</text>
+            <text x="262" y="112" style="font-weight:500;fill:var(--gris)">Computed</text>
+          </g>
+          <rect x="38" y="98" width="50" height="2" style="fill:var(--acento)"/>
+          <rect x="202" y="114" width="34" height="2" style="fill:var(--acento)"/>
+          <!-- Árbol de etiquetas y reglas -->
+          <rect x="2" y="137" width="194" height="15" style="fill:var(--acento-claro)"/>
+          <g style="font-family:var(--fuente-codigo);font-size:10.5px">
+            <text x="10" y="116" style="fill:var(--css-texto)">&lt;body&gt;</text>
+            <text x="18" y="131" style="fill:var(--css-texto)">&lt;main&gt;</text>
+            <text x="26" y="148" style="fill:var(--css-texto)">&lt;section <tspan style="fill:var(--turquesa-texto)">class</tspan><tspan style="fill:var(--tinta)">="tarjeta"</tspan>&gt;</text>
+            <text x="34" y="164" style="fill:var(--css-texto)">&lt;h2&gt;<tspan style="fill:var(--tinta)">De qué se trata</tspan>&lt;/h2&gt;</text>
+            <text x="26" y="180" style="fill:var(--css-texto)">&lt;/section&gt;</text>
+            <text x="204" y="136" style="fill:var(--tinta)">.tarjeta {</text>
+            <text x="212" y="151"><tspan style="fill:var(--turquesa-texto)">padding</tspan><tspan style="fill:var(--tinta)">: 20px;</tspan></text>
+            <text x="212" y="166"><tspan style="fill:var(--turquesa-texto)">margin</tspan><tspan style="fill:var(--tinta)">: 30px;</tspan></text>
+            <text x="204" y="181" style="fill:var(--tinta)">}</text>
+          </g>
+          <rect x="1" y="1" width="338" height="194" rx="6" style="fill:none;stroke:var(--tinta);stroke-width:2"/>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="27" cy="84" r="7.5"/><circle cx="99" cy="90" r="7.5"/><circle cx="244" cy="107" r="7.5"/><circle cx="325" cy="107" r="7.5"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:10.5px;font-weight:700">
+            <text x="27" y="87.8">A</text><text x="99" y="93.8">B</text><text x="244" y="110.8">C</text><text x="325" y="110.8">D</text>
+          </g>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-label="DevTools, paso a paso">
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span><kbd>F12</kbd>, o clic derecho sobre la página → <strong>Inspeccionar</strong>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span>La flecha <span class="marca">A</span> elige una parte; en <strong lang="en">Elements</strong> (elementos) <span class="marca">B</span> se marca su etiqueta.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span>En <strong lang="en">Styles</strong> (estilos) <span class="marca">C</span>, sus reglas. Los cambios ahí no se guardan.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span>En <strong lang="en">Computed</strong> (calculado) <span class="marca">D</span>, el modelo de caja.</span></li>
+        </ol>
+      </section>
+    </div>
+
+    <section class="tema" aria-labelledby="s30">
+      <div class="tema__txt"><h3 id="s30">Flexbox.</h3> <p>Alinea elementos en una fila o en una columna. El <strong>contenedor flex</strong> lleva <code class="cod-css">display: flex</code> y sus hijos son los <strong>ítems flex</strong>: <code class="cod-css">justify-content</code> los alinea en el <strong>eje principal</strong> (horizontal), <code class="cod-css">align-items</code> en el <strong>eje cruzado</strong> (vertical) y <code class="cod-css">gap</code> los separa.</p></div>
+      <div class="ej ej--res ej--chico">
+        <div class="ej-col">
+          <figure class="codigo codigo--html" id="ej-30h">
+            <figcaption><span class="codigo__archivo">index.html</span><span class="codigo__donde">dentro de &lt;body&gt;</span></figcaption>
+            <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"contenedor"</span><span class="c-etq">&gt;</span>
+  <span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"caja"</span><span class="c-etq">&gt;</span>1<span class="c-etq">&lt;/div&gt;</span>
+  <span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"caja"</span><span class="c-etq">&gt;</span>2<span class="c-etq">&lt;/div&gt;</span>
+  <span class="c-etq">&lt;div</span> <span class="c-atr">class</span>=<span class="c-str">"caja"</span><span class="c-etq">&gt;</span>3<span class="c-etq">&lt;/div&gt;</span>
+<span class="c-etq">&lt;/div&gt;</span></code></pre>
+          </figure>
+          <figure class="resultado" data-html="ej-30h" data-css="ej-30c" style="--alto:96px">
+            <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+            <iframe title="Resultado en el navegador: tres cajas azules con los números 1, 2 y 3, una al lado de la otra, centradas a lo ancho y a lo alto de un recuadro celeste." sandbox=""></iframe>
+          </figure>
+        </div>
+        <figure class="codigo codigo--css" id="ej-30c">
+          <figcaption><span class="codigo__archivo">styles.css</span></figcaption>
+          <pre tabindex="0" aria-label="Código de styles.css"><code><span class="c-etq">.contenedor</span> {
+  <span class="c-atr">display</span>: <span class="c-str">flex</span>;
+  <span class="c-atr">gap</span>: <span class="c-num">10px</span>;
+  <span class="c-atr">justify-content</span>: <span class="c-str">center</span>;
+  <span class="c-atr">align-items</span>: <span class="c-str">center</span>;
+  <span class="c-atr">height</span>: <span class="c-num">80px</span>;
+  <span class="c-atr">background-color</span>: <span class="c-str">#f0f4ff</span>;
+}
+<span class="c-etq">.caja</span> {
+  <span class="c-atr">padding</span>: <span class="c-num">20px</span>;
+  <span class="c-atr">background-color</span>: <span class="c-str">#2563eb</span>;
+  <span class="c-atr">color</span>: <span class="c-str">white</span>;
+}</code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> cada elemento es una caja con contenido, padding, borde y margin. Flexbox alinea las cajas; DevTools muestra cómo quedan.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 30">30</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR · Hoja 1 =================== -->
+  <article class="lamina lamina--pf lamina--pf-denso" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina · Hoja 1 de 2</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf25">
+      <p class="pf__etiqueta">Lámina 25</p>
+      <h3 class="pf__titulo" id="pf25">Cómo funciona una página web</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Un <strong>servidor</strong> envía los archivos al <strong>navegador</strong>, que los interpreta y los muestra.</p>
+          <figure class="esquema">
+            <svg viewBox="0 0 330 128" style="max-width:290px;margin:0 auto" role="img" aria-labelledby="esq25">
+              <title id="esq25">Cómo se carga una página web. 1: escribimos una dirección web en el navegador. 2: el navegador pide la página al servidor web, a través de Internet. 3: el servidor envía los archivos. 4: el navegador los interpreta. 5: muestra la página.</title>
+              <!-- Navegador -->
+              <rect x="6" y="20" width="96" height="66" rx="4" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+              <path d="M7 21h94v14H7z" style="fill:var(--acento-claro)"/>
+              <path d="M6 35h96" style="stroke:var(--tinta);stroke-width:1.5"/>
+              <rect x="34" y="24" width="62" height="7" rx="3.5" style="fill:var(--blanco);stroke:var(--html-linea);stroke-width:1"/>
+              <rect x="40" y="44" width="40" height="7" rx="2" style="fill:var(--acento)"/>
+              <g style="fill:var(--linea)"><rect x="40" y="57" width="54" height="5" rx="2.5"/><rect x="40" y="68" width="30" height="5" rx="2.5"/></g>
+              <rect x="74" y="66" width="20" height="9" rx="2.5" style="fill:var(--css)"/>
+              <rect x="0" y="86" width="108" height="7" rx="3.5" style="fill:var(--tinta)"/>
+              <!-- Servidor -->
+              <g style="fill:var(--naranja-claro);stroke:var(--naranja-texto);stroke-width:2">
+                <rect x="244" y="18" width="80" height="22" rx="4"/>
+                <rect x="244" y="42" width="80" height="22" rx="4"/>
+                <rect x="244" y="66" width="80" height="22" rx="4"/>
+              </g>
+              <g style="fill:var(--punto-verde)"><circle cx="256" cy="29" r="3.5"/><circle cx="256" cy="53" r="3.5"/><circle cx="256" cy="77" r="3.5"/></g>
+              <path d="M268 29h44M268 53h44M268 77h44" style="stroke:var(--naranja);stroke-width:3;stroke-linecap:round"/>
+              <!-- Internet -->
+              <path d="M150 74a12 12 0 0 1 2-23.8 16 16 0 0 1 30-3 11 11 0 0 1 14 10.6A9 9 0 0 1 194 74z" style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:2"/>
+              <text class="tt" x="172" y="68" text-anchor="middle" style="font-size:12px;font-weight:700;fill:var(--turquesa-texto)">Internet</text>
+              <!-- Flechas: el pedido va en índigo y los archivos vuelven en naranja -->
+              <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+                <path d="M114 30H232M225 24l7 6-7 6" style="stroke:var(--acento)"/>
+                <path d="M232 92H114M121 86l-7 6 7 6" style="stroke:var(--naranja)"/>
+              </g>
+              <!-- Pasos: 1 la dirección, 2 el pedido, 3 los archivos, 4 y 5 en el navegador -->
+              <g style="fill:var(--acento-numero)">
+                <circle cx="20" cy="28" r="9"/><circle cx="173" cy="16" r="9"/>
+                <circle cx="20" cy="50" r="9"/><circle cx="20" cy="71" r="9"/>
+              </g>
+              <circle cx="173" cy="106" r="9" style="fill:var(--naranja-texto)"/>
+              <g class="tt tt--claro" text-anchor="middle" style="font-size:12px;font-weight:700">
+                <text x="20" y="32">1</text><text x="173" y="20">2</text><text x="173" y="110">3</text>
+                <text x="20" y="54">4</text><text x="20" y="75">5</text>
+              </g>
+              <g class="tt" text-anchor="middle" style="font-size:13px;font-weight:700">
+                <text x="54" y="112" style="fill:var(--acento-numero)">Navegador</text>
+                <text x="284" y="106" style="fill:var(--naranja-texto)">Servidor web</text>
+              </g>
+            </svg>
+          </figure>
+          <ol class="pf__lista">
+            <li>Escribimos la dirección de la página.</li>
+            <li>El navegador se la pide al servidor.</li>
+            <li class="punto--naranja">El servidor envía el HTML, el CSS y el JS.</li>
+            <li>El navegador interpreta los archivos.</li>
+            <li>Se muestra la página y podemos usarla.</li>
+          </ol>
+          <p>Mientras trabajamos, Live Server hace de servidor en nuestra computadora (<code>127.0.0.1</code>).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf26">
+      <p class="pf__etiqueta">Lámina 26</p>
+      <h3 class="pf__titulo" id="pf26">Buenas prácticas iniciales</h3>
+      <div class="pf__cols">
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Desde el primer día</h4>
+          <ul class="pf__lista">
+            <li><strong>Nombres simples,</strong> sin espacios ni acentos: <code class="cod-carpeta">mi-sitio</code>.</li>
+            <li><strong>Guardar seguido:</strong> <kbd>Ctrl</kbd> + <kbd>S</kbd>.</li>
+            <li><strong>Archivos ordenados:</strong> las imágenes, en la carpeta <code class="cod-carpeta">img</code>.</li>
+            <li><strong>Probar los cambios:</strong> con Live Server abierto.</li>
+          </ul>
+        </div>
+        <div class="pf__caja">
+          <h4>Extensiones de VS Code</h4>
+          <ul class="pf__lista">
+            <li><strong>Instalar:</strong> <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>, buscar el nombre e <strong>Instalar</strong>.</li>
+            <li><strong>Live Server:</strong> también con clic derecho sobre <code>index.html</code> → <strong lang="en">Open with Live Server</strong>.</li>
+            <li><strong>Prettier:</strong> <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> ordena el código sin guardar.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf27">
+      <p class="pf__etiqueta">Lámina 27</p>
+      <h3 class="pf__titulo" id="pf27">La estructura, en un segundo</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Lo que está dentro de <code class="cod-etq">&lt;body&gt;</code> es lo que se ve en la página. El contenido del <code class="cod-etq">&lt;head&gt;</code> no se muestra.</p>
+          <p>Las etiquetas se cierran en orden inverso: lo último que se abrió es lo primero que se cierra. Por eso <code class="cod-etq">&lt;/body&gt;</code> va antes que <code class="cod-etq">&lt;/html&gt;</code>.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>Los espacios de más no cuentan</h4>
+          <p>Los espacios y <kbd>Enter</kbd> de más cuentan como uno solo. Para cortar una línea, va <code class="cod-etq">&lt;br&gt;</code>.</p>
+          <div class="ej ej--res-ancho">
+          <figure class="codigo codigo--html" id="ej-pf27">
+            <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+            <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;p&gt;</span>Hola,   ¿qué
+   tal?<span class="c-etq">&lt;/p&gt;</span>
+<span class="c-etq">&lt;p&gt;</span>Hola,<span class="c-etq">&lt;br&gt;</span>
+¿qué tal?<span class="c-etq">&lt;/p&gt;</span></code></pre>
+          </figure>
+          <figure class="resultado" data-html="ej-pf27" style="--alto:104px">
+            <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+            <iframe title="Resultado en el navegador: el primer párrafo dice Hola, ¿qué tal? en un solo renglón; el segundo, Hola, y abajo ¿qué tal?" sandbox=""></iframe>
+          </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf28a">
+      <p class="pf__etiqueta">Lámina 28</p>
+      <h3 class="pf__titulo" id="pf28a">Etiqueta, elemento y atributo</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <figure class="esquema">
+            <svg viewBox="0 0 322 160" style="max-width:300px;margin:0 auto" role="img" aria-labelledby="esq28pf">
+              <title id="esq28pf">¿Qué es un elemento? En p class="destacado", Hola mundo, cierre de p: la etiqueta de apertura es p class="destacado" y la de cierre, la barra p. Dentro de la etiqueta de apertura está el atributo class="destacado". Entre las dos etiquetas está el contenido, Hola mundo, que puede ser texto o más etiquetas. Todo junto es el elemento.</title>
+              <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+                <path d="M40 34v-6h141v6" style="stroke:var(--turquesa)"/>
+                <path d="M191 34v-6h83v6" style="stroke:var(--acento)"/>
+              </g>
+              <g class="tt" text-anchor="middle" style="font-size:13.5px;font-weight:700">
+                <text x="110" y="19" style="fill:var(--turquesa-texto)">Atributo</text>
+                <text x="232" y="19" style="fill:var(--acento-numero)">Contenido</text>
+              </g>
+              <rect x="2" y="40" width="318" height="34" rx="6" style="fill:var(--cod-fondo)"/>
+              <text x="14" y="62" textLength="294" lengthAdjust="spacingAndGlyphs" style="font-family:var(--fuente-codigo);font-size:15px;fill:var(--cod-base)"><tspan style="fill:var(--cod-etq)">&lt;p</tspan> <tspan style="fill:var(--cod-atr)">class</tspan>=<tspan style="fill:var(--cod-str)">"destacado"</tspan><tspan style="fill:var(--cod-etq)">&gt;</tspan>Hola mundo<tspan style="fill:var(--cod-etq)">&lt;/p&gt;</tspan></text>
+              <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+                <path d="M15 80v6h175v-6M275 80v6h33v-6" style="stroke:var(--naranja)"/>
+                <path d="M15 112v6h293v-6" style="stroke:var(--tinta)"/>
+              </g>
+              <g class="tt" style="font-size:13.5px;font-weight:700">
+                <text x="102" y="103" text-anchor="middle" style="fill:var(--naranja-texto)">Etiqueta de apertura</text>
+                <text x="320" y="103" text-anchor="end" style="fill:var(--naranja-texto)">Etiqueta de cierre</text>
+                <text x="161" y="137" text-anchor="middle">Elemento: la estructura completa</text>
+              </g>
+              <text class="tt" x="161" y="155" text-anchor="middle" style="font-size:12.5px;fill:var(--gris)">El contenido puede ser texto o más etiquetas.</text>
+            </svg>
+          </figure>
+          <ul class="pf__lista">
+            <li class="punto--naranja"><strong>Etiqueta:</strong> indica el tipo de contenido. Ej.: <code class="cod-etq">&lt;p&gt;</code>.</li>
+            <li><strong>Elemento:</strong> apertura + contenido + cierre.</li>
+            <li class="punto--turquesa"><strong>Atributo:</strong> agrega información o configuración. Ej.: <code>class="destacado"</code>.</li>
+          </ul>
+        </div>
+        <div class="pf__caja">
+          <h4>Elementos vacíos</h4>
+          <p>No tienen contenido ni cierre: <code class="cod-etq">&lt;img&gt;</code>, <code class="cod-etq">&lt;br&gt;</code>, <code class="cod-etq">&lt;hr&gt;</code> y <code class="cod-etq">&lt;meta&gt;</code>. Lo que necesitan va en sus atributos.</p>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR · Hoja 2 =================== -->
+  <article class="lamina lamina--pf lamina--pf-denso" id="profundizar-2" aria-labelledby="tpf2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf2"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina · Hoja 2 de 2</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf28b">
+      <p class="pf__etiqueta">Lámina 28</p>
+      <h3 class="pf__titulo" id="pf28b">Listas anidadas y formatos de imagen</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Una <strong>lista anidada</strong> va dentro de un ítem de otra lista, antes del <code class="cod-etq">&lt;/li&gt;</code>.</p>
+          <div class="ej">
+            <figure class="codigo codigo--html" id="ej-pf28">
+              <figcaption><span class="codigo__archivo">index.html</span></figcaption>
+              <pre tabindex="0" aria-label="Código de index.html, dentro de body"><code><span class="c-etq">&lt;ul&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Frutas
+    <span class="c-etq">&lt;ul&gt;</span>
+      <span class="c-etq">&lt;li&gt;</span>Pera<span class="c-etq">&lt;/li&gt;</span>
+      <span class="c-etq">&lt;li&gt;</span>Uva<span class="c-etq">&lt;/li&gt;</span>
+    <span class="c-etq">&lt;/ul&gt;</span>
+  <span class="c-etq">&lt;/li&gt;</span>
+  <span class="c-etq">&lt;li&gt;</span>Verduras<span class="c-etq">&lt;/li&gt;</span>
+<span class="c-etq">&lt;/ul&gt;</span></code></pre>
+            </figure>
+            <figure class="resultado" data-html="ej-pf28" style="--alto:104px">
+              <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">index.html</span></div>
+              <iframe title="Resultado en el navegador: Frutas, con Pera y Uva más adentro y con otra viñeta, y Verduras." sandbox=""></iframe>
+            </figure>
+          </div>
+        </div>
+        <div class="pf__caja">
+          <h4>Formatos de imagen</h4>
+          <p><strong>JPG</strong>: fotografías. <strong>PNG</strong>: con transparencia, para logotipos. <strong>SVG</strong>: vectorial, no pierde calidad al agrandarse. <strong>GIF</strong>: animadas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf28c">
+      <p class="pf__etiqueta">Lámina 28</p>
+      <h3 class="pf__titulo" id="pf28c">Enlaces: más atributos y rutas</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <ul class="pf__lista">
+            <li><code>target="_blank"</code>: en una pestaña nueva (externos).</li>
+            <li><code>href="mailto:…"</code>: abre el correo.</li>
+            <li><code>href="#contacto"</code>: va a la sección con ese <code>id</code>.</li>
+          </ul>
+          <figure class="esquema">
+            <svg viewBox="0 0 360 232" style="max-width:250px;margin:0 auto" role="img" aria-labelledby="esq28rutas">
+              <title id="esq28rutas">Rutas desde index.html. La carpeta mi-sitio tiene index.html, nosotros.html y la carpeta img, con paisaje.svg adentro. Con ruta relativa, para el archivo de al lado se escribe href="nosotros.html", y para la imagen dentro de img, src="img/paisaje.svg". Para un sitio de internet se usa la ruta absoluta: href="https://es.wikipedia.org".</title>
+              <path d="M4 10a3 3 0 0 1 3-3h9l4 5h17a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" style="fill:var(--carpeta);stroke:var(--tinta);stroke-width:2;stroke-linejoin:round"/>
+              <text x="48" y="28" style="font-family:var(--fuente-codigo);font-size:17px;font-weight:700;fill:var(--tinta)">mi-sitio/</text>
+              <path d="M20 38v94M20 58h12M20 96h12M20 132h12M46 142v32M46 174h12" style="fill:none;stroke:var(--gris);stroke-width:2"/>
+              <rect x="31" y="42" width="140" height="32" rx="6" style="fill:var(--acento-claro)"/>
+              <path d="M36 46h14l8 8v16H36z" style="fill:var(--html)"/>
+              <path d="M36 84h14l8 8v16H36z" style="fill:var(--html)"/>
+              <path d="M36 125a2 2 0 0 1 2-2h6l3 3h11a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H38a2 2 0 0 1-2-2z" style="fill:var(--carpeta);stroke:var(--tinta);stroke-width:1.5;stroke-linejoin:round"/>
+              <rect x="62" y="164" width="22" height="18" rx="2" style="fill:var(--acento-claro);stroke:var(--tinta);stroke-width:1.5"/>
+              <path d="M64 180l6-8 4 4 3-3 5 7z" style="fill:var(--acento)"/>
+              <g style="font-family:var(--fuente-codigo);font-size:15px;fill:var(--tinta)">
+                <text x="66" y="63" style="font-weight:700">index.html</text>
+                <text x="66" y="101">nosotros.html</text>
+                <text x="66" y="137">img/</text>
+                <text x="92" y="179">paisaje.svg</text>
+              </g>
+              <text class="tt" x="276" y="70" text-anchor="middle" style="font-size:13.5px;font-weight:700;fill:var(--turquesa-texto)">Ruta relativa</text>
+              <g style="fill:var(--turquesa-claro);stroke:var(--turquesa);stroke-width:1.5">
+                <rect x="200" y="84" width="152" height="24" rx="12"/>
+                <rect x="200" y="162" width="152" height="24" rx="12"/>
+              </g>
+              <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:12.5px;font-weight:700;fill:var(--turquesa-texto)">
+                <text x="276" y="100">href="nosotros.html"</text>
+                <text x="276" y="178">src="img/paisaje.svg"</text>
+              </g>
+              <g style="fill:none;stroke:var(--turquesa);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+                <path d="M196 96h-12M189 91l-5 5 5 5"/>
+                <path d="M196 174h-6M195 169l-5 5 5 5"/>
+              </g>
+              <path d="M0 198h360" style="stroke:var(--linea);stroke-width:1.5;stroke-dasharray:5 4"/>
+              <text class="tt" x="4" y="224" style="font-size:13.5px;font-weight:700;fill:var(--naranja-texto)">Ruta absoluta</text>
+              <rect x="104" y="207" width="252" height="24" rx="12" style="fill:var(--naranja-claro);stroke:var(--naranja);stroke-width:1.5"/>
+              <text x="230" y="223" text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:12.5px;font-weight:700;fill:var(--naranja-texto)">href="https://es.wikipedia.org"</text>
+            </svg>
+          </figure>
+        </div>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Cuidado con las rutas</h4>
+          <ul class="pf__lista">
+            <li>Va siempre la barra <code>/</code>, aunque Windows muestre <code>\</code>.</li>
+            <li><code>Foto.JPG</code> y <code>foto.jpg</code> son archivos distintos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf29">
+      <p class="pf__etiqueta">Lámina 29</p>
+      <h3 class="pf__titulo" id="pf29">Colores y buenas prácticas de CSS</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>CSS admite diferentes formatos para definir colores:</p>
+          <ul class="pf__lista">
+            <li><strong>Nombre</strong> en inglés: <code class="cod-css">royalblue</code>.</li>
+            <li><strong>Hexadecimal</strong>, el más usado: <code class="cod-css">#2563eb</code>.</li>
+            <li><code class="cod-css">rgb(236, 72, 153)</code>: rojo, verde y azul.</li>
+            <li><code class="cod-css">rgba(37, 99, 235, 0.7)</code>: con transparencia; es <code class="cod-css">#2563eb</code> al 70 %.</li>
+          </ul>
+          <p>El selector <code class="cod-css">*</code> selecciona todos los elementos.</p>
+        </div>
+        <div class="pf__caja pf__caja--consejo">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg>Buenas prácticas</h4>
+          <ul class="pf__lista">
+            <li><strong>Usá clases</strong> para lo que se repite, e <strong>id</strong> solo para un elemento único.</li>
+            <li><strong>Nombres descriptivos</strong> y en minúsculas.</li>
+            <li><strong>Una o dos fuentes</strong> y buen contraste entre el texto y el fondo.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf30">
+      <p class="pf__etiqueta">Lámina 30</p>
+      <h3 class="pf__titulo" id="pf30">Cuánto ocupa una caja y más flexbox</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>El tamaño total de la caja es la suma de sus partes. Con <code class="cod-css">width: 300px</code>, <code class="cod-css">padding: 20px</code>, <code class="cod-css">border: 2px solid</code> y <code class="cod-css">margin: 30px</code>, el ancho total es:</p>
+          <p class="cuenta">300 + (20 + 20) + (2 + 2) + (30 + 30) = <strong>404px</strong></p>
+        </div>
+        <div class="pf__caja">
+          <h4>Más propiedades de flexbox</h4>
+          <ul class="pf__lista">
+            <li><code class="cod-css">justify-content</code>: <code class="cod-css">flex-start</code>, <code class="cod-css">center</code>, <code class="cod-css">space-between</code> o <code class="cod-css">space-around</code>.</li>
+            <li><code class="cod-css">align-items</code>: <code class="cod-css">stretch</code> (por defecto), <code class="cod-css">center</code> o <code class="cod-css">flex-end</code>.</li>
+            <li><code class="cod-css">flex-direction: column</code>: el eje principal pasa a ser vertical.</li>
+          </ul>
+          <p class="consejo"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-consejo"/></svg><strong>Recomendación:</strong> separá los ítems con <code class="cod-css">gap</code>, no con márgenes.</p>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°7 — Primeros pasos con HTML y CSS en VS Code</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> HTML, CSS y JavaScript</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Cuál es el rol principal de HTML en una página web?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué se usa CSS?</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué permite hacer JavaScript? ¿En qué materia lo vas a ver?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> El proyecto en VS Code</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Ordená los pasos: probar con Live Server / crear los archivos / crear la carpeta / abrirla en VS Code.</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué escribe Emmet con <code>ul&gt;li*3</code>? ¿Y con <code>#titulo</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué opción hay que tildar para que Prettier ordene el código al guardar?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Estructura, títulos y párrafos</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué parte del documento contiene el contenido visible?</div></li>
+          <li><b class="act__letra">b)</b><div>Completá: <code class="cod-etq">&lt;____&gt;</code> contiene información general del documento.</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué diferencia hay entre <code class="cod-etq">&lt;br&gt;</code> y <code class="cod-etq">&lt;hr&gt;</code>?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Listas, enlaces, imágenes y semántica</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Para qué sirve el atributo <code>alt</code>?</div></li>
+          <li><b class="act__letra">b)</b><div>Escribí un enlace a <code>nosotros.html</code> con el texto “Sobre nosotros”.</div></li>
+          <li><b class="act__letra">c)</b><div>Marcá dos etiquetas semánticas válidas: <code class="cod-etq">&lt;main&gt;</code> / <code class="cod-etq">&lt;blue&gt;</code> / <code class="cod-etq">&lt;section&gt;</code> / <code class="cod-etq">&lt;size&gt;</code>.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">5-</span> CSS</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Relacioná cada lenguaje con lo que define: HTML / CSS → la apariencia / el contenido.</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué etiqueta conecta HTML con CSS? ¿En qué parte del documento va?</div></li>
+          <li><b class="act__letra">c)</b><div>Relacioná cada selector con lo que selecciona: <code class="cod-css">h1</code> / <code class="cod-css">.destacado</code> / <code class="cod-css">#titulo</code> → el elemento con ese id / todos los <code class="cod-etq">&lt;h1&gt;</code> / todos los que tienen esa clase.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">6-</span> Modelo de caja y flexbox</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Ordená las capas de afuera hacia adentro: contenido / border / margin / padding.</div></li>
+          <li><b class="act__letra">b)</b><div>¿Cuál es la diferencia entre <code class="cod-css">margin</code> y <code class="cod-css">padding</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué propiedad activa flexbox? ¿Cuál alinea los ítems en el eje principal?</div></li>
+          <li><b class="act__letra">d)</b><div>¿Con qué tecla se abren las DevTools? ¿En qué pestaña se ve el dibujo del modelo de caja?</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°7 — Primeros pasos con HTML y CSS en VS Code</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> En grupo, armá la portada del proyecto en la carpeta <code class="cod-carpeta">tp7-nombre-del-grupo</code>.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> La portada del proyecto</h3>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">1</b><div>Creá la carpeta <code class="cod-carpeta">tp7-nombre-del-grupo</code>, con la carpeta <code class="cod-carpeta">img</code> adentro, y abrila en VS Code.</div></li>
+          <li><b class="act__letra">2</b><div>Creá <code>index.html</code> con el atajo <code>!</code> de Emmet. Poné <code>lang="es-AR"</code> y el nombre del proyecto en <code class="cod-etq">&lt;title&gt;</code>.</div></li>
+          <li><b class="act__letra">3</b><div>En el <code class="cod-etq">&lt;header&gt;</code>, el nombre del proyecto en un <code class="cod-etq">&lt;h1&gt;</code> y una frase que lo describa.</div></li>
+          <li><b class="act__letra">4</b><div>En el <code class="cod-etq">&lt;main&gt;</code>, tres secciones con su <code class="cod-etq">&lt;h2&gt;</code>: “De qué se trata” (2 párrafos o más), “Integrantes” (una lista) y “Qué vamos a usar” (una lista de herramientas, con 1 enlace externo o más).</div></li>
+          <li><b class="act__letra">5</b><div>Al menos <strong>1 imagen</strong> guardada en <code class="cod-carpeta">img</code>, con su <code>alt</code>.</div></li>
+          <li><b class="act__letra">6</b><div>Un <code class="cod-etq">&lt;footer&gt;</code> con el curso y la escuela.</div></li>
+          <li><b class="act__letra">7</b><div>Creá <code class="cod-css">styles.css</code> y vinculalo. Usá un selector de etiqueta, una clase y un id. Cambiá colores y tipografía.</div></li>
+          <li><b class="act__letra">8</b><div>Dales <code class="cod-css">padding</code>, <code class="cod-css">margin</code> y borde a las secciones, y usá flexbox en una parte de la página.</div></li>
+          <li><b class="act__letra">9</b><div>Trabajá con Live Server abierto y con Prettier formateando al guardar.</div></li>
+          <li><b class="act__letra">10</b><div>Con las DevTools, inspeccioná una sección y sacá una captura (<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>) de su modelo de caja.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="panel" aria-label="Para tener en cuenta">
+      <ol class="puntos">
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Si un cambio no se ve, revisá que guardaste y que Live Server esté abierto.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Guardá bien la carpeta: en el TP8 la vas a seguir usando.</span></li>
+      </ol>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>La carpeta <strong>en un .zip</strong>, con la captura adentro. <strong>Una entrega por grupo</strong> en Classroom, con los nombres de los integrantes.</p>
+            <p class="entrega__sub--sep">Para comprimir: clic derecho sobre la carpeta → <strong>Enviar a → Carpeta comprimida (en zip)</strong> en Windows 10, o <strong>Comprimir en archivo ZIP</strong> en Windows 11.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, marcá:</p>
+            <ul class="checklist">
+              <li><code class="cod-etq">&lt;header&gt;</code>, <code class="cod-etq">&lt;main&gt;</code> y <code class="cod-etq">&lt;footer&gt;</code>.</li>
+              <li>Un solo <code class="cod-etq">&lt;h1&gt;</code>: el nombre del proyecto.</li>
+              <li>Dos listas, un enlace y una imagen.</li>
+              <li><code class="cod-css">styles.css</code>: etiqueta, clase e id.</li>
+              <li>Caja (padding, margin, borde) y flexbox.</li>
+              <li>La captura, adentro del <code class="cod-carpeta">.zip</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>
