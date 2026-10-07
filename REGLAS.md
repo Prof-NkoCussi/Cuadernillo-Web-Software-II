@@ -70,7 +70,7 @@ El repo llega con el contenido de Programación. Antes de tocar nada:
 - **Git, GitHub, Trello y VS Code** no llevan color propio: usan la etiqueta neutra (`<span class="etq">Git</span>`, fondo `--tinta`). En el índice, la franja y el número de esos TP van en índigo, como el resto (corrección del 7/10/2026).
 - **Medir el contraste** de cada color nuevo al aplicarlo. Todo texto de color: 4,5:1 o más. Sobre `--acento`, `--css` y `--js` va texto blanco. Si alguno no llega, avisar y proponer un ajuste cercano.
 - `<meta name="theme-color" content="#4F46E5">` en todas las páginas.
-- **Cabecera de cada hoja:** `SOFTWARE II` con la bajada `TÉCNICO EN PROGRAMACIÓN · 5.º AÑO`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra vertical de acento. Mismas reglas de tamaño y de celular que el repo de origen; verificar que la bajada entre a 360 px.
+- **Cabecera de cada hoja:** `SOFTWARE II` con la bajada `5.º AÑO` en gris y negrita (cambiado el 7/10/2026), y a la derecha `TRABAJO PRÁCTICO N°X` con la barra vertical de acento. Mismas reglas de tamaño y de celular que el repo de origen; verificar que la bajada entre a 360 px.
 - **Pie de cada hoja y de la portada:** `Software II — Prof. Nicolás A. Cussi`, con guion largo. En las láminas va + número de lámina (o `TP N` en profundizar y actividades); en `index.html`, sin número.
 - **Portada (`index.html`):** `h1` "Software II" (`Software <span>II</span>`: el "II" en `--acento-numero`, como en Redes I), subtítulo "Cuadernillo de actividades · 5.º año", sin la fila de etiquetas de tecnología. En `p.portada__datos`, exactamente estas dos líneas (cambiado el 7/10/2026): la primera en negrita (`<strong>`, `--tinta`) y la segunda en gris y negrita (`<b>`, `--gris`):
   ```

@@ -185,7 +185,7 @@ button.boton { border: 0; font-family: inherit; cursor: pointer; }
   font-size: 14px; font-weight: 700; letter-spacing: .02em; color: var(--tinta);
   text-transform: uppercase; white-space: nowrap;
 }
-.cab__marca span { font-size: 11px; letter-spacing: .22em; color: var(--gris); white-space: nowrap; }
+.cab__marca span { font-size: 11px; font-weight: 700; letter-spacing: .22em; color: var(--gris); white-space: nowrap; }
 .cab__lema { margin-left: auto; text-align: right; line-height: 1.15; }
 /* barra vertical del alto del bloque de texto (2 renglones de .cab__marca) */
 .cab__raya { width: 5px; height: 29px; background: var(--acento); flex: none; }
