@@ -2,7 +2,7 @@
 
 Sitio estático con los TPs de Software II, 5.º año del Técnico en Programación. 5 horas cátedra por semana.
 Docente: Prof. Nicolás A. Cussi · C.T.P. "Olga B. de Arko" · Ushuaia.
-Repo: `Prof-NkoCussi/Cuadernillo-Web-Software-II` (nombre a confirmar) · se publica con GitHub Pages · los alumnos lo abren desde el celular y desde las computadoras del laboratorio.
+Repo: `Prof-NkoCussi/Cuadernillo-Web-Software-II` · se publica con GitHub Pages · los alumnos lo abren desde el celular y desde las computadoras del laboratorio.
 Creado como copia del repo `Prof-NkoCussi/App-Web-Programacion-HTML-CSS-JS`: misma estructura, cambia la paleta, la materia, los íconos y el contenido.
 
 ## Forma de trabajo
@@ -18,7 +18,7 @@ Creado como copia del repo `Prof-NkoCussi/App-Web-Programacion-HTML-CSS-JS`: mis
 ## Estructura del repo
 
 ```
-index.html                 portada + índice de TPs por módulo
+index.html                 portada + índice de TPs por unidad
 unidades/tpNN.html         una página por TP
 assets/css/estilos.css     paleta en :root, mobile first, modo hoja A4
 assets/js/actividades.js   botón PDF, resaltado de la barra, "✓ Visto" (localStorage)
@@ -33,6 +33,8 @@ README.md                  presentación del sitio + tabla de TPs con su estado
 HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin backend, sin dependencias externas.
 
 ### Limpieza inicial (antes del TP7)
+
+**Hecha el 7/10/2026.** Además de estos pasos, se borró el CSS de Programación sin uso (`.py-js`, `.error-controlado`, lo de Python, `.descarga`, `.tipos`, `.senalada` y `.tabla-ej`).
 
 El repo llega con el contenido de Programación. Antes de tocar nada:
 
@@ -70,11 +72,13 @@ El repo llega con el contenido de Programación. Antes de tocar nada:
 - `<meta name="theme-color" content="#4F46E5">` en todas las páginas.
 - **Cabecera de cada hoja:** `SOFTWARE II` con la bajada `TÉCNICO EN PROGRAMACIÓN · 5.º AÑO`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra vertical de acento. Mismas reglas de tamaño y de celular que el repo de origen; verificar que la bajada entre a 360 px.
 - **Pie de cada hoja y de la portada:** `Software II — Prof. Nicolás A. Cussi`, con guion largo. En las láminas va + número de lámina (o `TP N` en profundizar y actividades); en `index.html`, sin número.
-- **Portada (`index.html`):** `h1` "Software II", subtítulo "Cuadernillo de actividades", sin la fila de etiquetas de tecnología. En `p.portada__datos`, exactamente estas dos líneas, la primera en negrita:
+- **Portada (`index.html`):** `h1` "Software II" (`Software <span>II</span>`: el "II" en `--acento-numero`, como en Redes I), subtítulo "Cuadernillo de actividades", sin la fila de etiquetas de tecnología. En `p.portada__datos`, exactamente estas dos líneas, la primera en negrita:
   ```
   Software II • Prof. Nicolás A. Cussi
   C.T.P. "Olga B. de Arko" · Técnico en Programación · 5.º año · Ushuaia
   ```
+- **Índice:** con el formato de `App-Web-Redes-1/indice.html`. Dos unidades (ver plan), sin color propio. Cada TP: título, temas en una línea separados por " · " y meta "Láminas X–Y · Próximamente". "Cómo usarlo": "cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades."
+- **TP "Próximamente":** como en Redes I, tarjeta "apagada" sin opacidad (con `opacity: .62` el texto bajaba a 2,5:1): fondo transparente, borde `--panel`, franja `--acento-claro`, número `--gris-sub`, título y temas `--gris` (6,0:1). Al pasar el puntero, cualquier TP toma el color de la paleta: borde `--acento`, franja y número de su color. El TP10 mantiene sus tres bandas.
 - **README:** lleva el nombre de la escuela y el curso.
 - **Ícono de la materia:** una ventana con `>_` adentro (terminal), en el mismo estilo que `i-web` (trazo `--tinta` + relleno de acento). Reemplaza a `#i-web` en la cabecera.
 - **Sin eslóganes ni frases decorativas.**
@@ -103,7 +107,7 @@ Reglas fijas:
 Se reusan del repo de origen (todo en `estilos.css` y `ejemplos.js`):
 
 - **Bloque de código** (`figure.codigo`): texto real, colores de sintaxis con `<span>` a mano (`.c-etq`, `.c-atr`, `.c-str`, `.c-com`, `.c-num`, `.c-fun`), botón "Copiar", scroll horizontal propio en celular, máximo unas 14 líneas dentro de una lámina. `figcaption` con el nombre del archivo del color de su tecnología.
-- **Resultado en el navegador** (`figure.resultado`): `iframe` con el resultado real del código. Nunca dibujar el resultado a mano. Mismas reglas de `sandbox`, enlaces e imágenes que en el repo de origen.
+- **Resultado en el navegador** (`figure.resultado`): `iframe` con el resultado real del código. Nunca dibujar el resultado a mano. Mismas reglas de `sandbox`, enlaces e imágenes que en el repo de origen. `ejemplos.js` reemplaza el `<link>` a `styles.css` por el bloque CSS que indica `data-css`.
 - **Fragmento de HTML** (`.codigo__donde`), **tarjetas de tecnologías** (`ul.tecs`), **ejemplo con tres archivos** (`.juntos`), **checklist**, **etiquetas de código en el texto** (`<code>`, `cod-css`, `cod-js`, `cod-carpeta`).
 
 Nuevos en este cuadernillo. Se crean en el TP donde aparecen por primera vez:
@@ -140,7 +144,7 @@ Nuevos en este cuadernillo. Se crean en el TP donde aparecen por primera vez:
 - **Enfoque:** HTML y CSS son el vehículo. Lo que se evalúa en esta materia es el uso de las herramientas: editor, Git, GitHub, tablero y documentación.
 - **Se trabaja en grupos desde el TP7.** La página del TP7 es la portada del proyecto del grupo: se versiona en el TP8, se sube a GitHub en el TP9 y es la base del integrador (TP10).
 - No adelantar temas de TPs posteriores. JavaScript no se enseña acá: se ve en Programación II.
-- **Nombres de archivo:** siempre `index.html` y `estilos.css`. Carpetas en minúscula, sin espacios ni acentos.
+- **Nombres de archivo:** siempre `index.html` y `styles.css` (el CSS del sitio sigue siendo `assets/css/estilos.css`). Carpetas en minúscula, sin espacios ni acentos.
 - **Editor y navegador:** Visual Studio Code y Chrome. Windows en el laboratorio: rutas, atajos y menús para Windows.
 - **Git:** en la terminal integrada de VS Code (<kbd>Ctrl</kbd> + <kbd>ñ</kbd>). Rama principal `main` (`git branch -M main` después del primer commit). Para ramas, `git branch` y `git switch` (`git checkout` se nombra en "Para profundizar"). Mensajes de commit en español, con prefijo semántico: `feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`.
 - **Cuentas de GitHub y de Trello (TP9):** cada alumno se registra con su propia cuenta de mail.
@@ -163,6 +167,7 @@ Nuevos en este cuadernillo. Se crean en el TP donde aparecen por primera vez:
 - `app.js` aparece solo en la lámina de las tres tecnologías, aclarando que JavaScript se ve en Programación II. La tarjeta de JavaScript no dice "el lenguaje que usamos desde el TP1".
 - Las referencias cruzadas ("lo vemos en el TP11", "lámina 27") se reescriben con los números de este cuadernillo.
 - Las prácticas "Sobre mí" y "Mis recomendaciones" no van: la práctica es la portada del proyecto del grupo.
+- `estilos.css` pasa a `styles.css`: en el código, en el texto y en los árboles de carpetas.
 - Cabecera, pie, ícono y colores: los de este cuadernillo.
 
 ### Errores del PDF en las páginas que se usan (Nicolás está avisado)
@@ -175,7 +180,7 @@ Corregirlos y listar cada corrección en la entrega del TP.
 | 12 | Falta `</body>`. |
 | 16 | La pregunta 3 ya trae la respuesta. |
 | 17 | El resumen usa `#titulo` y el ejemplo `#principal`. |
-| 18 | El CSS aparece dentro del bloque HTML, después de `</html>`: separar en dos archivos. Usa `styles.css`: va `estilos.css`. |
+| 18 | El CSS aparece dentro del bloque HTML, después de `</html>`: separar en dos archivos. |
 | 19 | `rgba(37, 99, 235, 0.7)` es azul y está pintado de violeta. |
 | 20 | `color: #4b5563;` quedó afuera de la llave de `.texto`. |
 | 27 | Dice "eje secundario"; la 26 dice "eje cruzado": usar "eje cruzado". `font-weight` afuera de la llave. |
@@ -183,29 +188,25 @@ Corregirlos y listar cada corrección en la entrega del TP.
 
 ## Plan del cuadernillo
 
-12 TPs. En el cierre 2026 se producen los TP7 a TP10 (17 láminas). Los TP1 a TP6 quedan "Próximamente" y se pasan después; los TP11 y TP12 son del ciclo 2027.
+12 TPs en dos unidades. En el cierre 2026 se producen los TP7 a TP10 (17 láminas). Los TP1 a TP6 se pasan después; los TP11 y TP12 son del ciclo 2027. En el índice, todos figuran como "Próximamente" hasta que se activan.
 (Prog n) = lámina del cuadernillo de Programación. (PDF n) = página del PDF. (N) = texto nuevo.
 
 | TP | Nombre | Láminas | Temas, una lámina por tema |
 |---|---|---|---|
-| **Módulo 1 · Software y sistemas operativos** | | | |
+| **Unidad 1 · Software, sistemas operativos y línea de comandos** | | | |
 | 1 | Software y licencias | 1–4 | Próximamente |
 | 2 | Sistemas operativos y hardware | 5–8 | Próximamente |
 | 3 | Instalación de un sistema operativo | 9–12 | Próximamente |
-| **Módulo 2 · Línea de comandos y automatización** | | | |
 | 4 | Línea de comandos: Windows y Linux | 13–16 | Próximamente |
 | 5 | Scripting de automatización | 17–20 | Próximamente |
-| **Módulo 3 · Ambiente de desarrollo** | | | |
+| **Unidad 2 · Ambiente de desarrollo, trabajo en equipo y servidores** | | | |
 | 6 | Configuración del ambiente de desarrollo | 21–24 | Próximamente |
 | 7 | Primeros pasos con HTML y CSS en VS Code | 25–30 | HTML, CSS y JavaScript: cómo trabajan juntos (Prog 25) · el proyecto en VS Code: carpeta y archivos, explorador, Emmet, Live Server y Prettier al guardar (Prog 26 + N) · estructura base, títulos y párrafos (Prog 27, 28) · listas, enlaces, imágenes y etiquetas semánticas `header`, `main`, `footer` (Prog 30, 31, 32 + PDF 11, 12) · CSS: vincular la hoja, selectores de etiqueta, clase e id, colores y tipografía (PDF 16, 17, 18, 19, 20) · modelo de caja y flexbox básico, vistos con DevTools (PDF 22, 24, 26, 27 + N) |
-| **Módulo 4 · Versiones y trabajo en equipo** | | | |
 | 8 | Git y control de versiones | 31–34 | (N) qué es Git; repositorio local: `init`, `status`, `add`, `commit`, `log`; commits semánticos · (N) ramas: `branch`, `switch` y `merge` · (N) conflictos: por qué aparecen y cómo se resuelven en VS Code · (N) deshacer: `revert`, `reset` y detached HEAD |
 | 9 | Gestión de proyecto y trabajo en equipo | 35–38 | (N) el equipo: roles, división de tareas y tablero en Trello · (N) GitHub: repositorio remoto, `remote`, `push` y `pull` · (N) pull requests, revisión de código e issues · (N) documentación: README, informe y bitácora |
-| **Módulo 5 · Proyecto integrador** | | | |
 | 10 | Trabajo Integrador Final | 39–41 | (N) qué se entrega y cómo se articula con Redes I y Programación II · (N) requisitos, con checklist · (N) documentación y defensa oral |
-| **Módulo 6 · Servidores (ciclo 2027)** | | | |
-| 11 | Instalación y configuración de un SO servidor | 42–45 | Próximamente |
-| 12 | Administración remota de servidores | 46–49 | Próximamente |
+| 11 | Instalación y configuración de un SO servidor | 42–45 | Próximamente (ciclo 2027) |
+| 12 | Administración remota de servidores | 46–49 | Próximamente (ciclo 2027) |
 
 Tiempos del cierre (5 horas por semana): TP7, 2 semanas · TP8, 2 semanas · TP9, 1 semana y media · TP10, 2 semanas y media.
 
@@ -215,11 +216,11 @@ Notas del plan:
 - **TP7, lámina 30:** de DevTools solo lo necesario: abrir con <kbd>F12</kbd>, elegir un elemento, panel "Elements", panel "Styles" y el dibujo del modelo de caja. Flexbox: `display: flex`, `gap`, `justify-content` y `align-items`.
 - **TP8, lámina 34:** `revert` es la forma segura (crea un commit nuevo); `reset` reescribe el historial y se usa solo en commits que no se compartieron. Detached HEAD: cómo se llega (`git switch --detach` o `git checkout` a un commit) y cómo se vuelve (`git switch main`).
 - **TP9:** lo que se evalúa es la planificación y el proceso, no el código.
-- **Portada (`index.html`):** etiquetas por TP: TP7 `HTML` `CSS` · TP8 `Git` · TP9 `GitHub` `Trello` · TP10 clase `tp--todo tp--integrador`. Los TP1 a TP6 figuran con "Próximamente"; los TP11 y TP12, con "Ciclo 2027".
+- **Portada (`index.html`):** etiquetas por TP: TP7 `HTML` `CSS` · TP8 `Git` · TP9 `GitHub` `Trello` · TP10 clase `tp--todo tp--integrador`. Todos los TP figuran con "Próximamente" hasta que se activan, también los TP11 y TP12. Los temas de cada TP en el índice están resumidos de los contenidos que pasó Nicolás el 7/10/2026.
 
 ## Práctica y entrega de cada TP (propuesta, la revisa Nicolás)
 
-- **TP7.** Práctica, en grupo: armar la portada del proyecto. (1) Crear la carpeta `tp7-nombre-del-grupo`, con la carpeta `img` adentro, y abrirla en VS Code · (2) crear `index.html` con el atajo `!` de Emmet, poner `lang="es-AR"` y el nombre del proyecto en `<title>` · (3) `<header>` con el nombre del proyecto en un `<h1>` y una frase que lo describa · (4) `<main>` con tres secciones, cada una con su `<h2>`: "De qué se trata" (al menos 2 párrafos), "Integrantes" (una lista) y "Qué vamos a usar" (una lista de herramientas, con al menos 1 enlace externo) · (5) al menos 1 imagen guardada en `img`, con su `alt` · (6) `<footer>` con el curso y la escuela · (7) crear `estilos.css`, vincularlo y usar al menos un selector de etiqueta, una clase y un id; cambiar colores y tipografía · (8) dar `padding`, `margin` y borde a las secciones, y usar flexbox en una parte de la página · (9) trabajar con Live Server abierto y con Prettier formateando al guardar los dos archivos · (10) con DevTools, inspeccionar una sección y sacar una captura donde se vea su modelo de caja. Entrega: la carpeta en `.zip` por Classroom, con la captura adentro. Una entrega por grupo, con los nombres de los integrantes.
+- **TP7.** Práctica, en grupo: armar la portada del proyecto. (1) Crear la carpeta `tp7-nombre-del-grupo`, con la carpeta `img` adentro, y abrirla en VS Code · (2) crear `index.html` con el atajo `!` de Emmet, poner `lang="es-AR"` y el nombre del proyecto en `<title>` · (3) `<header>` con el nombre del proyecto en un `<h1>` y una frase que lo describa · (4) `<main>` con tres secciones, cada una con su `<h2>`: "De qué se trata" (al menos 2 párrafos), "Integrantes" (una lista) y "Qué vamos a usar" (una lista de herramientas, con al menos 1 enlace externo) · (5) al menos 1 imagen guardada en `img`, con su `alt` · (6) `<footer>` con el curso y la escuela · (7) crear `styles.css`, vincularlo y usar al menos un selector de etiqueta, una clase y un id; cambiar colores y tipografía · (8) dar `padding`, `margin` y borde a las secciones, y usar flexbox en una parte de la página · (9) trabajar con Live Server abierto y con Prettier formateando al guardar los dos archivos · (10) con DevTools, inspeccionar una sección y sacar una captura donde se vea su modelo de caja. Entrega: la carpeta en `.zip` por Classroom, con la captura adentro. Una entrega por grupo, con los nombres de los integrantes.
 - **TP8.** Práctica, en grupo, sobre la carpeta del TP7: (1) configurar nombre y mail con `git config` · (2) `git init`, primer commit y rama `main` · (3) hacer al menos 3 commits semánticos más (por ejemplo `feat:`, `style:` y `docs:` al agregar un `README.md`) · (4) crear la rama `feature/contacto`, sumar una sección "Contacto" en al menos 2 commits y hacer `merge` a `main` · (5) conflicto: el docente indica qué línea cambiar en una rama y en `main`; hacer el `merge`, resolver el conflicto en VS Code y cerrar con un commit · (6) el docente indica un cambio que rompe la página: hacer el commit y deshacerlo con `git revert` · (7) ir a un commit viejo, ver el aviso de detached HEAD y volver a `main` · (8) hacer un commit de prueba y sacarlo con `git reset` · (9) mostrar el historial con `git log --oneline --graph`. Entrega: la carpeta del repositorio en `.zip` (con la carpeta oculta `.git` adentro) y un documento con capturas del historial, del conflicto resuelto y del `revert`.
 - **TP9.** Práctica, en grupo: (1) repartir los roles del equipo y anotarlos · (2) armar el tablero en Trello con las listas "Pendiente", "En curso", "En revisión" y "Hecho", y tarjetas con responsable y fecha · (3) crear el repositorio en GitHub, vincularlo con `git remote add origin` y subir el del TP8 con `git push` · (4) sumar a los compañeros como colaboradores · (5) cada integrante: crea una rama, hace un cambio, lo sube y abre un pull request; otro integrante lo revisa y lo aprueba · (6) cada integrante abre al menos 1 issue · (7) mejorar el `README.md` (qué es, integrantes, cómo verlo, estado) · (8) crear `BITACORA.md` con la primera entrada · (9) escribir el plan de trabajo del TP10. Entrega: link del repositorio, link del tablero y el plan de trabajo, pegados en Classroom.
 - **TP10 · Trabajo Integrador Final.** Consigna: presentar, en grupo, una solución completa que articula Software II, Redes I y Programación II. Requisitos: aplicación web desarrollada en Programación II a partir de la portada del TP7 · ambiente de desarrollo configurado y replicable, con su README (TP6) · repositorio en GitHub con ramas, commits semánticos y pull requests (TP8 y TP9) · al menos un script de automatización para una tarea del proyecto (TP5) · diseño de la red sobre la que funcionaría, elaborado en Redes I · tablero y plan de trabajo al día (TP9) · documentación técnica completa: README, informe y bitácora. Se evalúa el producto, el proceso de trabajo en equipo y la defensa. Entrega: link del repositorio + informe + bitácora + defensa oral en clase.
@@ -231,13 +232,15 @@ Notas del plan:
 - El HTML del TP7 se replica de las láminas de Programación, con los cambios listados en "Fuentes".
 - Paleta índigo; HTML usa el acento y CSS pasa a magenta.
 - Cabecera, pie y portada con el nombre de la escuela y el año.
-- Archivos `index.html` y `estilos.css`.
+- Archivos `index.html` y `styles.css` (antes decía `estilos.css`; cambiado el 7/10/2026).
 - Práctica y entrega: las propone Claude y las revisa Nicolás.
 - Sin consola "Ejecutar".
+- Índice con el formato de Redes I, en dos unidades: Unidad 1 (TP1 a TP5) y Unidad 2 (TP6 a TP12). Todos "Próximamente", también los TP11 y TP12.
+- TP "Próximamente" con el estilo de Redes I (apagados, sin opacidad), y color de la paleta al pasar el puntero.
+- Repo: `Prof-NkoCussi/Cuadernillo-Web-Software-II`.
 
 ## Pendientes a consultar con Nicolás
 
-- Nombre del repo.
 - Si `_fuentes/paginas/` (las páginas del PDF) está disponible. Si no, las láminas de etiquetas semánticas y de CSS se escriben como texto nuevo.
 - JavaScript en gris en lugar de ámbar (el ámbar ya es el color de las carpetas).
 - Git en la terminal integrada de VS Code: confirmar que Git está instalado en el laboratorio y qué terminal abre por defecto.

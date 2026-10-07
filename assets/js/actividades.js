@@ -1,5 +1,5 @@
 /* ==========================================================
-   Programación - HTML, CSS, JS — actividades.js
+   Software II — actividades.js
    Parte técnica común a todos los TPs:
    - Botón "Guardar PDF" (impresión del navegador en A4)
    - Marca la parte visible en la barra (láminas · Para profundizar · Actividades)
@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  var CLAVE = "prog:tp-visto-";  // prefijo propio: los cuadernillos comparten dominio
+  var CLAVE = "soft2:tp-visto-";  // prefijo propio: los cuadernillos comparten dominio
 
   /* ---- Guardado local seguro (puede no estar disponible) ---- */
   function guardar(clave, valor) {

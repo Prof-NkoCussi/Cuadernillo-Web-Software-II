@@ -1,5 +1,5 @@
 /* ==========================================================
-   Programación - HTML, CSS, JS — Cuadernillo web
+   Software II — Cuadernillo web
    Prof. Nicolás A. Cussi
    Mobile first · Modo hoja A4 en escritorio e impresión
    ========================================================== */
@@ -17,32 +17,31 @@
 /* ---------- Paleta ---------- */
 :root {
   /* Identidad */
-  --acento: #2563EB;         /* íconos, barras, flechas, recuadros */
-  --acento-numero: #1D4ED8;  /* número de cada título y texto azul chico (6,7:1 sobre blanco) */
-  --acento-claro: #DBEAFE;   /* encabezados de tarjetas */
-  --acento-suave: #EFF6FF;   /* fondo de "Idea clave" */
+  --acento: #4F46E5;         /* íconos, barras, flechas, recuadros (blanco encima: 6,3:1) */
+  --acento-numero: #4338CA;  /* número de cada título y texto índigo chico (7,9:1 sobre blanco) */
+  --acento-claro: #E0E7FF;   /* encabezados de tarjetas */
+  --acento-suave: #EEF2FF;   /* fondo de "Idea clave" */
   --panel: #EEF2F7;          /* recuadros grises */
-  --panel-linea: #CBD9F2;    /* divisor dentro de recuadros */
+  --panel-linea: #C7D2FE;    /* divisor dentro de recuadros */
   --blanco: #FFFFFF;
-  --tinta: #0F1B4D;          /* títulos e íconos (azul marino) */
+  --tinta: #1E1B4B;          /* títulos e íconos (índigo muy oscuro) */
   --texto: #1F2937;          /* texto corrido */
   --gris-sub: #7B8594;       /* subtítulos grandes (solo texto grande: 3,7:1) */
   --gris: #5B6472;           /* textos chicos en mayúsculas */
   --linea: #CBD3DB;
   --fondo-pantalla: #DDE3E9;
-  --foco: #1E3A8A;           /* contorno de foco sobre fondos claros */
-  --foco-claro: #FFFFFF;     /* contorno de foco sobre bloques oscuros (código, consola) */
+  --foco: #312E81;           /* contorno de foco sobre fondos claros */
+  --foco-claro: #FFFFFF;     /* contorno de foco sobre bloques oscuros (código) */
 
-  /* Etiquetas de tecnología */
-  --html: #2563EB;  --html-claro: #DBEAFE;
-  --css:  #7C3AED;  --css-claro:  #EDE9FE;  --css-texto: #6D28D9;
-  --js:   #BE185D;  --js-claro:   #FCE7F3;  /* el magenta del PDF (#EC4899) da 3,5:1: no usarlo en texto */
+  /* Etiquetas de tecnología (blanco encima: HTML 6,3:1 · CSS 6,0:1 · JS 7,6:1) */
+  --html: #4F46E5;  --html-claro: #E0E7FF;  --html-linea: #C7D2FE;   /* HTML = el acento */
+  --css:  #BE185D;  --css-claro:  #FCE7F3;  --css-texto: #BE185D;  --css-linea: #FBCFE8;   /* magenta; texto sobre --css-claro: 5,1:1 */
+  --js:   #475569;  --js-claro:   #F1F5F9;  --js-linea:  #CBD5E1;    /* gris: no se trabaja en esta materia; texto sobre --js-claro: 6,9:1 */
 
   /* Avisos */
   --ok: #15803D;     --ok-claro: #DCFCE7;     /* resultado correcto, checklist */
-  --aviso: #92400E;  --aviso-claro: #FEF3C7;  /* "Error controlado" */
 
-  /* Código y consola: colores bien distintos entre sí, todos 5:1 o más sobre el fondo */
+  /* Código: colores bien distintos entre sí, todos 5:1 o más sobre el fondo */
   --cod-fondo: #1E293B;  --cod-base: #E2E8F0;
   --cod-etq: #FB7185;    /* rosa: etiquetas HTML, palabras clave de JS, selectores */
   --cod-atr: #A3E635;    /* lima: atributos HTML, propiedades CSS */
@@ -50,17 +49,14 @@
   --cod-com: #94A3B8;    /* gris azulado: comentarios */
   --cod-num: #C084FC;    /* violeta: números */
   --cod-fun: #67E8F9;    /* cian: nombres de funciones y métodos */
-  --consola-fondo: #0F172A;  --consola-texto: #E2E8F0;  --consola-guia: #94A3B8;  --consola-error: #FCA5A5;
+  --consola-fondo: #0F172A;  --consola-guia: #94A3B8;   /* barra de la ventana de código y nota "dentro de <body>" */
 
   /* Ventanas de código y de navegador: los tres puntos */
   --punto-rojo: #FF5F57;  --punto-amarillo: #FEBC2E;  --punto-verde: #28C840;
-  /* Etiquetas de código dentro del texto: borde de cada tecnología */
-  --html-linea: #BFDBFE;  --css-linea: #DDD6FE;  --js-linea: #FBCFE8;
   /* Colores de apoyo para esquemas y recuadros (no etiquetan tecnologías) */
   --carpeta: #F59E0B;  --carpeta-claro: #FEF3C7;  --carpeta-texto: #92400E;  --carpeta-linea: #FDE68A;  /* carpetas, como en Windows */
   --turquesa: #0D9488;  --turquesa-claro: #CCFBF1;  --turquesa-texto: #0F766E;  /* texto: 5,5:1 */
   --naranja: #EA580C;   --naranja-claro: #FFEDD5;   --naranja-texto: #C2410C;   /* "Importante"; texto: 5,2:1 */
-  --ok-oscuro: #166534;   /* botones verdes al pasar el mouse */
 
   --radio: 10px;
   --fuente: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -117,7 +113,7 @@ a { color: inherit; }
   position: sticky; top: 0; z-index: 20;
   background: var(--blanco);
   border-bottom: 1px solid var(--linea);
-  box-shadow: 0 2px 8px rgba(15, 27, 77, .06);
+  box-shadow: 0 2px 8px rgba(30, 27, 75, .06);
 }
 .barra__fila {
   display: flex; align-items: center; gap: 10px;
@@ -206,11 +202,11 @@ button.boton { border: 0; font-family: inherit; cursor: pointer; }
   .cab__logo { width: 28px; height: 28px; }
   .cab__marca { padding-left: 9px; }
   .cab__marca b, .cab__lema { font-size: 12px; letter-spacing: 0; }
+  .cab__marca span { font-size: 10px; letter-spacing: .14em; }   /* la bajada larga entra junto a "TP N°X" */
   .cab__raya { height: 28px; }
 }
 @media (max-width: 379px) {
   .cab__marca b, .cab__lema { font-size: 11px; }
-  .cab__marca span { font-size: 10px; letter-spacing: .14em; }
   .cab__raya { height: 26px; }
 }
 
@@ -370,34 +366,9 @@ button.boton { border: 0; font-family: inherit; cursor: pointer; }
 }
 .sin-raya::after { display: none; }
 
-/* Tabla de ejemplo con señalamientos */
-.senalada { display: grid; gap: 12px; }
-.tabla-ej {
-  width: 100%; border-collapse: collapse; table-layout: fixed;
-  background: var(--blanco); font-size: 16px; line-height: 1.2; text-align: center;
-}
-.tabla-ej caption {
-  background: var(--acento); color: var(--blanco); border-radius: 8px 8px 0 0;
-  font-weight: 700; font-size: 19px; letter-spacing: .05em; padding: 5px;
-}
-.tabla-ej th { background: var(--acento-claro); color: var(--tinta); font-weight: 700; padding: 7px 4px; }
-.tabla-ej td { padding: 6px 4px; border-top: 1px solid var(--linea); }
-.tabla-ej th + th, .tabla-ej td + td { border-left: 1px solid var(--linea); }
-.tabla-ej .marca-col { border: 3px solid var(--acento); background: var(--acento-suave); }
-.tabla-ej .marca-fila { border: 3px solid var(--acento); }
-.tabla-ej .marca-fila td { background: var(--acento-claro); }
-.senal { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 4px 10px; }
-.senal b {
-  position: relative; justify-self: start;
-  background: var(--acento); color: var(--blanco); border-radius: 6px;
-  font-weight: 700; font-size: 16px; padding: 4px 12px;
-}
-.senal p { font-size: 15px; line-height: 1.3; }
-
 /* Entidades con sus atributos */
 .entidades { display: grid; gap: 10px; }
-.entidades .tarjeta, .tipos .tarjeta { background: var(--panel); }
-.entidades .tarjeta { gap: 6px; padding-bottom: 10px; }
+.entidades .tarjeta { background: var(--panel); gap: 6px; padding-bottom: 10px; }
 .tarjeta .tarjeta__rotulo { font-size: 16px; }
 .chips { align-self: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 0 4px; }
 .chips li { background: var(--acento-suave); border-radius: 6px; padding: 5px 4px; font-size: 16px; text-align: center; }
@@ -407,14 +378,6 @@ button.boton { border: 0; font-family: inherit; cursor: pointer; }
 .reconocer .tarjeta { gap: 10px; }
 .reconocer__def { display: flex; align-items: center; gap: 12px; text-align: left; padding: 0 8px; }
 .tarjeta .reconocer__ej { align-self: stretch; background: var(--panel); border-radius: 6px; padding: 6px 8px; }
-
-/* Tipos de datos */
-.tipos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.tipo__valor {
-  font-family: var(--fuente-codigo); font-weight: 700; font-size: 26px; line-height: 1.25;
-  color: var(--tinta);
-}
-.tipo__valor--acento { color: var(--acento-numero); }
 
 /* Teclas */
 kbd {
@@ -593,7 +556,6 @@ ol.pf__lista li::before {
 .etq--html { background: var(--html); }
 .etq--css  { background: var(--css); }
 .etq--js   { background: var(--js); }
-.etq--py   { background: var(--gris); }
 
 /* Código dentro del texto: con el color de su tecnología (HTML si no tiene clase).
    El borde va con box-shadow para no cambiar el ancho. */
@@ -605,11 +567,10 @@ ol.pf__lista li::before {
 }
 code.cod-css { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 code.cod-js { background: var(--js-claro); color: var(--js); box-shadow: inset 0 0 0 1px var(--js-linea); }
-code.cod-py { background: var(--panel); color: var(--tinta); box-shadow: inset 0 0 0 1px var(--linea); }
 code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto); box-shadow: inset 0 0 0 1px var(--carpeta-linea); }
 
-/* Tres puntos de ventana (código, consola y navegador) */
-.codigo figcaption::before, .consola__barra::before {
+/* Tres puntos de ventana (código y navegador) */
+.codigo figcaption::before {
   content: ""; flex: none; width: 8px; height: 8px; margin-right: 24px; border-radius: 50%;
   background: var(--punto-rojo); box-shadow: 12px 0 var(--punto-amarillo), 24px 0 var(--punto-verde);
 }
@@ -627,7 +588,6 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 }
 .codigo--html figcaption { box-shadow: inset 0 3px 0 var(--html); }
 .codigo--css figcaption { box-shadow: inset 0 3px 0 var(--css); }
-.codigo--py figcaption { box-shadow: inset 0 3px 0 var(--gris); }
 .codigo figcaption .boton-cod { margin-left: auto; }   /* si no entra, baja de renglón en vez de cortar el texto */
 .codigo__archivo {
   display: inline-block; padding: 1px 9px; border-radius: 6px;
@@ -636,13 +596,12 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 }
 .codigo--html .codigo__archivo { background: var(--html); }
 .codigo--css .codigo__archivo { background: var(--css); }
-.codigo--py .codigo__archivo { background: var(--gris); }
 .codigo pre {
   margin: 0; padding: 10px 14px 12px; overflow-x: auto;
   font-family: var(--fuente-codigo); font-size: 14px; line-height: 1.5; tab-size: 2;
   color: var(--cod-base);
 }
-.codigo pre:focus-visible, .consola__salida:focus-visible { outline: 3px solid var(--foco-claro); outline-offset: -4px; border-radius: 6px; }
+.codigo pre:focus-visible { outline: 3px solid var(--foco-claro); outline-offset: -4px; border-radius: 6px; }
 .c-etq { color: var(--cod-etq); }
 .c-atr { color: var(--cod-atr); }
 .c-str { color: var(--cod-str); }
@@ -650,7 +609,7 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 .c-num { color: var(--cod-num); }
 .c-fun { color: var(--cod-fun); }
 
-/* Botones de los bloques oscuros (Copiar, Ejecutar) */
+/* Botón de los bloques oscuros (Copiar) */
 .boton-cod {
   display: inline-flex; align-items: center; gap: 5px;
   border: 1.5px solid rgba(226, 232, 240, .45); border-radius: 6px; background: transparent;
@@ -659,61 +618,10 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 }
 .boton-cod:hover { background: rgba(226, 232, 240, .12); }
 .boton-cod:focus-visible { outline: 3px solid var(--foco-claro); outline-offset: 2px; }
-.boton-cod--ejecutar { background: var(--ok); border-color: var(--ok); color: var(--blanco); }   /* verde, como un botón de play */
-.boton-cod--ejecutar:hover { background: var(--ok-oscuro); border-color: var(--ok-oscuro); }
 
-/* Consola */
-.consola {
-  min-width: 0; display: flex; flex-direction: column;
-  background: var(--consola-fondo); color: var(--consola-texto);
-  border-radius: var(--radio); overflow: hidden;
-  box-shadow: 0 6px 16px -8px rgba(15, 23, 42, .6);
-}
-.consola__barra {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px;
-  padding: 6px 8px 6px 12px; border-bottom: 1px solid rgba(148, 163, 184, .3);
-}
-.consola__barra .boton-cod { margin-left: auto; }   /* si no entra, baja de renglón en vez de partir el título */
-.consola { container-type: inline-size; }
-@container (max-width: 270px) { .consola__barra::before { display: none; } }   /* consola angosta: sin puntos, para que entre el título */
-.consola__titulo { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--cod-atr); white-space: nowrap; }
-.consola__nota { padding: 8px 14px 0; font-size: 13px; color: var(--consola-guia); }
-.consola__salida {
-  margin: 0; padding: 8px 14px 12px; overflow-x: auto; flex: 1;
-  font-family: var(--fuente-codigo); font-size: 14px; line-height: 1.5; white-space: pre;
-}
-.consola__guia { color: var(--consola-guia); }
-.consola__error { color: var(--consola-error); }
-
-/* Código + consola */
+/* Código + resultado */
 .ej { display: grid; gap: 8px; }
 .ej-col { display: grid; gap: 6px; align-content: start; min-width: 0; }
-.ej-par { display: grid; gap: 12px; }   /* dos ejemplos lado a lado, cada uno con su consola abajo */
-.error-controlado__cols { display: grid; gap: 12px; }
-
-/* En Python → En JavaScript */
-.py-js { background: var(--panel); border-radius: 12px; padding: 12px; }
-.py-js__tit {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-bottom: 8px;
-  font-family: var(--fuente-titulo); font-weight: 700; font-size: 19px; color: var(--tinta);
-}
-.py-js__flecha { color: var(--acento); font-weight: 700; }
-.py-js__cols { display: grid; gap: 8px; }
-.py-js__nota { margin-top: 8px; font-size: 15.5px; line-height: 1.35; }
-
-/* Error controlado */
-.error-controlado {
-  display: grid; gap: 10px;
-  background: var(--aviso-claro); border: 3px solid var(--aviso); border-radius: 12px; padding: 12px;
-}
-.error-controlado__tit {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--fuente-titulo); font-weight: 700; font-size: 21px; line-height: 1.15; color: var(--aviso);
-}
-.error-controlado__tit .ico { width: 30px; height: 30px; color: var(--aviso); --ac: var(--aviso-claro); }
-.error-controlado__paso { font-size: 15px; font-weight: 700; color: var(--aviso); margin-bottom: 4px; }
-.error-controlado p { font-size: 16px; line-height: 1.4; }
-.error-controlado__bien { color: var(--ok); }
 
 /* Carpeta plantilla */
 .carpeta { display: grid; gap: 6px; }
@@ -722,8 +630,6 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 .carpeta__arch { display: grid; gap: 6px; margin-left: 14px; padding-left: 14px; border-left: 2px solid var(--panel-linea); }
 .carpeta__arch li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; background: var(--blanco); border-radius: 8px; padding: 7px 10px; font-size: 16px; line-height: 1.3; }
 .carpeta__arch--2col { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.descarga { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 10px; }
-.descarga__nota { font-size: 14px; color: var(--gris); }
 
 /* Operaciones aritméticas */
 .operaciones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -759,7 +665,7 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 .resultado {
   margin: 0; min-width: 0;
   background: var(--blanco); border: 1.5px solid var(--acento); border-radius: var(--radio); overflow: hidden;
-  box-shadow: 0 6px 16px -8px rgba(37, 99, 235, .5);
+  box-shadow: 0 6px 16px -8px rgba(79, 70, 229, .5);
 }
 .resultado__barra {
   display: flex; align-items: flex-end; gap: 10px;
@@ -836,22 +742,14 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 .tp__tecs { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-right: 8px; vertical-align: 1px; }
 .tp__tecs .etq { font-size: 11px; letter-spacing: 0; text-transform: none; padding: 0 7px; }
 .tp { box-shadow: inset 6px 0 0 var(--tp-color, var(--acento)); }   /* franja sin tocar el borde del hover */
-.tp--js { --tp-color: var(--js); }
+.tp--js { --tp-color: var(--js); --tp-num: var(--js); }
 .tp--html { --tp-color: var(--html); }
-.tp--css { --tp-color: var(--css); }
-.tp--php, .tp--git { --tp-color: var(--tinta); }
-.tp--todo {   /* integrador: las tres tecnologías, en bandas */
+.tp--css { --tp-color: var(--css); --tp-num: var(--css-texto); }
+.tp--git { --tp-color: var(--tinta); --tp-num: var(--tinta); }   /* Git, GitHub y Trello: etiqueta neutra */
+.tp.tp--todo {   /* integrador: las tres tecnologías, en bandas (doble clase: le gana al fondo de .tp, que va después) */
   box-shadow: none;
   background: linear-gradient(var(--html) 0 33.4%, var(--css) 33.4% 66.7%, var(--js) 66.7%) left top / 6px 100% no-repeat, var(--acento-suave);
 }
-.tp--js .tp__num { color: var(--js); }
-.tp--css .tp__num { color: var(--css-texto); }
-.tp--php .tp__num, .tp--git .tp__num { color: var(--tinta); }
-.bloque--js .subtitulo::after { background: var(--js); }
-.bloque--html .subtitulo::after { background: var(--html); }
-.bloque--css .subtitulo::after { background: var(--css); }
-.bloque--php .subtitulo::after { background: var(--tinta); }
-.bloque--todo .subtitulo::after { background: linear-gradient(90deg, var(--html) 0 33.4%, var(--css) 33.4% 66.7%, var(--js) 66.7%); }
 
 /* Viñetas que repiten el color de su parte en el esquema de al lado */
 .pf__lista li.punto--turquesa::before { background: var(--turquesa-texto); }
@@ -876,23 +774,8 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .mosaico { grid-template-columns: repeat(4, 1fr); }
   .ambitos { grid-template-columns: repeat(3, 1fr); }
   .ambitos--4 { grid-template-columns: repeat(4, 1fr); }
-  .entidades, .tipos { grid-template-columns: repeat(3, 1fr); }
+  .entidades { grid-template-columns: repeat(3, 1fr); }
   .reconocer { grid-template-columns: 1fr 1fr; }
-  .senalada {
-    grid-template-columns: 1fr 3.2fr 1.25fr; grid-template-areas: "fila tabla nota" ". col .";
-    column-gap: 20px; row-gap: 14px; align-items: center;
-  }
-  .senalada .tabla-ej { grid-area: tabla; }
-  .senal--fila { grid-area: fila; margin-top: 12%; }
-  .senal--tabla { grid-area: nota; align-self: start; }
-  .senal--col { grid-area: col; margin-left: 20%; }
-  .senal--fila, .senal--tabla { grid-template-columns: 1fr; }
-  .senal--tabla b { justify-self: center; }
-  .senal--tabla p { text-align: center; }
-  .senal b::after { content: ""; position: absolute; background: var(--acento); width: 14px; height: 14px; }
-  .senal--fila b::after { right: -13px; top: 50%; transform: translateY(-50%); clip-path: polygon(0 0, 100% 50%, 0 100%); }
-  .senal--tabla b::after { left: -13px; top: 50%; transform: translateY(-50%); clip-path: polygon(100% 0, 0 50%, 100% 100%); }
-  .senal--col b::after { left: 50%; top: -15px; transform: translateX(-50%); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
   .comun { grid-template-columns: repeat(3, 1fr); }
   .comparar { grid-template-columns: 1fr 1fr; }
   .cuando { grid-template-columns: 1fr 1fr; }
@@ -902,13 +785,9 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .ejemplo { grid-template-columns: auto auto 1fr; }
   .ejemplo p { grid-column: auto; padding-left: 12px; border-left: 2px solid var(--panel-linea); }
   .ej { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
-  .ej--pf, .ej--apilado { grid-template-columns: minmax(0, 1fr); }   /* apilado: la salida (objetos) necesita todo el ancho */
-  .ej--ancho { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }   /* código con líneas largas y salida corta */
+  .ej--pf { grid-template-columns: minmax(0, 1fr); }
   .esquema-par { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 14px; }
-  .error-controlado__cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .ej-par { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
   .act__items--2col { grid-template-columns: 1fr 1fr; }
-  .py-js__cols { grid-template-columns: 1fr 1fr; }
   .entrega__cols { grid-template-columns: 1fr 1fr; gap: 16px; }
   .operaciones { grid-template-columns: repeat(5, 1fr); }
   .operaciones--6 { grid-template-columns: repeat(6, 1fr); }
@@ -938,7 +817,7 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .lamina {
     width: 210mm; min-height: 297mm; max-width: none;
     margin: 0 auto 24px;
-    box-shadow: 0 2px 14px rgba(15, 27, 77, .14);
+    box-shadow: 0 2px 14px rgba(30, 27, 75, .14);
   }
   .lamina { padding: 10mm 13mm 7mm; gap: 5mm; justify-content: space-between; }
   .lamina > .pie { margin-top: 0; }
@@ -1027,14 +906,10 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .pf__caja { padding: 8px 11px 9px; gap: 4px; }
   .pf__caja h4 { font-size: 9.5px; padding-bottom: 4px; border-bottom-width: 2px; }
   .pf__lista { gap: 4px; }
-  .pf .codigo pre, .pf .consola__salida { font-size: 12.5px; padding: 6px 10px 8px; }
+  .pf .codigo pre { font-size: 12.5px; padding: 6px 10px 8px; }
   .pie { font-size: 12px; }
 
   /* Tablas heredadas del cuadernillo base */
-  .senal--fila { margin-top: 30%; }
-  .tabla-ej td { padding: 4px; }
-  .tabla-ej th { padding: 5px 4px; }
-  .tabla-ej caption { padding: 3px; }
   .ambitos--4 .tarjeta { gap: 6px; padding-bottom: 8px; }
   .ambitos--4 .tarjeta p { font-size: 16px; }
   .ambitos--4 .tarjeta .ico--l { width: 50px; height: 50px; }
@@ -1042,11 +917,9 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .chips li { padding: 4px; }
   .reconocer .tarjeta { gap: 8px; }
   .reconocer .ico--l { width: 50px; height: 50px; }
-  .tipos .ico--xl { width: 56px; height: 56px; }
   .act > .act-tabla { font-size: 14.5px; }
   .act-tabla--datos { table-layout: auto; }
   .act-tabla--datos th, .act-tabla--datos td { padding: 4px 6px; }
-  .senalada { padding: 10px 16px; }
 
   .pasos2 .paso { padding: 8px 14px 10px; }
   .pasos2 .paso h3 { font-size: 20px; }
@@ -1056,14 +929,10 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .comparar--3 h3 { font-size: 24px; }
   .comparar--3 p { font-size: 16px; }
   .comparar--3 .ico--l { width: 46px; height: 46px; }
-  .tipos .tarjeta { gap: 4px; padding-bottom: 8px; }
-  .tipos .tarjeta p { font-size: 15.5px; }
-  .tipo__valor { font-size: 22px; }
 
   /* Componentes de programación en la hoja A4 */
   .codigo pre { padding: 8px 14px 10px; }
-  .consola__salida { padding: 7px 14px 10px; }
-  .codigo figcaption, .consola__barra { padding-top: 4px; padding-bottom: 4px; }
+  .codigo figcaption { padding-top: 4px; padding-bottom: 4px; }
   .intro { padding: 14px 18px; }
   .intro .ico--xl { width: 60px; height: 60px; }
   .act__items--2col > li { font-size: 15px; line-height: 1.32; }
@@ -1073,12 +942,8 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   .entrega__cols { grid-template-columns: 1fr 1.05fr; }
   .operaciones li { padding: 6px 4px 8px; }
   .act .codigo pre { font-size: 13px; line-height: 1.4; padding: 4px 10px 6px; }
-  .codigo pre, .consola__salida { font-size: 14.5px; }
+  .codigo pre { font-size: 14.5px; }
   .act .codigo pre { font-size: 13.5px; padding: 6px 12px 8px; }
-  .py-js { padding: 10px 14px 12px; }
-  .py-js__tit { font-size: 20px; }
-  .error-controlado { padding: 10px 14px 12px; gap: 8px; }
-  .error-controlado p { font-size: 15.5px; }
   .checklist { gap: 3px; margin-top: 4px; }
   .checklist li { font-size: 15px; }
   .entrega h3 { font-size: 24px; margin-bottom: 4px; }
@@ -1102,27 +967,26 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 @media print {
   :root {
     --cod-fondo: #F1F5F9; --consola-fondo: #F1F5F9;
-    --cod-base: #0F172A;  --consola-texto: #0F172A;
+    --cod-base: #0F172A;
     /* en papel: código claro y colores oscuros (5:1 o más sobre #F1F5F9) */
     --cod-etq: #BE123C;   --cod-atr: #3F6212;  --cod-str: #854D0E;
     --cod-com: #475569;   --cod-num: #7E22CE;  --cod-fun: #0E7490;
-    --consola-guia: #475569; --consola-error: #B91C1C;
+    --consola-guia: #475569;
   }
   html, body { background: var(--blanco); }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .barra, .saltar, .no-imprimir, .boton-cod, .descarga .boton, .resultado__aviso { display: none !important; }
+  .barra, .saltar, .no-imprimir, .boton-cod, .resultado__aviso { display: none !important; }
   .laminas { padding: 0; }
   .lamina {
     height: 297mm; min-height: 0; margin: 0; box-shadow: none;
     break-after: page; page-break-after: always;
   }
   .lamina:last-child { break-after: auto; page-break-after: auto; }
-  .codigo, .consola { border: 1.5px solid var(--linea); }
+  .codigo { border: 1.5px solid var(--linea); }
   .codigo figcaption { background: var(--blanco); border-bottom: 1px solid var(--linea); }
-  .consola__barra { border-bottom-color: var(--linea); }
-  .codigo pre, .consola__salida { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .codigo pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; }
 
-  .codigo, .consola, .resultado { box-shadow: none; }
+  .codigo, .resultado { box-shadow: none; }
 }
 
 /* ==========================================================
@@ -1139,7 +1003,6 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
 }
 .portada__hero h1 span { color: var(--acento-numero); }
 .portada__hero .tit__sub { margin-top: 8px; }
-.portada__tecs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; font-size: 16px; }
 .portada__datos { font-size: 15px; color: var(--gris); line-height: 1.5; }
 .portada__datos strong { color: var(--tinta); }
 
@@ -1151,20 +1014,26 @@ code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto)
   text-decoration: none; color: var(--texto);
   border: 2px solid transparent;
 }
-a.tp:hover { border-color: var(--acento); }
+.tp:hover { border-color: var(--acento); }   /* al pasar el puntero, el TP toma el color de la paleta (también los "Próximamente") */
 .tp__num {
   grid-row: span 3;
   font-family: var(--fuente-titular); font-weight: 800; font-size: 28px; line-height: 1;
-  color: var(--acento-numero); min-width: 2.2ch;
+  color: var(--tp-num, var(--acento-numero)); min-width: 2.2ch;
 }
 .tp__titulo { font-weight: 700; font-size: 17px; color: var(--tinta); }
 .tp__temas { font-size: 14.5px; line-height: 1.35; }
 .tp__meta { font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--gris); }
-.tp--pronto { opacity: .62; }
+/* TP no activo: tarjeta "apagada", como en Redes I, sin opacidad (así el texto mantiene 4,5:1) */
+.tp--pronto { background: transparent; border-color: var(--panel); box-shadow: inset 6px 0 0 var(--acento-claro); }
+.tp--pronto .tp__num { color: var(--gris-sub); }
+.tp--pronto .tp__titulo, .tp--pronto .tp__temas { color: var(--gris); }
+.tp--pronto:hover:not(.tp--todo) { box-shadow: inset 6px 0 0 var(--tp-color, var(--acento)); }
+.tp--pronto:hover .tp__num { color: var(--tp-num, var(--acento-numero)); }
+.tp--pronto:hover .tp__titulo { color: var(--tinta); }
 .tp--integrador { background: var(--acento-suave); }
 .tp__visto { color: var(--ok); }
 .tp__visto[hidden] { display: none; }
 
 @media (min-width: 860px) {
-  .portada { margin: 24px auto 48px; padding: 14mm 14mm 16mm; box-shadow: 0 2px 14px rgba(15, 27, 77, .14); }
+  .portada { margin: 24px auto 48px; padding: 14mm 14mm 16mm; box-shadow: 0 2px 14px rgba(30, 27, 75, .14); }
 }

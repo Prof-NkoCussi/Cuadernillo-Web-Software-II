@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Programación - HTML, CSS, JS — Cuadernillo de actividades  ·  Prof. Nicolás A. Cussi</title>
-  <meta name="description" content="Cuadernillo de actividades de Programación (HTML, CSS y JavaScript), organizado en 18 TPs. Bachillerato Profesional en Programación, Ushuaia.">
-  <meta name="theme-color" content="#2563EB">
+  <title>Software II — Cuadernillo de actividades · Prof. Nicolás A. Cussi</title>
+  <meta name="description" content="Cuadernillo de actividades de Software II, organizado en 12 TPs y 2 unidades. Técnico en Programación, 5.º año. C.T.P. &quot;Olga B. de Arko&quot;, Ushuaia.">
+  <meta name="theme-color" content="#4F46E5">
   <link rel="preload" href="assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
@@ -13,11 +13,11 @@
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <symbol id="i-web" viewBox="0 0 48 48">
+    <symbol id="i-terminal" viewBox="0 0 48 48">
       <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
       <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
       <rect x="4" y="7" width="40" height="34" rx="4"/>
-      <path d="M4 16h40M19 23l-6 6 6 6M29 23l6 6-6 6M26.5 21l-5 16"/>
+      <path d="M4 16h40M12 23l7 6-7 6M23 35h12"/>
     </symbol>
   </defs>
 </svg>
@@ -26,20 +26,19 @@
 
 <main class="portada">
   <div class="cab" aria-hidden="true">
-    <svg class="cab__logo"><use href="#i-web"/></svg>
-    <div class="cab__marca"><b>PROGRAMACIÓN</b><span>HTML · CSS · JS</span></div>
+    <svg class="cab__logo"><use href="#i-terminal"/></svg>
+    <div class="cab__marca"><b>SOFTWARE II</b><span>TÉCNICO EN PROGRAMACIÓN · 5.º AÑO</span></div>
     <span class="cab__raya"></span>
   </div>
 
   <header class="portada__hero">
-    <h1>Programación</h1>
-    <p class="portada__tecs"><span class="etq etq--html">HTML</span><span class="etq etq--css">CSS</span><span class="etq etq--js">JavaScript</span></p>
+    <h1>Software <span>II</span></h1>
     <p class="tit__sub">Cuadernillo de actividades</p>
   </header>
 
   <p class="portada__datos">
-    <strong>Programación - HTML, CSS, JS • Prof. Nicolás A. Cussi</strong><br>
-    Bachillerato Profesional en Programación · Ushuaia
+    <strong>Software II • Prof. Nicolás A. Cussi</strong><br>
+    C.T.P. "Olga B. de Arko" · Técnico en Programación · 5.º año · Ushuaia
   </p>
 
   <aside class="idea" aria-label="Cómo usar el cuadernillo">
@@ -50,190 +49,112 @@
         <path d="M20 39h8M21.5 43h5"/>
       </svg>
     </span>
-    <p><strong>Cómo usarlo:</strong> cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades: una parte para la carpeta y una práctica en la computadora. Los ejemplos de código se pueden copiar; los de JavaScript, ejecutar, y los de HTML muestran su resultado en el navegador.</p>
+    <p><strong>Cómo usarlo:</strong> cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades.</p>
   </aside>
 
-  <section class="bloque bloque--js" id="indice" aria-labelledby="b1">
-    <h2 class="subtitulo" id="b1">Módulo 1 · De Python a JavaScript</h2>
+  <section class="bloque" id="indice" aria-labelledby="u1">
+    <h2 class="subtitulo" id="u1">Unidad 1 · Software, sistemas operativos y línea de comandos</h2>
     <ul class="lista-tp">
       <li>
-        <a class="tp tp--js" href="unidades/tp01.html">
+        <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">1</span>
-          <span class="tp__titulo">TP N°1 — Hola, JavaScript</span>
-          <span class="tp__temas">Qué es JavaScript, la carpeta plantilla y la consola · console.log() y alert() · let, const y tipos de datos · prompt(), Number() y operaciones</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--js">JS</span></span> Láminas 1–4 <span class="tp__visto" data-visto="1" hidden>· ✓ Visto</span></span>
-        </a>
+          <span class="tp__titulo">TP N°1 — Software y licencias</span>
+          <span class="tp__temas">Repaso de Software I · Qué es el software y sus características · Tipos de software y licencias (propietario, libre, freeware y shareware) · Caso: software para una escuela con presupuesto limitado</span>
+          <span class="tp__meta">Láminas 1–4 · Próximamente</span>
+        </div>
       </li>
       <li>
-        <a class="tp tp--js" href="unidades/tp02.html">
+        <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">2</span>
-          <span class="tp__titulo">TP N°2 — Decisiones y bucles en JavaScript</span>
-          <span class="tp__temas">Operadores de comparación y lógicos · if, else if y else · while y do...while · for, contadores y acumuladores</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--js">JS</span></span> Láminas 5–8 <span class="tp__visto" data-visto="2" hidden>· ✓ Visto</span></span>
-        </a>
+          <span class="tp__titulo">TP N°2 — Sistemas operativos y hardware</span>
+          <span class="tp__temas">Repaso de Software I · El sistema operativo y sus 5 funciones · Monousuario y multiusuario, monotarea y multitarea · Hardware y unidades de medida (GHz, GB, TB) · Caso: una PC para programar</span>
+          <span class="tp__meta">Láminas 5–8 · Próximamente</span>
+        </div>
       </li>
       <li>
-        <a class="tp tp--js" href="unidades/tp03.html">
+        <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">3</span>
-          <span class="tp__titulo">TP N°3 — Crear mis propias funciones</span>
-          <span class="tp__temas">Qué es una función · Parámetros y argumentos · return · Funciones que se combinan y menú con prompt()</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--js">JS</span></span> Láminas 9–12 <span class="tp__visto" data-visto="3" hidden>· ✓ Visto</span></span>
-        </a>
+          <span class="tp__titulo">TP N°3 — Instalación de un sistema operativo</span>
+          <span class="tp__temas">Pasos de la instalación · BIOS, UEFI y arranque desde USB · Sistemas de archivos (NTFS, ext4, APFS) · Particionado y formato</span>
+          <span class="tp__meta">Láminas 9–12 · Próximamente</span>
+        </div>
       </li>
-    </ul>
-  </section>
-
-  <section class="bloque bloque--js" aria-labelledby="b2">
-    <h2 class="subtitulo" id="b2">Módulo 2 · Arrays y objetos</h2>
-    <ul class="lista-tp">
       <li>
-        <a class="tp tp--js" href="unidades/tp04.html">
+        <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">4</span>
-          <span class="tp__titulo">TP N°4 — Mi primer array</span>
-          <span class="tp__temas">Crear un array, posición y length · push, pop, shift y unshift · indexOf y splice · Recorrer con for y for...of</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--js">JS</span></span> Láminas 13–16 <span class="tp__visto" data-visto="4" hidden>· ✓ Visto</span></span>
-        </a>
+          <span class="tp__titulo">TP N°4 — Línea de comandos: Windows y Linux</span>
+          <span class="tp__temas">CMD, PowerShell y Linux desde Git Bash · Navegación, archivos y carpetas · Variables del sistema · Búsqueda, pipes y redirección (&gt;, &gt;&gt;) · Equivalencias entre Windows y Linux</span>
+          <span class="tp__meta">Láminas 13–16 · Próximamente</span>
+        </div>
       </li>
       <li>
-        <a class="tp tp--js" href="unidades/tp05.html">
+        <div class="tp tp--pronto">
           <span class="tp__num" aria-hidden="true">5</span>
-          <span class="tp__titulo">TP N°5 — Operaciones con arrays</span>
-          <span class="tp__temas">Suma y promedio · Math.max() y Math.min() · Ordenar con sort() · includes() y contar con condición</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--js">JS</span></span> Láminas 17–20 <span class="tp__visto" data-visto="5" hidden>· ✓ Visto</span></span>
-        </a>
-      </li>
-      <li>
-        <a class="tp tp--js" href="unidades/tp06.html">
-          <span class="tp__num" aria-hidden="true">6</span>
-          <span class="tp__titulo">TP N°6 — Objetos y mini-proyecto: Lista de tareas</span>
-          <span class="tp__temas">Objeto literal · Leer y modificar propiedades · Arrays de objetos · Todo junto: la lista de tareas</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--js">JS</span></span> Láminas 21–24 <span class="tp__visto" data-visto="6" hidden>· ✓ Visto</span></span>
-        </a>
+          <span class="tp__titulo">TP N°5 — Scripting de automatización</span>
+          <span class="tp__temas">Scripts .bat: @echo off, variables y parámetros (%1, %2, %3) · Condicionales (IF, if exist / else) y mensajes de error · Backup y limpieza de archivos · Equivalencias en Linux</span>
+          <span class="tp__meta">Láminas 17–20 · Próximamente</span>
+        </div>
       </li>
     </ul>
   </section>
 
-  <section class="bloque bloque--html" aria-labelledby="b3">
-    <h2 class="subtitulo" id="b3">Módulo 3 · HTML básico</h2>
+  <section class="bloque" aria-labelledby="u2">
+    <h2 class="subtitulo" id="u2">Unidad 2 · Ambiente de desarrollo, trabajo en equipo y servidores</h2>
     <ul class="lista-tp">
       <li>
-        <a class="tp tp--html" href="unidades/tp07.html">
-          <span class="tp__num" aria-hidden="true">7</span>
-          <span class="tp__titulo">TP N°7 — Mi primera página web</span>
-          <span class="tp__temas">HTML, CSS y JavaScript trabajan juntos · Entorno de trabajo y archivos · Estructura básica y &lt;script&gt; · Títulos, párrafos, &lt;br&gt; y &lt;hr&gt;</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span></span> Láminas 25–28 <span class="tp__visto" data-visto="7" hidden>· ✓ Visto</span></span>
-        </a>
-      </li>
-      <li>
-        <a class="tp tp--html" href="unidades/tp08.html">
-          <span class="tp__num" aria-hidden="true">8</span>
-          <span class="tp__titulo">TP N°8 — Listas, imágenes y enlaces</span>
-          <span class="tp__temas">Etiquetas, elementos y atributos; &lt;strong&gt; y &lt;em&gt; · Listas y listas anidadas · Imágenes · Enlaces y rutas</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span></span> Láminas 29–32 <span class="tp__visto" data-visto="8" hidden>· ✓ Visto</span></span>
-        </a>
+        <div class="tp tp--pronto">
+          <span class="tp__num" aria-hidden="true">6</span>
+          <span class="tp__titulo">TP N°6 — Configuración del ambiente de desarrollo</span>
+          <span class="tp__temas">VS Code y otros editores (Antigravity, PyCharm/WebStorm) · Extensiones, ESLint, Prettier y depurador · Node.js y npm: package.json, node_modules y dependencias · Introducción a Express · README para replicar el ambiente</span>
+          <span class="tp__meta">Láminas 21–24 · Próximamente</span>
+        </div>
       </li>
       <li>
         <div class="tp tp--html tp--pronto">
-          <span class="tp__num" aria-hidden="true">9</span>
-          <span class="tp__titulo">TP N°9 — Estructura más completa: tablas y formularios</span>
-          <span class="tp__temas">Tablas · form, label e input · Tipos de campo · Contenedores y HTML semántico</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span></span> Láminas 33–36 · Próximamente</span>
+          <span class="tp__num" aria-hidden="true">7</span>
+          <span class="tp__titulo">TP N°7 — Primeros pasos con HTML y CSS en VS Code</span>
+          <span class="tp__temas">VS Code: Emmet, Live Server, Prettier y DevTools · HTML: estructura base, títulos, párrafos, listas, enlaces, imágenes y etiquetas semánticas · CSS: selectores, colores, tipografía, modelo de caja y flexbox · La portada del proyecto del grupo</span>
+          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span></span> Láminas 25–30 · Próximamente</span>
         </div>
       </li>
-    </ul>
-  </section>
-
-  <section class="bloque bloque--css" aria-labelledby="b4">
-    <h2 class="subtitulo" id="b4">Módulo 4 · CSS: dar estilo</h2>
-    <ul class="lista-tp">
-      <li>
-        <div class="tp tp--css tp--pronto">
-          <span class="tp__num" aria-hidden="true">10</span>
-          <span class="tp__titulo">TP N°10 — Primeros estilos con CSS</span>
-          <span class="tp__temas">Qué es CSS y la etiqueta &lt;style&gt; · Colores y fondos · Tipografías y texto · margin y padding</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span></span> Láminas 37–40 · Próximamente</span>
-        </div>
-      </li>
-      <li>
-        <div class="tp tp--css tp--pronto">
-          <span class="tp__num" aria-hidden="true">11</span>
-          <span class="tp__titulo">TP N°11 — CSS externo y selectores</span>
-          <span class="tp__temas">Archivo .css y &lt;link&gt; · Clases e ID · Bordes, esquinas y sombras · Ancho, alto y unidades · Modelo de cajas</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span></span> Láminas 41–45 · Próximamente</span>
-        </div>
-      </li>
-      <li>
-        <div class="tp tp--css tp--pronto">
-          <span class="tp__num" aria-hidden="true">12</span>
-          <span class="tp__titulo">TP N°12 — Diseñando una página completa</span>
-          <span class="tp__temas">display y position · Flexbox · Alinear y centrar · Header, hero, cards y footer · Diseño responsive</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span></span> Láminas 46–50 · Próximamente</span>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section class="bloque bloque--js" aria-labelledby="b5">
-    <h2 class="subtitulo" id="b5">Módulo 5 · JavaScript en la página</h2>
-    <ul class="lista-tp">
-      <li>
-        <div class="tp tp--js tp--pronto">
-          <span class="tp__num" aria-hidden="true">13</span>
-          <span class="tp__titulo">TP N°13 — Hacer que la página responda</span>
-          <span class="tp__temas">Repaso de JavaScript y app.js · El DOM · textContent e innerHTML · .style y classList · Eventos</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span> <span class="etq etq--js">JS</span></span> Láminas 51–55 · Próximamente</span>
-        </div>
-      </li>
-      <li>
-        <div class="tp tp--js tp--pronto">
-          <span class="tp__num" aria-hidden="true">14</span>
-          <span class="tp__titulo">TP N°14 — Formularios que funcionan</span>
-          <span class="tp__temas">.value y Number() · Validaciones · Resultados y errores en la página · preventDefault()</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span> <span class="etq etq--js">JS</span></span> Láminas 56–59 · Próximamente</span>
-        </div>
-      </li>
-      <li>
-        <div class="tp tp--js tp--pronto">
-          <span class="tp__num" aria-hidden="true">15</span>
-          <span class="tp__titulo">TP N°15 — Mini-app interactiva</span>
-          <span class="tp__temas">Del array a la lista en pantalla · Del array a la tabla · Pasos para armar una mini-app</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span> <span class="etq etq--js">JS</span></span> Láminas 60–62 · Próximamente</span>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section class="bloque bloque--php" aria-labelledby="b6">
-    <h2 class="subtitulo" id="b6">Módulo 6 · Del navegador al servidor</h2>
-    <ul class="lista-tp">
-      <li>
-        <div class="tp tp--php tp--pronto">
-          <span class="tp__num" aria-hidden="true">16</span>
-          <span class="tp__titulo">TP N°16 — Primeros pasos con PHP</span>
-          <span class="tp__temas">Qué es PHP: navegador y servidor, XAMPP y localhost · Primer archivo .php: echo y variables · if, else y for: PHP arma el HTML · Recibir un formulario con $_POST</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq">PHP</span></span> Láminas 63–66 · Próximamente</span>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section class="bloque bloque--todo" aria-labelledby="b7">
-    <h2 class="subtitulo" id="b7">Módulo 7 · Proyecto integrador</h2>
-    <ul class="lista-tp">
       <li>
         <div class="tp tp--git tp--pronto">
-          <span class="tp__num" aria-hidden="true">17</span>
-          <span class="tp__titulo">TP N°17 — Mi sitio en GitHub</span>
-          <span class="tp__temas">Git y GitHub · Crear un repositorio y subir archivos · README en Markdown · GitHub Pages</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq">GitHub</span></span> Láminas 67–70 · Próximamente</span>
+          <span class="tp__num" aria-hidden="true">8</span>
+          <span class="tp__titulo">TP N°8 — Git y control de versiones</span>
+          <span class="tp__temas">Repositorio local: init, add y commit · Commits semánticos · Ramas, merge y conflictos · Feature branch → merge a main → revert · Detached HEAD y reset</span>
+          <span class="tp__meta"><span class="tp__tecs"><span class="etq">Git</span></span> Láminas 31–34 · Próximamente</span>
         </div>
       </li>
       <li>
-        <div class="tp tp--todo tp--pronto tp--integrador">
-          <span class="tp__num" aria-hidden="true">18</span>
-          <span class="tp__titulo">TP N°18 — Mi portafolio digital</span>
-          <span class="tp__temas">Qué es un portafolio · Requisitos de HTML, CSS y JavaScript · Entrega y presentación oral</span>
-          <span class="tp__meta"><span class="tp__tecs"><span class="etq etq--html">HTML</span> <span class="etq etq--css">CSS</span> <span class="etq etq--js">JS</span></span> Láminas 71–73 · Próximamente</span>
+        <div class="tp tp--git tp--pronto">
+          <span class="tp__num" aria-hidden="true">9</span>
+          <span class="tp__titulo">TP N°9 — Gestión de proyecto y trabajo en equipo</span>
+          <span class="tp__temas">Roles, tareas y comunicación en el equipo · Tablero en Trello · GitHub: push, pull, pull requests, revisión de código e issues · Informe, README y bitácora · Plan de trabajo del TP10</span>
+          <span class="tp__meta"><span class="tp__tecs"><span class="etq">GitHub</span> <span class="etq">Trello</span></span> Láminas 35–38 · Próximamente</span>
+        </div>
+      </li>
+      <li>
+        <div class="tp tp--todo tp--integrador tp--pronto">
+          <span class="tp__num" aria-hidden="true">10</span>
+          <span class="tp__titulo">TP N°10 — Trabajo Integrador Final</span>
+          <span class="tp__temas">Con Redes I y Programación II · Aplicación web a partir del TP7 · Ambiente, repositorio, scripts y diseño de la red · Tablero, plan y documentación · Defensa oral</span>
+          <span class="tp__meta">Láminas 39–41 · Próximamente</span>
+        </div>
+      </li>
+      <li>
+        <div class="tp tp--pronto">
+          <span class="tp__num" aria-hidden="true">11</span>
+          <span class="tp__titulo">TP N°11 — Instalación y configuración de un SO servidor</span>
+          <span class="tp__temas">SO de servidor en una máquina virtual · Procesos y recursos: ps, top y htop · Usuarios, grupos y permisos: chmod y chown · Recursos compartidos y accesos cruzados</span>
+          <span class="tp__meta">Láminas 42–45 · Próximamente</span>
+        </div>
+      </li>
+      <li>
+        <div class="tp tp--pronto">
+          <span class="tp__num" aria-hidden="true">12</span>
+          <span class="tp__titulo">TP N°12 — Administración remota de servidores</span>
+          <span class="tp__temas">SSH y claves · Comandos administrativos · Administración gráfica con Cockpit · Local, remota por texto y remota gráfica</span>
+          <span class="tp__meta">Láminas 46–49 · Próximamente</span>
         </div>
       </li>
     </ul>
@@ -241,7 +162,7 @@
 
   <footer class="pie">
     <span class="pie__linea"></span>
-    <span>Programación - HTML, CSS, JS — Prof. Nicolás A. Cussi</span>
+    <span>Software II — Prof. Nicolás A. Cussi</span>
     <span class="pie__linea"></span>
   </footer>
 </main>
