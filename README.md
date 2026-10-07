@@ -27,13 +27,13 @@ Un cuadernillo web para leer desde el celular y trabajar en la computadora. Se o
 | TP | Tema | Estado |
 |---|---|---|
 | **Unidad 1 · Software, sistemas operativos y línea de comandos** | | |
-| 1 | Software y licencias | Próximamente |
-| 2 | Sistemas operativos y hardware | Próximamente |
-| 3 | Instalación de un sistema operativo | Próximamente |
-| 4 | Línea de comandos: Windows y Linux | Próximamente |
-| 5 | Scripting de automatización | Próximamente |
+| 1 | Software y licencias | Material en Classroom |
+| 2 | Sistemas operativos y hardware | Material en Classroom |
+| 3 | Instalación de un sistema operativo | Material en Classroom |
+| 4 | Línea de comandos: Windows y Linux | Material en Classroom |
+| 5 | Scripting de automatización | Material en Classroom |
 | **Unidad 2 · Ambiente de desarrollo, trabajo en equipo y servidores** | | |
-| 6 | Configuración del ambiente de desarrollo | Próximamente |
+| 6 | Configuración del ambiente de desarrollo | Material en Classroom |
 | 7 | Primeros pasos con HTML y CSS en VS Code | ✅ Disponible |
 | 8 | Git y control de versiones | Próximamente |
 | 9 | Gestión de proyecto y trabajo en equipo | Próximamente |

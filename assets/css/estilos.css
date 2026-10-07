@@ -746,7 +746,6 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .tp--js { --tp-color: var(--js); --tp-num: var(--js); }
 .tp--html { --tp-color: var(--html); }
 .tp--css { --tp-color: var(--css); --tp-num: var(--css-texto); }
-.tp--git { --tp-color: var(--tinta); --tp-num: var(--tinta); }   /* Git, GitHub y Trello: etiqueta neutra */
 .tp.tp--todo {   /* integrador: las tres tecnologías, en bandas (doble clase: le gana al fondo de .tp, que va después) */
   box-shadow: none;
   background: linear-gradient(var(--html) 0 33.4%, var(--css) 33.4% 66.7%, var(--js) 66.7%) left top / 6px 100% no-repeat, var(--acento-suave);
@@ -1058,7 +1057,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   text-decoration: none; color: var(--texto);
   border: 2px solid transparent;
 }
-.tp:hover { border-color: var(--acento); }   /* al pasar el puntero, el TP toma el color de la paleta (también los "Próximamente") */
+a.tp:hover { border-color: var(--acento); }   /* al pasar el puntero, solo los TP activados (enlaces) toman el color de la paleta */
 .tp__num {
   grid-row: span 3;
   font-family: var(--fuente-titular); font-weight: 800; font-size: 28px; line-height: 1;
@@ -1071,9 +1070,6 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .tp--pronto { background: transparent; border-color: var(--panel); box-shadow: inset 6px 0 0 var(--acento-claro); }
 .tp--pronto .tp__num { color: var(--gris-sub); }
 .tp--pronto .tp__titulo, .tp--pronto .tp__temas { color: var(--gris); }
-.tp--pronto:hover:not(.tp--todo) { box-shadow: inset 6px 0 0 var(--tp-color, var(--acento)); }
-.tp--pronto:hover .tp__num { color: var(--tp-num, var(--acento-numero)); }
-.tp--pronto:hover .tp__titulo { color: var(--tinta); }
 .tp--integrador { background: var(--acento-suave); }
 .tp__visto { color: var(--ok); }
 .tp__visto[hidden] { display: none; }

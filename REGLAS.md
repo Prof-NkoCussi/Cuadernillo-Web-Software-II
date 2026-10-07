@@ -67,7 +67,7 @@ El repo llega con el contenido de Programación. Antes de tocar nada:
 ```
 
 - **Por qué cambian las etiquetas:** el índigo queda entre el azul y el violeta que usaba Programación para HTML y CSS, y los tres se confundían. Acá HTML usa el acento, CSS pasa a magenta y JavaScript a gris (el ámbar ya es el color de las carpetas). Los colores de tecnología siguen siendo solo para etiquetarlas.
-- **Git, GitHub, Trello y VS Code** no llevan color propio: usan la etiqueta neutra (`<span class="etq">Git</span>`, fondo `--tinta`).
+- **Git, GitHub, Trello y VS Code** no llevan color propio: usan la etiqueta neutra (`<span class="etq">Git</span>`, fondo `--tinta`). En el índice, la franja y el número de esos TP van en índigo, como el resto (corrección del 7/10/2026).
 - **Medir el contraste** de cada color nuevo al aplicarlo. Todo texto de color: 4,5:1 o más. Sobre `--acento`, `--css` y `--js` va texto blanco. Si alguno no llega, avisar y proponer un ajuste cercano.
 - `<meta name="theme-color" content="#4F46E5">` en todas las páginas.
 - **Cabecera de cada hoja:** `SOFTWARE II` con la bajada `TÉCNICO EN PROGRAMACIÓN · 5.º AÑO`, y a la derecha `TRABAJO PRÁCTICO N°X` con la barra vertical de acento. Mismas reglas de tamaño y de celular que el repo de origen; verificar que la bajada entre a 360 px.
@@ -77,8 +77,8 @@ El repo llega con el contenido de Programación. Antes de tocar nada:
   Software II • Prof. Nicolás A. Cussi
   C.T.P. "Olga B. de Arko" · Técnico en Programación · 5.º año · Ushuaia
   ```
-- **Índice:** con el formato de `App-Web-Redes-1/indice.html`. Dos unidades (ver plan), sin color propio. Cada TP: título, temas en una línea separados por " · " y meta "Láminas X–Y · Próximamente". "Cómo usarlo": "cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades."
-- **TP "Próximamente":** como en Redes I, tarjeta "apagada" sin opacidad (con `opacity: .62` el texto bajaba a 2,5:1): fondo transparente, borde `--panel`, franja `--acento-claro`, número `--gris-sub`, título y temas `--gris` (6,0:1). Al pasar el puntero, cualquier TP toma el color de la paleta: borde `--acento`, franja y número de su color. El TP10 mantiene sus tres bandas.
+- **Índice:** con el formato de `App-Web-Redes-1/indice.html`. Dos unidades (ver plan), sin color propio. Cada TP: título, temas en una línea separados por " · " y meta "Láminas X–Y · Próximamente" (TP1 a TP6: "Láminas X–Y · Material en Classroom"). "Cómo usarlo": "cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades."
+- **TP "Próximamente":** como en Redes I, tarjeta "apagada" sin opacidad (con `opacity: .62` el texto bajaba a 2,5:1): fondo transparente, borde `--panel`, franja `--acento-claro`, número `--gris-sub`, título y temas `--gris` (6,0:1). Solo los TP activados (`a.tp`) reaccionan al puntero, con borde `--acento`; los no disponibles no cambian (corrección del 7/10/2026). El TP10 mantiene sus tres bandas.
 - **README:** lleva el nombre de la escuela y el curso.
 - **Ícono de la materia:** una ventana con `>_` adentro (terminal), en el mismo estilo que `i-web` (trazo `--tinta` + relleno de acento). Reemplaza a `#i-web` en la cabecera.
 - **Sin eslóganes ni frases decorativas.**
@@ -188,19 +188,19 @@ Corregirlos y listar cada corrección en la entrega del TP.
 
 ## Plan del cuadernillo
 
-12 TPs en dos unidades. En el cierre 2026 se producen los TP7 a TP10 (17 láminas). Los TP1 a TP6 se pasan después; los TP11 y TP12 son del ciclo 2027. En el índice, todos figuran como "Próximamente" hasta que se activan.
+12 TPs en dos unidades. En el cierre 2026 se producen los TP7 a TP10 (17 láminas). Los TP1 a TP6 se pasan después; los TP11 y TP12 son del ciclo 2027. En el índice, los TP1 a TP6 dicen "Material en Classroom" y el resto, "Próximamente" hasta que se activan.
 (Prog n) = lámina del cuadernillo de Programación. (PDF n) = página del PDF. (N) = texto nuevo.
 
 | TP | Nombre | Láminas | Temas, una lámina por tema |
 |---|---|---|---|
 | **Unidad 1 · Software, sistemas operativos y línea de comandos** | | | |
-| 1 | Software y licencias | 1–4 | Próximamente |
-| 2 | Sistemas operativos y hardware | 5–8 | Próximamente |
-| 3 | Instalación de un sistema operativo | 9–12 | Próximamente |
-| 4 | Línea de comandos: Windows y Linux | 13–16 | Próximamente |
-| 5 | Scripting de automatización | 17–20 | Próximamente |
+| 1 | Software y licencias | 1–4 | Material en Classroom |
+| 2 | Sistemas operativos y hardware | 5–8 | Material en Classroom |
+| 3 | Instalación de un sistema operativo | 9–12 | Material en Classroom |
+| 4 | Línea de comandos: Windows y Linux | 13–16 | Material en Classroom |
+| 5 | Scripting de automatización | 17–20 | Material en Classroom |
 | **Unidad 2 · Ambiente de desarrollo, trabajo en equipo y servidores** | | | |
-| 6 | Configuración del ambiente de desarrollo | 21–24 | Próximamente |
+| 6 | Configuración del ambiente de desarrollo | 21–24 | Material en Classroom |
 | 7 | Primeros pasos con HTML y CSS en VS Code | 25–30 | HTML, CSS y JavaScript: cómo trabajan juntos (Prog 25) · el proyecto en VS Code: carpeta y archivos, explorador, Emmet, Live Server y Prettier al guardar (Prog 26 + N) · estructura base, títulos y párrafos (Prog 27, 28) · listas, enlaces, imágenes y etiquetas semánticas `header`, `main`, `footer` (Prog 30, 31, 32 + PDF 11, 12) · CSS: vincular la hoja, selectores de etiqueta, clase e id, colores y tipografía (PDF 16, 17, 18, 19, 20) · modelo de caja y flexbox básico, vistos con DevTools (PDF 22, 24, 26, 27 + N) |
 | 8 | Git y control de versiones | 31–34 | (N) qué es Git; repositorio local: `init`, `status`, `add`, `commit`, `log`; commits semánticos · (N) ramas: `branch`, `switch` y `merge` · (N) conflictos: por qué aparecen y cómo se resuelven en VS Code · (N) deshacer: `revert`, `reset` y detached HEAD |
 | 9 | Gestión de proyecto y trabajo en equipo | 35–38 | (N) el equipo: roles, división de tareas y tablero en Trello · (N) GitHub: repositorio remoto, `remote`, `push` y `pull` · (N) pull requests, revisión de código e issues · (N) documentación: README, informe y bitácora |
@@ -216,7 +216,7 @@ Notas del plan:
 - **TP7, lámina 30:** de DevTools solo lo necesario: abrir con <kbd>F12</kbd>, elegir un elemento, panel "Elements", panel "Styles" y el dibujo del modelo de caja. Flexbox: `display: flex`, `gap`, `justify-content` y `align-items`.
 - **TP8, lámina 34:** `revert` es la forma segura (crea un commit nuevo); `reset` reescribe el historial y se usa solo en commits que no se compartieron. Detached HEAD: cómo se llega (`git switch --detach` o `git checkout` a un commit) y cómo se vuelve (`git switch main`).
 - **TP9:** lo que se evalúa es la planificación y el proceso, no el código.
-- **Portada (`index.html`):** etiquetas por TP: TP7 `HTML` `CSS` · TP8 `Git` · TP9 `GitHub` `Trello` · TP10 clase `tp--todo tp--integrador`. Todos los TP figuran con "Próximamente" hasta que se activan, también los TP11 y TP12. Los temas de cada TP en el índice están resumidos de los contenidos que pasó Nicolás el 7/10/2026.
+- **Portada (`index.html`):** etiquetas por TP: TP7 `HTML` `CSS` · TP8 `Git` · TP9 `GitHub` `Trello` · TP10 clase `tp--todo tp--integrador`. Los TP1 a TP6 figuran con "Material en Classroom"; los demás, con "Próximamente" hasta que se activan, también los TP11 y TP12. Los temas de cada TP en el índice están resumidos de los contenidos que pasó Nicolás el 7/10/2026.
 
 ## Práctica y entrega de cada TP (propuesta, la revisa Nicolás)
 
@@ -235,8 +235,8 @@ Notas del plan:
 - Archivos `index.html` y `styles.css` (antes decía `estilos.css`; cambiado el 7/10/2026).
 - Práctica y entrega: las propone Claude y las revisa Nicolás.
 - Sin consola "Ejecutar".
-- Índice con el formato de Redes I, en dos unidades: Unidad 1 (TP1 a TP5) y Unidad 2 (TP6 a TP12). Todos "Próximamente", también los TP11 y TP12.
-- TP "Próximamente" con el estilo de Redes I (apagados, sin opacidad), y color de la paleta al pasar el puntero.
+- Índice con el formato de Redes I, en dos unidades: Unidad 1 (TP1 a TP5) y Unidad 2 (TP6 a TP12). TP1 a TP6: "Material en Classroom"; el resto, "Próximamente" hasta activarse, también los TP11 y TP12.
+- TP no disponibles con el estilo de Redes I (apagados, sin opacidad) y sin cambio al pasar el puntero; solo los activados toman el borde de acento (corrección del 7/10/2026).
 - Repo: `Prof-NkoCussi/Cuadernillo-Web-Software-II`.
 - Etiquetas `<…>` en rojo (7/10/2026, pedido de Nicolás): en los bloques de código, `--cod-etq` `#FF6666` (5,1:1; en el PDF `#B91C1C`), que también colorea selectores de CSS y palabras clave de JS; en el texto, `code.cod-etq`, con los mismos colores que `cod-css` (`#BE185D` sobre `#FCE7F3`, 5,1:1). Las abreviaturas de Emmet (`h1`, `ul>li*3`) no son etiquetas: quedan en índigo. Los esquemas SVG mantienen sus colores.
 
