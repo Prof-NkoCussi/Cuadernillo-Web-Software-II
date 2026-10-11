@@ -128,7 +128,7 @@
 
     <section class="panel" aria-labelledby="s18b">
       <h3 class="subtitulo" id="s18b">Editor vs. IDE: ¿cuál es la diferencia?</h3>
-      <p class="texto--sub">No todas las herramientas son iguales. Dependiendo de lo que necesitemos, elegimos un nivel distinto de soporte:</p>
+      <p class="texto--sub">No todas las herramientas son iguales. Dependiendo de lo que necesitemos, elegimos un nivel distinto de soporte. Acá va la tabla completa:</p>
       <table class="tabla-comp tabla-comp--cmd tabla-comp--niveles">
         <caption class="sr-only">Niveles de herramientas: editor de código simple, editor extensible e IDE completo, con un ejemplo de cada uno y lo que aporta</caption>
         <thead><tr><th scope="col">Nivel</th><th scope="col">Ejemplo</th><th scope="col">¿Qué aporta?</th></tr></thead>
@@ -321,7 +321,7 @@
     <div class="ej ej--lint">
       <section class="esquema-nota" aria-labelledby="n20a">
         <h3 id="n20a">Linter: el revisor de código</h3>
-        <p class="esquema-nota__p"><strong>¿Qué hace un linter?</strong> Analiza tu código antes de ejecutarlo y te señala errores, malas prácticas y código sospechoso. Es como tener un corrector ortográfico, pero para programación.</p>
+        <p class="esquema-nota__p"><strong>¿Qué hace un linter?</strong> Un linter analiza tu código antes de ejecutarlo y te señala errores, malas prácticas y código sospechoso. Es como tener un corrector ortográfico, pero para programación.</p>
         <p class="esquema-nota__p esquema-nota__p--sep"><strong>ESLint para JavaScript.</strong> El linter más usado en el ecosistema JS. Se configura con reglas (podés usar un conjunto predefinido como <code class="cod-js">eslint:recommended</code>) y subraya las líneas problemáticas directamente en el editor.</p>
         <p class="esquema-nota__p esquema-nota__p--sep"><strong>¿Qué detecta?</strong></p>
         <ul class="pf__lista pf__lista--fila">
@@ -352,7 +352,7 @@
     <section class="esquema-nota" aria-labelledby="n20b">
       <h3 id="n20b">Formateador: el que acomoda el desorden</h3>
       <div class="tres-col">
-        <p class="esquema-nota__p"><strong>¿Qué hace un formateador?</strong> Reacomoda el estilo del código automáticamente sin cambiar su lógica ni su funcionamiento. No te dice qué está mal: simplemente lo deja prolijo según las reglas del equipo.</p>
+        <p class="esquema-nota__p"><strong>¿Qué hace un formateador?</strong> Un formateador reacomoda el estilo del código automáticamente sin cambiar su lógica ni su funcionamiento. No te dice qué está mal: simplemente lo deja prolijo según las reglas del equipo.</p>
         <p class="esquema-nota__p"><strong>Prettier.</strong> El formateador más popular para JavaScript, TypeScript, HTML y CSS. Se integra con VS Code y puede configurarse para que formatee cada vez que guardás el archivo (opción <strong lang="en">Format On Save</strong>).</p>
         <p class="esquema-nota__p"><strong>¿Por qué importa el estilo?</strong> En un equipo, cada programador tiene sus costumbres. Prettier las unifica para que el código siempre luzca igual, sin importar quién lo escribió. Menos discusiones, más legibilidad.</p>
       </div>
@@ -619,24 +619,24 @@ La suma es: 10</code></pre>
 v24.13.1
 <span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>npm -v</span>
 11.8.0</code></pre>
-            <p class="terminal__nota">Deberías ver los números de versión de Node.js y npm (pueden ser otros).</p>
+            <p class="terminal__nota">Deberías ver los números de versión de Node.js y npm.</p>
           </figure>
         </div>
         <div class="ej-col">
-          <p class="texto--sub">Una vez instalado Node.js, creá un archivo nuevo, por ejemplo <code class="cod-js">mi_script.js</code>, y agregale el siguiente contenido:</p>
+          <p class="texto--sub">Una vez instalado Node.js, podés ejecutar archivos JavaScript directamente en tu computadora. Creá un archivo nuevo, por ejemplo <code class="cod-js">mi_script.js</code>, y agregale el siguiente contenido:</p>
           <figure class="codigo codigo--js" id="ej-22">
             <figcaption><span class="codigo__archivo">mi_script.js</span></figcaption>
             <pre tabindex="0" aria-label="Código de mi_script.js"><code><span class="c-com">// mi_script.js</span>
 console.<span class="c-fun">log</span>(<span class="c-str">"¡Hola 5.º año!"</span>);
 console.<span class="c-fun">log</span>(<span class="c-str">"La fecha y hora actuales son:"</span>, <span class="c-etq">new</span> <span class="c-fun">Date</span>());</code></pre>
           </figure>
-          <p class="texto--sub">Guardá el archivo. Luego, en la terminal, andá a la carpeta donde guardaste <code class="cod-js">mi_script.js</code> y ejecutalo con el comando <code class="cod-js">node</code>:</p>
+          <p class="texto--sub">Guardá el archivo. Luego, abrí tu terminal, navegá hasta la carpeta donde guardaste <code class="cod-js">mi_script.js</code> y ejecutalo con el comando <code class="cod-js">node</code>:</p>
           <figure class="terminal">
             <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
             <pre tabindex="0" aria-label="Terminal: node mi_script.js y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node mi_script.js</span>
 ¡Hola 5.º año!
 La fecha y hora actuales son: 2026-10-11T06:06:55.744Z</code></pre>
-            <p class="terminal__nota">La fecha y la hora cambian en cada ejecución.</p>
+            <p class="terminal__nota">Verás los mensajes imprimirse en tu terminal, demostrando que Node.js está funcionando correctamente. La fecha y la hora cambian en cada ejecución.</p>
           </figure>
         </div>
       </div>
@@ -644,7 +644,7 @@ La fecha y hora actuales son: 2026-10-11T06:06:55.744Z</code></pre>
 
     <section class="esquema-nota" aria-labelledby="s22d">
       <h3 id="s22d">Template literals: textos con variables adentro</h3>
-      <p class="esquema-nota__p">Para armar un texto con variables podemos unir las partes con <code class="cod-js">+</code>, o escribir todo entre <strong>comillas invertidas</strong> (<code class="cod-js">`</code>) y poner cada variable dentro de <code class="cod-js">${ }</code>. El resultado es el mismo, y se lee mejor. En el teclado latinoamericano, la comilla invertida sale con <kbd>AltGr</kbd> + <kbd>}</kbd> y después <kbd>Espacio</kbd>.</p>
+      <p class="esquema-nota__p">En lugar de unir las partes con <code class="cod-js">+</code>, escribimos todo el texto entre <strong>comillas invertidas</strong> (<code class="cod-js">`</code>) y cada variable dentro de <code class="cod-js">${ }</code>. El resultado es el mismo y se lee mejor. En el teclado latinoamericano, la comilla invertida sale con <kbd>AltGr</kbd> + <kbd>}</kbd> y después <kbd>Espacio</kbd>.</p>
       <div class="ej ej--plantilla">
         <figure class="codigo codigo--js" id="ej-22b">
         <figcaption><span class="codigo__archivo">plantilla.js</span></figcaption>
@@ -729,6 +729,7 @@ console.<span class="c-fun">log</span>(figlet.<span class="c-fun">textSync</span
     </figure>
 
     <div class="ej ej--res ej--pkg">
+      <div class="ej-col">
       <figure class="codigo codigo--neutro" id="ej-23b">
         <figcaption><span class="codigo__archivo">package.json</span><span class="codigo__donde">después de npm install figlet</span></figcaption>
         <pre tabindex="0" aria-label="Contenido de package.json"><code>{
@@ -748,12 +749,13 @@ console.<span class="c-fun">log</span>(figlet.<span class="c-fun">textSync</span
   }
 }</code></pre>
       </figure>
+      <p class="ej-nota">JSON no es código que se ejecuta. Es solo un archivo de configuración que otros programas leen para saber cómo comportarse.</p>
+      </div>
       <section class="esquema-nota" aria-labelledby="n23b">
         <h3 id="n23b">package.json: el manifiesto del proyecto</h3>
         <p class="esquema-nota__p">Usa el formato <strong>JSON</strong> (ver “Para profundizar”) para describir el proyecto y sus dependencias. Cuando ejecutás <code class="cod-js">npm install</code>, Node lee este archivo y sabe exactamente qué paquetes descargar y cómo configurar el entorno.</p>
-        <p class="esquema-nota__p esquema-nota__p--sep"><strong>¿Cómo se crea?</strong> No se crea solo: se genera una sola vez, al comienzo del proyecto, con <code class="cod-js">npm init -y</code> en la carpeta raíz. El <code class="cod-js">-y</code> responde todo con valores por defecto; el archivo se puede editar después.</p>
+        <p class="esquema-nota__p esquema-nota__p--sep"><strong>¿Cómo se crea?</strong> El archivo package.json no se crea solo: hay que generarlo explícitamente al iniciar un proyecto Node.js. Se crea una sola vez, al comienzo del proyecto, ejecutando <code class="cod-js">npm init -y</code> en la carpeta raíz del proyecto (<code class="cod-js">npm init</code>, que pregunta todo paso a paso, está en “Para profundizar”). <code class="cod-js">npm init -y</code> responde todo automáticamente con valores por defecto y genera el archivo al instante. Es el comando más usado en clase porque es rápido y el archivo se puede editar después.</p>
         <p class="esquema-nota__p esquema-nota__p--sep"><strong>Actualización automática.</strong> Cada vez que instalás un paquete con <code class="cod-js">npm install</code>, el package.json se actualiza solo, agregando la nueva dependencia en la sección <code class="cod-js">"dependencies"</code>.</p>
-        <p class="esquema-nota__p esquema-nota__p--sep">JSON no es código que se ejecuta. Es solo un archivo de configuración que otros programas leen para saber cómo comportarse.</p>
       </section>
     </div>
 
@@ -853,7 +855,7 @@ added 65 packages, and audited 68 packages in 4s
 
 found 0 vulnerabilities</code></pre>
         </figure>
-        <p class="esquema-nota__p">Con ese solo comando, Express queda disponible en tu proyecto. Express no es magia nueva: es JavaScript que ya sabés, pero organizado para responder peticiones HTTP.</p>
+        <p class="esquema-nota__p">Con ese solo comando, Express queda disponible en tu proyecto. Más abajo lo usamos para levantar un servidor real. Express no es magia nueva: es JavaScript que ya sabés, pero organizado para responder peticiones HTTP.</p>
       </section>
     </div>
 
@@ -924,7 +926,7 @@ Servidor en puerto 3000</code></pre>
           <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">localhost:3000/</span></div>
           <div class="resultado__dir" aria-hidden="true"><span>localhost:3000</span></div>
           <p class="resultado__pagina" style="--alto:30px">¡Hola 5.º año!</p>
-          <figcaption class="resultado__nota">Abrí el navegador en <strong>localhost:3000</strong> y vas a ver el texto como si fuera una página web real.</figcaption>
+          <figcaption class="resultado__nota">Después abrís el navegador y escribís: <strong>localhost:3000</strong>. Vas a ver el texto “¡Hola 5.º año!” como si fuera una página web real.</figcaption>
         </figure>
       </div>
     </section>

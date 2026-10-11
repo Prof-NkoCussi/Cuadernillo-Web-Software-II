@@ -942,6 +942,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .ej--tres { grid-template-columns: minmax(0, 1fr) minmax(0, .85fr) minmax(0, 1.25fr); align-items: start; }
   .tres-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .ej--plantilla { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: start; margin-top: 6px; }
+  .ej--primeros { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
 }
 
 /* ==========================================================
@@ -1205,6 +1206,8 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .lamina--mas-densa .ej--lint .codigo pre { font-size: 11.5px; }
   .lamina--mas-densa .terminal__nota, .lamina--mas-densa .codigo__donde { font-size: 12.5px; }
   .lamina--mas-densa { gap: 2.1mm; }
+  .lamina--mas-densa .subtitulo::after { height: 3px; margin-top: 2px; }
+  .lamina--mas-densa .texto--sub { margin: 3px 0 4px; }
   .lamina--mas-densa .esquema-par, .lamina--mas-densa .ej { gap: 2.4mm; }
   .lamina--mas-densa .tabla-comp--cmd td, .lamina--mas-densa .tabla-comp--cmd th { line-height: 1.2; }
   .lamina--mas-densa .ej--tres { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr) minmax(0, 1.3fr); }
