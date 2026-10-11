@@ -2,6 +2,7 @@
    Software II — ejemplos.js
    Ejemplos en vivo de los TPs:
    - Botón "Copiar" en cada bloque de código (figure.codigo)
+     y en cada terminal (figure.terminal: solo los comandos)
    - Resultado en el navegador (figure.resultado[data-html]):
      muestra en un iframe el resultado real del código HTML del ejemplo.
      Los enlaces del ejemplo no se abren: se avisa a dónde llevan.
@@ -66,6 +67,29 @@
       copiar(pre.textContent, function () {
         boton.textContent = "✓ Copiado";
         avisar("Código copiado");
+        window.setTimeout(function () { boton.textContent = "Copiar"; }, 1600);
+      });
+    });
+    cab.appendChild(boton);
+  });
+
+  /* Terminal: copia solo los comandos (.t-cmd), sin el "$" ni la salida */
+  var terminales = document.querySelectorAll("figure.terminal");
+  Array.prototype.forEach.call(terminales, function (fig) {
+    var cab = fig.querySelector("figcaption");
+    var cmds = fig.querySelectorAll(".t-cmd");
+    if (!cab || !cmds.length) { return; }
+    var boton = crearBoton("Copiar");
+    boton.setAttribute("aria-label", cmds.length === 1 ? "Copiar el comando" : "Copiar los comandos");
+    boton.addEventListener("click", function () {
+      var lineas = Array.prototype.map.call(cmds, function (c) {
+        var copia = c.cloneNode(true);
+        Array.prototype.forEach.call(copia.querySelectorAll(".t-prompt"), function (p) { p.parentNode.removeChild(p); });
+        return copia.textContent.trim();
+      });
+      copiar(lineas.join("\n"), function () {
+        boton.textContent = "✓ Copiado";
+        avisar(cmds.length === 1 ? "Comando copiado" : "Comandos copiados");
         window.setTimeout(function () { boton.textContent = "Copiar"; }, 1600);
       });
     });

@@ -33,7 +33,7 @@ Un cuadernillo web para leer desde el celular y trabajar en la computadora. Se o
 | 4 | Línea de comandos: Windows y Linux | Material en Classroom |
 | 5 | Scripting de automatización | Material en Classroom |
 | **Unidad 2 · Ambiente de desarrollo, trabajo en equipo y servidores** | | |
-| 6 | Configuración del ambiente de desarrollo | Material en Classroom |
+| 6 | Configuración del ambiente de desarrollo | ✅ Disponible |
 | 7 | Primeros pasos con HTML y CSS en VS Code | ✅ Disponible |
 | 8 | Git y control de versiones | Próximamente |
 | 9 | Gestión de proyecto y trabajo en equipo | Próximamente |

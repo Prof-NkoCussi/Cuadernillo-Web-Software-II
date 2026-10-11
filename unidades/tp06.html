@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°6 — Configuración del ambiente de desarrollo · Software II</title>
+  <meta name="description" content="TP N°6 de Software II: editor vs. IDE, VS Code y sus extensiones, ESLint y Prettier, el depurador, Node.js y npm, Express y el README. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="6">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-terminal" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M12 23l7 6-7 6M23 35h12"/>
+    </symbol>
+    <symbol id="i-herramientas" viewBox="0 0 48 48">
+      <rect x="5" y="17" width="38" height="24" rx="3" style="fill:var(--ac)"/>
+      <rect x="5" y="17" width="38" height="24" rx="3"/>
+      <path d="M17 17v-5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5M5 27h38M20 27v5h8v-5"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-bicho" viewBox="0 0 48 48">
+      <ellipse cx="24" cy="28" rx="10" ry="13" style="fill:var(--ac)"/>
+      <ellipse cx="24" cy="28" rx="10" ry="13"/>
+      <path d="M24 17v24M14 23H6M14 31H5M15 38l-7 4M34 23h8M34 31h9M33 38l7 4M19 10l3 5M29 10l-3 5"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-consejo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M14 24.5l7 7 13-14" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°6 — Configuración del ambiente de desarrollo</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°6">
+    <a href="#pag-18">18 · Ambiente</a>
+    <a href="#pag-19">19 · VS Code</a>
+    <a href="#pag-20">20 · ESLint y Prettier</a>
+    <a href="#pag-21">21 · Depurador</a>
+    <a href="#pag-22">22 · Node.js</a>
+    <a href="#pag-23">23 · npm</a>
+    <a href="#pag-24">24 · Express</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°6 — Configuración del ambiente de desarrollo</h1>
+
+  <!-- =================== LÁMINA 18 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-18" aria-labelledby="t18">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t18"><span class="tit__num">18.</span> El ambiente de desarrollo</h2>
+      <p class="tit__sub">Editor vs. IDE y tres filosofías</p>
+    </div>
+
+    <div class="esquema-par">
+      <section class="esquema-nota esquema-nota--importante" aria-labelledby="n18a">
+        <h3 id="n18a"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>¿Qué pasa cuando no configuramos nada?</h3>
+        <ul class="pf__lista">
+          <li>Los errores aparecen recién cuando ejecutamos el código, no antes.</li>
+          <li>El código queda desprolijo: indentaciones distintas, estilos mezclados.</li>
+          <li>El clásico: “en mi máquina funciona” — y en la del compañero, no.</li>
+          <li>No hay forma de inspeccionar qué hace el programa paso a paso.</li>
+        </ul>
+      </section>
+      <div class="ej-col">
+        <div class="intro">
+          <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-herramientas"/></svg>
+          <p><strong>¿Qué es un ambiente de desarrollo?</strong> Es el conjunto de herramientas, configuraciones y convenciones que usamos para escribir, probar y ejecutar código de forma ordenada y profesional.</p>
+        </div>
+        <p class="panel panel__texto"><strong>¿Y un ambiente de testing?</strong> Es un entorno separado donde probamos que el código funciona correctamente antes de “mandarlo a producción”. Evita que los errores lleguen al usuario final.</p>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="s18b">
+      <h3 class="subtitulo" id="s18b">Editor vs. IDE: ¿cuál es la diferencia?</h3>
+      <p class="texto--sub">No todas las herramientas son iguales. Dependiendo de lo que necesitemos, elegimos un nivel distinto de soporte:</p>
+      <table class="tabla-comp tabla-comp--cmd tabla-comp--niveles">
+        <caption class="sr-only">Niveles de herramientas: editor de código simple, editor extensible e IDE completo, con un ejemplo de cada uno y lo que aporta</caption>
+        <thead><tr><th scope="col">Nivel</th><th scope="col">Ejemplo</th><th scope="col">¿Qué aporta?</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Editor de código simple</th><td>Notepad++, Sublime Text</td><td>Resaltado de sintaxis básico, edición rápida. Sin inteligencia del lenguaje.</td></tr>
+          <tr><th scope="row">Editor extensible</th><td>VS Code</td><td>Base liviana + extensiones a medida: linter, formateador, depurador, Git, IA. Vos elegís cada pieza.</td></tr>
+          <tr><th scope="row">IDE completo</th><td>WebStorm, PyCharm</td><td>Todo integrado desde el inicio: análisis de código, refactor, testing, base de datos. Sin configurar nada.</td></tr>
+        </tbody>
+      </table>
+      <p class="texto--sub texto--cierre">En este TP usamos <strong>VS Code</strong>: el punto medio ideal entre flexibilidad y potencia para aprender.</p>
+    </section>
+
+    <section aria-labelledby="s18c">
+      <h3 class="subtitulo" id="s18c">Tres filosofías para elegir tu herramienta</h3>
+      <p class="texto--sub">No hay una sola forma de trabajar. Cada herramienta refleja una forma de pensar el desarrollo:</p>
+      <ul class="comparar comparar--3 comparar--chico">
+        <li><div><h3>VS Code <span class="filo__lema">“Lo configuro yo”</span></h3><p>Editor extensible y liviano. Arranca simple y crecés con él: agregás extensiones según lo que necesitás. Ideal para aprender porque entendés cada pieza que sumás.</p><p class="filo__pie">Control total. Curva de aprendizaje gradual.</p></div></li>
+        <li><div><h3>Antigravity (Google) <span class="filo__lema">“El que vuela solo”</span></h3><p>IDE de escritorio desarrollado por Google, basado en VS Code. Está centrado en agentes de IA (Gemini) que planifican y ejecutan tareas.</p><p class="filo__pie">Agentes de IA integrados.</p></div></li>
+        <li><div><h3>WebStorm / PyCharm <span class="filo__lema">“Ya viene resuelto”</span></h3><p>IDEs completos de JetBrains, atados a un lenguaje específico. Todo configurado desde el primer momento: análisis, refactor, testing. Sin tocar nada.</p><p class="filo__pie">Máxima integración. Menos decisiones.</p></div></li>
+      </ul>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> un buen ambiente de desarrollo es como tener el taller ordenado antes de empezar a construir algo.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 18">18</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 19 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-19" aria-labelledby="t19">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t19"><span class="tit__num">19.</span> Anatomía de VS Code</h2>
+      <p class="tit__sub">Las zonas del editor y las extensiones</p>
+    </div>
+
+    <div class="esquema-par">
+      <div class="ej-col">
+      <p class="texto">VS Code está dividido en zonas bien definidas. Conocerlas te ayuda a moverte rápido y no perder tiempo buscando dónde está cada cosa:</p>
+      <figure class="esquema">
+        <svg viewBox="0 0 340 232" style="max-width:440px;margin:0 auto" role="img" aria-labelledby="esq19">
+          <title id="esq19">La pantalla de VS Code con la carpeta tp6-ambiente abierta y sus seis zonas. 1: a la izquierda, el Explorador de archivos, con node_modules, app.js, cartel.js y package.json. 2: en el centro, el área de edición, con cartel.js abierto. 3: abajo, la terminal integrada. 4: en la barra lateral, el ícono de extensiones, de cuadraditos. 5: arriba, en el centro, el cuadro de búsqueda donde se abre la paleta de comandos. 6: abajo de todo, la barra de estado.</title>
+          <!-- Ventana -->
+          <rect x="1" y="1" width="338" height="230" rx="6" style="fill:var(--cod-fondo)"/>
+          <path d="M7 1h326a6 6 0 0 1 6 6v13H1V7a6 6 0 0 1 6-6z" style="fill:var(--consola-fondo)"/>
+          <!-- 5: cuadro de la paleta de comandos -->
+          <rect x="110" y="4.5" width="120" height="12" rx="3" style="fill:var(--cod-fondo);stroke:var(--acento);stroke-width:1.5"/>
+          <g style="fill:none;stroke:var(--cod-com);stroke-width:1.1;stroke-linecap:round">
+            <circle cx="120" cy="10" r="2.6"/><path d="M122 12l2 2"/>
+          </g>
+          <text x="172" y="13.4" text-anchor="middle" style="font-family:var(--fuente);font-size:8.5px;fill:var(--cod-base)">tp6-ambiente</text>
+          <!-- Barra de actividades -->
+          <rect x="1" y="20" width="23" height="190" style="fill:var(--consola-fondo)"/>
+          <path d="M23.5 20v190" style="stroke:var(--cod-fondo);stroke-width:1.5"/>
+          <rect x="1" y="27" width="2.5" height="20" style="fill:var(--acento)"/>
+          <g style="fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M9 31h6l3 3v10H9zM12 31v-2h6l3 3v10h-3" style="stroke:var(--cod-base)"/>
+            <path d="M15.5 60.5l3 3M10 57a4 4 0 1 0 8 0a4 4 0 1 0-8 0" style="stroke:var(--cod-com)"/>
+            <path d="M10 76v12M10 80a3 3 0 0 0 3 3h3M16 76a2.2 2.2 0 1 0 0 .1M10 74a2.2 2.2 0 1 0 0 .1" style="stroke:var(--cod-com)"/>
+            <path d="M8 98l9 5-9 5z" style="stroke:var(--cod-com)"/>
+            <!-- 4: extensiones -->
+            <path d="M7 118h5v5H7zM14 118h5v5h-5zM7 125h5v5H7zM15.5 112.5l3.5 3.5-3.5 3.5-3.5-3.5z" style="stroke:var(--cod-base)"/>
+          </g>
+          <!-- 1: Explorador -->
+          <rect x="24" y="20" width="100" height="190" style="fill:var(--consola-fondo)"/>
+          <path d="M124 20v190" style="stroke:var(--cod-fondo);stroke-width:1.5"/>
+          <text x="31" y="34" style="font-family:var(--fuente);font-size:8.5px;font-weight:700;letter-spacing:.04em;fill:var(--cod-com)">EXPLORADOR</text>
+          <path d="M31 45l2.5 2.5 2.5-2.5" style="fill:none;stroke:var(--cod-base);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round"/>
+          <text x="40" y="49.5" style="font-family:var(--fuente);font-size:8.5px;font-weight:700;fill:var(--cod-base)">TP6-AMBIENTE</text>
+          <rect x="24" y="91" width="100" height="14" style="fill:var(--acento);opacity:.4"/>
+          <path d="M33 59l2.5 2.5-2.5 2.5" style="fill:none;stroke:var(--cod-base);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round"/>
+          <path d="M40 58.5a1 1 0 0 1 1-1h3l1.5 1.5h4.5a1 1 0 0 1 1 1v4.5a1 1 0 0 1-1 1H41a1 1 0 0 1-1-1z" style="fill:var(--carpeta)"/>
+          <g style="fill:var(--js-linea)"><rect x="41" y="73" width="8" height="10" rx="1.5"/><rect x="41" y="93" width="8" height="10" rx="1.5"/></g>
+          <rect x="41" y="113" width="8" height="10" rx="1.5" style="fill:var(--cod-str)"/>
+          <g style="font-family:var(--fuente-codigo);font-size:9.5px;fill:var(--cod-base)">
+            <text x="55" y="65">node_modules</text>
+            <text x="55" y="81.5">app.js</text>
+            <text x="55" y="101.5">cartel.js</text>
+            <text x="55" y="121.5">package.json</text>
+          </g>
+          <!-- 2: área de edición -->
+          <rect x="124.5" y="20" width="214.5" height="17" style="fill:var(--consola-fondo)"/>
+          <rect x="124.5" y="20" width="64" height="17" style="fill:var(--cod-fondo)"/>
+          <rect x="124.5" y="20" width="64" height="2" style="fill:var(--acento)"/>
+          <text x="133" y="32" style="font-family:var(--fuente-codigo);font-size:9.5px;fill:var(--cod-base)">cartel.js</text>
+          <g style="fill:var(--cod-etq)"><rect x="134" y="48" width="26" height="5" rx="2.5"/></g>
+          <g style="fill:var(--cod-base)"><rect x="164" y="48" width="26" height="5" rx="2.5"/><rect x="134" y="74" width="34" height="5" rx="2.5"/></g>
+          <g style="fill:var(--cod-fun)"><rect x="194" y="48" width="34" height="5" rx="2.5"/><rect x="172" y="74" width="20" height="5" rx="2.5"/><rect x="196" y="74" width="40" height="5" rx="2.5"/></g>
+          <g style="fill:var(--cod-str)"><rect x="232" y="48" width="38" height="5" rx="2.5"/><rect x="240" y="74" width="64" height="5" rx="2.5"/></g>
+          <!-- 3: terminal integrada -->
+          <path d="M124.5 140H339" style="stroke:var(--consola-fondo);stroke-width:1.5"/>
+          <text x="134" y="153" style="font-family:var(--fuente);font-size:8.5px;font-weight:700;letter-spacing:.04em;fill:var(--cod-base)">TERMINAL</text>
+          <rect x="134" y="156" width="37" height="1.6" style="fill:var(--acento)"/>
+          <text x="134" y="171" style="font-family:var(--fuente-codigo);font-size:9px;fill:var(--cod-base)"><tspan style="fill:var(--term-prompt)">$</tspan> node cartel.js</text>
+          <g style="fill:var(--cod-com)"><rect x="134" y="178" width="96" height="3.5" rx="1.75"/><rect x="134" y="186" width="96" height="3.5" rx="1.75"/><rect x="134" y="194" width="96" height="3.5" rx="1.75"/></g>
+          <!-- 6: barra de estado -->
+          <path d="M1 210h338v15a6 6 0 0 1-6 6H7a6 6 0 0 1-6-6z" style="fill:var(--acento)"/>
+          <g style="font-family:var(--fuente);font-size:8.5px;font-weight:600;fill:var(--blanco)">
+            <text x="10" y="223">⊗ 0  ⚠ 0</text>
+            <text x="288" y="223">JavaScript</text>
+          </g>
+          <rect x="1" y="1" width="338" height="230" rx="6" style="fill:none;stroke:var(--tinta);stroke-width:2"/>
+          <!-- Números de las zonas -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="113" cy="31" r="7.5"/>
+            <circle cx="326" cy="52" r="7.5"/>
+            <circle cx="326" cy="152" r="7.5"/>
+            <circle cx="20" cy="133" r="7.5"/>
+            <circle cx="240" cy="10.5" r="7.5"/>
+            <circle cx="160" cy="220.5" r="7.5"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:10.5px;font-weight:700">
+            <text x="113" y="34.8">1</text><text x="326" y="55.8">2</text><text x="326" y="155.8">3</text>
+            <text x="20" y="136.8">4</text><text x="240" y="14.3">5</text><text x="160" y="224.3">6</text>
+          </g>
+        </svg>
+      </figure>
+      </div>
+      <section class="esquema-nota" aria-labelledby="n19">
+        <h3 id="n19">Las seis zonas</h3>
+        <ol class="zonas">
+          <li><span class="marca" aria-hidden="true">1</span><span><strong>Explorador de archivos.</strong> Panel izquierdo. Muestra la estructura de carpetas y archivos del proyecto abierto.</span></li>
+          <li><span class="marca" aria-hidden="true">2</span><span><strong>Área de edición.</strong> El centro de la pantalla. Podés abrir varios archivos en pestañas o en paneles divididos.</span></li>
+          <li><span class="marca" aria-hidden="true">3</span><span><strong>Terminal integrada.</strong> Abrís con <kbd>Ctrl</kbd> + <kbd>ñ</kbd>. Ejecutás comandos <code class="cod-js">node</code>, <code class="cod-js">npm</code> y <code class="cod-js">git</code> sin salir del editor. <kbd>Ctrl</kbd> + <kbd>J</kbd> muestra u oculta el panel.</span></li>
+          <li><span class="marca" aria-hidden="true">4</span><span><strong>Barra de extensiones.</strong> Ícono de cuadradito en la barra lateral. Desde acá instalás y gestionás extensiones del Marketplace.</span></li>
+          <li><span class="marca" aria-hidden="true">5</span><span><strong>Paleta de comandos.</strong> <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>: el acceso directo más importante. Ejecutá cualquier acción del editor escribiendo su nombre.</span></li>
+          <li><span class="marca" aria-hidden="true">6</span><span><strong>Barra de estado inferior.</strong> Muestra el lenguaje activo, la rama de Git, errores y advertencias del archivo actual.</span></li>
+        </ol>
+      </section>
+    </div>
+
+    <section aria-labelledby="s19b">
+      <h3 class="subtitulo" id="s19b">Extensiones: el superpoder de VS Code</h3>
+      <ul class="comparar comparar--chico comparar--ext">
+        <li><div><h3>¿Qué son las extensiones?</h3><p>Son complementos que agregan funcionalidades nuevas al editor base. VS Code viene “vacío a propósito”: vos decidís qué herramientas necesitás y las instalás desde el Marketplace (el repositorio oficial de extensiones).</p></div></li>
+        <li><div><h3>¿Cómo se instalan?</h3><p>Desde la barra lateral → ícono de extensiones <span class="marca">4</span> → buscás el nombre → <strong lang="en">Install</strong> (en español, <strong>Instalar</strong>). También podés instalarlas desde la paleta de comandos o la web del Marketplace.</p><p class="consejo">Las extensiones se guardan en tu perfil de VS Code. Si sincronizás con una cuenta, las tenés en cualquier máquina.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="panel" aria-labelledby="s19c">
+      <h3 class="subtitulo" id="s19c">Extensiones esenciales para JavaScript</h3>
+      <ul class="comparar comparar--3 comparar--chico comparar--blanco comparar--ext3">
+        <li><div><h3>ESLint</h3><p>Muestra errores y malas prácticas en tiempo real mientras escribís.</p></div></li>
+        <li><div><h3>Prettier</h3><p>Formatea el código automáticamente al guardar el archivo.</p></div></li>
+        <li><div><h3>Live Server</h3><p>Lanza un servidor local en el navegador que se actualiza automáticamente cada vez que guardás un archivo HTML, CSS o JS. Ideal para ver cambios en tiempo real sin recargar manualmente.</p></div></li>
+      </ul>
+      <p class="texto--sub texto--cierre">Más extensiones (JavaScript snippets, GitLens y Live Share), en “Para profundizar”.</p>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> VS Code es un editor extensible: vos elegís cada pieza y entendés para qué sirve.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 19">19</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 20 =================== -->
+  <article class="lamina lamina--compacta lamina--densa lamina--mas-densa" id="pag-20" aria-labelledby="t20">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t20"><span class="tit__num">20.</span> Linter vs. formateador</h2>
+      <p class="tit__sub">ESLint y Prettier</p>
+    </div>
+
+    <div class="ej ej--lint">
+      <section class="esquema-nota" aria-labelledby="n20a">
+        <h3 id="n20a">Linter: el revisor de código</h3>
+        <p class="esquema-nota__p"><strong>¿Qué hace un linter?</strong> Analiza tu código antes de ejecutarlo y te señala errores, malas prácticas y código sospechoso. Es como tener un corrector ortográfico, pero para programación.</p>
+        <p class="esquema-nota__p esquema-nota__p--sep"><strong>ESLint para JavaScript.</strong> El linter más usado en el ecosistema JS. Se configura con reglas (podés usar un conjunto predefinido como <code class="cod-js">eslint:recommended</code>) y subraya las líneas problemáticas directamente en el editor.</p>
+        <p class="esquema-nota__p esquema-nota__p--sep"><strong>¿Qué detecta?</strong></p>
+        <ul class="pf__lista pf__lista--fila">
+          <li>Variables declaradas pero nunca usadas.</li>
+          <li>Uso de <code class="cod-js">var</code> en lugar de <code class="cod-js">let</code> o <code class="cod-js">const</code>.</li>
+          <li>Comparaciones con <code class="cod-js">==</code> en lugar de <code class="cod-js">===</code>.</li>
+        </ul>
+      </section>
+      <div class="ej-col">
+        <figure class="codigo codigo--js" id="ej-20">
+          <figcaption><span class="codigo__archivo">ejemplo.js</span><span class="codigo__donde">con advertencias de ESLint</span></figcaption>
+          <pre tabindex="0" aria-label="Código de ejemplo.js con advertencias de ESLint"><code><span class="c-etq c-subr">var</span> <span class="c-subr">nombre</span> = <span class="c-str">"Ana"</span>; <span class="c-com">// ESLint: no-var y no-unused-vars</span>
+<span class="c-etq">let</span> <span class="c-subr">apellido</span> = <span class="c-str">"Garcia"</span>; <span class="c-com">// ESLint: no-unused-vars (nunca se usa)</span>
+<span class="c-etq">const</span> edad = <span class="c-num">25</span>;
+
+<span class="c-etq">function</span> <span class="c-fun">saludar</span>() {
+  <span class="c-etq">if</span> (edad <span class="c-subr">==</span> <span class="c-num">18</span>) { <span class="c-com">// ESLint: eqeqeq (usa ===)</span>
+    console.<span class="c-fun">log</span>(<span class="c-str">"Mayor"</span>);
+  }
+}
+
+<span class="c-fun">saludar</span>();</code></pre>
+        </figure>
+        <p class="ej-nota"><code class="cod-js">eslint:recommended</code> trae <code class="cod-js">no-unused-vars</code>; <code class="cod-js">no-var</code> y <code class="cod-js">eqeqeq</code> se activan aparte (ver “Para profundizar”). El punto y coma no lo revisa ESLint: lo pone Prettier.</p>
+      </div>
+    </div>
+
+    <section class="esquema-nota" aria-labelledby="n20b">
+      <h3 id="n20b">Formateador: el que acomoda el desorden</h3>
+      <div class="tres-col">
+        <p class="esquema-nota__p"><strong>¿Qué hace un formateador?</strong> Reacomoda el estilo del código automáticamente sin cambiar su lógica ni su funcionamiento. No te dice qué está mal: simplemente lo deja prolijo según las reglas del equipo.</p>
+        <p class="esquema-nota__p"><strong>Prettier.</strong> El formateador más popular para JavaScript, TypeScript, HTML y CSS. Se integra con VS Code y puede configurarse para que formatee cada vez que guardás el archivo (opción <strong lang="en">Format On Save</strong>).</p>
+        <p class="esquema-nota__p"><strong>¿Por qué importa el estilo?</strong> En un equipo, cada programador tiene sus costumbres. Prettier las unifica para que el código siempre luzca igual, sin importar quién lo escribió. Menos discusiones, más legibilidad.</p>
+      </div>
+      <div class="ej ej--res ej--antes">
+        <figure class="codigo codigo--js" id="ej-20a">
+          <figcaption><span class="codigo__archivo">saludar.js</span><span class="codigo__donde">antes (sin Prettier)</span></figcaption>
+          <pre tabindex="0" aria-label="Código de saludar.js antes de Prettier"><code><span class="c-etq">const</span> <span class="c-fun">saludar</span>=(nombre)=>{
+<span class="c-etq">if</span>(nombre==<span class="c-str">"Ana"</span>){
+console.<span class="c-fun">log</span>(<span class="c-str">"Hola "</span>+nombre)
+}<span class="c-etq">else</span>{
+console.<span class="c-fun">log</span>(<span class="c-str">"Hola desconocido"</span>)
+}}</code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="ej-20b">
+          <figcaption><span class="codigo__archivo">saludar.js</span><span class="codigo__donde">después (con Prettier)</span></figcaption>
+          <pre tabindex="0" aria-label="Código de saludar.js después de Prettier"><code><span class="c-etq">const</span> <span class="c-fun">saludar</span> = (nombre) => {
+  <span class="c-etq">if</span> (nombre == <span class="c-str">"Ana"</span>) {
+    console.<span class="c-fun">log</span>(<span class="c-str">"Hola "</span> + nombre);
+  } <span class="c-etq">else</span> {
+    console.<span class="c-fun">log</span>(<span class="c-str">"Hola desconocido"</span>);
+  }
+};</code></pre>
+        </figure>
+      </div>
+      <p class="ej-nota">Prettier agregó espacios, indentación y punto y coma automáticamente, sin cambiar la lógica del código.</p>
+    </section>
+
+    <section class="esquema-nota" aria-labelledby="s20c">
+      <h3 id="s20c">Linter vs. formateador: no son lo mismo</h3>
+      <p class="esquema-nota__p">Se usan juntos, pero cumplen roles distintos. Confundirlos es uno de los errores más comunes al configurar un proyecto:</p>
+      <table class="tabla-comp tabla-comp--cmd tabla-comp--roles">
+        <caption class="sr-only">Linter (ESLint) y formateador (Prettier): qué revisa, qué corrige, cuándo actúa, si cambia la lógica y si son excluyentes</caption>
+        <thead><tr><th scope="col">Característica</th><th scope="col">Linter (ESLint)</th><th scope="col">Formateador (Prettier)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">¿Qué revisa?</th><td>Errores lógicos, malas prácticas, variables sin usar</td><td>Espacios, indentación, punto y coma, comillas</td></tr>
+          <tr><th scope="row">¿Qué corrige?</th><td>Señala el problema. Algunos los corrige automáticamente.</td><td>Corrige el estilo completo automáticamente al guardar</td></tr>
+          <tr><th scope="row">¿Cuándo actúa?</th><td>Mientras escribís (en tiempo real en el editor)</td><td>Al guardar el archivo (o al ejecutar el comando)</td></tr>
+          <tr><th scope="row">¿Cambia la lógica?</th><td>No cambia el código, solo avisa</td><td>No cambia la lógica, solo el estilo visual</td></tr>
+          <tr><th scope="row">¿Son excluyentes?</th><td colspan="2">No. Se usan juntos y se complementan perfectamente.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> ESLint cuida la calidad del código. Prettier cuida la apariencia. Necesitás los dos.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 20">20</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 21 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-21" aria-labelledby="t21">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t21"><span class="tit__num">21.</span> El depurador</h2>
+      <p class="tit__sub">Breakpoints, paso a paso y variables</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-bicho"/></svg>
+      <p>El <strong>depurador</strong> (en inglés, <span lang="en">debugger</span>) pausa el programa en la línea que elegimos. Ahí podemos ver el valor de cada variable y avanzar de a una instrucción. Con <code class="cod-js">console.log</code> solo vemos lo que decidimos imprimir, y al final; con el depurador vemos todo, en el momento en que pasa.</p>
+    </div>
+
+    <div class="esquema-par esquema-par--depurador">
+      <div class="ej-col">
+        <figure class="codigo codigo--js" id="ej-21">
+          <figcaption><span class="codigo__archivo">suma.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de suma.js"><code><span class="c-etq">let</span> suma = <span class="c-num">0</span>;
+<span class="c-etq">for</span> (<span class="c-etq">let</span> i = <span class="c-num">1</span>; i &lt;= <span class="c-num">4</span>; i++) {
+  suma = suma + i;
+}
+console.<span class="c-fun">log</span>(<span class="c-str">"La suma es:"</span>, suma);</code></pre>
+        </figure>
+        <figure class="esquema">
+          <svg viewBox="0 0 340 196" style="max-width:440px;margin:0 auto" role="img" aria-labelledby="esq21">
+            <title id="esq21">VS Code depurando suma.js, detenido por segunda vez. A: el punto rojo del breakpoint, a la izquierda del número de la línea 3. B: la línea 3 resaltada en amarillo: es la que se va a ejecutar. C: a la izquierda, en el panel Ejecución y depuración, la sección Variables muestra i igual a 2 y suma igual a 1. D: arriba, la barra de depuración con sus seis botones: Continuar, Paso por encima, Paso a paso dentro, Salir, Reiniciar y Detener.</title>
+            <!-- Ventana -->
+            <rect x="1" y="1" width="338" height="194" rx="6" style="fill:var(--cod-fondo)"/>
+            <path d="M7 1h326a6 6 0 0 1 6 6v13H1V7a6 6 0 0 1 6-6z" style="fill:var(--consola-fondo)"/>
+            <text x="60" y="14" style="font-family:var(--fuente);font-size:8.5px;fill:var(--cod-com)">suma.js - tp6-ambiente</text>
+            <!-- Barra de actividades: Ejecución y depuración, activo -->
+            <rect x="1" y="20" width="23" height="157" style="fill:var(--consola-fondo)"/>
+            <rect x="1" y="49" width="2.5" height="20" style="fill:var(--acento)"/>
+            <g style="fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round">
+              <path d="M9 30h6l3 3v10H9z" style="stroke:var(--cod-com)"/>
+              <path d="M9 53l8 5-8 5z" style="stroke:var(--cod-base)"/>
+              <circle cx="17.5" cy="63.5" r="2.5" style="stroke:var(--cod-base)"/>
+              <path d="M7 80h5v5H7zM14 80h5v5h-5zM7 87h5v5H7z" style="stroke:var(--cod-com)"/>
+            </g>
+            <!-- C: panel Ejecución y depuración, sección Variables -->
+            <rect x="24" y="20" width="104" height="157" style="fill:var(--consola-fondo)"/>
+            <path d="M128 20v157" style="stroke:var(--cod-fondo);stroke-width:1.5"/>
+            <text x="30" y="33" style="font-family:var(--fuente);font-size:7.5px;font-weight:700;letter-spacing:.03em;fill:var(--cod-com)">EJECUCIÓN Y DEPURACIÓN</text>
+            <path d="M30 45l2.5 2.5 2.5-2.5" style="fill:none;stroke:var(--cod-base);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round"/>
+            <text x="39" y="49.5" style="font-family:var(--fuente);font-size:8.5px;font-weight:700;fill:var(--cod-base)">VARIABLES</text>
+            <rect x="30" y="56" width="92" height="34" rx="3" style="fill:none;stroke:var(--acento);stroke-width:1.5"/>
+            <g style="font-family:var(--fuente-codigo);font-size:10px">
+              <text x="38" y="70" style="fill:var(--cod-base)">i: <tspan style="fill:var(--cod-num)">2</tspan></text>
+              <text x="38" y="84" style="fill:var(--cod-base)">suma: <tspan style="fill:var(--cod-num)">1</tspan></text>
+            </g>
+            <!-- Editor -->
+            <rect x="128.5" y="20" width="210.5" height="17" style="fill:var(--consola-fondo)"/>
+            <rect x="128.5" y="20" width="56" height="17" style="fill:var(--cod-fondo)"/>
+            <rect x="128.5" y="20" width="56" height="2" style="fill:var(--acento)"/>
+            <text x="137" y="32" style="font-family:var(--fuente-codigo);font-size:9.5px;fill:var(--cod-base)">suma.js</text>
+            <!-- B: línea 3, la que se va a ejecutar -->
+            <rect x="129" y="94" width="210" height="16" style="fill:var(--punto-amarillo);opacity:.28"/>
+            <g style="font-family:var(--fuente-codigo);font-size:9px;fill:var(--cod-com)" text-anchor="end">
+              <text x="158" y="69">1</text><text x="158" y="86">2</text><text x="158" y="105">3</text><text x="158" y="122">4</text><text x="158" y="139">5</text>
+            </g>
+            <!-- A: breakpoint -->
+            <circle cx="141" cy="102" r="4.2" style="fill:var(--punto-rojo)"/>
+            <path d="M136 98.5h7l3.5 3.5-3.5 3.5h-7z" style="fill:none;stroke:var(--punto-amarillo);stroke-width:1.4;stroke-linejoin:round"/>
+            <g style="font-family:var(--fuente-codigo);font-size:9px;fill:var(--cod-base)">
+              <text x="166" y="69"><tspan style="fill:var(--cod-etq)">let</tspan> suma = <tspan style="fill:var(--cod-num)">0</tspan>;</text>
+              <text x="166" y="86"><tspan style="fill:var(--cod-etq)">for</tspan> (<tspan style="fill:var(--cod-etq)">let</tspan> i = <tspan style="fill:var(--cod-num)">1</tspan>; i &lt;= <tspan style="fill:var(--cod-num)">4</tspan>; i++) {</text>
+              <text x="166" y="105">  suma = suma + i;</text>
+              <text x="166" y="122">}</text>
+              <text x="166" y="139">console.<tspan style="fill:var(--cod-fun)">log</tspan>(<tspan style="fill:var(--cod-str)">"La suma es:"</tspan>, suma);</text>
+            </g>
+            <!-- D: barra de depuración -->
+            <rect x="194" y="40" width="130" height="18" rx="3" style="fill:var(--consola-fondo);stroke:var(--cod-com);stroke-width:1"/>
+            <g style="fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round">
+              <path d="M202 45v8M206 45l6 4-6 4z" style="stroke:var(--punto-verde)"/>
+              <path d="M220 51a5 5 0 0 1 10 0M229 48l1.5 3 3-1.5M225 54v.2" style="stroke:var(--cod-fun)"/>
+              <path d="M246 44v6M243 47l3 3 3-3M246 54v.2" style="stroke:var(--cod-fun)"/>
+              <path d="M266 51v-6M263 48l3-3 3 3M266 54v.2" style="stroke:var(--cod-com)"/>
+              <path d="M290 46a4.5 4.5 0 1 0 1.5 3.5M291.5 44v3h-3" style="stroke:var(--cod-com)"/>
+              <rect x="308" y="45" width="8" height="8" rx="1" style="stroke:var(--punto-rojo)"/>
+            </g>
+            <!-- Barra de estado: en naranja mientras se depura -->
+            <path d="M1 177h338v12a6 6 0 0 1-6 6H7a6 6 0 0 1-6-6z" style="fill:var(--naranja-texto)"/>
+            <rect x="1" y="1" width="338" height="194" rx="6" style="fill:none;stroke:var(--tinta);stroke-width:2"/>
+            <!-- Letras -->
+            <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+              <circle cx="141" cy="87" r="7.5"/>
+              <circle cx="326" cy="102" r="7.5"/>
+              <circle cx="120" cy="49" r="7.5"/>
+              <circle cx="186" cy="49" r="7.5"/>
+            </g>
+            <g class="tt tt--claro" text-anchor="middle" style="font-size:10.5px;font-weight:700">
+              <text x="141" y="90.8">A</text><text x="326" y="105.8">B</text><text x="120" y="52.8">C</text><text x="186" y="52.8">D</text>
+            </g>
+          </svg>
+        </figure>
+        <section class="esquema-nota" aria-labelledby="n21b">
+          <h3 id="n21b">Cómo cambian las variables en cada vuelta</h3>
+          <p class="esquema-nota__p">Con el breakpoint en la línea 3, el programa se detiene cuatro veces. Con <kbd>F5</kbd> pasamos a la vuelta siguiente:</p>
+          <table class="tabla-comp tabla-comp--cmd tabla-comp--vueltas">
+            <caption class="sr-only">Valores de i y de suma en cada pausa del breakpoint</caption>
+            <thead><tr><th scope="col">Pausa</th><th scope="col">1.ª</th><th scope="col">2.ª</th><th scope="col">3.ª</th><th scope="col">4.ª</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code class="cod-js">i</code></th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+              <tr><th scope="row"><code class="cod-js">suma</code></th><td>0</td><td>1</td><td>3</td><td>6</td></tr>
+            </tbody>
+          </table>
+          <p class="esquema-nota__p esquema-nota__p--sep">Después de la cuarta, el <code class="cod-js">for</code> termina y la <strong>Consola de depuración</strong> muestra <code class="cod-js">La suma es: 10</code>.</p>
+        </section>
+      </div>
+      <section class="esquema-nota" aria-labelledby="n21">
+        <h3 id="n21">Paso a paso</h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span><strong>Poner un breakpoint</strong> (punto de interrupción): clic a la izquierda del número de línea. Aparece un punto rojo <span class="marca">A</span>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span><strong>Iniciar:</strong> <kbd>F5</kbd> y elegimos <strong>Node.js</strong>. También desde el panel <strong>Ejecución y depuración</strong> (<span lang="en">Run and Debug</span>), con <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>El programa se detiene</strong> en el breakpoint. La línea en amarillo <span class="marca">B</span> todavía no se ejecutó.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span><strong>Mirar las variables</strong> en el panel <strong>Variables</strong> <span class="marca">C</span>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">5</span><span><strong>Avanzar</strong> con la barra de depuración <span class="marca">D</span>:</span></li>
+        </ol>
+        <table class="tabla-comp tabla-comp--cmd">
+          <caption class="sr-only">Botones de la barra de depuración, su tecla y qué hace cada uno</caption>
+          <thead><tr><th scope="col">Botón</th><th scope="col">Tecla</th><th scope="col">Qué hace</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Continuar <span lang="en" class="en">(Continue)</span></th><td><kbd>F5</kbd></td><td>Sigue hasta el próximo breakpoint o hasta el final.</td></tr>
+            <tr><th scope="row">Paso por encima <span lang="en" class="en">(Step Over)</span></th><td><kbd>F10</kbd></td><td>Ejecuta la línea y se detiene en la siguiente.</td></tr>
+            <tr><th scope="row">Paso a paso dentro <span lang="en" class="en">(Step Into)</span></th><td><kbd>F11</kbd></td><td>Si la línea llama a una función, entra en ella.</td></tr>
+            <tr><th scope="row">Detener <span lang="en" class="en">(Stop)</span></th><td><kbd>Shift</kbd> + <kbd>F5</kbd></td><td>Termina la depuración.</td></tr>
+          </tbody>
+        </table>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: node suma.js y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node suma.js</span>
+La suma es: 10</code></pre>
+          <p class="terminal__nota">Sin el depurador, solo vemos el resultado final.</p>
+        </figure>
+      </section>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> con el depurador, pausá el programa e inspeccioná las variables. Es más potente que el <code class="cod-js">console.log</code>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 21">21</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 22 =================== -->
+  <article class="lamina lamina--compacta lamina--densa lamina--mas-densa" id="pag-22" aria-labelledby="t22">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t22"><span class="tit__num">22.</span> Node.js</h2>
+      <p class="tit__sub">El puente desde el pseudocódigo</p>
+    </div>
+
+    <div class="ej ej--tres">
+      <section class="esquema-nota" aria-labelledby="n22a">
+        <h3 id="n22a">¿Qué es Node.js?</h3>
+        <p class="esquema-nota__p">Node.js es el entorno que permite ejecutar JavaScript fuera del navegador, directamente en la terminal de tu computadora. Antes de Node, JavaScript solo podía correr dentro de un <span lang="en">browser</span>. Con Node, JS se convirtió en un lenguaje de propósito general.</p>
+      </section>
+      <section class="esquema-nota" aria-labelledby="n22c">
+        <h3 id="n22c">¿Cómo se ejecuta?</h3>
+        <p class="esquema-nota__p">Con <code class="cod-js">node archivo.js</code>. Ese comando lee tu archivo JavaScript y lo ejecuta en la terminal, igual que cuando ejecutaban pseudocódigo en el intérprete.</p>
+      </section>
+      <section class="esquema-nota" aria-labelledby="n22b">
+        <h3 id="n22b">De pseudocódigo a JavaScript real</h3>
+        <table class="tabla-comp tabla-comp--cmd tabla-comp--pseudo">
+          <caption class="sr-only">Cada instrucción de pseudocódigo y su traducción a JavaScript con Node.js</caption>
+          <thead><tr><th scope="col">Pseudocódigo</th><th scope="col">JavaScript (Node.js)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Escribir "Hola"</th><td><code class="cod-js">console.log("Hola")</code></td></tr>
+            <tr><th scope="row">nombre ← "Juan"</th><td><code class="cod-js">let nombre = "Juan"</code></td></tr>
+            <tr><th scope="row">Si edad &gt; 18 entonces<br>Fin si</th><td><code class="cod-js">if (edad &gt; 18) {</code><br><code class="cod-js">}</code></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <section aria-labelledby="s22c">
+      <h3 class="subtitulo" id="s22c">Instalación y primeros pasos</h3>
+      <div class="ej ej--res ej--primeros">
+        <div class="ej-col">
+          <p class="texto--sub">La forma más sencilla y recomendada es a través de la página oficial de Node.js, descargando el instalador para tu sistema operativo (Windows, macOS).</p>
+          <ol class="pf__lista ej-pasos">
+            <li>Visitá <strong>nodejs.org/es/download/</strong></li>
+            <li>Descargá y ejecutá el instalador (la versión <strong>LTS</strong> es la más estable y recomendada).</li>
+            <li>Seguí las instrucciones del asistente de instalación.</li>
+          </ol>
+          <p class="texto--sub">Verificá la instalación abriendo tu terminal y escribiendo:</p>
+          <figure class="terminal">
+            <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+            <pre tabindex="0" aria-label="Terminal: node -v y npm -v, con su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node -v</span>
+v24.13.1
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>npm -v</span>
+11.8.0</code></pre>
+            <p class="terminal__nota">Deberías ver los números de versión de Node.js y npm (pueden ser otros).</p>
+          </figure>
+        </div>
+        <div class="ej-col">
+          <p class="texto--sub">Una vez instalado Node.js, creá un archivo nuevo, por ejemplo <code class="cod-js">mi_script.js</code>, y agregale el siguiente contenido:</p>
+          <figure class="codigo codigo--js" id="ej-22">
+            <figcaption><span class="codigo__archivo">mi_script.js</span></figcaption>
+            <pre tabindex="0" aria-label="Código de mi_script.js"><code><span class="c-com">// mi_script.js</span>
+console.<span class="c-fun">log</span>(<span class="c-str">"¡Hola 5.º año!"</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">"La fecha y hora actuales son:"</span>, <span class="c-etq">new</span> <span class="c-fun">Date</span>());</code></pre>
+          </figure>
+          <p class="texto--sub">Guardá el archivo. Luego, en la terminal, andá a la carpeta donde guardaste <code class="cod-js">mi_script.js</code> y ejecutalo con el comando <code class="cod-js">node</code>:</p>
+          <figure class="terminal">
+            <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+            <pre tabindex="0" aria-label="Terminal: node mi_script.js y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node mi_script.js</span>
+¡Hola 5.º año!
+La fecha y hora actuales son: 2026-10-11T06:06:55.744Z</code></pre>
+            <p class="terminal__nota">La fecha y la hora cambian en cada ejecución.</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="esquema-nota" aria-labelledby="s22d">
+      <h3 id="s22d">Template literals: textos con variables adentro</h3>
+      <p class="esquema-nota__p">Para armar un texto con variables podemos unir las partes con <code class="cod-js">+</code>, o escribir todo entre <strong>comillas invertidas</strong> (<code class="cod-js">`</code>) y poner cada variable dentro de <code class="cod-js">${ }</code>. El resultado es el mismo, y se lee mejor. En el teclado latinoamericano, la comilla invertida sale con <kbd>AltGr</kbd> + <kbd>}</kbd> y después <kbd>Espacio</kbd>.</p>
+      <div class="ej ej--plantilla">
+        <figure class="codigo codigo--js" id="ej-22b">
+        <figcaption><span class="codigo__archivo">plantilla.js</span></figcaption>
+        <pre tabindex="0" aria-label="Código de plantilla.js"><code><span class="c-etq">const</span> nombre = <span class="c-str">"Ana"</span>;
+<span class="c-etq">const</span> curso = <span class="c-str">"5.º año"</span>;
+
+console.<span class="c-fun">log</span>(<span class="c-str">"Hola, "</span> + nombre + <span class="c-str">". Estás en "</span> + curso + <span class="c-str">"."</span>);
+console.<span class="c-fun">log</span>(<span class="c-str">`Hola, </span>${nombre}<span class="c-str">. Estás en </span>${curso}<span class="c-str">.`</span>);</code></pre>
+        </figure>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: node plantilla.js y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node plantilla.js</span>
+Hola, Ana. Estás en 5.º año.
+Hola, Ana. Estás en 5.º año.</code></pre>
+          <p class="terminal__nota">Las dos líneas muestran lo mismo.</p>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> la lógica es la misma que en pseudocódigo. Solo cambia la sintaxis. Node.js es el motor que la ejecuta.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 22">22</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 23 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-23" aria-labelledby="t23">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t23"><span class="tit__num">23.</span> npm: el gestor de paquetes</h2>
+      <p class="tit__sub">figlet, package.json y node_modules</p>
+    </div>
+
+    <div class="ej ej--res ej--figlet">
+      <section class="esquema-nota" aria-labelledby="n23a">
+        <h3 id="n23a">El problema planteado</h3>
+        <p class="esquema-nota__p">“Quiero que mi saludo se imprima como un cartel gigante de letras ASCII en la terminal. ¿Lo programo yo desde cero?”</p>
+        <p class="esquema-nota__p esquema-nota__p--sep">No. Alguien ya lo hizo, lo empaquetó y lo publicó para que cualquiera lo use. Eso es <strong>npm</strong> (<span lang="en">Node Package Manager</span>): el repositorio más grande del mundo con más de 2 millones de paquetes listos para usar.</p>
+        <p class="consejo esquema-nota__p--sep">npm viene incluido con Node.js. Cuando instalás Node, npm ya está disponible en la terminal.</p>
+      </section>
+      <div class="ej-col">
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: npm install figlet y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>npm install figlet</span>
+
+added 2 packages, and audited 3 packages in 4s
+
+found 0 vulnerabilities</code></pre>
+        </figure>
+        <figure class="codigo codigo--js" id="ej-23">
+          <figcaption><span class="codigo__archivo">cartel.js</span></figcaption>
+          <pre tabindex="0" aria-label="Código de cartel.js"><code><span class="c-etq">const</span> figlet = <span class="c-fun">require</span>(<span class="c-str">"figlet"</span>);
+
+console.<span class="c-fun">log</span>(figlet.<span class="c-fun">textSync</span>(<span class="c-str">"Hola 5.º año!"</span>));</code></pre>
+        </figure>
+      </div>
+    </div>
+
+    <figure class="terminal terminal--cartel">
+      <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+      <pre tabindex="0" aria-label="Terminal: node cartel.js y su salida, el texto Hola 5.º año! en letras gigantes hechas con caracteres"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node cartel.js</span>
+  _   _       _         ____  ___          /\/|       _ 
+ | | | | ___ | | __ _  | ___|/ _ \   __ _ |/\/   ___ | |
+ | |_| |/ _ \| |/ _` | |___ \\___/  / _` | '_ \ / _ \| |
+ |  _  | (_) | | (_| |  ___) |___| | (_| | | | | (_) |_|
+ |_| |_|\___/|_|\__,_| |____(_)     \__,_|_| |_|\___/(_)
+                                                        </code></pre>
+      <p class="terminal__nota">Con pocas líneas de código generamos texto gigante en ASCII. Sin npm, esto llevaría horas de matemática y lógica.</p>
+    </figure>
+
+    <div class="ej ej--res ej--pkg">
+      <figure class="codigo codigo--neutro" id="ej-23b">
+        <figcaption><span class="codigo__archivo">package.json</span><span class="codigo__donde">después de npm install figlet</span></figcaption>
+        <pre tabindex="0" aria-label="Contenido de package.json"><code>{
+  <span class="c-atr">"name"</span>: <span class="c-str">"tp6-ambiente"</span>,
+  <span class="c-atr">"version"</span>: <span class="c-str">"1.0.0"</span>,
+  <span class="c-atr">"description"</span>: <span class="c-str">""</span>,
+  <span class="c-atr">"main"</span>: <span class="c-str">"index.js"</span>,
+  <span class="c-atr">"scripts"</span>: {
+    <span class="c-atr">"test"</span>: <span class="c-str">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
+  },
+  <span class="c-atr">"keywords"</span>: [],
+  <span class="c-atr">"author"</span>: <span class="c-str">""</span>,
+  <span class="c-atr">"license"</span>: <span class="c-str">"ISC"</span>,
+  <span class="c-atr">"type"</span>: <span class="c-str">"commonjs"</span>,
+  <span class="c-atr">"dependencies"</span>: {
+    <span class="c-atr">"figlet"</span>: <span class="c-str">"^1.12.0"</span>
+  }
+}</code></pre>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="n23b">
+        <h3 id="n23b">package.json: el manifiesto del proyecto</h3>
+        <p class="esquema-nota__p">Usa el formato <strong>JSON</strong> (ver “Para profundizar”) para describir el proyecto y sus dependencias. Cuando ejecutás <code class="cod-js">npm install</code>, Node lee este archivo y sabe exactamente qué paquetes descargar y cómo configurar el entorno.</p>
+        <p class="esquema-nota__p esquema-nota__p--sep"><strong>¿Cómo se crea?</strong> No se crea solo: se genera una sola vez, al comienzo del proyecto, con <code class="cod-js">npm init -y</code> en la carpeta raíz. El <code class="cod-js">-y</code> responde todo con valores por defecto; el archivo se puede editar después.</p>
+        <p class="esquema-nota__p esquema-nota__p--sep"><strong>Actualización automática.</strong> Cada vez que instalás un paquete con <code class="cod-js">npm install</code>, el package.json se actualiza solo, agregando la nueva dependencia en la sección <code class="cod-js">"dependencies"</code>.</p>
+        <p class="esquema-nota__p esquema-nota__p--sep">JSON no es código que se ejecuta. Es solo un archivo de configuración que otros programas leen para saber cómo comportarse.</p>
+      </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 23, hoja 1 de 2">23 · 1/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 23 · Hoja 2 =================== -->
+  <article class="lamina lamina--compacta" id="pag-23b" aria-labelledby="t23b">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t23b"><span class="tit__num">23.</span> npm: el gestor de paquetes<span class="sr-only"> (sigue)</span></h2>
+      <p class="tit__sub">node_modules y comandos esenciales · sigue</p>
+    </div>
+
+    <section class="panel" aria-labelledby="s23c">
+      <h3 class="subtitulo" id="s23c">La carpeta node_modules</h3>
+      <p class="texto--sub">Cuando ejecutás <code class="cod-js">npm install</code>, npm descarga todos los paquetes declarados en package.json y los guarda en la carpeta <code class="cod-carpeta">node_modules</code>. Esta carpeta puede pesar cientos de megabytes y contener miles de archivos.</p>
+      <ul class="comparar comparar--3 comparar--chico comparar--blanco">
+        <li><div><h3>No la editás a mano</h3><p>Nunca modifiques archivos dentro de node_modules. Se regeneran con <code class="cod-js">npm install</code> y tus cambios se pierden.</p></div></li>
+        <li><div><h3>No la compartís</h3><p>No la mandás por WhatsApp, no la subís a GitHub. Es enorme e innecesaria: se puede regenerar.</p></div></li>
+        <li><div><h3>Sí compartís el package.json</h3><p>Tu compañero recibe el package.json y ejecuta <code class="cod-js">npm install</code>. npm reconstruye la carpeta automáticamente.</p></div></li>
+      </ul>
+      <p class="texto--sub texto--cierre">Si alguien te manda un proyecto sin node_modules, no rompió nada. Simplemente ejecutá <code class="cod-js">npm install</code> y listo.</p>
+    </section>
+
+    <section class="panel panel--tabla" aria-labelledby="s23d">
+      <h3 class="subtitulo" id="s23d">Comandos npm esenciales</h3>
+      <table class="tabla-comp tabla-comp--cmd">
+        <caption class="sr-only">Comandos de npm y qué hace cada uno</caption>
+        <thead><tr><th scope="col">Comando</th><th scope="col">¿Qué hace?</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><code class="cod-js">npm init -y</code></th><td>Crea el package.json con valores por defecto. El <code class="cod-js">-y</code> salta todas las preguntas.</td></tr>
+          <tr><th scope="row"><code class="cod-js">npm install &lt;paquete&gt;</code></th><td>Descarga e instala un paquete y lo agrega a <code class="cod-js">dependencies</code>.</td></tr>
+          <tr><th scope="row"><code class="cod-js">npm install -D &lt;paquete&gt;</code></th><td>Instala un paquete solo para desarrollo (<code class="cod-js">devDependencies</code>). Ej.: ESLint.</td></tr>
+          <tr><th scope="row"><code class="cod-js">npm run &lt;script&gt;</code></th><td>Ejecuta el comando personalizado definido en la sección <code class="cod-js">"scripts"</code> del package.json.</td></tr>
+          <tr><th scope="row"><code class="cod-js">npm install</code></th><td>Sin argumentos: instala TODOS los paquetes del package.json. Usar al clonar un proyecto.</td></tr>
+          <tr><th scope="row"><code class="cod-js">npm list</code></th><td>Muestra todos los paquetes instalados en el proyecto actual y sus versiones.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> npm + Node.js es el ecosistema que conecta tu JavaScript con el mundo real: paquetes, servidor, terminal.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 23, hoja 2 de 2">23 · 2/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 24 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-24" aria-labelledby="t24">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t24"><span class="tit__num">24.</span> Express y el README</h2>
+      <p class="tit__sub">Un servidor web y la documentación del proyecto</p>
+    </div>
+
+    <div class="ej ej--res">
+      <section class="esquema-nota" aria-labelledby="n24a">
+        <h3 id="n24a">¿Y si esto se viera en el navegador?</h3>
+        <p class="esquema-nota__p">Hasta ahora todo lo que programamos se ve en la terminal. Texto plano. Pero el desarrollo web real implica responder pedidos de navegadores, apps móviles o servicios externos. Para eso necesitamos un <strong>servidor web</strong>: un programa que está “escuchando” peticiones y responde con datos, HTML o JSON.</p>
+        <p class="esquema-nota__p esquema-nota__p--sep"><strong>¿Qué es un servidor web?</strong> Es un programa que espera pedidos y responde. Como un mozo: espera que alguien pida algo, va a buscar lo que pidió y lo trae de vuelta.</p>
+      </section>
+      <section class="esquema-nota" aria-labelledby="n24b">
+        <h3 id="n24b">Express: una dependencia más de npm</h3>
+        <p class="esquema-nota__p">Express es un paquete npm (igual que figlet) que nos da las herramientas para crear un servidor web con JavaScript de forma sencilla. Es el <span lang="en">framework</span> web más popular del ecosistema Node.js.</p>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: npm install express y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>npm install express</span>
+
+added 65 packages, and audited 68 packages in 4s
+
+28 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities</code></pre>
+        </figure>
+        <p class="esquema-nota__p">Con ese solo comando, Express queda disponible en tu proyecto. Express no es magia nueva: es JavaScript que ya sabés, pero organizado para responder peticiones HTTP.</p>
+      </section>
+    </div>
+
+    <div class="ej ej--res ej--express">
+      <figure class="codigo codigo--js" id="ej-24">
+        <figcaption><span class="codigo__archivo">app.js</span><span class="codigo__donde">el servidor mínimo</span></figcaption>
+        <pre tabindex="0" aria-label="Código de app.js"><code><span class="c-com">// 1. Importamos Express</span>
+<span class="c-etq">const</span> express = <span class="c-fun">require</span>(<span class="c-str">"express"</span>);
+
+<span class="c-com">// 2. Creamos la aplicación</span>
+<span class="c-etq">const</span> app = <span class="c-fun">express</span>();
+
+<span class="c-com">// 3. Definimos una ruta</span>
+app.<span class="c-fun">get</span>(<span class="c-str">"/"</span>, (req, res) => {
+  res.<span class="c-fun">send</span>(<span class="c-str">"¡Hola 5.º año!"</span>);
+});
+
+<span class="c-com">// 4. Ponemos el servidor a escuchar</span>
+app.<span class="c-fun">listen</span>(<span class="c-num">3000</span>, () => {
+  console.<span class="c-fun">log</span>(<span class="c-str">"Servidor en puerto 3000"</span>);
+});</code></pre>
+      </figure>
+      <div class="ej-col">
+        <section class="esquema-nota" aria-labelledby="n24c">
+          <h3 id="n24c">¿Qué pasa en cada línea?</h3>
+          <ol class="pf__lista">
+            <li><code class="cod-js">require("express")</code>: cargamos el paquete Express que instalamos con npm. Igual que cargamos figlet antes.</li>
+            <li><code class="cod-js">express()</code>: creamos nuestra aplicación web. La variable <code class="cod-js">app</code> es el servidor.</li>
+            <li><code class="cod-js">app.get("/", …)</code>: definimos qué responder cuando alguien visite la ruta <code class="cod-js">"/"</code>. El método GET es el pedido estándar de un navegador.</li>
+            <li><code class="cod-js">app.listen(3000)</code>: el servidor empieza a escuchar en el puerto 3000. Puerto = puerta de entrada de la computadora.</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 24, hoja 1 de 2">24 · 1/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 24 · Hoja 2 =================== -->
+  <article class="lamina lamina--compacta" id="pag-24b" aria-labelledby="t24b">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t24b"><span class="tit__num">24.</span> Express y el README<span class="sr-only"> (sigue)</span></h2>
+      <p class="tit__sub">El servidor funcionando y la documentación · sigue</p>
+    </div>
+
+    <section class="esquema-nota" aria-labelledby="n24e">
+      <h3 id="n24e">¿Cómo lo ejecutamos?</h3>
+      <div class="ej ej--res">
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: node app.js y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node app.js</span>
+Servidor en puerto 3000</code></pre>
+          <p class="terminal__nota">El servidor queda escuchando. Para detenerlo: <kbd>Ctrl</kbd> + <kbd>C</kbd> en la terminal.</p>
+        </figure>
+        <figure class="resultado" aria-label="Navegador en localhost:3000. La página muestra el texto ¡Hola 5.º año!">
+          <div class="resultado__barra" aria-hidden="true"><span class="resultado__puntos"></span><span class="resultado__pestana">localhost:3000/</span></div>
+          <div class="resultado__dir" aria-hidden="true"><span>localhost:3000</span></div>
+          <p class="resultado__pagina" style="--alto:30px">¡Hola 5.º año!</p>
+          <figcaption class="resultado__nota">Abrí el navegador en <strong>localhost:3000</strong> y vas a ver el texto como si fuera una página web real.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="s24d">
+      <h3 class="subtitulo" id="s24d">Documentar: el README.md</h3>
+      <div class="ej ej--res ej--readme">
+        <div class="ej-col">
+          <p class="panel__texto"><strong>¿Para qué documentar?</strong> Un compañero tiene que poder clonar tu proyecto y dejarlo funcionando en menos de 10 minutos, leyendo solo tu documentación. Si no puede, la documentación está incompleta.</p>
+          <p class="panel__texto">El archivo README.md es el primer archivo que alguien lee cuando entra a un repositorio. Es la “portada” de tu proyecto.</p>
+          <p class="consejo">La extensión .md es Markdown: un formato de texto simple que se convierte en HTML. GitHub y VS Code lo renderizan automáticamente.</p>
+        </div>
+        <div class="esquema-nota esquema-nota--blanca">
+          <h3>¿Qué debe incluir el README?</h3>
+          <ol class="puntos puntos--pasos">
+            <li><span class="puntos__n" aria-hidden="true">1</span><span><strong>Requisitos del sistema:</strong> Node.js versión mínima, SO compatible, dependencias externas necesarias.</span></li>
+            <li><span class="puntos__n" aria-hidden="true">2</span><span><strong>Pasos de instalación:</strong> clonar el repo, ejecutar <code class="cod-js">npm install</code>, configurar variables de entorno.</span></li>
+            <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>Extensiones de VS Code recomendadas:</strong> lista de las extensiones que instalaste para que el proyecto funcione correctamente.</span></li>
+            <li><span class="puntos__n" aria-hidden="true">4</span><span><strong>Cómo ejecutar el proyecto:</strong> el comando exacto para levantar el servidor o ejecutar el programa principal.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> con Express armamos nuestro primer servidor web con JS. El resultado se ve en el navegador, ya no solo en la terminal.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 24, hoja 2 de 2">24 · 2/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR · Hoja 1 =================== -->
+  <article class="lamina lamina--pf lamina--pf-denso lamina--pf-chico" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina · Hoja 1 de 2</p>
+    </div>
+
+    <div class="pf-grid pf-grid--cols">
+      <div class="pf-col">
+    <section class="pf" aria-labelledby="pf18">
+      <p class="pf__etiqueta">Lámina 18</p>
+      <h3 class="pf__titulo" id="pf18">Cada problema, su herramienta</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Cada problema de la lámina 18 tiene su herramienta en este TP:</p>
+          <ul class="pf__lista">
+            <li><strong>Los errores aparecen al ejecutar:</strong> ESLint los marca mientras escribimos (lámina 20).</li>
+            <li><strong>El código queda desprolijo:</strong> Prettier lo ordena al guardar (lámina 20).</li>
+            <li><strong>No se ve qué hace paso a paso:</strong> el depurador (lámina 21).</li>
+            <li><strong>“En mi máquina funciona”:</strong> el package.json y el README.md. Cualquiera instala lo mismo con <code class="cod-js">npm install</code> (láminas 23 y 24).</li>
+          </ul>
+        </div>
+        <div class="pf__caja">
+          <h4>¿Qué es “producción”?</h4>
+          <p>Es donde el programa ya lo usa la gente, por ejemplo, una página publicada en internet. Por eso se prueba antes, en otro ambiente.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf19">
+      <p class="pf__etiqueta">Lámina 19</p>
+      <h3 class="pf__titulo" id="pf19">Más extensiones</h3>
+      <div class="pf__cols">
+        <div class="pf__caja">
+          <h4>Para JavaScript</h4>
+          <ul class="pf__lista">
+            <li><strong lang="en">JavaScript (ES6) snippets:</strong> atajos para escribir estructuras comunes más rápido.</li>
+            <li><strong>GitLens:</strong> integración avanzada con Git: quién editó cada línea y cuándo. Git lo vemos en el TP8.</li>
+            <li><strong>Live Share:</strong> trabajar en el mismo código con un compañero en tiempo real.</li>
+          </ul>
+        </div>
+        <div class="pf__texto">
+          <p><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd> abre el panel de extensiones <span class="marca">4</span>, sin buscar el ícono.</p>
+        </div>
+      </div>
+    </section>
+      </div>
+      <div class="pf-col">
+    <section class="pf" aria-labelledby="pf20">
+      <p class="pf__etiqueta">Lámina 20</p>
+      <h3 class="pf__titulo" id="pf20">Activar no-var y eqeqeq</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p><code class="cod-js">eslint:recommended</code> trae reglas como <code class="cod-js">no-unused-vars</code>, pero no <code class="cod-js">no-var</code> ni <code class="cod-js">eqeqeq</code>. Se activan en el archivo <code class="cod-js">eslint.config.js</code>, en la carpeta del proyecto. Primero instalamos ESLint solo para desarrollo:</p>
+          <figure class="terminal">
+            <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+            <pre tabindex="0" aria-label="Terminal: comando para instalar ESLint"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>npm install -D eslint @eslint/js globals</span></code></pre>
+          </figure>
+          <figure class="codigo codigo--js" id="ej-pf20">
+            <figcaption><span class="codigo__archivo">eslint.config.js</span></figcaption>
+            <pre tabindex="0" aria-label="Código de eslint.config.js"><code><span class="c-etq">const</span> js = <span class="c-fun">require</span>(<span class="c-str">"@eslint/js"</span>);
+<span class="c-etq">const</span> globals = <span class="c-fun">require</span>(<span class="c-str">"globals"</span>);
+
+module.exports = [
+  js.configs.recommended,
+  {
+    languageOptions: { globals: globals.node },
+    rules: {
+      <span class="c-str">"no-var"</span>: <span class="c-str">"error"</span>,
+      eqeqeq: <span class="c-str">"error"</span>,
+    },
+  },
+];</code></pre>
+          </figure>
+          <p><code class="cod-js">globals.node</code> le avisa a ESLint que <code class="cod-js">console</code> y <code class="cod-js">require</code> existen en Node. La extensión ESLint lee este archivo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf21">
+      <p class="pf__etiqueta">Lámina 21</p>
+      <h3 class="pf__titulo" id="pf21">Más del depurador</h3>
+      <div class="pf__cols">
+        <div class="pf__caja">
+          <h4>Los otros botones</h4>
+          <ul class="pf__lista">
+            <li><strong>Salir</strong> (<span lang="en">Step Out</span>), <kbd>Shift</kbd> + <kbd>F11</kbd>: termina la función actual y vuelve a la línea que la llamó.</li>
+            <li><strong>Reiniciar</strong> (<span lang="en">Restart</span>), <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F5</kbd>: vuelve a empezar desde la primera línea.</li>
+          </ul>
+        </div>
+        <div class="pf__texto">
+          <p><strong>Consola de depuración</strong> (<span lang="en">Debug Console</span>): mientras depuramos, ahí aparece lo que imprime <code class="cod-js">console.log</code>.</p>
+          <p><strong>Puntos de interrupción</strong> (<span lang="en">Breakpoints</span>): lista todos los breakpoints. Un clic sobre el punto rojo lo saca.</p>
+          <p>En VS Code en español, <kbd>F10</kbd> se llama “Depurar paso a paso por procedimientos” y <kbd>F11</kbd>, “Depurar paso a paso por instrucciones”.</p>
+        </div>
+      </div>
+    </section>
+      </div>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 6</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR · Hoja 2 =================== -->
+  <article class="lamina lamina--pf lamina--pf-denso lamina--pf-chico" id="profundizar-2" aria-labelledby="tpf2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf2"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina · Hoja 2 de 2</p>
+    </div>
+
+    <div class="pf-grid pf-grid--cols">
+      <div class="pf-col">
+    <section class="pf" aria-labelledby="pf22">
+      <p class="pf__etiqueta">Lámina 22</p>
+      <h3 class="pf__titulo" id="pf22">Versiones y datos desde la terminal</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p><strong>nvm.</strong> Para Linux o para gestionar múltiples versiones de Node.js, se recomienda usar un gestor de versiones como <strong>nvm</strong> (<span lang="en">Node Version Manager</span>).</p>
+          <p><strong>“Leer nombre”.</strong> En pseudocódigo, Leer pide el dato en pantalla. <code class="cod-js">process.argv[2]</code> no lo pide: lo toma de lo que escribimos <strong>después del comando</strong>.</p>
+          <figure class="codigo codigo--js" id="ej-pf22">
+            <figcaption><span class="codigo__archivo">saludo.js</span></figcaption>
+            <pre tabindex="0" aria-label="Código de saludo.js"><code><span class="c-etq">const</span> nombre = process.argv[<span class="c-num">2</span>];
+console.<span class="c-fun">log</span>(<span class="c-str">`Hola, </span>${nombre}<span class="c-str">`</span>);</code></pre>
+          </figure>
+          <figure class="terminal">
+            <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+            <pre tabindex="0" aria-label="Terminal: node saludo.js con y sin un nombre, y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node saludo.js Ana</span>
+Hola, Ana
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node saludo.js</span>
+Hola, undefined</code></pre>
+          </figure>
+          <p>Las posiciones 0 y 1 son node y el archivo; el primer dato está en la 2. Si no escribimos nada, queda <code class="cod-js">undefined</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf23">
+      <p class="pf__etiqueta">Lámina 23</p>
+      <h3 class="pf__titulo" id="pf23">¿Qué es JSON?</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>JSON (<span lang="en">JavaScript Object Notation</span>) es un formato de texto para guardar y transportar datos de forma estructurada. Lo entienden casi todos los lenguajes de programación y se basa en pares clave-valor, como un formulario: cada campo tiene un nombre y un valor.</p>
+          <figure class="codigo codigo--neutro" id="ej-pf23">
+            <figcaption><span class="codigo__archivo">alumno.json</span><span class="codigo__donde">ejemplo cotidiano</span></figcaption>
+            <pre tabindex="0" aria-label="Ejemplo de JSON con los datos de un alumno"><code>{
+  <span class="c-atr">"nombre"</span>: <span class="c-str">"Pepe"</span>,
+  <span class="c-atr">"edad"</span>: <span class="c-num">17</span>,
+  <span class="c-atr">"curso"</span>: <span class="c-str">"5.º año"</span>,
+  <span class="c-atr">"materias"</span>: [<span class="c-str">"Matemática"</span>, <span class="c-str">"Software"</span>, <span class="c-str">"Inglés"</span>],
+  <span class="c-atr">"aprobado"</span>: <span class="c-num">true</span>
+}</code></pre>
+          </figure>
+        </div>
+        <div class="pf__caja">
+          <h4>Tres reglas</h4>
+          <ul class="pf__lista">
+            <li><strong>Claves entre comillas:</strong> cada nombre de campo va entre comillas dobles: <code class="cod-js">"nombre"</code>, <code class="cod-js">"edad"</code>, etc.</li>
+            <li><strong>Tipos de valores:</strong> texto, número, booleano (<code class="cod-js">true</code>/<code class="cod-js">false</code>) o una lista entre <code class="cod-js">[]</code>.</li>
+            <li><strong>Separadores y estructura:</strong> los pares se separan con comas y todo el objeto va entre llaves <code class="cod-js">{}</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+      </div>
+      <div class="pf-col">
+    <section class="pf" aria-labelledby="pf23b">
+      <p class="pf__etiqueta">Lámina 23</p>
+      <h3 class="pf__titulo" id="pf23b">npm init, .gitignore y figlet con callback</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p><strong><code class="cod-js">npm init</code> paso a paso.</strong> Sin <code class="cod-js">-y</code>, hace preguntas una por una: nombre del proyecto (<span lang="en">package name</span>), versión, descripción, archivo principal (<span lang="en">entry point</span>), etc. Vos las respondés en la terminal. Entre paréntesis muestra el valor por defecto: con <kbd>Enter</kbd> lo aceptás. Es útil cuando querés personalizar cada campo desde el inicio.</p>
+          <p><strong>.gitignore.</strong> Cuando uses Git (en el TP8), vas a crear un archivo <code class="cod-js">.gitignore</code> en la raíz del proyecto con este contenido:</p>
+          <figure class="codigo codigo--neutro" id="ej-pf23b">
+            <figcaption><span class="codigo__archivo">.gitignore</span></figcaption>
+            <pre tabindex="0" aria-label="Contenido de .gitignore"><code>node_modules/
+.env
+*.log</code></pre>
+          </figure>
+          <p>Eso le dice a Git: “estos archivos y carpetas no los rastrees ni los subas”. Es una práctica estándar en todo proyecto profesional.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>figlet con callback</h4>
+          <p>En lugar de <code class="cod-js">textSync()</code>, figlet también acepta una función que se ejecuta cuando el cartel está listo. Muestra el mismo cartel:</p>
+          <figure class="codigo codigo--js" id="ej-pf23c">
+            <figcaption><span class="codigo__archivo">cartel.js</span></figcaption>
+            <pre tabindex="0" aria-label="Código de cartel.js con callback"><code><span class="c-etq">const</span> figlet = <span class="c-fun">require</span>(<span class="c-str">"figlet"</span>);
+
+<span class="c-fun">figlet</span>(<span class="c-str">"Hola 5.º año!"</span>, (err, data) => {
+  <span class="c-etq">if</span> (err) <span class="c-etq">return</span>;
+  console.<span class="c-fun">log</span>(data);
+});</code></pre>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf24">
+      <p class="pf__etiqueta">Lámina 24</p>
+      <h3 class="pf__titulo" id="pf24">Markdown para el README</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Markdown usa símbolos simples: <code class="cod-js">#</code> para los títulos (<code class="cod-js">##</code> para los subtítulos), <code class="cod-js">-</code> o <code class="cod-js">1.</code> para las listas y comillas invertidas para el código. Con el README.md abierto, <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> muestra cómo queda.</p>
+          <figure class="codigo codigo--neutro" id="ej-pf24">
+            <figcaption><span class="codigo__archivo">README.md</span><span class="codigo__donde">un esqueleto</span></figcaption>
+            <pre tabindex="0" aria-label="Esqueleto de README.md"><code><span class="c-etq"># Mi proyecto</span>
+
+<span class="c-etq">## Requisitos</span>
+- Node.js (versión LTS)
+
+<span class="c-etq">## Cómo ejecutarlo</span>
+<span class="c-str">`node app.js`</span></code></pre>
+          </figure>
+        </div>
+      </div>
+    </section>
+      </div>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 6</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte A =================== -->
+  <article class="lamina lamina--act lamina--act-densa" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Parte A — En la carpeta</h2>
+        <p>TP N°6 — Configuración del ambiente de desarrollo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada actividad prestando atención a las capturas de pantalla que se te piden. La Parte A se realiza en la CARPETA y la Parte B se documenta en la computadora.</p>
+
+    <ol class="acts acts--2col">
+      <li class="act act--ancho">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Editor vs IDE</h3>
+        <p class="act__txt">Definí con tus palabras la diferencia entre un editor de código y un IDE (entorno de desarrollo integrado). Después, completá el cuadro:</p>
+        <table class="act-tabla">
+          <caption class="sr-only">Cuadro para completar: tipo de cada herramienta, qué necesita que hagas vos y qué te da ya resuelto</caption>
+          <thead><tr><th scope="col">Herramienta</th><th scope="col">Tipo (editor / IDE)</th><th scope="col">¿Qué necesita que hagas vos?</th><th scope="col">¿Qué te da ya resuelto?</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">VS Code</th><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Sublime Text</th><td></td><td></td><td></td></tr>
+            <tr><th scope="row">PyCharm / WebStorm</th><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Linter vs Formateador</h3>
+        <p class="act__txt">Explicá qué hace cada uno y por qué no son lo mismo, aunque parezca. Da un ejemplo propio de un error que detectaría un linter y uno que corregiría un formateador.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Node.js — de pseudocódigo a código real</h3>
+        <p class="act__txt">Completá la traducción de pseudocódigo a JavaScript:</p>
+        <table class="act-tabla act-tabla--2">
+          <caption class="sr-only">Cuadro para completar: cada instrucción de pseudocódigo y su traducción a JavaScript</caption>
+          <thead><tr><th scope="col">Pseudocódigo</th><th scope="col">JavaScript</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Escribir "Hola mundo"</th><td></td></tr>
+            <tr><th scope="row">Escribir "Mi nombre es " + nombre</th><td></td></tr>
+          </tbody>
+        </table>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Comandos npm</h3>
+        <p class="act__txt">Completá el cuadro explicando para qué sirve cada comando:</p>
+        <table class="act-tabla act-tabla--2">
+          <caption class="sr-only">Cuadro para completar: para qué sirve cada comando de npm</caption>
+          <thead><tr><th scope="col">Comando</th><th scope="col">¿Para qué sirve?</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><code class="cod-js">npm init -y</code></th><td></td></tr>
+            <tr><th scope="row"><code class="cod-js">npm install &lt;paquete&gt;</code></th><td></td></tr>
+            <tr><th scope="row"><code class="cod-js">npm install</code></th><td></td></tr>
+            <tr><th scope="row"><code class="cod-js">npm list</code></th><td></td></tr>
+            <tr><th scope="row"><code class="cod-js">npm run &lt;script&gt;</code></th><td></td></tr>
+          </tbody>
+        </table>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">5-</span> npm y las dependencias</h3>
+        <p class="act__txt">Explicá con tus palabras qué es una dependencia y por qué usamos paquetes que otros ya programaron en lugar de escribir todo de cero. Ejemplificá.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">6-</span> package.json vs node_modules</h3>
+        <p class="act__txt">¿Qué diferencia hay entre estos dos elementos? ¿Por qué cuando le pasás tu proyecto a un compañero le mandás el <code class="cod-js">package.json</code> y no la carpeta <code class="cod-carpeta">node_modules</code>?</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">7-</span> Express</h3>
+        <p class="act__txt">¿Qué es un servidor? ¿Para qué sirve Express?</p>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 6</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte B · Hoja 1 =================== -->
+  <article class="lamina lamina--act lamina--act-densa lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Parte B — En la computadora</h2>
+        <p>TP N°6 — Configuración del ambiente de desarrollo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Documentá cada ejercicio con una captura de pantalla que muestre el resultado.</p>
+
+    <ol class="acts acts--2col" start="8">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">8-</span> Instalación de VS Code</h3>
+        <p class="act__txt">Instalá VS Code. Capturá la pantalla de inicio y señalá: explorador de archivos, terminal integrada y barra lateral.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">9-</span> Primeras extensiones</h3>
+        <p class="act__txt">Instalá extensiones para JavaScript (a elección). Capturá el Marketplace mostrando la instalación.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">10-</span> Hola Node</h3>
+        <p class="act__txt">Creá un archivo <code class="cod-js">saludo.js</code> que imprima tu nombre completo con <code class="cod-js">console.log</code>. Ejecutalo con:</p>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: comando node saludo.js"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>node saludo.js</span></code></pre>
+        </figure>
+        <p class="act__txt">Capturá el resultado en la terminal.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">11-</span> Datos con variables</h3>
+        <p class="act__txt">Creá <code class="cod-js">datos.js</code>. Declará tres variables: <code class="cod-js">nombre</code>, <code class="cod-js">curso</code> y <code class="cod-js">colegio</code>, con tus datos reales. Mostrá cada una por separado con <code class="cod-js">console.log</code>.</p>
+      </li>
+      <li class="act act--ancho">
+        <h3 class="act__titulo"><span class="act__num">12-</span> Presentación con template literals</h3>
+        <p class="act__txt">En el mismo archivo, armá un mensaje único que combine las tres variables en una sola oración, usando template literals:</p>
+        <figure class="codigo codigo--js" id="ej-act12">
+          <figcaption><span class="codigo__archivo">datos.js</span></figcaption>
+          <pre tabindex="0" aria-label="Template literal del ejercicio 12"><code><span class="c-str">`Soy </span>${nombre}<span class="c-str">, curso </span>${curso}<span class="c-str">, del </span>${colegio}<span class="c-str">.`</span></code></pre>
+        </figure>
+        <p class="act__txt">Ejemplo esperado: “Soy Juan Pérez, curso 5.º año, del Colegio Técnico Provincial Olga B. de Arko.” Capturá el resultado en la terminal.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">13-</span> Instalando un paquete</h3>
+        <p class="act__txt">Ejecutá en tu carpeta de proyecto:</p>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: comandos npm init -y y npm install figlet"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>npm init -y</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>npm install figlet</span></code></pre>
+        </figure>
+        <p class="act__txt">Escribí un script que imprima tu nombre en letras gigantes usando figlet. Capturá el resultado.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">14-</span> Explorando lo que se generó</h3>
+        <p class="act__txt">Abrí el archivo <code class="cod-js">package.json</code> y capturá su contenido. Abrí la carpeta <code class="cod-carpeta">node_modules</code> y contá cuántas carpetas hay adentro (no las abras una por una, solo contá).</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">15-</span> Tu primer cartel</h3>
+        <p class="act__txt">Creá <code class="cod-js">cartel.js</code> que imprima tu nombre en letras ASCII gigantes usando <code class="cod-js">figlet.textSync()</code>. Capturá el resultado.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">16-</span> Cartel con tus datos</h3>
+        <p class="act__txt">Usando las variables <code class="cod-js">nombre</code>, <code class="cod-js">curso</code> y <code class="cod-js">colegio</code> del ejercicio 11, generá tres carteles ASCII distintos, uno por cada dato.</p>
+        <p class="consejo"><strong>Pista:</strong> <code class="cod-js">figlet.textSync()</code> necesita un texto. Con template literals armás cualquier texto que quieras convertir en cartel.</p>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 6</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte B · Hoja 2 =================== -->
+  <article class="lamina lamina--act lamina--act-densa lamina--compu" id="actividades-3" aria-labelledby="act-3">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°6</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-3">Parte B — En la computadora (sigue)</h2>
+        <p>TP N°6 — Configuración del ambiente de desarrollo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <ol class="acts acts--2col" start="17">
+      <li class="act act--ancho">
+        <h3 class="act__titulo"><span class="act__num">17-</span> Cambiando la tipografía</h3>
+        <p class="act__txt">Figlet tiene distintas fuentes ASCII (<span lang="en">fonts</span>). Probá al menos 3 fuentes distintas para el mismo texto usando la opción <code class="cod-js">font</code> como segundo parámetro de <code class="cod-js">textSync()</code>:</p>
+        <figure class="codigo codigo--js" id="ej-act17">
+          <figcaption><span class="codigo__archivo">cartel.js</span></figcaption>
+          <pre tabindex="0" aria-label="Uso de textSync con la opción font"><code>figlet.<span class="c-fun">textSync</span>(<span class="c-str">"Hola"</span>, { font: <span class="c-str">"Standard"</span> })</code></pre>
+        </figure>
+        <p class="act__txt">Capturá los 3 resultados y decidí cuál te gusta más.</p>
+      </li>
+      <li class="act act--ancho">
+        <h3 class="act__titulo"><span class="act__num">18-</span> El servidor de carteles</h3>
+        <p class="act__txt">Instalá express:</p>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: comando npm install express"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>npm install express</span></code></pre>
+        </figure>
+        <p class="act__txt">Armá un servidor (<code class="cod-js">app.js</code>) que, al abrir <strong>localhost:3000</strong> en el navegador, muestre tu nombre como cartel ASCII generado con figlet — no en la terminal, sino directo en la página.</p>
+        <p class="consejo"><strong>Pista:</strong> <code class="cod-js">figlet.textSync()</code> devuelve texto con espacios y saltos de línea que HTML normalmente ignora. Envolvé el resultado en una etiqueta <code class="cod-etq">&lt;pre&gt;...&lt;/pre&gt;</code> dentro del <code class="cod-js">res.send()</code> para que el navegador respete el formato.</p>
+        <p class="act__txt">Capturá el navegador mostrando tu cartel.</p>
+      </li>
+      <li class="act act--ancho">
+        <h3 class="act__titulo"><span class="act__num">19-</span> README del proyecto</h3>
+        <p class="act__txt">Escribí un <code class="cod-js">README.md</code> que le permita a un compañero replicar todo el proyecto completo: desde instalar VS Code hasta ver el cartel ASCII en el navegador. Debe incluir: requisitos, pasos de instalación, comandos usados y cómo ejecutar el servidor.</p>
+      </li>
+    </ol>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>La Parte A se realiza en la carpeta.</p>
+            <p class="entrega__sub--sep">La Parte B se documenta con capturas de pantalla de cada ejercicio, en un documento a entregar por Classroom.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">Antes de entregar, revisá:</p>
+            <ul class="checklist">
+              <li>Cada captura corresponde a su ejercicio.</li>
+              <li>Se ve con claridad el nombre del archivo o la terminal.</li>
+              <li>Está la captura del cartel en el navegador (ejercicio 18).</li>
+              <li>Está la captura del <code class="cod-js">README.md</code> (ejercicio 19).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 6</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

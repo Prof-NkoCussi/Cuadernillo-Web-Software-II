@@ -36,7 +36,7 @@
   /* Etiquetas de tecnología (blanco encima: HTML 6,3:1 · CSS 6,0:1 · JS 7,6:1) */
   --html: #4F46E5;  --html-claro: #E0E7FF;  --html-linea: #C7D2FE;   /* HTML = el acento */
   --css:  #BE185D;  --css-claro:  #FCE7F3;  --css-texto: #BE185D;  --css-linea: #FBCFE8;   /* magenta; texto sobre --css-claro: 5,1:1 */
-  --js:   #475569;  --js-claro:   #F1F5F9;  --js-linea:  #CBD5E1;    /* gris: no se trabaja en esta materia; texto sobre --js-claro: 6,9:1 */
+  --js:   #475569;  --js-claro:   #F1F5F9;  --js-linea:  #CBD5E1;    /* gris: solo se usa en el TP6, con Node.js; texto sobre --js-claro: 6,9:1 */
 
   /* Avisos */
   --ok: #15803D;     --ok-claro: #DCFCE7;     /* resultado correcto, checklist */
@@ -49,6 +49,9 @@
   --cod-com: #94A3B8;    /* gris azulado: comentarios */
   --cod-num: #C084FC;    /* violeta: números */  --cod-fun: #67E8F9;    /* cian: nombres de funciones y métodos */
   --consola-fondo: #0F172A;  --consola-guia: #94A3B8;   /* barra de la ventana de código y nota "dentro de <body>" */
+  /* Terminal (TP6): comando en blanco, "$" en verde y salida en gris claro (todos 9:1 o más sobre el fondo) */
+  --term-fondo: #0B1220;  --term-texto: #F1F5F9;  --term-prompt: #4ADE80;  --term-salida: #CBD5E1;
+  --nav-texto: #000000;   /* página sin estilos que devuelve el servidor de Express, como la muestra el navegador */
 
   /* Ventanas de código y de navegador: los tres puntos */
   --punto-rojo: #FF5F57;  --punto-amarillo: #FEBC2E;  --punto-verde: #28C840;
@@ -783,6 +786,99 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .cuenta { background: var(--blanco); border-radius: 6px; padding: 4px 8px; text-align: center; font-family: var(--fuente-codigo); }
 
 /* ==========================================================
+   TP6: terminal, servidor de Express y archivos sin tecnología propia
+   ========================================================== */
+
+/* Terminal: cada comando con "$" delante y debajo su salida real. "Copiar" copia solo los comandos. */
+.terminal {
+  margin: 0; min-width: 0;
+  background: var(--term-fondo); border-radius: var(--radio); overflow: hidden;
+  box-shadow: 0 6px 16px -8px rgba(15, 23, 42, .6);
+}
+.terminal figcaption {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px;
+  padding: 6px 8px 6px 10px; background: var(--consola-fondo);
+}
+.terminal figcaption::before {
+  content: ""; flex: none; width: 8px; height: 8px; margin-right: 24px; border-radius: 50%;
+  background: var(--punto-rojo); box-shadow: 12px 0 var(--punto-amarillo), 24px 0 var(--punto-verde);
+}
+.terminal__titulo { font-size: 13px; font-weight: 700; line-height: 1.5; color: var(--cod-base); }
+.terminal figcaption .boton-cod { margin-left: auto; }
+.terminal pre {
+  margin: 0; padding: 9px 14px 11px; overflow-x: auto;
+  font-family: var(--fuente-codigo); font-size: 14px; line-height: 1.45; color: var(--term-salida);
+}
+.terminal pre:focus-visible { outline: 3px solid var(--foco-claro); outline-offset: -4px; border-radius: 6px; }
+.terminal pre { white-space: pre-wrap; overflow-wrap: anywhere; }   /* como en una terminal: el renglón largo sigue abajo */
+.terminal--cartel pre { white-space: pre; overflow-wrap: normal; }   /* el cartel de figlet no se corta: en el celular se desliza */
+.t-cmd { color: var(--term-texto); font-weight: 700; }
+.t-prompt { color: var(--term-prompt); }
+.terminal__nota { padding: 5px 12px 6px; border-top: 1px solid rgba(203, 213, 225, .25); color: var(--cod-base); font-size: 14px; line-height: 1.35; }
+.terminal__nota code { white-space: normal; }
+
+/* Archivos sin tecnología propia (package.json, .gitignore, README.md): nombre sobre --tinta */
+.codigo--neutro figcaption { box-shadow: none; }
+.codigo--neutro .codigo__archivo { background: var(--tinta); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .4); }
+
+/* ESLint: subrayado ondulado, como en el editor */
+.c-subr { text-decoration: underline wavy var(--punto-rojo); text-decoration-thickness: 1.5px; text-underline-offset: 3px; text-decoration-skip-ink: none; }
+
+/* Servidor de Express: el sitio no puede correrlo. La página se escribe a mano con la salida real
+   (única excepción a "nunca dibujar el resultado"), sin estilos, como la muestra el navegador. */
+.resultado__dir {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 10px; background: var(--blanco); border-bottom: 1px solid var(--linea);
+}
+.resultado__dir span {
+  flex: 1; min-width: 0; padding: 1px 12px; border-radius: 999px; background: var(--panel);
+  font-size: 13px; color: var(--texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.resultado__pagina {
+  margin: 0; padding: 8px; min-height: var(--alto, 64px); background: var(--blanco);
+  font-family: "Times New Roman", Times, serif; font-size: 16px; line-height: 1.15; color: var(--nav-texto);
+}
+
+/* Actividades con el texto del documento de Nicolás (TP6): consigna corrida, sin incisos */
+.act__txt { margin-top: 6px; font-size: 16px; line-height: 1.38; }
+.act > .terminal, .act > .consejo { margin-top: 6px; }
+.act--ancho { grid-column: 1 / -1; }
+
+/* Tres filosofías: el lema de cada herramienta */
+.filo__lema { display: block; font-family: var(--fuente); font-size: 15px; font-weight: 600; font-style: italic; color: var(--gris); }
+.filo__pie { margin-top: 6px; font-weight: 700; color: var(--tinta); }
+
+/* Variantes de recuadros y tablas del TP6 */
+.texto--cierre { margin: 8px 0 0; }
+.comparar--blanco li, .esquema-nota--blanca { background: var(--blanco); }
+.panel .tabla-comp--cmd th, .panel .tabla-comp--cmd td { background: var(--blanco); }
+.tabla-comp .en { font-weight: 500; color: var(--gris); }
+.tabla-comp--vueltas td, .tabla-comp--vueltas thead th { text-align: center; }
+.tabla-comp--niveles tbody th { white-space: normal; width: 22%; }
+.tabla-comp--roles tbody th { width: 18%; white-space: normal; }
+@media (max-width: 599px) {   /* celular (TP6): el texto y los comandos largos de las tablas bajan de renglón */
+  .tabla-comp--roles, .tabla-comp--niveles { table-layout: fixed; }
+  .tabla-comp--roles thead th:first-child, .tabla-comp--niveles thead th:first-child { width: 24%; }
+  [data-tp="6"] .tabla-comp--cmd tbody th { white-space: normal; }
+  [data-tp="6"] .tabla-comp--cmd code { white-space: normal; }
+}
+.pf__lista--fila { margin-top: 3px; }
+.ej-nota { font-size: 14.5px; line-height: 1.35; }
+.ej-pasos { margin: 2px 0 4px; }
+.tres-col { display: grid; gap: 4px 14px; }
+.ej--antes { margin-top: 6px; }
+.esquema-nota .terminal { margin-top: 6px; }
+/* "Para profundizar" en dos columnas que se apilan solas (bloques de distinto alto) */
+.pf-grid--cols { align-items: stretch; }
+.pf-col { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.lamina--densa .esquema-nota .tabla-comp--cmd { margin-top: 6px; }
+
+/* Lista de zonas o partes de un esquema, con su número o letra */
+.zonas { display: grid; gap: 5px; }
+.zonas li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: start; font-size: 15.5px; line-height: 1.3; }
+.zonas .marca { margin-top: 1px; }
+
+/* ==========================================================
    Pantallas medianas
    ========================================================== */
 @media (min-width: 600px), print {
@@ -836,6 +932,16 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .esquema-par--res { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
   .ej.tema { align-items: start; }   /* lámina con un tema por fila: el resultado no se estira */
   .ej--res-ancho { grid-template-columns: fit-content(45%) minmax(0, 1fr); align-items: start; }   /* código corto (ancho de su línea más larga) + resultado */
+  /* TP6: texto y código lado a lado */
+  .ej--lint { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; }
+  .ej--lint-inv { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
+  .esquema-par--depurador { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .ej--pkg { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
+  .ej--express { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .comparar--ext3 { grid-template-columns: .8fr .8fr 1.4fr; }
+  .ej--tres { grid-template-columns: minmax(0, 1fr) minmax(0, .85fr) minmax(0, 1.25fr); align-items: start; }
+  .tres-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ej--plantilla { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: start; margin-top: 6px; }
 }
 
 /* ==========================================================
@@ -1001,6 +1107,111 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .lamina--pf-denso .pf__titulo { font-size: 19px; }
   .lamina--pf-denso .pf p, .lamina--pf-denso .pf li { font-size: 13.5px; line-height: 1.3; }
   .lamina--pf-denso .pf .codigo pre { font-size: 12px; }
+
+  /* "Para profundizar" del TP6: dos columnas; cada una reparte su alto entre sus bloques */
+  .pf-col { display: flex; flex-direction: column; gap: 3.5mm; }
+  .pf-col > .pf { flex: 1 1 auto; }
+  .lamina--pf-denso .pf .terminal pre { font-size: 12px; padding: 4px 10px 6px; }
+  .lamina--pf-denso .pf .terminal figcaption, .lamina--pf-denso .pf .codigo figcaption { padding-top: 2px; padding-bottom: 2px; }
+  .lamina--pf-denso .pf .codigo__archivo { font-size: 11.5px; }
+  .lamina--pf-denso .pf .codigo pre { line-height: 1.35; padding: 4px 10px 6px; }
+  .lamina--pf-chico .pf p, .lamina--pf-chico .pf li { font-size: 13px; line-height: 1.28; }
+  .lamina--pf-chico .pf__titulo { font-size: 18px; margin-bottom: 1px; }
+  .lamina--pf-chico { gap: 3mm; }
+  .lamina--pf-chico .tit__sub { font-size: 23px; }
+  .lamina--pf-chico .pf { padding: 7px 12px 8px 14px; gap: 2px; }
+  .lamina--pf-chico .pf-col { gap: 3mm; }
+  .lamina--pf-chico .pf__texto { gap: 5px; }
+  .lamina--pf-chico .pf__caja { padding: 6px 10px 7px; gap: 3px; }
+  .lamina--pf-chico .pf .codigo pre, .lamina--pf-chico .pf .terminal pre { font-size: 11.5px; line-height: 1.32; }
+
+  /* TP6: láminas con el texto de varias diapositivas. Escala compacta en la hoja A4 */
+  .lamina--densa .comparar--chico li { align-items: start; }
+  .lamina--densa .ej-nota { font-size: 13px; line-height: 1.3; }
+  .lamina--densa .ej--lint .codigo pre { font-size: 12px; }
+  .lamina--densa { gap: 3mm; }
+  .lamina--densa .subtitulo { font-size: 18.5px; }
+  .lamina--densa .subtitulo::after { width: 32px; height: 4px; margin-top: 3px; }
+  .lamina--densa .texto { font-size: 15px; line-height: 1.35; }
+  .lamina--densa .texto--sub { font-size: 14px; line-height: 1.32; margin: 4px 0 5px; }
+  .lamina--densa .texto--cierre { margin: 5px 0 0; }
+  .lamina--densa .panel { padding: 9px 12px 10px; border-radius: 10px; }
+  .lamina--densa .panel__texto { font-size: 14px; line-height: 1.32; }
+  .lamina--densa .panel__texto + .panel__texto { margin-top: 5px; }
+  .lamina--densa .intro { padding: 9px 14px; gap: 12px; }
+  .lamina--densa .intro p { font-size: 14.5px; line-height: 1.32; padding-left: 12px; }
+  .lamina--densa .intro .ico--xl { width: 44px; height: 44px; }
+  .lamina--densa .esquema-par, .lamina--densa .ej { gap: 3mm; }
+  .lamina--densa .ej-col { gap: 2.5mm; }
+  .lamina--densa .esquema-nota { padding: 8px 12px 9px; }
+  .lamina--densa .esquema-nota h3 { font-size: 16.5px; margin-bottom: 4px; }
+  .lamina--densa .esquema-nota__p, .lamina--densa .esquema-nota li { font-size: 14px; line-height: 1.32; }
+  .lamina--densa .esquema-nota__p--sep { margin-top: 4px; }
+  .lamina--densa .pf__lista { gap: 3px; }
+  .lamina--densa .comparar { gap: 2.5mm; }
+  .lamina--densa .comparar--chico li { padding: 7px 11px 8px; }
+  .lamina--densa .comparar--chico h3 { font-size: 16.5px; margin-bottom: 2px; }
+  .lamina--densa .comparar--chico p { font-size: 13.5px; line-height: 1.3; }
+  .lamina--densa .filo__lema { font-size: 13px; }
+  .lamina--densa .filo__pie { margin-top: 4px; }
+  .lamina--densa .tabla-comp--cmd th, .lamina--densa .tabla-comp--cmd td { font-size: 13px; line-height: 1.25; padding: 2px 7px; }
+  .lamina--densa .tabla-comp--cmd thead th { font-size: 13px; }
+  .lamina--densa .codigo pre { font-size: 12.5px; line-height: 1.38; padding: 5px 11px 7px; }
+  .lamina--densa .codigo figcaption, .lamina--densa .terminal figcaption { padding-top: 3px; padding-bottom: 3px; }
+  .lamina--densa .codigo__archivo { font-size: 12px; }
+  .lamina--densa .terminal pre { font-size: 12.5px; line-height: 1.35; padding: 5px 11px 7px; }
+  .lamina--densa .terminal__nota { font-size: 13px; padding: 3px 11px 4px; }
+  .lamina--densa .consejo { font-size: 13.5px; line-height: 1.3; padding: 5px 10px; }
+  .lamina--densa .puntos { gap: 3px; }
+  .lamina--densa .puntos li { font-size: 14px; line-height: 1.3; padding: 3px 8px; }
+  .lamina--densa .zonas { gap: 3px; }
+  .lamina--densa .zonas li { font-size: 14px; line-height: 1.3; }
+  .lamina--densa .resultado__nota { font-size: 13px; padding: 3px 11px 4px; }
+  .lamina--densa .idea { grid-template-columns: 18mm 1fr; }
+  .lamina--densa .idea__ico .ico { width: 36px; height: 36px; }
+  .lamina--densa .idea p { font-size: 15px; padding: 7px 14px; }
+  .lamina--densa .idea strong { font-size: 19px; }
+  .lamina--densa .tit__sub { font-size: 25px; }
+  .lamina--densa .ej-pasos li { font-size: 14px; line-height: 1.3; }
+  /* Actividades del TP6: el texto completo del documento de Nicolás, en hojas compactas */
+  .lamina--act-densa { gap: 2.6mm; }
+  .lamina--act-densa .act-banda { padding: 8px 18px; }
+  .lamina--act-densa .act-banda h2 { font-size: 30px; }
+  .lamina--act-densa .act-banda p { font-size: 15px; }
+  .lamina--act-densa .consigna { padding: 6px 14px; font-size: 15px; line-height: 1.32; }
+  .lamina--act-densa .consigna strong { font-size: 17px; }
+  .lamina--act-densa .acts { gap: 2.4mm; }
+  .lamina--act-densa .act { padding: 7px 11px 8px; }
+  .lamina--act-densa .act__titulo { font-size: 17.5px; gap: 8px; }
+  .lamina--act-densa .act__num { min-width: 30px; height: 25px; font-size: 18px; }
+  .lamina--act-densa .act__txt { font-size: 14.5px; line-height: 1.32; margin-top: 4px; }
+  .lamina--act-densa .act > .act-tabla { font-size: 13.5px; margin-top: 5px; }
+  .lamina--act-densa .act-tabla th, .lamina--act-densa .act-tabla td { height: 25px; padding: 2px 6px; line-height: 1.2; }
+  .lamina--act-densa .act > .terminal, .lamina--act-densa .act > .codigo, .lamina--act-densa .act > .consejo { margin-top: 4px; }
+  .lamina--act-densa .act .terminal pre, .lamina--act-densa .act .codigo pre { font-size: 12.5px; line-height: 1.35; padding: 3px 11px 5px; }
+  .lamina--act-densa .act .terminal figcaption, .lamina--act-densa .act .codigo figcaption { padding-top: 2px; padding-bottom: 2px; }
+  .lamina--act-densa .act .terminal__titulo { font-size: 12px; }
+  .lamina--act-densa .act .consejo { font-size: 14px; line-height: 1.3; padding: 4px 10px; }
+  .lamina--act-densa .entrega { padding: 8px 14px 9px; }
+  .lamina--act-densa .entrega h3 { font-size: 22px; margin-bottom: 2px; }
+  .lamina--act-densa .entrega p, .lamina--act-densa .entrega li { font-size: 14px; line-height: 1.3; }
+
+  /* Láminas 20 y 22: el texto de tres diapositivas en una hoja, con letra de 13 px (decidido el 11/10/2026) */
+  .lamina--mas-densa .esquema-nota__p, .lamina--mas-densa .esquema-nota li, .lamina--mas-densa .panel__texto,
+  .lamina--mas-densa .texto--sub, .lamina--mas-densa .ej-pasos li, .lamina--mas-densa .ej-nota { font-size: 13px; line-height: 1.28; }
+  .lamina--mas-densa .esquema-nota h3 { font-size: 15.5px; }
+  .lamina--mas-densa .tabla-comp--cmd th, .lamina--mas-densa .tabla-comp--cmd td { font-size: 12.5px; padding: 1px 6px; }
+  .lamina--mas-densa .codigo pre, .lamina--mas-densa .terminal pre { font-size: 11.5px; line-height: 1.32; }
+  .lamina--mas-densa .ej--lint .codigo pre { font-size: 11.5px; }
+  .lamina--mas-densa .terminal__nota, .lamina--mas-densa .codigo__donde { font-size: 12.5px; }
+  .lamina--mas-densa { gap: 2.1mm; }
+  .lamina--mas-densa .esquema-par, .lamina--mas-densa .ej { gap: 2.4mm; }
+  .lamina--mas-densa .tabla-comp--cmd td, .lamina--mas-densa .tabla-comp--cmd th { line-height: 1.2; }
+  .lamina--mas-densa .ej--tres { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr) minmax(0, 1.3fr); }
+  .lamina--mas-densa .tabla-comp--pseudo th { white-space: normal; }
+  .lamina--mas-densa .ej--lint:not(.ej--lint-inv) { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+  .lamina--mas-densa .idea p { font-size: 14px; padding: 5px 14px; }
+  .lamina--mas-densa .idea strong { font-size: 18px; }
 }
 
 /* ==========================================================
@@ -1015,6 +1226,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
     --cod-etq: #B91C1C;   --cod-atr: #3F6212;  --cod-str: #854D0E;
     --cod-com: #475569;   --cod-num: #7E22CE;  --cod-fun: #0E7490;
     --consola-guia: #475569;
+    --term-fondo: #F1F5F9;  --term-texto: #0F172A;  --term-prompt: #15803D;  --term-salida: #334155;
   }
   html, body { background: var(--blanco); }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -1028,8 +1240,13 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .codigo { border: 1.5px solid var(--linea); }
   .codigo figcaption { background: var(--blanco); border-bottom: 1px solid var(--linea); }
   .codigo pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .terminal { border: 1.5px solid var(--linea); }
+  .terminal figcaption { background: var(--blanco); border-bottom: 1px solid var(--linea); }
+  .terminal__titulo, .terminal__nota { color: var(--texto); }
+  .terminal__nota { border-top-color: var(--linea); }
+  .terminal pre { overflow: visible; }   /* sin cortar renglones: los carteles de figlet se dibujan con espacios */
 
-  .codigo, .resultado { box-shadow: none; }
+  .codigo, .resultado, .terminal { box-shadow: none; }
 }
 
 /* ==========================================================
