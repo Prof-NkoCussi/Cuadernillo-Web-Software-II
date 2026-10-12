@@ -72,9 +72,9 @@ El repo llega con el contenido de Programación. Antes de tocar nada:
 - `<meta name="theme-color" content="#4F46E5">` en todas las páginas.
 - **Cabecera de cada hoja:** `SOFTWARE II` con la bajada `5.º AÑO` en gris y negrita (cambiado el 7/10/2026), y a la derecha `TRABAJO PRÁCTICO N°X` con la barra vertical de acento. Mismas reglas de tamaño y de celular que el repo de origen; verificar que la bajada entre a 360 px.
 - **Pie de cada hoja y de la portada:** `Software II — Prof. Nicolás A. Cussi`, con guion largo. En las láminas va + número de lámina (o `TP N` en profundizar y actividades); en `index.html`, sin número.
-- **Portada (`index.html`):** `h1` "Software II" (`Software <span>II</span>`: el "II" en `--acento-numero`, como en Redes I), subtítulo "Cuadernillo de actividades · 5.º año", sin la fila de etiquetas de tecnología. En `p.portada__datos`, exactamente estas dos líneas (cambiado el 7/10/2026): la primera en negrita (`<strong>`, `--tinta`) y la segunda en gris y negrita (`<b>`, `--gris`):
+- **Portada (`index.html`):** `h1` "Software II" (`Software <span>II</span>`: el "II" en `--acento-numero`, como en Redes I), subtítulo "Cuadernillo de actividades · 5.º año", sin la fila de etiquetas de tecnología. En `p.portada__datos`, exactamente estas dos líneas (cambiado el 7/10/2026; sin “Técnico en Programación” desde el 12/10/2026): la primera en negrita (`<strong>`, `--tinta`) y la segunda en gris y negrita (`<b>`, `--gris`):
   ```
-  Técnico en Programación · C.T.P. “Olga B. de Arko” · Ushuaia
+  C.T.P. “Olga B. de Arko” · Ushuaia
   Prof. Nicolás A. Cussi
   ```
 - **Índice:** con el formato de `App-Web-Redes-1/indice.html`. Dos unidades (ver plan), sin color propio. Cada TP: título, temas en una línea separados por " · " y meta "Láminas X–Y · Próximamente" (TP1 a TP5: solo "Material en Classroom", sin números de lámina; cambiado el 11/10/2026). "Cómo usarlo": "cada TP tiene sus láminas, una página “Para profundizar” y, al final, las actividades."
