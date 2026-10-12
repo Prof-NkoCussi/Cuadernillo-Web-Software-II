@@ -60,7 +60,7 @@
   --carpeta: #F59E0B;  --carpeta-claro: #FEF3C7;  --carpeta-texto: #92400E;  --carpeta-linea: #FDE68A;  /* carpetas, como en Windows */
   --turquesa: #0D9488;  --turquesa-claro: #CCFBF1;  --turquesa-texto: #0F766E;  /* texto: 5,5:1 */
   --naranja: #EA580C;   --naranja-claro: #FFEDD5;   --naranja-texto: #C2410C;   /* "Importante"; texto: 5,2:1 */
-  --violeta: #7C3AED;   --violeta-claro: #EDE9FE;   /* Parte B de las actividades del TP6 (blanco encima: 5,7:1) */
+  --violeta: #7C3AED;   --violeta-claro: #EDE9FE;   /* Parte 2 de las actividades del TP6 y del TP7 (blanco encima: 5,7:1) */
 
   --radio: 10px;
   --fuente: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -743,12 +743,14 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .lamina--compu .entrega { border-color: var(--ok); }
 .lamina--compu .entrega .ico { --ac: var(--ok); }
 .lamina--compu .puntos__n { background: var(--naranja-texto); }   /* los "!" son avisos importantes */
-/* TP6 (pedido de Nicolás, 12/10/2026): la Parte B va en violeta, cerca del índigo de la Parte A
-   pero distinta: banda y números con texto blanco (5,7:1), consigna en violeta claro; los ejercicios siguen en gris */
-[data-tp="6"] .lamina--compu .act-banda, [data-tp="6"] .lamina--compu .act__num { background: var(--violeta); }
-[data-tp="6"] .lamina--compu .consigna { background: var(--violeta-claro); }
-[data-tp="6"] .lamina--compu .entrega { border-color: var(--violeta); }
-[data-tp="6"] .lamina--compu .entrega .ico { --ac: var(--violeta); }
+/* TP6 y TP7 (pedido de Nicolás, 12/10/2026): la Parte 2 va en violeta, cerca del índigo de la Parte 1
+   pero distinta: banda y números con texto blanco (5,7:1), consigna e incisos en violeta claro; los ejercicios siguen en gris */
+[data-tp="6"] .lamina--compu .act-banda, [data-tp="6"] .lamina--compu .act__num,
+[data-tp="7"] .lamina--compu .act-banda, [data-tp="7"] .lamina--compu .act__num { background: var(--violeta); }
+[data-tp="6"] .lamina--compu .consigna,
+[data-tp="7"] .lamina--compu .consigna, [data-tp="7"] .lamina--compu .act__letra { background: var(--violeta-claro); }
+[data-tp="6"] .lamina--compu .entrega, [data-tp="7"] .lamina--compu .entrega { border-color: var(--violeta); }
+[data-tp="6"] .lamina--compu .entrega .ico, [data-tp="7"] .lamina--compu .entrega .ico { --ac: var(--violeta); }
 /* TP6: el código dentro del texto, en rojo rosado (como styles.css y las etiquetas <…>: 5,1:1) */
 [data-tp="6"] code.cod-js { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 
