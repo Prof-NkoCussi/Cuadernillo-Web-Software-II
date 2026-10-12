@@ -548,6 +548,11 @@ ol.pf__lista li::before {
   width: 17px; height: 17px; border: 2px solid var(--ok); border-radius: 4px; background: var(--blanco);
 }
 
+/* Lista de lo que tiene que mostrar la entrega (sin casillas: no es para marcar) */
+.entrega__lista { display: grid; gap: 3px; margin-top: 4px; }
+.entrega__lista li { position: relative; padding-left: 16px; }
+.entrega__lista li::before { content: ""; position: absolute; left: 0; top: .5em; width: 7px; height: 7px; background: var(--ok); border-radius: 2px; }
+
 /* ==========================================================
    Componentes de programación
    ========================================================== */
@@ -751,6 +756,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 [data-tp="7"] .lamina--compu .consigna, [data-tp="7"] .lamina--compu .act__letra { background: var(--violeta-claro); }
 [data-tp="6"] .lamina--compu .entrega, [data-tp="7"] .lamina--compu .entrega { border-color: var(--violeta); }
 [data-tp="6"] .lamina--compu .entrega .ico, [data-tp="7"] .lamina--compu .entrega .ico { --ac: var(--violeta); }
+[data-tp="7"] .lamina--compu .entrega__lista li::before { background: var(--violeta); }
 /* TP6: el código dentro del texto, en rojo rosado (como styles.css y las etiquetas <…>: 5,1:1) */
 [data-tp="6"] code.cod-js { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 
