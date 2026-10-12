@@ -741,6 +741,12 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .lamina--compu .entrega { border-color: var(--ok); }
 .lamina--compu .entrega .ico { --ac: var(--ok); }
 .lamina--compu .puntos__n { background: var(--naranja-texto); }   /* los "!" son avisos importantes */
+/* TP6 (pedido de Nicolás, 12/10/2026): en la Parte B cada ejercicio va en el verde de "Pista";
+   la "Pista" de adentro pasa a blanco con su raya verde, para que se distinga */
+[data-tp="6"] .lamina--compu .act { background: var(--ok-claro); }
+[data-tp="6"] .lamina--compu .act .consejo { background: var(--blanco); }
+/* TP6: el código dentro del texto, en rojo rosado (como styles.css y las etiquetas <…>: 5,1:1) */
+[data-tp="6"] code.cod-js { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 
 /* Portada: cada TP con las tecnologías que usa, y franja y número del color de la principal */
 .tp__tecs { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-right: 8px; vertical-align: 1px; }
