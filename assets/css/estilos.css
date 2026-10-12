@@ -742,11 +742,11 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .lamina--compu .entrega .ico { --ac: var(--ok); }
 .lamina--compu .puntos__n { background: var(--naranja-texto); }   /* los "!" son avisos importantes */
 /* TP6 (pedido de Nicolás, 12/10/2026): la banda de la Parte B y los números de los ejercicios
-   van en el verde claro de "Pista", con el texto y la raya en verde (4,6:1); los ejercicios siguen en gris */
-[data-tp="6"] .lamina--compu .act-banda { background: var(--ok-claro); color: var(--ok); box-shadow: inset 6px 0 0 var(--ok); }
+   van en el verde claro de "Pista", con la raya en verde y el texto en --tinta (13,9:1); los ejercicios siguen en gris */
+[data-tp="6"] .lamina--compu .act-banda { background: var(--ok-claro); color: var(--tinta); box-shadow: inset 6px 0 0 var(--ok); }
 [data-tp="6"] .lamina--compu .act-banda .ico { color: var(--ok); --ac: var(--blanco); }
 [data-tp="6"] .lamina--compu .act-banda__parte { border-left-color: var(--ok); }
-[data-tp="6"] .lamina--compu .act__num { background: var(--ok-claro); color: var(--ok); box-shadow: inset 0 0 0 1.5px var(--ok); }
+[data-tp="6"] .lamina--compu .act__num { background: var(--ok-claro); color: var(--tinta); box-shadow: inset 0 0 0 1.5px var(--ok); }
 /* TP6: el código dentro del texto, en rojo rosado (como styles.css y las etiquetas <…>: 5,1:1) */
 [data-tp="6"] code.cod-js { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 
