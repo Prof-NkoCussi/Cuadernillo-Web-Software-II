@@ -281,7 +281,7 @@ Notas del plan:
 - TP no disponibles con el estilo de Redes I (apagados, sin opacidad) y sin cambio al pasar el puntero; solo los activados toman el borde de acento (corrección del 7/10/2026).
 - Repo: `Prof-NkoCussi/Cuadernillo-Web-Software-II`.
 - Etiquetas `<…>` en rojo (7/10/2026, pedido de Nicolás): en los bloques de código, `--cod-etq` `#FF6666` (5,1:1; en el PDF `#B91C1C`), que también colorea selectores de CSS y palabras clave de JS; en el texto, `code.cod-etq`, con los mismos colores que `cod-css` (`#BE185D` sobre `#FCE7F3`, 5,1:1). Las abreviaturas de Emmet (`h1`, `ul>li*3`) no son etiquetas: quedan en índigo. Los esquemas SVG mantienen sus colores.
-- TP6 (12/10/2026, pedido de Nicolás): el código dentro del texto (`code.cod-js`) va en rojo rosado, con los colores de `cod-css` y `cod-etq` (`#BE185D` sobre `#FCE7F3`, 5,1:1); las carpetas (`cod-carpeta`) siguen en ámbar. En la Parte B, la banda y los números de los ejercicios van en el verde claro de “Pista” (`--ok-claro`), con la raya en `--ok` y el texto y los números en `--tinta`; los ejercicios siguen en gris (corregido el 12/10/2026). Solo en el TP6 (`[data-tp="6"]`); el TP7 no cambia.
+- TP6 (12/10/2026, pedido de Nicolás): el código dentro del texto (`code.cod-js`) va en rojo rosado, con los colores de `cod-css` y `cod-etq` (`#BE185D` sobre `#FCE7F3`, 5,1:1); las carpetas (`cod-carpeta`) siguen en ámbar. En la Parte B, la banda, los números de los ejercicios y el borde de la Entrega van en violeta (`--violeta` `#7C3AED`, blanco encima 5,7:1) y la consigna en `--violeta-claro` `#EDE9FE`; los ejercicios siguen en gris (corregido el 12/10/2026). Solo en el TP6 (`[data-tp="6"]`); el TP7 no cambia.
 
 ## Pendientes a consultar con Nicolás
 
