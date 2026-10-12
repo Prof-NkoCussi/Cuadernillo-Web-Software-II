@@ -26,6 +26,7 @@
   --blanco: #FFFFFF;
   --tinta: #1E1B4B;          /* títulos e íconos (índigo muy oscuro) */
   --texto: #1F2937;          /* texto corrido */
+  --texto-fuerte: #111827;   /* nombre de la escuela en la portada (17,7:1) */
   --gris-sub: #7B8594;       /* subtítulos grandes (solo texto grande: 3,7:1) */
   --gris: #5B6472;           /* textos chicos en mayúsculas */
   --linea: #CBD3DB;
@@ -1275,8 +1276,9 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 }
 .portada__hero h1 span { color: var(--acento-numero); }
 .portada__hero .tit__sub { margin-top: 8px; }
-.portada__datos { font-size: 15px; color: var(--gris); line-height: 1.5; }
-.portada__datos strong { color: var(--tinta); }
+.portada__datos { font-family: var(--fuente); font-size: 15px; color: var(--gris); line-height: 1.5; }
+.portada__datos strong { color: var(--gris); font-weight: 600; }
+.portada__datos .portada__escuela { font-size: 17px; color: var(--texto-fuerte); }
 
 .bloque h2 { margin-bottom: 12px; }
 .lista-tp { display: grid; gap: 10px; }
