@@ -688,7 +688,7 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
 
     <div class="tit">
       <h2 class="tit__h" id="t30"><span class="tit__num">30.</span> Modelo de caja y flexbox</h2>
-      <p class="tit__sub">Vistos con las DevTools de Chrome</p>
+      <p class="tit__sub">El espacio de cada elemento y cómo alinearlos</p>
     </div>
 
     <div class="esquema-par">
@@ -716,68 +716,6 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
           <li><code class="cod-css">margin</code>: espacio externo, entre cajas.</li>
         </ul>
       </div>
-    </div>
-
-    <div class="esquema-par esquema-par--pantalla">
-      <figure class="esquema">
-        <svg viewBox="0 0 340 196" style="max-width:420px;margin:0 auto" role="img" aria-labelledby="esq30b">
-          <title id="esq30b">Chrome con las DevTools abiertas abajo. Arriba, la página, con una sección marcada: el contenido en azul, el padding en verde y el margin en naranja. A: el botón con la flecha para elegir un elemento. B: la pestaña Elements, con la etiqueta section marcada. C: la pestaña Styles, con las reglas de la sección. D: la pestaña Computed, donde está el dibujo del modelo de caja.</title>
-          <!-- Ventana y página -->
-          <rect x="1" y="1" width="338" height="194" rx="6" style="fill:var(--blanco)"/>
-          <path d="M7 1h326a6 6 0 0 1 6 6v12H1V7a6 6 0 0 1 6-6z" style="fill:var(--acento-claro)"/>
-          <circle cx="11" cy="10" r="2.5" style="fill:var(--punto-rojo)"/><circle cx="19" cy="10" r="2.5" style="fill:var(--punto-amarillo)"/><circle cx="27" cy="10" r="2.5" style="fill:var(--punto-verde)"/>
-          <rect x="18" y="27" width="190" height="50" style="fill:var(--naranja-claro)"/>
-          <rect x="30" y="35" width="166" height="34" style="fill:var(--ok-claro)"/>
-          <rect x="42" y="43" width="142" height="18" style="fill:var(--acento-claro)"/>
-          <text class="tt" x="48" y="56" style="font-size:11px;font-weight:700">De qué se trata</text>
-          <g style="fill:var(--linea)"><rect x="224" y="30" width="96" height="6" rx="3"/><rect x="224" y="44" width="80" height="6" rx="3"/><rect x="224" y="58" width="90" height="6" rx="3"/></g>
-          <!-- DevTools -->
-          <rect x="1" y="84" width="338" height="111" style="fill:var(--panel)"/>
-          <path d="M1 84h338" style="stroke:var(--tinta);stroke-width:1.5"/>
-          <path d="M1 100h338M196 100v95" style="stroke:var(--linea);stroke-width:1.2"/>
-          <g style="fill:none;stroke:var(--tinta);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round">
-            <rect x="8" y="87" width="10" height="10" rx="1.5" style="stroke-dasharray:2 1.6"/>
-            <path d="M14 93l5 5M14 93v4.5M14 93h4.5"/>
-          </g>
-          <g class="tt" style="font-size:11px;font-weight:700">
-            <text x="40" y="96">Elements</text>
-            <text x="114" y="96" style="font-weight:500;fill:var(--gris)">Console</text>
-            <text x="204" y="112">Styles</text>
-            <text x="262" y="112" style="font-weight:500;fill:var(--gris)">Computed</text>
-          </g>
-          <rect x="38" y="98" width="50" height="2" style="fill:var(--acento)"/>
-          <rect x="202" y="114" width="34" height="2" style="fill:var(--acento)"/>
-          <!-- Árbol de etiquetas y reglas -->
-          <rect x="2" y="137" width="194" height="15" style="fill:var(--acento-claro)"/>
-          <g style="font-family:var(--fuente-codigo);font-size:10.5px">
-            <text x="10" y="116" style="fill:var(--css-texto)">&lt;body&gt;</text>
-            <text x="18" y="131" style="fill:var(--css-texto)">&lt;main&gt;</text>
-            <text x="26" y="148" style="fill:var(--css-texto)">&lt;section <tspan style="fill:var(--turquesa-texto)">class</tspan><tspan style="fill:var(--tinta)">="tarjeta"</tspan>&gt;</text>
-            <text x="34" y="164" style="fill:var(--css-texto)">&lt;h2&gt;<tspan style="fill:var(--tinta)">De qué se trata</tspan>&lt;/h2&gt;</text>
-            <text x="26" y="180" style="fill:var(--css-texto)">&lt;/section&gt;</text>
-            <text x="204" y="136" style="fill:var(--tinta)">.tarjeta {</text>
-            <text x="212" y="151"><tspan style="fill:var(--turquesa-texto)">padding</tspan><tspan style="fill:var(--tinta)">: 20px;</tspan></text>
-            <text x="212" y="166"><tspan style="fill:var(--turquesa-texto)">margin</tspan><tspan style="fill:var(--tinta)">: 30px;</tspan></text>
-            <text x="204" y="181" style="fill:var(--tinta)">}</text>
-          </g>
-          <rect x="1" y="1" width="338" height="194" rx="6" style="fill:none;stroke:var(--tinta);stroke-width:2"/>
-          <!-- Letras -->
-          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
-            <circle cx="27" cy="84" r="7.5"/><circle cx="99" cy="90" r="7.5"/><circle cx="244" cy="107" r="7.5"/><circle cx="325" cy="107" r="7.5"/>
-          </g>
-          <g class="tt tt--claro" text-anchor="middle" style="font-size:10.5px;font-weight:700">
-            <text x="27" y="87.8">A</text><text x="99" y="93.8">B</text><text x="244" y="110.8">C</text><text x="325" y="110.8">D</text>
-          </g>
-        </svg>
-      </figure>
-      <section class="esquema-nota" aria-label="DevTools, paso a paso">
-        <ol class="puntos puntos--pasos">
-          <li><span class="puntos__n" aria-hidden="true">1</span><span><kbd>F12</kbd>, o clic derecho sobre la página → <strong>Inspeccionar</strong>.</span></li>
-          <li><span class="puntos__n" aria-hidden="true">2</span><span>La flecha <span class="marca">A</span> elige una parte; en <strong lang="en">Elements</strong> (elementos) <span class="marca">B</span> se marca su etiqueta.</span></li>
-          <li><span class="puntos__n" aria-hidden="true">3</span><span>En <strong lang="en">Styles</strong> (estilos) <span class="marca">C</span>, sus reglas. Los cambios ahí no se guardan.</span></li>
-          <li><span class="puntos__n" aria-hidden="true">4</span><span>En <strong lang="en">Computed</strong> (calculado) <span class="marca">D</span>, el modelo de caja.</span></li>
-        </ol>
-      </section>
     </div>
 
     <section class="tema" aria-labelledby="s30">
@@ -818,7 +756,7 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
 
     <aside class="idea" aria-label="Idea clave">
       <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
-      <p><strong>Idea clave:</strong> cada elemento es una caja con contenido, padding, borde y margin. Flexbox alinea las cajas; DevTools muestra cómo quedan.</p>
+      <p><strong>Idea clave:</strong> cada elemento es una caja con contenido, padding, borde y margin. Flexbox las alinea en una fila o en una columna.</p>
     </aside>
 
     <footer class="pie">
@@ -1235,9 +1173,7 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>Ordená las capas de afuera hacia adentro: contenido / border / margin / padding.</div></li>
           <li><b class="act__letra">b)</b><div>¿Cuál es la diferencia entre <code class="cod-css">margin</code> y <code class="cod-css">padding</code>?</div></li>
-          <li><b class="act__letra">c)</b><div>¿Qué propiedad activa flexbox? ¿Cuál alinea los ítems en el eje principal?</div></li>
-          <li><b class="act__letra">d)</b><div>¿Con qué tecla se abren las DevTools? ¿En qué pestaña se ve el dibujo del modelo de caja?</div></li>
-        </ol>
+          <li><b class="act__letra">c)</b><div>¿Qué propiedad activa flexbox? ¿Cuál alinea los ítems en el eje principal?</div></li>        </ol>
       </li>
     </ol>
 
