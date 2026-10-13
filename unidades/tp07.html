@@ -428,7 +428,7 @@ git version 2.53.0.windows.1</code></pre>
   </article>
 
   <!-- =================== LÁMINA 26 · Hoja 1 =================== -->
-  <article class="lamina lamina--compacta" id="pag-26" aria-labelledby="t26">
+  <article class="lamina lamina--compacta lamina--densa" id="pag-26" aria-labelledby="t26">
     <div class="cab" aria-hidden="true">
       <svg class="cab__logo"><use href="#i-terminal"/></svg>
       <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
@@ -500,23 +500,33 @@ git version 2.53.0.windows.1</code></pre>
 
     <section class="panel" aria-labelledby="s26c">
       <h3 class="subtitulo" id="s26c">Configurar Git: tu nombre y tu mail</h3>
-      <div class="ej ej--term">
+      <p class="panel__texto">Cada commit guarda quién lo hizo. Se lo decimos a Git con <code>git config --global</code>: primero el nombre y después el mail. Esos dos comandos no muestran nada, solo guardan el dato. El último, sin el mail al final, muestra el que quedó guardado.</p>
+      <div class="ej ej--res ej--config">
         <div class="ej-col">
-          <p class="panel__texto">Cada commit guarda quién lo hizo. Se lo decimos a Git una vez, con <code>git config --global</code>: el nombre y el mail privado de GitHub. El último comando, sin el mail al final, muestra el que quedó guardado.</p>
-          <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n26c">
-            <h3 id="n26c"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>En el laboratorio</h3>
-            <p class="esquema-nota__p">La compu se reinicia y se borra todo: configurá Git al empezar cada clase. En tu compu, alcanza con una vez.</p>
-          </aside>
-        </div>
-        <figure class="terminal">
-          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
-          <pre tabindex="0" aria-label="Terminal: git config con el nombre y el mail, y la consulta del mail guardado"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.name "Lucía Gómez"</span>
+          <p class="ej-nota"><strong>Con el mail privado</strong> (recomendado): el que copiamos de <strong lang="en">Emails</strong>.</p>
+          <figure class="terminal">
+            <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+            <pre tabindex="0" aria-label="Terminal: git config con el nombre y el mail privado de GitHub, y la consulta del mail guardado"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.name "Lucía Gómez"</span>
 <span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.email "12345678+luciagomez@users.noreply.github.com"</span>
 <span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.email</span>
 12345678+luciagomez@users.noreply.github.com</code></pre>
-          <p class="terminal__nota">Los dos primeros no muestran nada: guardan el dato.</p>
-        </figure>
+          </figure>
+        </div>
+        <div class="ej-col">
+          <p class="ej-nota"><strong>Sin el mail privado:</strong> va el mail de la cuenta. Funciona igual, pero ese mail queda a la vista en cada commit del repositorio.</p>
+          <figure class="terminal">
+            <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+            <pre tabindex="0" aria-label="Terminal: git config con el nombre y el mail de la cuenta, y la consulta del mail guardado"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.name "Lucía Gómez"</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.email "lucia.gomez@example.com"</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.email</span>
+lucia.gomez@example.com</code></pre>
+          </figure>
+        </div>
       </div>
+      <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n26c">
+        <h3 id="n26c"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>En el laboratorio</h3>
+        <p class="esquema-nota__p">La compu se reinicia y se borra todo: configurá Git al empezar cada clase. En tu compu, alcanza con una vez.</p>
+      </aside>
     </section>
 
     <footer class="pie">

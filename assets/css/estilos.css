@@ -979,7 +979,10 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .tabla-comp--sim .fila--clave th, .tabla-comp--sim .fila--clave td { background: var(--naranja-claro); }
 .tabla-comp--sim td { font-size: 14px; line-height: 1.3; }
 .texto--ciclo, .texto--ramas { font-size: 16px; line-height: 1.4; }
-.sin-corte { white-space: nowrap; }   /* la letra del esquema y el punto final no quedan solos en el renglón */
+.sin-corte { white-space: nowrap; }
+.ej--config { margin: 8px 0; }   /* git config con y sin el mail privado, uno al lado del otro */
+.ej--config .ej-col { display: flex; flex-direction: column; gap: 6px; }
+.ej--config .terminal { margin-top: auto; }   /* las dos terminales a la misma altura aunque el texto de arriba sea más largo */   /* la letra del esquema y el punto final no quedan solos en el renglón */
 
 /* ==========================================================
    Pantallas medianas
