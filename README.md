@@ -34,7 +34,7 @@ Un cuadernillo web para leer desde el celular y trabajar en la computadora. Se o
 | 5 | Scripting de automatización | Material en Classroom |
 | **Unidad 2 · Ambiente de desarrollo, trabajo en equipo y servidores** | | |
 | 6 | Configuración del ambiente de desarrollo | ✅ Disponible |
-| 7 | Git y control de versiones | Próximamente |
+| 7 | Git y GitHub · Control de versiones | ✅ Disponible |
 | 8 | Primeros pasos con HTML y CSS en VS Code | ✅ Disponible |
 | 9 | Gestión de proyecto y trabajo en equipo | Próximamente |
 | 10 | Trabajo Integrador Final | Próximamente |
@@ -49,6 +49,7 @@ unidades/tpNN.html         una página por TP
 assets/css/estilos.css     estilos y paleta de colores
 assets/js/actividades.js   botón PDF, barra de navegación y marca de "Visto"
 assets/js/ejemplos.js      botón "Copiar" y resultado en el navegador de los ejemplos
+assets/js/simulador.js     simulador del instalador de Git (TP7)
 assets/img/ejemplos/       imágenes que usan los ejemplos de HTML
 assets/fonts/              tipografías
 ```

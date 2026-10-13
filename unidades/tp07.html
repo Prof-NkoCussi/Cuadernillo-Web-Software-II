@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°7 — Git y GitHub · Control de versiones · Software II</title>
+  <meta name="description" content="TP N°7 de Software II: qué son Git y GitHub, instalar Git, la cuenta y el primer repositorio, el ciclo status, add, commit y push, subir archivos desde la página, git pull y las ramas. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="7">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-terminal" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M12 23l7 6-7 6M23 35h12"/>
+    </symbol>
+    <symbol id="i-versiones" viewBox="0 0 48 48">
+      <rect x="16" y="4" width="26" height="32" rx="3" style="fill:var(--ac)"/>
+      <rect x="7" y="12" width="26" height="32" rx="3" style="fill:var(--blanco)"/>
+      <path d="M13 22h14M13 29h14M13 36h9"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°7 — Git y GitHub · Control de versiones</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°7">
+    <a href="#pag-25">25 · Git y GitHub</a>
+    <a href="#pag-26">26 · Cuenta y repositorio</a>
+    <a href="#pag-27">27 · El ciclo</a>
+    <a href="#pag-28">28 · Pull y ramas</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°7 — Git y GitHub · Control de versiones</h1>
+
+  <!-- =================== LÁMINA 25 · Hoja 1 =================== -->
+  <article class="lamina lamina--compacta" id="pag-25" aria-labelledby="t25">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t25"><span class="tit__num">25.</span> Git y GitHub</h2>
+      <p class="tit__sub">Qué es el control de versiones y qué hace cada uno</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-versiones"/></svg>
+      <p>Un proyecto cambia todo el tiempo. Un <strong>sistema de control de versiones</strong> guarda cada cambio: qué se cambió, quién lo hizo y cuándo. Así podemos volver a una versión anterior y compartir el proyecto sin mandar archivos sueltos.</p>
+    </div>
+
+    <ul class="comparar" aria-label="Git y GitHub">
+      <li><div><h3><span class="etq">Git</span> En tu computadora</h3><p>Es un programa que se instala en la compu. Guarda el historial del proyecto en una carpeta oculta, <code class="cod-carpeta">.git</code>, dentro del proyecto. Lo usamos con comandos en la terminal.</p></div></li>
+      <li><div><h3><span class="etq">GitHub</span> En la nube</h3><p>Es una página web que guarda una copia del repositorio. Desde ahí lo vemos en cualquier compu, lo compartimos y lo entregamos. Lo usamos desde el navegador.</p></div></li>
+    </ul>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 380 170" style="max-width:440px;margin:0 auto" role="img" aria-labelledby="esq25">
+          <title id="esq25">Git y GitHub. A la izquierda, tu computadora: la carpeta tp7-gomez y, adentro, la carpeta oculta .git con el historial, tres commits. A la derecha, GitHub: el mismo repositorio, luciagomez/tp7-gomez, con los mismos tres commits. Arriba, una flecha de la compu a GitHub: git push sube los commits. Abajo, una flecha de GitHub a la compu: git clone y git pull bajan el repositorio y sus cambios.</title>
+          <g class="tt" text-anchor="middle" style="font-size:13.5px;font-weight:700">
+            <text x="67" y="15">Tu computadora</text>
+            <text x="313" y="15">GitHub</text>
+          </g>
+          <!-- Compu -->
+          <rect x="2" y="24" width="130" height="134" rx="8" style="fill:var(--panel);stroke:var(--tinta);stroke-width:2"/>
+          <path d="M14 39a2 2 0 0 1 2-2h5l2 2.5h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2z" style="fill:var(--carpeta)"/>
+          <text x="40" y="50" style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700;fill:var(--tinta)">tp7-gomez</text>
+          <rect x="14" y="62" width="106" height="84" rx="6" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.5;stroke-dasharray:5 3"/>
+          <text x="67" y="81" text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700;fill:var(--acento-numero)">.git</text>
+          <text class="tt" x="67" y="98" text-anchor="middle" style="font-size:11.5px;fill:var(--gris)">el historial</text>
+          <!-- GitHub -->
+          <rect x="248" y="24" width="130" height="134" rx="8" style="fill:var(--acento-claro);stroke:var(--tinta);stroke-width:2"/>
+          <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-weight:700;fill:var(--tinta)">
+            <text x="313" y="46" style="font-size:11.5px">luciagomez/</text>
+            <text x="313" y="62" style="font-size:13px">tp7-gomez</text>
+          </g>
+          <rect x="260" y="74" width="106" height="72" rx="6" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.5"/>
+          <text class="tt" x="313" y="98" text-anchor="middle" style="font-size:11.5px;fill:var(--gris)">el mismo historial</text>
+          <!-- Commits -->
+          <g style="stroke-width:2.5">
+            <path d="M32 124h70M278 124h70" style="stroke:var(--acento)"/>
+          </g>
+          <g style="fill:var(--acento)">
+            <circle cx="32" cy="124" r="7"/><circle cx="67" cy="124" r="7"/><circle cx="102" cy="124" r="7"/>
+            <circle cx="278" cy="124" r="7"/><circle cx="313" cy="124" r="7"/><circle cx="348" cy="124" r="7"/>
+          </g>
+          <!-- Flechas: push sube (índigo), clone y pull bajan (naranja) -->
+          <g style="fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round">
+            <path d="M140 62H240M233 56l7 6-7 6" style="stroke:var(--acento)"/>
+            <path d="M240 118H140M147 112l-7 6 7 6" style="stroke:var(--naranja)"/>
+          </g>
+          <g text-anchor="middle" style="font-family:var(--fuente-codigo);font-size:13px;font-weight:700">
+            <text x="190" y="52" style="fill:var(--acento-numero)">git push</text>
+            <text x="190" y="108" style="fill:var(--naranja-texto)">git clone</text>
+            <text x="190" y="140" style="fill:var(--naranja-texto)">git pull</text>
+          </g>
+          <g class="tt" text-anchor="middle" style="font-size:11.5px">
+            <text x="190" y="81">sube</text>
+            <text x="190" y="157">bajan</text>
+          </g>
+        </svg>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n25a">
+        <h3 id="n25a">Palabras clave</h3>
+        <ul class="pf__lista">
+          <li><strong>Repositorio</strong> (o <strong>repo</strong>): la carpeta del proyecto con todo su historial.</li>
+          <li><strong>Commit:</strong> una versión guardada, con un mensaje que dice qué cambió.</li>
+          <li><strong>Clonar:</strong> copiar un repositorio de GitHub a la compu.</li>
+          <li><strong>Rama:</strong> una línea de trabajo. La principal se llama <code>main</code>.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <section class="esquema-par" aria-labelledby="s25">
+      <div class="esquema-nota">
+        <h3 id="s25">¿Git está instalado?</h3>
+        <p class="esquema-nota__p">En VS Code abrimos la terminal con <kbd>Ctrl</kbd> + <kbd>ñ</kbd> y escribimos <code>git --version</code>. En el laboratorio ya está instalado. Si en tu compu no lo está, lo instalamos como se ve en la hoja que sigue.</p>
+      </div>
+      <figure class="terminal">
+        <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+        <pre tabindex="0" aria-label="Terminal: git --version y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git --version</span>
+git version 2.53.0.windows.1</code></pre>
+        <p class="terminal__nota">Si aparece la versión, Git funciona (el número puede ser otro). Si la terminal no reconoce <code>git</code>, hay que instalarlo.</p>
+      </figure>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 25, hoja 1 de 2">25 · 1/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 25 · Hoja 2 =================== -->
+  <article class="lamina lamina--compacta" id="pag-25b" aria-labelledby="t25b">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t25b"><span class="tit__num">25.</span> Git y GitHub<span class="sr-only"> (sigue)</span></h2>
+      <p class="tit__sub">Instalar Git en tu computadora · sigue</p>
+    </div>
+
+    <section class="esquema-nota" aria-labelledby="s25b">
+      <h3 id="s25b">Paso a paso</h3>
+      <ol class="puntos puntos--pasos">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span><strong>Antes, VS Code:</strong> Git lo usa como editor, así que tiene que estar instalado (lo hicimos en el TP6).</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><strong>Descargar:</strong> en <strong>git-scm.com</strong>, <strong>Install</strong> → <strong>Windows</strong> → <strong lang="en">Click here to download</strong> (descargar). Baja un archivo como <code>Git-2.56.0.2-64-bit.exe</code>: el número cambia con cada versión.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>Instalar:</strong> abrimos el archivo y pasamos las pantallas. Casi todas, con <strong lang="en">Next</strong> (siguiente); solo cambiamos dos. Probalo en el simulador.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">4</span><span><strong>Comprobar:</strong> en la terminal de VS Code, <code>git --version</code> (hoja anterior).</span></li>
+      </ol>
+    </section>
+
+    <div class="esquema-par esquema-par--sim">
+      <figure class="sim" data-sim aria-labelledby="sim-titulo">
+        <div class="sim__ventana">
+          <div class="sim__barra"><span id="sim-titulo">Git 2.56.0 Setup</span><span class="sim__cerrar" aria-hidden="true">×</span></div>
+          <ol class="sim__pantallas">
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Information</b><span>Please read the following important information before continuing.</span></div>
+              <div class="sim__cuerpo">
+                <p>When you are ready to continue with Setup, click Next.</p>
+                <div class="sim__licencia"><b>GNU General Public License</b><br>Version 2, June 1991<br>Copyright (C) 1989, 1991 Free Software Foundation, Inc.</div>
+              </div>
+              <p class="sim__ayuda">La licencia: Git es software libre. Tocá <strong>Next</strong> (siguiente).</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Select Destination Location</b><span>Where should Git be installed?</span></div>
+              <div class="sim__cuerpo">
+                <p>Setup will install Git into the following folder.</p>
+                <p>To continue, click Next. If you would like to select a different folder, click Browse.</p>
+                <div class="sim__fila"><span class="sim__campo">C:\Program Files\Git</span><span class="sim__boton" aria-hidden="true">Browse...</span></div>
+              </div>
+              <p class="sim__ayuda">La carpeta donde se instala Git. Dejala como está y tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Select Components</b><span>Which components should be installed?</span></div>
+              <div class="sim__cuerpo">
+                <p>Select the components you want to install; clear the components you do not want to install. Click Next when you are ready to continue.</p>
+                <div class="sim__lista">
+                  <div class="sim__op"><span class="sim__marca sim__marca--check"></span><span>Additional icons</span></div>
+                  <div class="sim__op"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>Windows Explorer integration</span></div>
+                  <div class="sim__op sim__op--sub"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>Open Git Bash here</span></div>
+                  <div class="sim__op sim__op--sub"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>Open Git GUI here</span></div>
+                  <div class="sim__op"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>Git LFS (Large File Support)</span></div>
+                  <div class="sim__op"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>Associate .git* configuration files with the default text editor</span></div>
+                  <div class="sim__op"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>Associate .sh files to be run with Bash</span></div>
+                  <div class="sim__op"><span class="sim__marca sim__marca--check"></span><span>Check daily for Git for Windows updates</span></div>
+                  <div class="sim__op"><span class="sim__marca sim__marca--check"></span><span>Add a Git Bash Profile to Windows Terminal</span></div>
+                  <div class="sim__op"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>Scalar (Git add-on to manage large-scale repositories)</span></div>
+                </div>
+              </div>
+              <p class="sim__ayuda">Las partes que se instalan. Dejá lo que viene marcado y tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Select Start Menu Folder</b><span>Where should Setup place the program's shortcuts?</span></div>
+              <div class="sim__cuerpo">
+                <p>Setup will create the program's shortcuts in the following Start Menu folder.</p>
+                <p>To continue, click Next. If you would like to select a different folder, click Browse.</p>
+                <div class="sim__fila"><span class="sim__campo">Git</span><span class="sim__boton" aria-hidden="true">Browse...</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--check"></span><span>Don't create a Start Menu folder</span></div>
+              </div>
+              <p class="sim__ayuda">Los accesos directos del menú Inicio. Tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla sim__pantalla--muestra" data-clave data-requiere="editor">
+              <div class="sim__cab"><b>Choosing the default editor used by Git</b><span>Which editor would you like Git to use?</span></div>
+              <div class="sim__cuerpo">
+                <select data-sim-editor aria-label="Editor de Git">
+                  <option value="nano">Use the Nano editor by default</option>
+                  <option value="vim">Use Vim (the ubiquitous text editor) as Git's default editor</option>
+                  <option value="notepadpp">Use Notepad++ as Git's default editor</option>
+                  <option value="vscode" selected>Use Visual Studio Code as Git's default editor</option>
+                  <option value="notepad">Use Notepad as Git's default editor</option>
+                </select>
+                <p class="sim__desc" data-sim-editor-desc>Visual Studio Code is an Open Source, lightweight and powerful editor running as a desktop application.</p>
+              </div>
+              <p class="sim__ayuda"><strong>¡Esta cambia!</strong> Abrí la lista y elegí <strong lang="en">Use Visual Studio Code as Git's default editor</strong> (usar VS Code como editor de Git). Con Vim, Git abre un editor difícil de usar.</p>
+              <p class="sim__error">Todavía no está VS Code. Elegí <strong lang="en">Use Visual Studio Code as Git's default editor</strong> y después tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla" data-clave data-requiere="rama">
+              <div class="sim__cab"><b>Adjusting the name of the initial branch in new repositories</b><span>What would you like Git to name the initial branch after "git init"?</span></div>
+              <div class="sim__cuerpo">
+                <label class="sim__op"><input type="radio" name="sim-rama" data-sim-rama-decide><span>Let Git decide</span>
+                  <span class="sim__desc">Let Git use its default branch name (currently: "master") for the initial branch in newly created repositories.</span></label>
+                <label class="sim__op"><input type="radio" name="sim-rama" data-sim-rama-otra><span>Override the default branch name for new repositories</span>
+                  <span class="sim__desc">Many teams already renamed their default branches; common choices are "main", "trunk" and "development". Specify the name "git init" should use for the initial branch:</span></label>
+                <input type="text" value="main" data-sim-rama-nombre aria-label="Nombre de la rama inicial">
+                <p>This setting does not affect existing repositories.</p>
+              </div>
+              <p class="sim__ayuda"><strong>¡Esta también!</strong> Elegí <strong lang="en">Override the default branch name for new repositories</strong> (cambiar el nombre de la rama) y dejá <strong>main</strong>, el mismo nombre que usa GitHub.</p>
+              <p class="sim__error">Elegí <strong lang="en">Override the default branch name…</strong> y dejá escrito <strong>main</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Adjusting your PATH environment</b><span>How would you like to use Git from the command line?</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Use Git from Git Bash only</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio sim__marca--on"></span><span>Git from the command line and also from 3rd-party software</span>
+                  <span class="sim__desc">(Recommended) You will be able to use Git from Git Bash, the Command Prompt and the Windows PowerShell as well as any third-party software looking for Git in PATH.</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Use Git and optional Unix tools from the Command Prompt</span></div>
+              </div>
+              <p class="sim__ayuda">Dejá la opción recomendada: así Git funciona en la terminal de VS Code. Tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Choosing the SSH executable</b><span>Which Secure Shell client program would you like Git to use?</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--radio sim__marca--on"></span><span>Use bundled OpenSSH</span><span class="sim__desc">This uses ssh.exe that comes with Git.</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Use external OpenSSH</span></div>
+              </div>
+              <p class="sim__ayuda">Dejá lo que viene marcado y tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Choosing HTTPS transport backend</b><span>Which SSL/TLS library would you like Git to use for HTTPS connections?</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Use the OpenSSL library</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio sim__marca--on"></span><span>Use the native Windows Secure Channel library</span><span class="sim__desc">Server certificates will be validated using Windows Certificate Stores.</span></div>
+              </div>
+              <p class="sim__ayuda">Dejá lo que viene marcado y tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Configuring the line ending conversions</b><span>How should Git treat line endings in text files?</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--radio sim__marca--on"></span><span>Checkout Windows-style, commit Unix-style line endings</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Checkout as-is, commit Unix-style line endings</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Checkout as-is, commit as-is</span></div>
+              </div>
+              <p class="sim__ayuda">Cómo guarda Git los saltos de línea. Dejá la primera opción y tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Configuring the terminal emulator to use with Git Bash</b><span>Which terminal emulator do you want to use with your Git Bash?</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--radio sim__marca--on"></span><span>Use MinTTY (the default terminal of MSYS2)</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Use Windows' default console window</span></div>
+              </div>
+              <p class="sim__ayuda">Dejá lo que viene marcado y tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Choose the default behavior of `git pull`</b><span>Pulling always attempts a fast-forward first.</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--radio sim__marca--on"></span><span>Merge</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Rebase</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>Fast-forward only</span></div>
+              </div>
+              <p class="sim__ayuda">Dejá lo que viene marcado y tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Choose a credential helper</b><span>Which credential helper should be configured?</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--radio sim__marca--on"></span><span>Git Credential Manager</span><span class="sim__desc">Use the cross-platform Git Credential Manager.</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--radio"></span><span>None</span></div>
+              </div>
+              <p class="sim__ayuda">Git Credential Manager guarda tu sesión de GitHub, así no la pide en cada <code>git push</code>. Tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla">
+              <div class="sim__cab"><b>Configuring extra options</b><span>Which features would you like to enable?</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>Enable file system caching</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--check"></span><span>Enable symbolic links</span></div>
+              </div>
+              <p class="sim__ayuda">Dejá lo que viene marcado y tocá <strong>Next</strong>.</p>
+            </li>
+            <li class="sim__pantalla" data-boton="Install">
+              <div class="sim__cab"><b>Configuring experimental options</b><span>These features are developed actively. Would you like to try them?</span></div>
+              <div class="sim__cuerpo">
+                <div class="sim__op"><span class="sim__marca sim__marca--check"></span><span>Built-in file system monitor</span></div>
+              </div>
+              <p class="sim__ayuda">No marques nada y tocá <strong lang="en">Install</strong> (instalar).</p>
+            </li>
+            <li class="sim__pantalla" data-instalando>
+              <div class="sim__cab"><b>Installing</b><span>Please wait while Setup installs Git on your computer.</span></div>
+              <div class="sim__cuerpo">
+                <p>Extracting files...</p>
+                <div class="sim__progreso"><span></span></div>
+              </div>
+              <p class="sim__ayuda">Se está instalando. Esperá unos segundos.</p>
+            </li>
+            <li class="sim__pantalla" data-boton="Finish">
+              <div class="sim__cuerpo">
+                <p class="sim__titulo-fin">Completing the Git Setup Wizard</p>
+                <p>Setup has finished installing Git on your computer. The application may be launched by selecting the installed shortcuts.</p>
+                <p>Click Finish to exit Setup.</p>
+                <div class="sim__op"><span class="sim__marca sim__marca--check"></span><span>Launch Git Bash</span></div>
+                <div class="sim__op"><span class="sim__marca sim__marca--check sim__marca--on"></span><span>View Release Notes</span></div>
+              </div>
+              <p class="sim__ayuda">Terminó. Tocá <strong lang="en">Finish</strong> (terminar). Con <strong lang="en">View Release Notes</strong> marcado, se abren las novedades de la versión.</p>
+            </li>
+          </ol>
+          <div class="sim__pie">
+            <button type="button" class="sim__boton" data-sim-atras>&lt; Back</button>
+            <button type="button" class="sim__boton sim__boton--sig" data-sim-sig>Next &gt;</button>
+            <button type="button" class="sim__boton" disabled>Cancel</button>
+          </div>
+          <div class="sim__fin">
+            <p class="sim__titulo-fin">Git quedó instalado.</p>
+            <p>Abrí VS Code, la terminal y escribí <code>git --version</code>.</p>
+            <button type="button" class="sim__boton" data-sim-otra-vez>Volver a empezar</button>
+            <p class="sim__ayuda">¡Listo! Ahora comprobá en la terminal de VS Code que Git funciona: <code>git --version</code>.</p>
+          </div>
+        </div>
+        <figcaption class="sim__guia"><span class="sim__n" aria-hidden="true"></span><span class="sim__que" aria-live="polite"><strong>¡Esta cambia!</strong> Abrí la lista y elegí <strong lang="en">Use Visual Studio Code as Git's default editor</strong> (usar VS Code como editor de Git). Con Vim, Git abre un editor difícil de usar.</span></figcaption>
+      </figure>
+
+      <aside class="esquema-nota" aria-labelledby="n25b">
+        <h3 id="n25b">Pantalla por pantalla</h3>
+        <table class="tabla-comp tabla-comp--cmd tabla-comp--sim">
+          <caption class="sr-only">Las pantallas del instalador de Git y qué hacer en cada una</caption>
+          <thead><tr><th scope="col">Pantallas</th><th scope="col">Qué hacer</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">1 a 4</th><td><strong lang="en">Next</strong>.</td></tr>
+            <tr class="fila--clave"><th scope="row">5</th><td><span lang="en">Choosing the default editor used by Git</span>: elegir <strong lang="en">Use Visual Studio Code as Git's default editor</strong>.</td></tr>
+            <tr class="fila--clave"><th scope="row">6</th><td><span lang="en">Adjusting the name of the initial branch…</span>: elegir <strong lang="en">Override the default branch name…</strong> y dejar <strong>main</strong>.</td></tr>
+            <tr><th scope="row">7 a 14</th><td>Dejar lo que viene marcado y <strong lang="en">Next</strong>.</td></tr>
+            <tr><th scope="row">15</th><td>Sin marcar nada, <strong lang="en">Install</strong>.</td></tr>
+            <tr><th scope="row">16 y 17</th><td>Esperar y <strong lang="en">Finish</strong>.</td></tr>
+          </tbody>
+        </table>
+        <p class="esquema-nota__p esquema-nota__p--sep">Las pantallas pueden cambiar un poco con cada versión. Si falta alguna, seguí con la próxima.</p>
+      </aside>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> Git guarda el historial en tu compu y GitHub, una copia en la nube. Al instalar Git cambiamos solo dos opciones: el editor (<b>VS Code</b>) y la rama inicial (<b>main</b>).</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 25, hoja 2 de 2">25 · 2/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 26 · Hoja 1 =================== -->
+  <article class="lamina lamina--compacta" id="pag-26" aria-labelledby="t26">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t26"><span class="tit__num">26.</span> Tu cuenta y tu repositorio</h2>
+      <p class="tit__sub">Crear la cuenta de GitHub y configurar Git</p>
+    </div>
+
+    <section class="esquema-nota" aria-labelledby="s26a">
+      <h3 id="s26a">Crear la cuenta</h3>
+      <ol class="puntos puntos--pasos">
+        <li><span class="puntos__n" aria-hidden="true">1</span><span><strong>Registrarse:</strong> en <strong>github.com</strong>, <strong lang="en">Sign up</strong> (registrarse).</span></li>
+        <li><span class="puntos__n" aria-hidden="true">2</span><span><strong>Completar:</strong> <strong lang="en">Email</strong> (tu mail), <strong lang="en">Password</strong> (contraseña) y <strong lang="en">Username</strong> (nombre de usuario). El usuario va sin espacios y aparece en el link de tus repositorios: <code>github.com/luciagomez</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">3</span><span><strong>Verificar:</strong> resolvemos la prueba que pide la página y escribimos el código que llega al mail.</span></li>
+      </ol>
+    </section>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 196" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq26a">
+          <title id="esq26a">La configuración de la cuenta de GitHub. A: arriba a la derecha, la foto de perfil abre un menú con Settings. B: a la izquierda, en la sección Access, Emails. C: la casilla Keep my email addresses private, tildada. D: abajo, el mail privado, 12345678+luciagomez@users.noreply.github.com.</title>
+          <rect x="1" y="1" width="338" height="194" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <path d="M7 1h326a6 6 0 0 1 6 6v20H1V7a6 6 0 0 1 6-6z" style="fill:var(--tinta)"/>
+          <circle cx="318" cy="14" r="8" style="fill:var(--acento-claro);stroke:var(--blanco);stroke-width:1.5"/>
+          <!-- Menú de la foto de perfil -->
+          <rect x="226" y="30" width="104" height="24" rx="5" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.2"/>
+          <rect x="230" y="34" width="96" height="16" rx="3" style="fill:var(--acento-claro)"/>
+          <text x="238" y="46" style="font-family:var(--fuente);font-size:11.5px;font-weight:600;fill:var(--tinta)">Settings</text>
+          <!-- Barra lateral -->
+          <text x="12" y="70" style="font-family:var(--fuente);font-size:10px;font-weight:700;letter-spacing:.06em;fill:var(--gris)">Access</text>
+          <text x="16" y="90" style="font-family:var(--fuente);font-size:11px;fill:var(--tinta)">Billing and licensing</text>
+          <rect x="10" y="98" width="112" height="20" rx="4" style="fill:var(--acento-claro)"/>
+          <rect x="10" y="98" width="3" height="20" style="fill:var(--acento)"/>
+          <text x="18" y="112" style="font-family:var(--fuente);font-size:11.5px;font-weight:700;fill:var(--tinta)">Emails</text>
+          <!-- Página Emails -->
+          <text x="136" y="76" style="font-family:var(--fuente);font-size:14px;font-weight:700;fill:var(--tinta)">Emails</text>
+          <path d="M136 84h194" style="stroke:var(--linea);stroke-width:1.2"/>
+          <rect x="136" y="100" width="12" height="12" rx="2" style="fill:var(--acento)"/>
+          <path d="M138.5 106l2.5 2.5 4.5-5" style="fill:none;stroke:var(--blanco);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"/>
+          <text x="154" y="110" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--tinta)">Keep my email addresses private</text>
+          <g style="fill:var(--linea)"><rect x="156" y="120" width="150" height="5" rx="2.5"/><rect x="12" y="136" width="180" height="5" rx="2.5"/></g>
+          <rect x="12" y="148" width="318" height="22" rx="4" style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:1.6"/>
+          <text x="19" y="163" textLength="300" lengthAdjust="spacingAndGlyphs" style="font-family:var(--fuente-codigo);font-size:11px;font-weight:700;fill:var(--tinta)">12345678+luciagomez@users.noreply.github.com</text>
+          <rect x="12" y="178" width="120" height="5" rx="2.5" style="fill:var(--linea)"/>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="300" cy="14" r="8"/><circle cx="104" cy="108" r="8"/><circle cx="142" cy="128" r="8"/><circle cx="318" cy="138" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="300" y="18">A</text><text x="104" y="112">B</text><text x="142" y="132">C</text><text x="318" y="142">D</text>
+          </g>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="s26b">
+        <h3 id="s26b">El mail privado</h3>
+        <p class="esquema-nota__p">Los repositorios son públicos y cada commit guarda el mail de quien lo hizo. Para no mostrar el nuestro, GitHub nos da un mail privado:</p>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>Arriba a la derecha, la foto de perfil → <span class="sin-corte"><strong lang="en">Settings</strong> <span class="marca">A</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span>En la sección <strong lang="en">Access</strong>, <span class="sin-corte"><strong lang="en">Emails</strong> <span class="marca">B</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span>Tildar <strong lang="en">Keep my email addresses private</strong> (mantener privados mis mails) <span class="marca">C</span>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span>Copiar el mail que termina en <code>@users.noreply.github.com</code> <span class="marca">D</span>.</span></li>
+        </ol>
+      </section>
+    </div>
+
+    <section class="panel" aria-labelledby="s26c">
+      <h3 class="subtitulo" id="s26c">Configurar Git: tu nombre y tu mail</h3>
+      <div class="ej ej--term">
+        <div class="ej-col">
+          <p class="panel__texto">Cada commit guarda quién lo hizo. Se lo decimos a Git una vez, con <code>git config --global</code>: el nombre y el mail privado de GitHub. El último comando, sin el mail al final, muestra el que quedó guardado.</p>
+          <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n26c">
+            <h3 id="n26c"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>En el laboratorio</h3>
+            <p class="esquema-nota__p">La compu se reinicia y se borra todo: configurá Git al empezar cada clase. En tu compu, alcanza con una vez.</p>
+          </aside>
+        </div>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: git config con el nombre y el mail, y la consulta del mail guardado"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.name "Lucía Gómez"</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.email "12345678+luciagomez@users.noreply.github.com"</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git config --global user.email</span>
+12345678+luciagomez@users.noreply.github.com</code></pre>
+          <p class="terminal__nota">Los dos primeros no muestran nada: guardan el dato.</p>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 26, hoja 1 de 2">26 · 1/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 26 · Hoja 2 =================== -->
+  <article class="lamina lamina--compacta" id="pag-26b" aria-labelledby="t26b">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t26b"><span class="tit__num">26.</span> Tu cuenta y tu repositorio<span class="sr-only"> (sigue)</span></h2>
+      <p class="tit__sub">Crear el repositorio y clonarlo · sigue</p>
+    </div>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 214" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq26">
+          <title id="esq26">La página de GitHub para crear un repositorio. A: arriba a la derecha, el botón más abre un menú con New repository. B: el campo Repository name, con tp7-gomez. C: la opción Public. D: la casilla Add a README file, tildada. E: el botón verde Create repository.</title>
+          <rect x="1" y="1" width="338" height="212" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <path d="M7 1h326a6 6 0 0 1 6 6v20H1V7a6 6 0 0 1 6-6z" style="fill:var(--tinta)"/>
+          <!-- Botón + y su menú -->
+          <rect x="268" y="6" width="34" height="16" rx="4" style="fill:none;stroke:var(--blanco);stroke-width:1.2"/>
+          <text x="279" y="18.5" style="font-family:var(--fuente);font-size:13px;font-weight:700;fill:var(--blanco)">+</text>
+          <path d="M290 12l3 3 3-3" style="fill:none;stroke:var(--blanco);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round"/>
+          <rect x="196" y="28" width="132" height="24" rx="5" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.2"/>
+          <rect x="200" y="32" width="124" height="16" rx="3" style="fill:var(--acento-claro)"/>
+          <text x="208" y="44" style="font-family:var(--fuente);font-size:11.5px;font-weight:600;fill:var(--tinta)">New repository</text>
+          <!-- Formulario -->
+          <text x="14" y="52" style="font-family:var(--fuente);font-size:14px;font-weight:700;fill:var(--tinta)">Create a new repository</text>
+          <text x="14" y="78" style="font-family:var(--fuente);font-size:11.5px;font-weight:600;fill:var(--tinta)">Repository name *</text>
+          <rect x="14" y="84" width="170" height="20" rx="4" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.6"/>
+          <text x="21" y="98" style="font-family:var(--fuente-codigo);font-size:12px;fill:var(--tinta)">tp7-gomez</text>
+          <circle cx="20" cy="126" r="5" style="fill:var(--blanco);stroke:var(--acento);stroke-width:4"/>
+          <text x="31" y="130" style="font-family:var(--fuente);font-size:12px;font-weight:600;fill:var(--tinta)">Public</text>
+          <circle cx="112" cy="126" r="5" style="fill:var(--blanco);stroke:var(--gris);stroke-width:1.3"/>
+          <text x="123" y="130" style="font-family:var(--fuente);font-size:12px;fill:var(--gris)">Private</text>
+          <rect x="14" y="146" width="12" height="12" rx="2" style="fill:var(--acento)"/>
+          <path d="M16.5 152l2.5 2.5 4.5-5" style="fill:none;stroke:var(--blanco);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"/>
+          <text x="32" y="156" style="font-family:var(--fuente);font-size:12px;font-weight:600;fill:var(--tinta)">Add a README file</text>
+          <rect x="14" y="176" width="124" height="24" rx="5" style="fill:var(--ok)"/>
+          <text x="76" y="192" text-anchor="middle" style="font-family:var(--fuente);font-size:12px;font-weight:700;fill:var(--blanco)">Create repository</text>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="314" cy="40" r="8"/><circle cx="196" cy="94" r="8"/><circle cx="84" cy="126" r="8"/><circle cx="150" cy="152" r="8"/><circle cx="150" cy="188" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="314" y="44">A</text><text x="196" y="98">B</text><text x="84" y="130">C</text><text x="150" y="156">D</text><text x="150" y="192">E</text>
+          </g>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="s26d">
+        <h3 id="s26d">Crear el repositorio</h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>Arriba a la derecha, <strong>+</strong> → <strong lang="en">New repository</strong> (nuevo <span class="sin-corte">repositorio) <span class="marca">A</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span><strong lang="en">Repository name</strong> <span class="marca">B</span>: <code>tp7-</code> y tu apellido, en minúscula.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span><strong lang="en">Public</strong> (público) <span class="marca">C</span>: cualquiera lo puede ver con el link.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span>Tildar <strong lang="en">Add a README file</strong> <span class="marca">D</span>: crea el <code>README.md</code>, la portada del repositorio.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">5</span><span><strong lang="en">Create repository</strong> (crear <span class="sin-corte">repositorio) <span class="marca">E</span>.</span></span></li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 172" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq26b">
+          <title id="esq26b">La página del repositorio luciagomez/tp7-gomez. A: el botón verde Code abre un panel. B: en el panel, la pestaña HTTPS. C: la dirección https://github.com/luciagomez/tp7-gomez.git, con el botón para copiarla. </title>
+          <rect x="1" y="1" width="338" height="170" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <text x="14" y="24" style="font-family:var(--fuente);font-size:13px;font-weight:700;fill:var(--tinta)">luciagomez / tp7-gomez</text>
+          <rect x="168" y="12" width="44" height="16" rx="8" style="fill:none;stroke:var(--gris);stroke-width:1.2"/>
+          <text x="190" y="24" text-anchor="middle" style="font-family:var(--fuente);font-size:10.5px;fill:var(--gris)">Public</text>
+          <rect x="164" y="38" width="70" height="22" rx="5" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.4"/>
+          <text x="172" y="53" style="font-family:var(--fuente);font-size:11.5px;font-weight:600;fill:var(--tinta)">Add file ▾</text>
+          <rect x="242" y="38" width="76" height="22" rx="5" style="fill:var(--ok)"/>
+          <text x="280" y="53" text-anchor="middle" style="font-family:var(--fuente);font-size:11.5px;font-weight:700;fill:var(--blanco)">&lt;&gt; Code ▾</text>
+          <!-- Panel de Code -->
+          <rect x="60" y="66" width="270" height="94" rx="6" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.4"/>
+          <text x="72" y="86" style="font-family:var(--fuente);font-size:12px;font-weight:700;fill:var(--tinta)">Clone</text>
+          <text x="92" y="108" style="font-family:var(--fuente);font-size:11.5px;font-weight:700;fill:var(--tinta)">HTTPS</text>
+          <rect x="90" y="112" width="40" height="2.5" style="fill:var(--naranja)"/>
+          <text x="142" y="108" style="font-family:var(--fuente);font-size:11.5px;fill:var(--gris)">SSH</text>
+          <text x="178" y="108" style="font-family:var(--fuente);font-size:11.5px;fill:var(--gris)">GitHub CLI</text>
+          <rect x="72" y="122" width="226" height="22" rx="4" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.6"/>
+          <text x="78" y="137" textLength="214" lengthAdjust="spacingAndGlyphs" style="font-family:var(--fuente-codigo);font-size:10px;fill:var(--tinta)">https://github.com/luciagomez/tp7-gomez.git</text>
+          <rect x="302" y="122" width="22" height="22" rx="4" style="fill:var(--panel);stroke:var(--linea);stroke-width:1.2"/>
+          <path d="M309 128h7v9h-7zM312 128v-2h7v9h-3" style="fill:none;stroke:var(--tinta);stroke-width:1.3;stroke-linejoin:round"/>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="326" cy="34" r="8"/><circle cx="76" cy="104" r="8"/><circle cx="313" cy="155" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="326" y="38">A</text><text x="76" y="108">B</text><text x="313" y="159">C</text>
+          </g>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="s26e">
+        <h3 id="s26e">Clonar: traerlo a la compu</h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>En la página del repositorio, <strong lang="en">&lt;&gt; Code</strong> <span class="marca">A</span>, pestaña <strong>HTTPS</strong> <span class="marca">B</span> y copiar la <span class="sin-corte">dirección <span class="marca">C</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span>En la terminal de VS Code, <code>git clone</code> y la dirección.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span>Abrir la carpeta nueva: <strong>Archivo → Abrir carpeta…</strong> → <code class="cod-carpeta">tp7-gomez</code>.</span></li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="ej ej--res">
+      <figure class="terminal">
+        <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+        <pre tabindex="0" aria-label="Terminal: git clone y la primera línea de su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git clone https://github.com/luciagomez/tp7-gomez.git</span>
+Cloning into 'tp7-gomez'...</code></pre>
+        <p class="terminal__nota">Después aparecen unas líneas con el avance de la descarga. La carpeta <code class="cod-carpeta">tp7-gomez</code> se crea donde está parada la terminal.</p>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n26f">
+        <h3 id="n26f">Otra forma de empezar: <code>git init</code></h3>
+        <p class="esquema-nota__p">Convierte en repositorio una carpeta que ya está en la compu. Para subirla a GitHub hacen falta dos comandos más: los vemos en “Para profundizar”.</p>
+      </aside>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> la cuenta es una sola y los repositorios, uno por TP. Con <b>git clone</b> traemos el repositorio a la compu para trabajar.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 26, hoja 2 de 2">26 · 2/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 27 · Hoja 1 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-27" aria-labelledby="t27">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t27"><span class="tit__num">27.</span> El ciclo de trabajo</h2>
+      <p class="tit__sub">Del archivo al historial: status, add y commit</p>
+    </div>
+
+    <ol class="secuencia ciclo" aria-label="El ciclo de trabajo, en cuatro pasos">
+      <li><h3>Tu carpeta</h3><p>Creamos o cambiamos archivos en VS Code.</p></li>
+      <li><h3>Preparados</h3><code>git add .</code><p>Elegimos los cambios del próximo commit. El punto quiere decir “todos”.</p></li>
+      <li><h3>Historial</h3><code>git commit -m "…"</code><p>Guardamos una versión con un mensaje que dice qué cambió.</p></li>
+      <li><h3>GitHub</h3><code>git push</code><p>Subimos los commits nuevos a la nube.</p></li>
+    </ol>
+    <p class="texto texto--ciclo"><code>git status</code> muestra en qué paso está cada cambio. Lucía creó <code>ideas.md</code> en su repositorio:</p>
+
+    <div class="ej ej--term">
+      <div class="ej-col">
+        <figure class="codigo codigo--neutro" id="ej-27">
+          <figcaption><span class="codigo__archivo">ideas.md</span></figcaption>
+          <pre tabindex="0" aria-label="Contenido de ideas.md"><code># Ideas para mi proyecto
+
+- Una página para la biblioteca de la escuela.</code></pre>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n27a">
+          <h3 id="n27a">Qué dice <code>git status</code></h3>
+          <ul class="pf__lista">
+            <li><strong lang="en">Untracked files</strong>: archivos nuevos que Git todavía no sigue. Falta <code>git add</code>.</li>
+            <li><strong lang="en">Changes to be committed</strong>: cambios preparados. Falta <code>git commit</code>.</li>
+            <li><strong lang="en">nothing to commit, working tree clean</strong>: no hay nada nuevo; todo está guardado.</li>
+          </ul>
+        </aside>
+      </div>
+      <figure class="terminal">
+        <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+        <pre tabindex="0" aria-label="Terminal: git status, git add, git status y git commit, con su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git status</span>
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+	ideas.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git add .</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git status</span>
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged &lt;file&gt;..." to unstage)
+	new file:   ideas.md
+
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git commit -m "Agrego ideas.md con mi primera idea"</span>
+[main 5712b35] Agrego ideas.md con mi primera idea
+ 1 file changed, 3 insertions(+)
+ create mode 100644 ideas.md</code></pre>
+        <p class="terminal__nota"><code>git add .</code> no muestra nada. El commit dice su código (<code>5712b35</code>), su mensaje y qué cambió.</p>
+      </figure>
+    </div>
+
+    <ul class="comparar comparar--chico" aria-label="Mensajes de commit">
+      <li class="mal"><div><h3>Así no</h3><p><code>cambios</code> · <code>asdf</code> · <code>arreglo</code>: no dicen qué cambió.</p></div></li>
+      <li class="bien"><div><h3>Así sí</h3><p><code>Agrego ideas.md con mi primera idea</code>: claro, en español, dice qué cambió.</p></div></li>
+    </ul>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 27, hoja 1 de 2">27 · 1/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 27 · Hoja 2 =================== -->
+  <article class="lamina lamina--compacta" id="pag-27b" aria-labelledby="t27b">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t27b"><span class="tit__num">27.</span> El ciclo de trabajo<span class="sr-only"> (sigue)</span></h2>
+      <p class="tit__sub">Subir y ver el historial: push y log · sigue</p>
+    </div>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 300 214" style="max-width:320px;margin:0 auto" role="img" aria-labelledby="esq27">
+          <title id="esq27">La ventana Connect to GitHub, que se abre en el primer git push. Arriba dice GitHub y Sign in. A: el botón Sign in with your browser. Debajo, el botón Sign in with a code y, al final, Don't have an account? Sign up.</title>
+          <rect x="1" y="1" width="298" height="212" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <path d="M7 1h286a6 6 0 0 1 6 6v18H1V7a6 6 0 0 1 6-6z" style="fill:var(--panel)"/>
+          <text x="12" y="17" style="font-family:var(--fuente);font-size:11.5px;fill:var(--tinta)">Connect to GitHub</text>
+          <text x="282" y="18" style="font-family:var(--fuente);font-size:14px;fill:var(--tinta)">×</text>
+          <text x="150" y="62" text-anchor="middle" style="font-family:var(--fuente);font-size:22px;font-weight:700;fill:var(--tinta)">GitHub</text>
+          <text x="150" y="88" text-anchor="middle" style="font-family:var(--fuente);font-size:14px;font-weight:600;fill:var(--tinta)">Sign in</text>
+          <rect x="52" y="102" width="196" height="30" rx="6" style="fill:var(--tinta)"/>
+          <text x="150" y="121.5" text-anchor="middle" style="font-family:var(--fuente);font-size:12.5px;font-weight:700;fill:var(--blanco)">Sign in with your browser</text>
+          <rect x="52" y="140" width="196" height="30" rx="6" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.4"/>
+          <text x="150" y="159.5" text-anchor="middle" style="font-family:var(--fuente);font-size:12.5px;fill:var(--tinta)">Sign in with a code</text>
+          <text x="150" y="196" text-anchor="middle" style="font-family:var(--fuente);font-size:11.5px;fill:var(--gris)">Don't have an account? <tspan style="font-weight:700;fill:var(--acento-numero)">Sign up</tspan></text>
+          <circle cx="266" cy="117" r="9" style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5"/>
+          <text class="tt tt--claro" x="266" y="121" text-anchor="middle" style="font-size:11px;font-weight:700">A</text>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="s27b">
+        <h3 id="s27b">El primer <code>git push</code></h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>Escribimos <code>git push</code> en la terminal.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span>Se abre <strong lang="en">Connect to GitHub</strong>: tocamos <strong lang="en">Sign in with your browser</strong> (iniciar sesión con el <span class="sin-corte">navegador) <span class="marca">A</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span>En el navegador, iniciamos sesión en GitHub y autorizamos.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span>La terminal termina el <code>push</code>. Las próximas veces ya no lo pide.</span></li>
+        </ol>
+        <p class="esquema-nota__p esquema-nota__p--sep">En el laboratorio, al reiniciar la compu se borra la sesión: la clase siguiente lo vuelve a pedir.</p>
+      </section>
+    </div>
+
+    <div class="ej ej--res">
+      <figure class="terminal">
+        <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+        <pre tabindex="0" aria-label="Terminal: git push y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git push</span>
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 385 bytes | 385.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/luciagomez/tp7-gomez.git
+   adbb09c..5712b35  main -&gt; main</code></pre>
+        <p class="terminal__nota">Los números cambian. La última línea dice que los commits llegaron a <code>main</code>, en GitHub.</p>
+      </figure>
+      <figure class="terminal">
+        <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+        <pre tabindex="0" aria-label="Terminal: git log --oneline y git status, con su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git log --oneline</span>
+5712b35 Agrego ideas.md con mi primera idea
+adbb09c Initial commit
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git status</span>
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean</code></pre>
+        <p class="terminal__nota"><code>git log --oneline</code>: un commit por renglón, del más nuevo al más viejo. <span lang="en">Initial commit</span> lo hizo GitHub al crear el README. <code>git status</code>: todo guardado y subido.</p>
+      </figure>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> cambiamos archivos, <b>git add .</b>, <b>git commit</b> con un mensaje claro y <b>git push</b> para subirlos. <b>git status</b> nos dice en qué paso estamos.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 27, hoja 2 de 2">27 · 2/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 28 · Hoja 1 =================== -->
+  <article class="lamina lamina--compacta" id="pag-28" aria-labelledby="t28">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t28"><span class="tit__num">28.</span> Subir desde la página, pull y ramas</h2>
+      <p class="tit__sub">Traer los cambios de GitHub a la compu</p>
+    </div>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 196" style="max-width:400px;margin:0 auto" role="img" aria-labelledby="esq28">
+          <title id="esq28">Subir un archivo desde la página de GitHub. A la izquierda, la página del repositorio: A, el botón Add file abre un menú con Upload files. A la derecha, la página para subir: B, el recuadro para arrastrar los archivos, con el enlace choose your files; C, el mensaje del commit, Add files via upload; D, el botón verde Commit changes.</title>
+          <!-- Página del repositorio -->
+          <rect x="1" y="1" width="140" height="194" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <text x="12" y="22" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--tinta)">luciagomez / tp7-gomez</text>
+          <rect x="12" y="32" width="66" height="20" rx="5" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.6"/>
+          <text x="19" y="46" style="font-family:var(--fuente);font-size:11px;font-weight:600;fill:var(--tinta)">Add file ▾</text>
+          <rect x="12" y="56" width="118" height="46" rx="5" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.2"/>
+          <text x="20" y="72" style="font-family:var(--fuente);font-size:11px;fill:var(--gris)">Create new file</text>
+          <rect x="16" y="79" width="110" height="18" rx="3" style="fill:var(--acento-claro)"/>
+          <text x="20" y="92" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--tinta)">Upload files</text>
+          <g style="fill:var(--panel)"><rect x="12" y="114" width="118" height="18" rx="3"/><rect x="12" y="136" width="118" height="18" rx="3"/></g>
+          <g style="font-family:var(--fuente);font-size:10.5px;fill:var(--tinta)"><text x="18" y="127">README.md</text><text x="18" y="149">ideas.md</text></g>
+          <!-- Flecha -->
+          <path d="M145 86h14M153 80l6 6-6 6" style="fill:none;stroke:var(--acento);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/>
+          <!-- Página para subir -->
+          <rect x="163" y="1" width="176" height="194" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <rect x="173" y="12" width="156" height="62" rx="6" style="fill:var(--panel);stroke:var(--gris);stroke-width:1.3;stroke-dasharray:5 3"/>
+          <path d="M251 24v14M245 30l6-6 6 6" style="fill:none;stroke:var(--gris);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"/>
+          <text x="251" y="52" text-anchor="middle" style="font-family:var(--fuente);font-size:10px;fill:var(--tinta)">Drag files here to add them</text>
+          <text x="251" y="65" text-anchor="middle" style="font-family:var(--fuente);font-size:10px;fill:var(--acento-numero)">Or choose your files</text>
+          <text x="173" y="96" style="font-family:var(--fuente);font-size:11.5px;font-weight:700;fill:var(--tinta)">Commit changes</text>
+          <rect x="173" y="104" width="156" height="20" rx="4" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.6"/>
+          <text x="179" y="118" style="font-family:var(--fuente);font-size:10.5px;fill:var(--gris)">Add files via upload</text>
+          <rect x="173" y="160" width="100" height="22" rx="5" style="fill:var(--ok)"/>
+          <text x="223" y="175" text-anchor="middle" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--blanco)">Commit changes</text>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="88" cy="42" r="8"/><circle cx="324" cy="20" r="8"/><circle cx="318" cy="138" r="8"/><circle cx="286" cy="171" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="88" y="46">A</text><text x="324" y="24">B</text><text x="318" y="142">C</text><text x="286" y="175">D</text>
+          </g>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="s28a">
+        <h3 id="s28a">Subir archivos desde la página</h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>En el repositorio, <strong lang="en">Add file</strong> (agregar archivo) → <strong lang="en">Upload files</strong> (subir <span class="sin-corte">archivos) <span class="marca">A</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span>Arrastrar el archivo al recuadro, o <strong lang="en">choose your files</strong> (elegir <span class="sin-corte">archivos) <span class="marca">B</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span>Abajo, el mensaje <span class="marca">C</span>: GitHub propone <span lang="en">Add files via upload</span>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span><strong lang="en">Commit changes</strong> (confirmar <span class="sin-corte">cambios) <span class="marca">D</span>.</span></span></li>
+        </ol>
+        <p class="esquema-nota__p esquema-nota__p--sep">También es un commit: lo hace GitHub. Ahora GitHub tiene un commit que la compu no tiene.</p>
+      </section>
+    </div>
+
+    <section class="panel" aria-labelledby="s28b">
+      <h3 class="subtitulo" id="s28b">Traer los cambios: <code>git pull</code></h3>
+      <div class="ej-col">
+        <p class="panel__texto">Lucía subió <code>logo.png</code> desde la página. Para tenerlo en la compu, en la terminal de VS Code escribe <code>git pull</code>: Git trae los commits nuevos de GitHub y actualiza la carpeta.</p>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: git pull y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git pull</span>
+From https://github.com/luciagomez/tp7-gomez
+   5712b35..272d4b2  main       -&gt; origin/main
+Updating 5712b35..272d4b2
+Fast-forward
+ logo.png | Bin 0 -&gt; 508 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 logo.png</code></pre>
+          <p class="terminal__nota"><code>logo.png</code> llegó a la carpeta. <span lang="en">Bin</span> quiere decir que es un archivo binario: una imagen.</p>
+        </figure>
+        <p class="consejo"><strong>Recomendación:</strong> antes de empezar a trabajar, <code>git pull</code>. Así la compu queda igual que GitHub.</p>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 28, hoja 1 de 2">28 · 1/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 28 · Hoja 2 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-28b" aria-labelledby="t28b">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t28b"><span class="tit__num">28.</span> Subir desde la página, pull y ramas<span class="sr-only"> (sigue)</span></h2>
+      <p class="tit__sub">Las ramas y los comandos del TP · sigue</p>
+    </div>
+
+    <div class="esquema-par">
+      <div class="ej-col">
+        <p class="texto texto--ramas">Una <strong>rama</strong> es una línea de trabajo aparte: probamos cambios sin tocar <code>main</code>. Cuando están listos, los unimos a <code>main</code> con <code>git merge</code>. En este TP la práctica se hace toda en <code>main</code>: las ramas las vas a usar en equipo, en el TP9.</p>
+        <figure class="esquema">
+          <svg viewBox="0 0 340 122" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq28b">
+            <title id="esq28b">Una rama. La línea de main tiene tres commits. Desde el tercero sale la rama sobre-mi, con dos commits: se crea con git branch y se pasa a ella con git switch. Al final, git merge une la rama a main en un commit nuevo.</title>
+            <g style="fill:none;stroke-width:3;stroke-linecap:round">
+              <path d="M24 86H316" style="stroke:var(--acento)"/>
+              <path d="M140 86C158 86 160 40 182 40H246C268 40 270 86 290 86" style="stroke:var(--turquesa)"/>
+            </g>
+            <g style="fill:var(--acento)"><circle cx="40" cy="86" r="8"/><circle cx="90" cy="86" r="8"/><circle cx="140" cy="86" r="8"/></g>
+            <g style="fill:var(--turquesa)"><circle cx="196" cy="40" r="8"/><circle cx="234" cy="40" r="8"/></g>
+            <circle cx="290" cy="86" r="9" style="fill:var(--tinta)"/>
+            <g style="font-family:var(--fuente-codigo);font-size:12.5px;font-weight:700">
+              <text x="24" y="112" style="fill:var(--acento-numero)">main</text>
+              <text x="186" y="20" style="fill:var(--turquesa-texto)">sobre-mi</text>
+            </g>
+            <g style="font-family:var(--fuente-codigo);font-size:11px;fill:var(--tinta)">
+              <text x="100" y="40" text-anchor="end">git branch</text>
+              <text x="100" y="54" text-anchor="end">git switch</text>
+              <text x="290" y="112" text-anchor="middle">git merge</text>
+            </g>
+          </svg>
+        </figure>
+      </div>
+      <figure class="terminal">
+        <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+        <pre tabindex="0" aria-label="Terminal: crear la rama sobre-mi, pasarse a ella, volver a main y unirla, con su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git branch sobre-mi</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git branch</span>
+* main
+  sobre-mi
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git switch sobre-mi</span>
+Switched to branch 'sobre-mi'
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git add .</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git commit -m "Agrego la sección Sobre mí al README"</span>
+[sobre-mi 8168492] Agrego la sección Sobre mí al README
+ 1 file changed, 3 insertions(+)
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git switch main</span>
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git merge sobre-mi</span>
+Updating 272d4b2..8168492
+Fast-forward
+ README.md | 3 +++
+ 1 file changed, 3 insertions(+)</code></pre>
+        <p class="terminal__nota">El <code>*</code> marca la rama en la que estamos. Como en <code>main</code> no hubo cambios, el <code>merge</code> solo la adelanta (<span lang="en">Fast-forward</span>). Después, <code>git push</code>.</p>
+      </figure>
+    </div>
+
+    <section class="panel" aria-labelledby="s28d">
+      <h3 class="subtitulo" id="s28d">Los comandos de este TP</h3>
+      <table class="tabla-comp tabla-comp--cmd tabla-comp--git">
+        <caption class="sr-only">Los comandos de Git de este TP y qué hace cada uno</caption>
+        <tbody>
+          <tr><th scope="row"><code>git --version</code></th><td>Muestra la versión de Git: así sabemos si está instalado.</td></tr>
+          <tr><th scope="row"><code>git config --global</code></th><td>Guarda nuestro nombre y nuestro mail.</td></tr>
+          <tr><th scope="row"><code>git init</code></th><td>Convierte una carpeta en un repositorio.</td></tr>
+          <tr><th scope="row"><code>git clone</code></th><td>Copia un repositorio de GitHub a la compu.</td></tr>
+          <tr><th scope="row"><code>git status</code></th><td>Muestra qué cambió y qué está preparado.</td></tr>
+          <tr><th scope="row"><code>git add .</code></th><td>Prepara todos los cambios para el próximo commit.</td></tr>
+          <tr><th scope="row"><code>git commit -m "…"</code></th><td>Guarda una versión con un mensaje.</td></tr>
+          <tr><th scope="row"><code>git push</code></th><td>Sube los commits nuevos a GitHub.</td></tr>
+          <tr><th scope="row"><code>git pull</code></th><td>Trae los commits nuevos de GitHub a la compu.</td></tr>
+          <tr><th scope="row"><code>git log</code></th><td>Muestra el historial de commits.</td></tr>
+          <tr><th scope="row"><code>git branch</code></th><td>Crea una rama o, sin nombre, muestra las que hay.</td></tr>
+          <tr><th scope="row"><code>git switch</code></th><td>Nos pasa a otra rama.</td></tr>
+          <tr><th scope="row"><code>git merge</code></th><td>Une a la rama en la que estamos los commits de otra.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> <b>git pull</b> trae a la compu lo que cambió en GitHub. Las <b>ramas</b> sirven para probar cambios sin tocar <b>main</b>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 28, hoja 2 de 2">28 · 2/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf lamina--pf-denso lamina--pf-chico" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Un poco más sobre cada lámina</p>
+    </div>
+
+    <div class="pf-grid">
+    <section class="pf" aria-labelledby="pf25">
+      <p class="pf__etiqueta">Lámina 25</p>
+      <h3 class="pf__titulo" id="pf25">La carpeta .git y otras plataformas</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Git guarda todo el historial en la carpeta <code class="cod-carpeta">.git</code>, dentro del repositorio. Está oculta: en el Explorador de Windows 11 se ve con <strong>Ver → Mostrar → Elementos ocultos</strong>.</p>
+          <p class="consejo">Con <code>git log</code> vemos ese historial sin abrir la carpeta.</p>
+        </div>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>No la toques</h4>
+          <p>Si se borra o se cambia a mano la carpeta <code class="cod-carpeta">.git</code>, se pierde el historial.</p>
+        </div>
+        <div class="pf__caja">
+          <h4>No solo GitHub</h4>
+          <p><strong>GitLab</strong> y <strong>Bitbucket</strong> también guardan repositorios de Git en la nube. Los comandos son los mismos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf26">
+      <p class="pf__etiqueta">Lámina 26</p>
+      <h3 class="pf__titulo" id="pf26">Público o privado, y qué no subir</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <ul class="pf__lista">
+            <li><strong>Público:</strong> cualquiera lo ve con el link. Es el que usamos para entregar.</li>
+            <li><strong>Privado:</strong> solo lo ven quien lo creó y las personas que invite como colaboradores (<strong lang="en">Settings → Collaborators</strong>).</li>
+            <li>La visibilidad se puede cambiar después, en <strong lang="en">Settings</strong> del repositorio.</li>
+          </ul>
+        </div>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Nunca subas</h4>
+          <ul class="pf__lista">
+            <li>Contraseñas ni claves.</li>
+            <li>Datos personales: teléfono, dirección, DNI.</li>
+            <li>La carpeta <code class="cod-carpeta">node_modules</code> (TP6): se regenera con <code>npm install</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf27">
+      <p class="pf__etiqueta">Lámina 27</p>
+      <h3 class="pf__titulo" id="pf27">Markdown: el formato de los .md</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p><code>README.md</code>, <code>ideas.md</code> y <code>comandos.md</code> están escritos en <strong>Markdown</strong>: texto común con algunos símbolos. GitHub lo muestra con formato.</p>
+          <table class="tabla-comp tabla-comp--cmd">
+            <caption class="sr-only">Símbolos de Markdown y cómo se ven</caption>
+            <thead><tr><th scope="col">Escribimos</th><th scope="col">Se ve</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><code># Título</code></th><td>Un título grande.</td></tr>
+              <tr><th scope="row"><code>## Subtítulo</code></th><td>Un título más chico.</td></tr>
+              <tr><th scope="row"><code>- ítem</code></th><td>Una lista con viñetas.</td></tr>
+              <tr><th scope="row"><code>**negrita**</code></th><td><strong>negrita</strong></td></tr>
+              <tr><th scope="row"><code>`git add`</code></th><td>Código: <code>git add</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pf__caja">
+          <h4>El historial en la página</h4>
+          <p>En GitHub, arriba de la lista de archivos, el enlace <strong lang="en">Commits</strong> muestra todos los commits con su mensaje, como <code>git log</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf" aria-labelledby="pf28">
+      <p class="pf__etiqueta">Lámina 28</p>
+      <h3 class="pf__titulo" id="pf28">Subir una carpeta que ya existe</h3>
+      <div class="pf__cols">
+        <div class="pf__texto">
+          <p>Por ejemplo, el proyecto del TP6 (opcional, suma nota). En GitHub, creamos <code>tp6-apellido</code> <strong>sin</strong> README. En la carpeta, un <code>.gitignore</code> con <code>node_modules/</code>. En la terminal:</p>
+          <figure class="terminal">
+            <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+            <pre tabindex="0" aria-label="Terminal: los comandos para subir una carpeta que ya existe"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git init</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git add .</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git commit -m "Proyecto del TP6"</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git branch -M main</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git remote add origin https://github.com/luciagomez/tp6-gomez.git</span>
+<span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git push -u origin main</span></code></pre>
+            <p class="terminal__nota">Solo los comandos. Los tres últimos los muestra GitHub en el repositorio vacío.</p>
+          </figure>
+        </div>
+        <div class="pf__caja">
+          <h4>Qué hace cada uno</h4>
+          <ul class="pf__lista">
+            <li><code>git branch -M main</code>: le pone <code>main</code> a la rama, por si Git la llamó <code>master</code>.</li>
+            <li><code>git remote add origin</code>: conecta la carpeta con el repositorio de GitHub.</li>
+            <li><code>-u origin main</code>: la primera vez; después alcanza con <code>git push</code>.</li>
+            <li>En internet vas a ver <code>git checkout</code>: es un comando más viejo que también cambia de rama.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°7 — Git y GitHub · Control de versiones</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts acts--2col acts--amplio">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Git y GitHub</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Qué guarda un sistema de control de versiones?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué diferencia hay entre Git y GitHub? ¿Dónde está cada uno?</div></li>
+          <li><b class="act__letra">c)</b><div>Al instalar Git, ¿qué dos opciones cambiamos? ¿Por qué?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Tu cuenta y tu repositorio</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Por qué usamos el mail privado de GitHub?</div></li>
+          <li><b class="act__letra">b)</b><div>Completá el comando que guarda tu nombre: <code>git ______ --global user.name</code></div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué hace <code>git clone</code>? ¿De dónde sacás la dirección?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> El ciclo de trabajo</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Ordená: <code>git push</code> / cambiar un archivo / <code>git commit -m "…"</code> / <code>git add .</code></div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué muestra <code>git status</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Escribí un mensaje de commit claro para este cambio: agregaste a <code>comandos.md</code> la explicación de <code>git pull</code>.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Pull y ramas</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Subiste una imagen desde la página de GitHub. ¿Qué comando la trae a tu compu?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué sirve una rama?</div></li>
+          <li><b class="act__letra">c)</b><div>Relacioná: <code>git branch</code> / <code>git switch</code> / <code>git merge</code> → une los commits de otra rama / crea una rama / pasa a otra rama.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--act-densa lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°7</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°7 — Git y GitHub · Control de versiones</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Creá tu cuenta y tu primer repositorio en GitHub. Trabajá solo en la rama <code>main</code>.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Mi primer repositorio</h3>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">1</b><div>Si usás tu compu, instalá Git (lámina 25); en el laboratorio ya está. Comprobalo con <code>git --version</code>.</div></li>
+          <li><b class="act__letra">2</b><div>Creá tu cuenta de GitHub con tu mail y activá el mail privado (lámina 26).</div></li>
+          <li><b class="act__letra">3</b><div>Configurá Git con <code>git config --global</code>: tu nombre y tu mail privado (lámina 26).</div></li>
+          <li><b class="act__letra">4</b><div>Creá en GitHub el repositorio <code>tp7-apellido</code>, público y con README.</div></li>
+          <li><b class="act__letra">5</b><div>Clonalo con <code>git clone</code> y abrí la carpeta en VS Code.</div></li>
+          <li><b class="act__letra">6</b><div>Creá <code>comandos.md</code> y explicá con tus palabras <code>git init</code>, <code>git clone</code> y <code>git status</code>. Después: <code>git add .</code>, <code>git commit</code> y <code>git push</code>.</div></li>
+          <li><b class="act__letra">7</b><div>Sumá <code>git add</code>, <code>git commit</code>, <code>git push</code> y <code>git pull</code>. Commit y push.</div></li>
+          <li><b class="act__letra">8</b><div>Sumá <code>git branch</code>, <code>git switch</code>, <code>git merge</code> y <code>git log</code>. Commit y push.</div></li>
+          <li><b class="act__letra">9</b><div>En la página del repositorio, subí una imagen: <strong lang="en">Add file → Upload files</strong> y <strong lang="en">Commit changes</strong>.</div></li>
+          <li><b class="act__letra">10</b><div>En la compu, <code>git pull</code>. Comprobá que la imagen llegó a la carpeta.</div></li>
+          <li><b class="act__letra">11</b><div>Completá el <code>README.md</code> con tu nombre, el curso y qué esperás de la materia. Commit y push.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> Extra, opcional: suma nota</h3>
+        <p class="act__txt">Subí el proyecto del TP6 a otro repositorio, <code>tp6-apellido</code>, sin la carpeta <code class="cod-carpeta">node_modules</code>: mirá “Para profundizar”, lámina 28.</p>
+      </li>
+    </ol>
+
+    <section class="panel" aria-label="Para tener en cuenta">
+      <ol class="puntos">
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>En el laboratorio, la compu se reinicia y se borra todo: antes de irte, <code>git push</code>. La clase siguiente, volvé a hacer los pasos 3 y 5.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Mensajes claros, en español: qué cambiaste. Por ejemplo, <code>git commit -m "Agrego git pull a comandos.md"</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>En el primer <code>git push</code>, en <strong lang="en">Connect to GitHub</strong> tocá <strong lang="en">Sign in with your browser</strong> y autorizá.</span></li>
+      </ol>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>Pegá en Classroom el <strong>link de tu repositorio</strong>, por ejemplo <code>https://github.com/luciagomez/tp7-gomez</code>. Si hiciste el extra, también el de <code>tp6-apellido</code>.</p>
+            <p class="entrega__sub--sep">La Parte 1 se hace en la carpeta.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">En el repositorio se tiene que ver:</p>
+            <ul class="entrega__lista">
+              <li>El <code>README.md</code> completo.</li>
+              <li><code>comandos.md</code>, con los 11 comandos.</li>
+              <li>La imagen que subiste desde la página.</li>
+              <li>Un commit por paso, con mensajes claros.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 7</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+<script src="../assets/js/simulador.js"></script>
+</body>
+</html>
