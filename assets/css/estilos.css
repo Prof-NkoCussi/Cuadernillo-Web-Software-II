@@ -60,7 +60,7 @@
   --carpeta: #F59E0B;  --carpeta-claro: #FEF3C7;  --carpeta-texto: #92400E;  --carpeta-linea: #FDE68A;  /* carpetas, como en Windows */
   --turquesa: #0D9488;  --turquesa-claro: #CCFBF1;  --turquesa-texto: #0F766E;  /* texto: 5,5:1 */
   --naranja: #EA580C;   --naranja-claro: #FFEDD5;   --naranja-texto: #C2410C;   /* "Importante"; texto: 5,2:1 */
-  --violeta: #7C3AED;   --violeta-claro: #EDE9FE;   /* Parte 2 de las actividades del TP6 y del TP7 (blanco encima: 5,7:1) */
+  --violeta: #7C3AED;   --violeta-claro: #EDE9FE;   /* Parte 2 de las actividades del TP6 y del TP8 (blanco encima: 5,7:1) */
 
   --radio: 10px;
   --fuente: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -748,15 +748,15 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .lamina--compu .entrega { border-color: var(--ok); }
 .lamina--compu .entrega .ico { --ac: var(--ok); }
 .lamina--compu .puntos__n { background: var(--naranja-texto); }   /* los "!" son avisos importantes */
-/* TP6 y TP7 (pedido de Nicolás, 12/10/2026): la Parte 2 va en violeta, cerca del índigo de la Parte 1
+/* TP6 y TP8, HTML y CSS (pedido de Nicolás, 12/10/2026): la Parte 2 va en violeta, cerca del índigo de la Parte 1
    pero distinta: banda y números con texto blanco (5,7:1), consigna e incisos en violeta claro; los ejercicios siguen en gris */
 [data-tp="6"] .lamina--compu .act-banda, [data-tp="6"] .lamina--compu .act__num,
-[data-tp="7"] .lamina--compu .act-banda, [data-tp="7"] .lamina--compu .act__num { background: var(--violeta); }
+[data-tp="8"] .lamina--compu .act-banda, [data-tp="8"] .lamina--compu .act__num { background: var(--violeta); }
 [data-tp="6"] .lamina--compu .consigna,
-[data-tp="7"] .lamina--compu .consigna, [data-tp="7"] .lamina--compu .act__letra { background: var(--violeta-claro); }
-[data-tp="6"] .lamina--compu .entrega, [data-tp="7"] .lamina--compu .entrega { border-color: var(--violeta); }
-[data-tp="6"] .lamina--compu .entrega .ico, [data-tp="7"] .lamina--compu .entrega .ico { --ac: var(--violeta); }
-[data-tp="7"] .lamina--compu .entrega__lista li::before { background: var(--violeta); }
+[data-tp="8"] .lamina--compu .consigna, [data-tp="8"] .lamina--compu .act__letra { background: var(--violeta-claro); }
+[data-tp="6"] .lamina--compu .entrega, [data-tp="8"] .lamina--compu .entrega { border-color: var(--violeta); }
+[data-tp="6"] .lamina--compu .entrega .ico, [data-tp="8"] .lamina--compu .entrega .ico { --ac: var(--violeta); }
+[data-tp="8"] .lamina--compu .entrega__lista li::before { background: var(--violeta); }
 /* TP6: el código dentro del texto, en rojo rosado (como styles.css y las etiquetas <…>: 5,1:1) */
 [data-tp="6"] code.cod-js { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 
@@ -1113,7 +1113,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .ej--est .codigo pre { font-size: 12.5px; }
   .ej--est .esquema-nota li { font-size: 14.5px; line-height: 1.32; }
 
-  /* TP7: tabla de abreviaturas y notas de la lámina del proyecto en VS Code */
+  /* TP8: tabla de abreviaturas y notas de la lámina del proyecto en VS Code */
   .tabla-comp--cmd th, .tabla-comp--cmd td { font-size: 14px; padding: 2px 8px; }
   .tabla-comp--cmd thead th { font-size: 14px; padding: 2px 8px; }
   .comparar--chico li { padding: 8px 14px; }
@@ -1121,7 +1121,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .comparar--chico p { font-size: 15px; }
   .tema__txt { font-size: 15.5px; line-height: 1.35; }
   .esquema-nota .codigo pre { font-size: 12.5px; }   /* código de una línea dentro de una nota */
-  /* "Para profundizar" con más contenido por bloque (TP7, dos hojas) */
+  /* "Para profundizar" con más contenido por bloque (TP8, dos hojas) */
   .lamina--pf-denso .pf { padding: 9px 12px 9px 14px; gap: 3px; }
   .lamina--pf-denso .pf__titulo { font-size: 19px; }
   .lamina--pf-denso .pf p, .lamina--pf-denso .pf li { font-size: 13.5px; line-height: 1.3; }
@@ -1214,6 +1214,12 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .lamina--act-densa .entrega { padding: 8px 14px 9px; }
   .lamina--act-densa .entrega h3 { font-size: 22px; margin-bottom: 2px; }
   .lamina--act-densa .entrega p, .lamina--act-densa .entrega li { font-size: 14px; line-height: 1.3; }
+  /* TP8: la práctica con Git en una hoja (pasos en dos columnas y avisos compactos) */
+  .lamina--act-densa .act__items--2col { gap: 4px; margin-top: 6px; }
+  .lamina--act-densa .act__items--2col > li { font-size: 14px; line-height: 1.3; padding: 4px 10px 4px 7px; gap: 8px; }
+  .lamina--act-densa .panel { padding: 7px 10px; }
+  .lamina--act-densa .puntos { gap: 4px; }
+  .lamina--act-densa .puntos li { font-size: 14px; line-height: 1.3; padding: 4px 8px; }
 
   /* Láminas 20 y 22: el texto de tres diapositivas en una hoja, con letra de 13 px (decidido el 11/10/2026) */
   .lamina--mas-densa .esquema-nota__p, .lamina--mas-densa .esquema-nota li, .lamina--mas-densa .panel__texto,
