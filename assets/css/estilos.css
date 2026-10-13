@@ -570,14 +570,17 @@ ol.pf__lista li::before {
 .etq--css  { background: var(--css); }
 .etq--js   { background: var(--js); }
 
-/* Código dentro del texto: con el color de su tecnología (HTML si no tiene clase).
+/* Código dentro del texto: comandos, archivos, direcciones, ramas, atributos… en rosa rojizo, en todos los TP
+   (pedido de Nicolás, 12/10/2026; antes iba en índigo): #BE185D sobre #FCE7F3, 5,1:1.
+   Las carpetas van en ámbar (cod-carpeta) y las abreviaturas de Emmet en índigo (cod-emmet).
    El borde va con box-shadow para no cambiar el ancho. */
 :not(pre) > code {
   font-family: var(--fuente-codigo); font-size: .9em;
-  background: var(--html-claro); color: var(--acento-numero);
-  box-shadow: inset 0 0 0 1px var(--html-linea);
+  background: var(--css-claro); color: var(--css-texto);
+  box-shadow: inset 0 0 0 1px var(--css-linea);
   padding: 0 .3em; border-radius: 4px; white-space: nowrap;
 }
+code.cod-emmet { background: var(--html-claro); color: var(--acento-numero); box-shadow: inset 0 0 0 1px var(--html-linea); }   /* h1, ul>li*3: no son etiquetas */
 code.cod-css { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 code.cod-js { background: var(--js-claro); color: var(--js); box-shadow: inset 0 0 0 1px var(--js-linea); }
 code.cod-carpeta { background: var(--carpeta-claro); color: var(--carpeta-texto); box-shadow: inset 0 0 0 1px var(--carpeta-linea); }

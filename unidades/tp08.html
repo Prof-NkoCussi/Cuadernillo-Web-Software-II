@@ -298,13 +298,13 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
           <caption class="sr-only">Abreviaturas de Emmet y lo que escribe cada una</caption>
           <thead><tr><th scope="col">Escribimos</th><th scope="col">Aparece</th></tr></thead>
           <tbody>
-            <tr><th scope="row"><code>!</code></th><td>la estructura base (lámina 31)</td></tr>
-            <tr><th scope="row"><code>h1</code></th><td><code class="cod-etq">&lt;h1&gt;&lt;/h1&gt;</code></td></tr>
-            <tr><th scope="row"><code>ul&gt;li*3</code></th><td><code class="cod-etq">&lt;ul&gt;</code> con tres <code class="cod-etq">&lt;li&gt;&lt;/li&gt;</code></td></tr>
-            <tr><th scope="row"><code>a</code></th><td><code class="cod-etq">&lt;a href=""&gt;&lt;/a&gt;</code></td></tr>
-            <tr><th scope="row"><code>img</code></th><td><code class="cod-etq">&lt;img src="" alt=""&gt;</code></td></tr>
-            <tr><th scope="row"><code>.caja</code></th><td><code class="cod-etq">&lt;div class="caja"&gt;&lt;/div&gt;</code></td></tr>
-            <tr><th scope="row"><code>#titulo</code></th><td><code class="cod-etq">&lt;div id="titulo"&gt;&lt;/div&gt;</code></td></tr>
+            <tr><th scope="row"><code class="cod-emmet">!</code></th><td>la estructura base (lámina 31)</td></tr>
+            <tr><th scope="row"><code class="cod-emmet">h1</code></th><td><code class="cod-etq">&lt;h1&gt;&lt;/h1&gt;</code></td></tr>
+            <tr><th scope="row"><code class="cod-emmet">ul&gt;li*3</code></th><td><code class="cod-etq">&lt;ul&gt;</code> con tres <code class="cod-etq">&lt;li&gt;&lt;/li&gt;</code></td></tr>
+            <tr><th scope="row"><code class="cod-emmet">a</code></th><td><code class="cod-etq">&lt;a href=""&gt;&lt;/a&gt;</code></td></tr>
+            <tr><th scope="row"><code class="cod-emmet">img</code></th><td><code class="cod-etq">&lt;img src="" alt=""&gt;</code></td></tr>
+            <tr><th scope="row"><code class="cod-emmet">.caja</code></th><td><code class="cod-etq">&lt;div class="caja"&gt;&lt;/div&gt;</code></td></tr>
+            <tr><th scope="row"><code class="cod-emmet">#titulo</code></th><td><code class="cod-etq">&lt;div id="titulo"&gt;&lt;/div&gt;</code></td></tr>
           </tbody>
         </table>
       </section>
@@ -373,7 +373,7 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
           <li class="punto--turquesa"><code class="cod-etq">&lt;head&gt;</code>: datos que <strong>no se ven</strong>. En las dos <code class="cod-etq">&lt;meta&gt;</code>, <code>charset</code> hace que se vean bien los acentos y la ñ, y <code>viewport</code>, que la página se adapte al celular. <code class="cod-etq">&lt;title&gt;</code> es el título de la pestaña.</li>
           <li class="punto--naranja"><code class="cod-etq">&lt;body&gt;</code>: el contenido <strong>visible</strong>.</li>
           <li><code class="cod-etq">&lt;/head&gt;</code>, <code class="cod-etq">&lt;/body&gt;</code>, <code class="cod-etq">&lt;/html&gt;</code> cierran lo que se abrió, con <code>/</code>.</li>
-          <li>Con <code>!</code> + <kbd>Enter</kbd>, VS Code la escribe sola: cambiamos <code>en</code> por <code>es-AR</code> y <code>Document</code> por el título.</li>
+          <li>Con <code class="cod-emmet">!</code> + <kbd>Enter</kbd>, VS Code la escribe sola: cambiamos <code>en</code> por <code>es-AR</code> y <code>Document</code> por el título.</li>
         </ul>
       </aside>
     </div>
@@ -1140,7 +1140,7 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
         <h3 class="act__titulo"><span class="act__num">2-</span> El proyecto en VS Code</h3>
         <ol class="act__items">
           <li><b class="act__letra">a)</b><div>Ordená los pasos: probar con Live Server / crear los archivos / crear la carpeta / abrirla en VS Code.</div></li>
-          <li><b class="act__letra">b)</b><div>¿Qué escribe Emmet con <code>ul&gt;li*3</code>? ¿Y con <code>#titulo</code>?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué escribe Emmet con <code class="cod-emmet">ul&gt;li*3</code>? ¿Y con <code class="cod-emmet">#titulo</code>?</div></li>
           <li><b class="act__letra">c)</b><div>¿Qué opción hay que tildar para que Prettier ordene el código al guardar?</div></li>
         </ol>
       </li>
@@ -1211,7 +1211,7 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
         <ol class="act__items act__items--2col">
           <li><b class="act__letra">1</b><div>Creá la carpeta <code class="cod-carpeta">tp8-apellido</code> (por ejemplo, <code class="cod-carpeta">tp8-gomez</code>), con la carpeta <code class="cod-carpeta">img</code> adentro, y abrila en VS Code.</div></li>
           <li><b class="act__letra">2</b><div>En la terminal: <code>git init</code>. Tu nombre y el mail de GitHub: <code>git config user.name "Tu Nombre"</code> y <code>git config user.email "tu mail"</code>.</div></li>
-          <li><b class="act__letra">3</b><div>Creá <code>index.html</code> con <code>!</code> de Emmet. Poné <code>lang="es-AR"</code> y el nombre de tu aplicación en <code class="cod-etq">&lt;title&gt;</code>. Primer commit y <code>git branch -M main</code>.</div></li>
+          <li><b class="act__letra">3</b><div>Creá <code>index.html</code> con <code class="cod-emmet">!</code> de Emmet. Poné <code>lang="es-AR"</code> y el nombre de tu aplicación en <code class="cod-etq">&lt;title&gt;</code>. Primer commit y <code>git branch -M main</code>.</div></li>
           <li><b class="act__letra">4</b><div>En el <code class="cod-etq">&lt;header&gt;</code>, el nombre de la aplicación en un <code class="cod-etq">&lt;h1&gt;</code> y una frase que la describa.</div></li>
           <li><b class="act__letra">5</b><div>En el <code class="cod-etq">&lt;main&gt;</code>, tres secciones con su <code class="cod-etq">&lt;h2&gt;</code>: “De qué se trata” (2 párrafos o más), “Objetivos” (una lista) y “Qué usaría” (una lista de herramientas, con 1 enlace externo o más).</div></li>
           <li><b class="act__letra">6</b><div>Al menos <strong>1 imagen</strong> guardada en <code class="cod-carpeta">img</code>, con su <code>alt</code> (un logo o un boceto).</div></li>
