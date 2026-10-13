@@ -43,6 +43,8 @@
   --node:   #2E7D32;   /* verde */
   --git:    #C2410C;   /* naranja rojizo */
   --github: #24292F;   /* casi negro */
+  --trello: #0F766E;   /* turquesa: el azul de Trello quedaría igual al de VS Code. Blanco encima: 5,5:1 */
+  --js-etq: #F7DF1E;   /* amarillo de JavaScript, solo en la etiqueta y con letra --tinta (11,8:1): con blanco no se lee */
 
   /* Avisos */
   --ok: #15803D;     --ok-claro: #DCFCE7;     /* resultado correcto, checklist */
@@ -573,11 +575,12 @@ ol.pf__lista li::before {
 }
 .etq--html { background: var(--html); }
 .etq--css  { background: var(--css); }
-.etq--js   { background: var(--js); }
+.etq--js   { background: var(--js-etq); color: var(--tinta); }   /* los bloques de código JS siguen en gris (--js) */
 .etq--vscode { background: var(--vscode); }
 .etq--node   { background: var(--node); }
 .etq--git    { background: var(--git); }
 .etq--github { background: var(--github); }
+.etq--trello { background: var(--trello); }
 
 /* Código dentro del texto: comandos, archivos, direcciones, ramas, atributos… en rosa rojizo, en todos los TP
    (pedido de Nicolás, 12/10/2026; antes iba en índigo): #BE185D sobre #FCE7F3, 5,1:1.
