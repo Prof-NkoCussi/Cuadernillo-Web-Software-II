@@ -38,6 +38,11 @@
   --html: #4F46E5;  --html-claro: #E0E7FF;  --html-linea: #C7D2FE;   /* HTML = el acento */
   --css:  #BE185D;  --css-claro:  #FCE7F3;  --css-texto: #BE185D;  --css-linea: #FBCFE8;   /* magenta; texto sobre --css-claro: 5,1:1 */
   --js:   #475569;  --js-claro:   #F1F5F9;  --js-linea:  #CBD5E1;    /* gris: solo se usa en el TP6, con Node.js; texto sobre --js-claro: 6,9:1 */
+  /* Herramientas (12/10/2026, pedido de Nicolás; antes, etiqueta neutra). Blanco encima: VS Code 6,1:1 · Node.js 5,1:1 · Git 5,2:1 · GitHub 14,7:1 */
+  --vscode: #0065A9;   /* azul */
+  --node:   #2E7D32;   /* verde */
+  --git:    #C2410C;   /* naranja rojizo */
+  --github: #24292F;   /* casi negro */
 
   /* Avisos */
   --ok: #15803D;     --ok-claro: #DCFCE7;     /* resultado correcto, checklist */
@@ -569,6 +574,10 @@ ol.pf__lista li::before {
 .etq--html { background: var(--html); }
 .etq--css  { background: var(--css); }
 .etq--js   { background: var(--js); }
+.etq--vscode { background: var(--vscode); }
+.etq--node   { background: var(--node); }
+.etq--git    { background: var(--git); }
+.etq--github { background: var(--github); }
 
 /* Código dentro del texto: comandos, archivos, direcciones, ramas, atributos… en rosa rojizo, en todos los TP
    (pedido de Nicolás, 12/10/2026; antes iba en índigo): #BE185D sobre #FCE7F3, 5,1:1.
