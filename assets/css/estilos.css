@@ -60,7 +60,7 @@
   --carpeta: #F59E0B;  --carpeta-claro: #FEF3C7;  --carpeta-texto: #92400E;  --carpeta-linea: #FDE68A;  /* carpetas, como en Windows */
   --turquesa: #0D9488;  --turquesa-claro: #CCFBF1;  --turquesa-texto: #0F766E;  /* texto: 5,5:1 */
   --naranja: #EA580C;   --naranja-claro: #FFEDD5;   --naranja-texto: #C2410C;   /* "Importante"; texto: 5,2:1 */
-  --violeta: #7C3AED;   --violeta-claro: #EDE9FE;   /* Parte 2 de las actividades del TP6 y del TP8 (blanco encima: 5,7:1) */
+  --violeta: #7C3AED;   --violeta-claro: #EDE9FE;   /* Parte 2 de las actividades, en todos los TP (blanco encima: 5,7:1) */
   /* Simulador del instalador de Git (TP7): ventana de Windows. Texto gris sobre el fondo: 6,0:1; blanco sobre el acento: 5,6:1 */
   --win-fondo: #F0F0F0;  --win-borde: #8C8C8C;  --win-linea: #DADADA;  --win-texto: #1A1A1A;  --win-gris: #595959;
   --win-acento: #0067C0;  --win-verde: #06B025;
@@ -745,21 +745,14 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
 .pf__caja--consejo h4 { color: var(--ok); border-bottom-color: var(--ok); }
 .consejo .tit-ico, .pf__caja--consejo .tit-ico { --ac: var(--ok); }
 
-/* Actividades: Parte 1 (carpeta) en azul, Parte 2 (computadora) en verde */
-.lamina--compu .act-banda, .lamina--compu .act__num { background: var(--ok); }
-.lamina--compu .act__letra, .lamina--compu .consigna { background: var(--ok-claro); }
-.lamina--compu .entrega { border-color: var(--ok); }
-.lamina--compu .entrega .ico { --ac: var(--ok); }
+/* Actividades: Parte 1 (carpeta) en índigo; Parte 2 (computadora) en violeta en todos los TP (pedido de Nicolás, 12/10/2026).
+   Cerca del índigo pero distinto: banda y números con texto blanco (5,7:1), consigna e incisos en violeta claro; los ejercicios siguen en gris */
+.lamina--compu .act-banda, .lamina--compu .act__num { background: var(--violeta); }
+.lamina--compu .act__letra, .lamina--compu .consigna { background: var(--violeta-claro); }
+.lamina--compu .entrega { border-color: var(--violeta); }
+.lamina--compu .entrega .ico { --ac: var(--violeta); }
+.lamina--compu .entrega__lista li::before { background: var(--violeta); }
 .lamina--compu .puntos__n { background: var(--naranja-texto); }   /* los "!" son avisos importantes */
-/* TP6 y TP8, HTML y CSS (pedido de Nicolás, 12/10/2026): la Parte 2 va en violeta, cerca del índigo de la Parte 1
-   pero distinta: banda y números con texto blanco (5,7:1), consigna e incisos en violeta claro; los ejercicios siguen en gris */
-[data-tp="6"] .lamina--compu .act-banda, [data-tp="6"] .lamina--compu .act__num,
-[data-tp="8"] .lamina--compu .act-banda, [data-tp="8"] .lamina--compu .act__num { background: var(--violeta); }
-[data-tp="6"] .lamina--compu .consigna,
-[data-tp="8"] .lamina--compu .consigna, [data-tp="8"] .lamina--compu .act__letra { background: var(--violeta-claro); }
-[data-tp="6"] .lamina--compu .entrega, [data-tp="8"] .lamina--compu .entrega { border-color: var(--violeta); }
-[data-tp="6"] .lamina--compu .entrega .ico, [data-tp="8"] .lamina--compu .entrega .ico { --ac: var(--violeta); }
-[data-tp="8"] .lamina--compu .entrega__lista li::before { background: var(--violeta); }
 /* TP6: el código dentro del texto, en rojo rosado (como styles.css y las etiquetas <…>: 5,1:1) */
 [data-tp="6"] code.cod-js { background: var(--css-claro); color: var(--css-texto); box-shadow: inset 0 0 0 1px var(--css-linea); }
 
