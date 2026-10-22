@@ -1203,31 +1203,30 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
       <span class="act-banda__parte">Parte<br>2 de 2</span>
     </header>
 
-    <p class="consigna"><strong>Consigna:</strong> Inventá una aplicación y armá su página de presentación, con Git desde el primer paso.</p>
+    <p class="consigna"><strong>Consigna:</strong> En este TP empezamos a armar, con HTML y CSS, la app web que vamos a usar para controlar al robot YoLo en el TP final. Descargá la plantilla y usala como base.</p>
+
+    <p class="descarga">
+      <a class="boton boton--acento" href="../assets/descargas/plantilla-tp8.zip" download><svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span>Descargar la plantilla (.zip)</span></a>
+      <span class="descarga__nota">Antes de usarla, extraela: clic derecho sobre el .zip → <strong>Extraer todo…</strong></span>
+    </p>
 
     <ol class="acts">
       <li class="act">
-        <h3 class="act__titulo"><span class="act__num">1-</span> Mi idea de aplicación</h3>
+        <h3 class="act__titulo"><span class="act__num">1-</span> El panel de control de YoLo</h3>
         <ol class="act__items act__items--2col">
-          <li><b class="act__letra">1</b><div>Creá la carpeta <code class="cod-carpeta">tp8-apellido</code> (por ejemplo, <code class="cod-carpeta">tp8-gomez</code>), con la carpeta <code class="cod-carpeta">img</code> adentro, y abrila en VS Code.</div></li>
-          <li><b class="act__letra">2</b><div>En la terminal: <code>git init</code>. Tu nombre y el mail de GitHub: <code>git config user.name "Tu Nombre"</code> y <code>git config user.email "tu mail"</code>.</div></li>
-          <li><b class="act__letra">3</b><div>Creá <code>index.html</code> con <code class="cod-emmet">!</code> de Emmet. Poné <code>lang="es-AR"</code> y el nombre de tu aplicación en <code class="cod-etq">&lt;title&gt;</code>. Primer commit y <code>git branch -M main</code>.</div></li>
-          <li><b class="act__letra">4</b><div>En el <code class="cod-etq">&lt;header&gt;</code>, el nombre de la aplicación en un <code class="cod-etq">&lt;h1&gt;</code> y una frase que la describa.</div></li>
-          <li><b class="act__letra">5</b><div>En el <code class="cod-etq">&lt;main&gt;</code>, tres secciones con su <code class="cod-etq">&lt;h2&gt;</code>: “De qué se trata” (2 párrafos o más), “Objetivos” (una lista) y “Qué usaría” (una lista de herramientas, con 1 enlace externo o más).</div></li>
-          <li><b class="act__letra">6</b><div>Al menos <strong>1 imagen</strong> guardada en <code class="cod-carpeta">img</code>, con su <code>alt</code> (un logo o un boceto).</div></li>
-          <li><b class="act__letra">7</b><div>Un <code class="cod-etq">&lt;footer&gt;</code> con tu nombre, el curso y la escuela.</div></li>
-          <li><b class="act__letra">8</b><div>Rama nueva: <code>git branch estilos</code> y <code>git switch estilos</code>. Ahí, creá <code class="cod-css">styles.css</code> y vinculalo. Usá un selector de etiqueta, una clase y un id. Cambiá colores y tipografía.</div></li>
-          <li><b class="act__letra">9</b><div>Dales <code class="cod-css">padding</code>, <code class="cod-css">margin</code> y borde a las secciones, y usá flexbox en una parte de la página.</div></li>
-          <li><b class="act__letra">10</b><div>Volvé a <code>main</code> y uní los estilos: <code>git switch main</code> y <code>git merge estilos</code>.</div></li>
-          <li><b class="act__letra">11</b><div>Creá en GitHub el repositorio <code>tp8-apellido</code>, vacío, y subí el tuyo como en el TP7: <code>git remote add origin …</code>, <code>git push -u origin main</code> y <code>git push origin estilos</code>.</div></li>
+          <li><b class="act__letra">1</b><div>Descargá la plantilla y extraela.</div></li>
+          <li><b class="act__letra">2</b><div>Creá en GitHub el repositorio <code>YoLo-Apellido</code> (por ejemplo, <code>YoLo-Gomez</code>), público y con README. Lo vas a usar también en el TP9 y el TP10.</div></li>
+          <li><b class="act__letra">3</b><div>Clonalo, copiá adentro los archivos de la plantilla (si pregunta por <code>README.md</code>, reemplazalo) y abrí <code>index.html</code> con Live Server. Primer commit y push.</div></li>
+          <li><b class="act__letra">4</b><div>Editá la plantilla a tu gusto. En <code>index.html</code>, los textos: el título, tu nombre y lo que quieras sumar. En <code class="cod-css">styles.css</code>, los colores, las letras, los tamaños y cómo se ven los botones.</div></li>
+          <li><b class="act__letra">5</b><div>Subí tus cambios con <code>git add .</code>, <code>git commit -m "…"</code> y <code>git push</code>, y comprobá en GitHub que estén.</div></li>
         </ol>
       </li>
     </ol>
 
     <section class="panel" aria-label="Para tener en cuenta">
       <ol class="puntos">
-        <li><span class="puntos__n" aria-hidden="true">!</span><span>Del paso 3 al 9, un commit al terminar cada uno: <code>git add .</code> y <code>git commit -m "feat: sección Objetivos"</code>. Live Server abierto y Prettier al guardar.</span></li>
-        <li><span class="puntos__n" aria-hidden="true">!</span><span><code>git config</code> va sin <code>--global</code>, porque las computadoras son compartidas.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>No cambies los <code>id</code>, los <code>data-comando</code> ni la línea <code class="cod-etq">&lt;script src="app.js"&gt;</code>: el JavaScript los usa y, sin ellos, los botones dejan de andar. <code>app.js</code> no se toca.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>Hacé un commit con un mensaje claro cada vez que termines un cambio. En el laboratorio, al empezar la clase, <code>git config --global</code> y <code>git clone</code> (TP7); antes de irte, <code>git push</code>.</span></li>
       </ol>
     </section>
 
@@ -1237,15 +1236,16 @@ boton.<span class="c-fun">addEventListener</span>(<span class="c-str">"click"</s
         <h3 id="ent-1">Entrega</h3>
         <div class="entrega__cols">
           <div>
-            <p>Pegá en Classroom el <strong>link de tu repositorio</strong> de GitHub (paso 11), por ejemplo <code>https://github.com/tu-usuario/tp8-gomez</code>.</p>
+            <p>Pegá en Classroom el <strong>link de tu repositorio</strong>, por ejemplo <code>https://github.com/tu-usuario/YoLo-Gomez</code>.</p>
             <p class="entrega__sub--sep">No se entregan capturas ni la carpeta: se revisa el repositorio.</p>
           </div>
           <div>
             <p class="entrega__sub">En el repositorio se tiene que ver:</p>
             <ul class="entrega__lista">
-              <li><code>index.html</code>, <code class="cod-css">styles.css</code> y la carpeta <code class="cod-carpeta">img</code> con tu imagen.</li>
-              <li>Un commit por paso, del 3 al 9, con su prefijo.</li>
-              <li>La rama <code>estilos</code>, unida a <code>main</code>.</li>
+              <li>Los archivos de la plantilla, con tus cambios.</li>
+              <li>Tus colores y estilos en <code class="cod-css">styles.css</code>.</li>
+              <li>Los botones funcionando.</li>
+              <li>Varios commits, uno por cambio, con mensajes claros.</li>
             </ul>
           </div>
         </div>

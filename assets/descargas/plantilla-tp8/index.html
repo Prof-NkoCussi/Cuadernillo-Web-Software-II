@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YoLo · Panel de control</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div>
+    <h1>YoLo</h1>
+    <p>Panel de control del robot</p>
+  </div>
+
+  <div>
+    <h2>Estado</h2>
+    <p id="estado">Robot detenido</p>
+  </div>
+
+  <div>
+    <h2>Cámara</h2>
+    <div id="camara">
+      <p>Acá va a ir el video del robot.</p>
+    </div>
+  </div>
+
+  <div>
+    <h2>Controles</h2>
+    <div id="controles">
+      <button data-comando="adelante">Adelante</button>
+      <button data-comando="izquierda">Izquierda</button>
+      <button data-comando="stop">Detener</button>
+      <button data-comando="derecha">Derecha</button>
+      <button data-comando="atras">Atrás</button>
+    </div>
+  </div>
+
+  <div>
+    <h2>Últimos comandos</h2>
+    <ul id="historial"></ul>
+  </div>
+
+  <div>
+    <p>Proyecto YoLo · Software II · 5.º año</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
