@@ -12,7 +12,7 @@ Un cuadernillo web para leer desde el celular y trabajar en la computadora. Se o
 
 1. **Láminas** con la teoría, una por tema, con ejemplos.
 2. **Para profundizar**: una página que amplía cada lámina.
-3. **Actividades**: una parte para hacer en la carpeta y una práctica en la computadora, con su entrega.
+3. **Actividades**: una práctica en la computadora, con su entrega (hasta el TP8, también una parte para hacer en la carpeta).
 
 ## Cómo se usa
 

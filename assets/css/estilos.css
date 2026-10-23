@@ -1355,7 +1355,6 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .seccion, .panel--pila { gap: 2.5mm; }
   .lamina--densa .seccion, .lamina--densa .panel--pila { gap: 2mm; }
   [data-tp="9"] .lamina--densa { gap: 2.6mm; }
-  [data-tp="9"] .lamina--act { gap: 3mm; }
   [data-tp="9"] .lamina--act-densa { gap: 2.2mm; }
   [data-tp="9"] .entrega code { white-space: normal; overflow-wrap: anywhere; }   /* el link del repositorio del grupo baja de renglón en las barras */
   .seccion .cuando { margin-top: 0; }
