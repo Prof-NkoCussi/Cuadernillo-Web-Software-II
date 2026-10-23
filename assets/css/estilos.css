@@ -1079,7 +1079,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .ej--term { grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); align-items: start; }   /* la terminal, más ancha: sus renglones largos no se cortan tanto */
   /* TP9: pasos del conflicto + terminal; código de la documentación + nota */
   .ej--conflicto { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; }
-  .esquema-par--issues { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .tecs.roles { grid-template-columns: 1fr 1fr; }   /* los dos roles del grupo, del mismo ancho */
   .ej--doc { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; }
 }
 
@@ -1351,8 +1351,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .lamina--densa .texto--ciclo, .lamina--densa .texto--ramas { font-size: 14px; line-height: 1.32; }
   .lamina--densa .tabla-comp--git th, .lamina--densa .tabla-comp--git td { padding: 1px 7px; }
 
-  /* TP9: los tres roles del mismo ancho y las secciones con el aire de la hoja A4 */
-  .tecs.roles { grid-template-columns: repeat(3, 1fr); }
+  /* TP9: las secciones con el aire de la hoja A4 */
   .seccion, .panel--pila { gap: 2.5mm; }
   .lamina--densa .seccion, .lamina--densa .panel--pila { gap: 2mm; }
   [data-tp="9"] .lamina--densa { gap: 2.6mm; }
