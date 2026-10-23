@@ -1077,8 +1077,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   .esquema-par--sim { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: start; }
   .esquema-par--arriba { align-items: start; }
   .ej--term { grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); align-items: start; }   /* la terminal, más ancha: sus renglones largos no se cortan tanto */
-  /* TP9: .gitignore de un renglón + su nota; pasos del conflicto + terminal; código de la documentación + nota */
-  .ej--gitignore { grid-template-columns: minmax(0, .4fr) minmax(0, 1.6fr); align-items: center; }
+  /* TP9: pasos del conflicto + terminal; código de la documentación + nota */
   .ej--conflicto { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; }
   .esquema-par--issues { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
   .ej--doc { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; }
@@ -1359,6 +1358,7 @@ code.cod-etq { background: var(--css-claro); color: var(--css-texto); box-shadow
   [data-tp="9"] .lamina--densa { gap: 2.6mm; }
   [data-tp="9"] .lamina--act { gap: 3mm; }
   [data-tp="9"] .lamina--act-densa { gap: 2.2mm; }
+  [data-tp="9"] .entrega code { white-space: normal; overflow-wrap: anywhere; }   /* el link del repositorio del grupo baja de renglón en las barras */
   .seccion .cuando { margin-top: 0; }
   .seccion .cuando li { font-size: 16px; line-height: 1.32; padding: 8px 16px; }
 
