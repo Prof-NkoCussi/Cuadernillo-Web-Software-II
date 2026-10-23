@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°9 — Gestión de proyecto y trabajo en equipo · Software II</title>
+  <meta name="description" content="TP N°9 de Software II: roles, tareas y comunicación en el equipo, el tablero en Trello, el repositorio del grupo con colaboradores, .gitignore, pull antes del push, conflictos e issues, y la documentación: README y bitácora. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="9">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-terminal" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M12 23l7 6-7 6M23 35h12"/>
+    </symbol>
+    <symbol id="i-equipo" viewBox="0 0 48 48">
+      <circle cx="24" cy="15" r="6.5" style="fill:var(--ac)"/>
+      <path d="M12.5 40c0-7 5-12 11.5-12s11.5 5 11.5 12"/>
+      <circle cx="9.5" cy="20" r="4.5"/>
+      <circle cx="38.5" cy="20" r="4.5"/>
+      <path d="M2.5 36c0-5 3-8.5 7-8.5M45.5 36c0-5-3-8.5-7-8.5"/>
+    </symbol>
+    <symbol id="i-documento" viewBox="0 0 48 48">
+      <path d="M10 4h20l10 10v30H10z" style="fill:var(--blanco)"/>
+      <path d="M30 4v10h10z" style="fill:var(--ac)"/>
+      <path d="M10 4h20l10 10v30H10zM30 4v10h10"/>
+      <path d="M16 22h16M16 29h16M16 36h10"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-lapiz" viewBox="0 0 48 48">
+      <path d="M33 6l9 9-25 25-9-9z" style="fill:var(--ac)"/>
+      <path d="M8 31 5.5 42.5 17 40z"/>
+      <path d="M27 12l9 9"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°9 — Gestión de proyecto y trabajo en equipo</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°9">
+    <a href="#pag-35">35 · El equipo</a>
+    <a href="#pag-36">36 · El repositorio</a>
+    <a href="#pag-37">37 · Documentar</a>
+    <a href="#actividades">Actividades</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°9 — Gestión de proyecto y trabajo en equipo</h1>
+
+  <!-- =================== LÁMINA 35 · Hoja 1 =================== -->
+  <article class="lamina lamina--compacta" id="pag-35" aria-labelledby="t35">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t35"><span class="tit__num">35.</span> El equipo y el tablero</h2>
+      <p class="tit__sub">Roles, tareas y comunicación</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-equipo"/></svg>
+      <p>El TP final se hace en grupo, de 2 o 3 integrantes. Para que el trabajo avance, cada uno sabe qué le toca, para cuándo y cómo avisar si algo se traba. En este TP el grupo se organiza y arma el tablero y el repositorio que va a usar en el TP final.</p>
+    </div>
+
+    <section class="seccion" aria-labelledby="s35a">
+      <h3 class="subtitulo" id="s35a">Los roles del equipo</h3>
+      <ul class="tecs roles">
+        <li class="tec">
+          <h3>Coordinación</h3>
+          <p>Arma el tablero y lo mantiene al día: reparte las tareas, pone las fechas y avisa si algo se atrasa.</p>
+        </li>
+        <li class="tec">
+          <h3>Repositorio</h3>
+          <p>Crea el repositorio y suma a los demás. Ayuda con <code>git pull</code>, <code>git push</code> y los conflictos, y sigue los issues.</p>
+        </li>
+        <li class="tec">
+          <h3>Documentación</h3>
+          <p>Escribe el README y la bitácora de cada clase, y junta las capturas.</p>
+        </li>
+      </ul>
+    </section>
+
+    <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n35a">
+      <h3 id="n35a"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Todos aportan</h3>
+      <p class="esquema-nota__p">El rol se suma al trabajo: todos hacen tareas del tablero y commits. Con dos integrantes, uno toma dos roles. GitHub y Trello muestran quién hizo cada cosa.</p>
+    </aside>
+
+    <section class="seccion" aria-labelledby="s35b">
+      <h3 class="subtitulo" id="s35b">Dividir el trabajo en tareas</h3>
+      <p class="texto texto--ciclo">Una tarea es algo que una persona puede terminar en una o dos clases. Empieza con un verbo y tiene un responsable y una fecha.</p>
+      <ul class="comparar comparar--chico" aria-label="Tareas">
+        <li class="mal"><div><h3>Así no</h3><p>“README” · “La app”: no dicen qué hay que hacer, son muy grandes y no tienen responsable.</p></div></li>
+        <li class="bien"><div><h3>Así sí</h3><p>“Escribir la sección Integrantes del README” · Sofía · 12/11.</p></div></li>
+      </ul>
+    </section>
+
+    <section class="seccion" aria-labelledby="s35c">
+      <h3 class="subtitulo" id="s35c">Cómo nos comunicamos</h3>
+      <ul class="cuando">
+        <li><p><strong>El grupo de mensajes,</strong> para avisos rápidos: “hoy falto”, “ya subí mis cambios”.</p></li>
+        <li><p><strong>El tablero,</strong> para saber quién hace qué y para cuándo. Las tareas no se reparten por chat: ahí se pierden.</p></li>
+        <li><p><strong>Cinco minutos al empezar la clase:</strong> cada uno cuenta qué hizo, qué va a hacer y si algo lo traba.</p></li>
+        <li><p><strong>La bitácora,</strong> para anotar qué hicimos, qué problemas tuvimos y qué decidimos (lámina 37).</p></li>
+      </ul>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 35, hoja 1 de 2">35 · 1/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 35 · Hoja 2 =================== -->
+  <article class="lamina lamina--compacta" id="pag-35b" aria-labelledby="t35b">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t35b"><span class="tit__num">35.</span> El equipo y el tablero<span class="sr-only"> (sigue)</span></h2>
+      <p class="tit__sub">El tablero en Trello · sigue</p>
+    </div>
+
+    <p class="texto"><span class="etq etq--trello">Trello</span> es una página para organizar tareas en un tablero. Cada <strong>lista</strong> es un estado y cada <strong>tarjeta</strong>, una tarea. Cada integrante se registra con su mail en <strong>trello.com</strong> (<strong lang="en">Sign up</strong>, registrarse) y todos trabajan en el mismo tablero.</p>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 170" style="max-width:400px;margin:0 auto" role="img" aria-labelledby="esq35a">
+          <title id="esq35a">El tablero de Trello TP10 · Faro. D: arriba a la derecha, el botón Share. Tres listas. Pendiente, con las tarjetas 5 · Escribir el README y 6 · Preparar la defensa; debajo, B: Add a card. En curso, con C: la tarjeta 3 · Diseñar la app, con la fecha Nov 18 y las iniciales MD de su responsable. Hecho, con la tarjeta 1 · Repartir los roles. A la derecha, A: Add another list.</title>
+          <rect x="1" y="1" width="338" height="168" rx="6" style="fill:var(--trello)"/>
+          <text x="12" y="21" style="font-family:var(--fuente);font-size:13px;font-weight:700;fill:var(--blanco)">TP10 · Faro</text>
+          <rect x="272" y="8" width="58" height="19" rx="4" style="fill:var(--blanco)"/>
+          <text x="301" y="21.5" text-anchor="middle" style="font-family:var(--fuente);font-size:11.5px;font-weight:700;fill:var(--tinta)">Share</text>
+          <!-- Listas -->
+          <g style="fill:var(--panel)">
+            <rect x="8" y="36" width="72" height="124" rx="6"/>
+            <rect x="86" y="36" width="72" height="84" rx="6"/>
+            <rect x="164" y="36" width="72" height="62" rx="6"/>
+          </g>
+          <g style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--tinta)">
+            <text x="15" y="51">Pendiente</text><text x="93" y="51">En curso</text><text x="171" y="51">Hecho</text>
+          </g>
+          <rect x="242" y="36" width="90" height="24" rx="6" style="fill:var(--turquesa-claro)"/>
+          <text x="249" y="52" textLength="76" lengthAdjust="spacingAndGlyphs" style="font-family:var(--fuente);font-size:10px;font-weight:600;fill:var(--tinta)">+ Add another list</text>
+          <!-- Tarjetas -->
+          <g style="fill:var(--blanco);stroke:var(--linea);stroke-width:1">
+            <rect x="13" y="59" width="62" height="30" rx="4"/><rect x="13" y="93" width="62" height="30" rx="4"/>
+            <rect x="91" y="59" width="62" height="54" rx="4"/>
+            <rect x="169" y="59" width="62" height="30" rx="4"/>
+          </g>
+          <g style="font-family:var(--fuente);font-size:9.5px;fill:var(--tinta)">
+            <text x="18" y="71">5 · Escribir</text><text x="18" y="83">el README</text>
+            <text x="18" y="105">6 · Preparar</text><text x="18" y="117">la defensa</text>
+            <text x="96" y="71">3 · Diseñar</text><text x="96" y="83">la app</text>
+            <text x="174" y="71">1 · Repartir</text><text x="174" y="83">los roles</text>
+          </g>
+          <rect x="96" y="92" width="34" height="14" rx="3" style="fill:var(--carpeta-claro)"/>
+          <text x="113" y="102" text-anchor="middle" style="font-family:var(--fuente);font-size:8.5px;font-weight:700;fill:var(--carpeta-texto)">Nov 18</text>
+          <circle cx="143" cy="99" r="7.5" style="fill:var(--acento)"/>
+          <text x="143" y="101.6" text-anchor="middle" style="font-family:var(--fuente);font-size:7px;font-weight:700;fill:var(--blanco)">MD</text>
+          <text x="15" y="146" style="font-family:var(--fuente);font-size:10px;font-weight:600;fill:var(--gris)">+ Add a card</text>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="324" cy="62" r="8"/><circle cx="76" cy="143" r="8"/><circle cx="154" cy="59" r="8"/><circle cx="262" cy="17" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="324" y="66">A</text><text x="76" y="147">B</text><text x="154" y="63">C</text><text x="262" y="21">D</text>
+          </g>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="s35d">
+        <h3 id="s35d">Armar el tablero</h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>Arriba, <strong lang="en">Create</strong> (crear) → <strong lang="en">Create board</strong> (crear tablero). De nombre, <code>TP10 · </code> y el nombre del grupo (por ejemplo, <code>TP10 · Faro</code>) → <strong lang="en">Create</strong>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span><strong lang="en">Add another list</strong> (agregar otra lista) <span class="marca">A</span>: Pendiente, En curso y <span class="sin-corte">Hecho.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span><strong lang="en">Add a card</strong> (agregar una tarjeta) <span class="marca">B</span>: una tarjeta por tarea, con un <span class="sin-corte">verbo.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span>Cuando una tarea empieza o termina, arrastrar su tarjeta <span class="marca">C</span> a la lista que <span class="sin-corte">sigue.</span></span></li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="esquema-par">
+      <section class="esquema-nota" aria-labelledby="s35e">
+        <h3 id="s35e">Responsable, fecha y compartir</h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>Tocar la tarjeta para abrirla.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span><strong lang="en">Members</strong> (miembros) <span class="marca">E</span>: quién hace la <span class="sin-corte">tarea.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span><strong lang="en">Dates</strong> (fechas) <span class="marca">F</span>: tildar <strong lang="en">Due date</strong> (fecha de entrega), elegir el día y <strong lang="en">Save</strong> (guardar).</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span>En el tablero, <strong lang="en">Share</strong> (compartir) <span class="marca">D</span>: el mail o el usuario de cada compañero y del docente → <strong lang="en">Share</strong>.</span></li>
+        </ol>
+      </section>
+      <figure class="esquema">
+        <svg viewBox="0 0 300 186" style="max-width:360px;margin:0 auto" role="img" aria-labelledby="esq35b">
+          <title id="esq35b">La tarjeta 3 · Diseñar la app con HTML y CSS, abierta. Arriba, la lista En curso. Debajo del título, los botones Add, Labels, Dates, Checklist y Members. F: Dates. E: Members. Abajo, la sección Members, con las iniciales MD; la sección Due date, tildada, con Nov 18; y la sección Description.</title>
+          <rect x="1" y="1" width="298" height="184" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <rect x="12" y="10" width="62" height="17" rx="4" style="fill:var(--panel)"/>
+          <text x="18" y="22.5" style="font-family:var(--fuente);font-size:10px;font-weight:600;fill:var(--tinta)">En curso ▾</text>
+          <text x="284" y="23" text-anchor="end" style="font-family:var(--fuente);font-size:15px;fill:var(--tinta)">×</text>
+          <text x="12" y="47" style="font-family:var(--fuente);font-size:14px;font-weight:700;fill:var(--tinta)">3 · Diseñar la app con HTML y CSS</text>
+          <!-- Botones -->
+          <g style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.2">
+            <rect x="12" y="56" width="38" height="20" rx="4"/><rect x="54" y="56" width="44" height="20" rx="4"/><rect x="152" y="56" width="56" height="20" rx="4"/>
+          </g>
+          <g style="fill:var(--acento-claro);stroke:var(--acento);stroke-width:1.6">
+            <rect x="102" y="56" width="46" height="20" rx="4"/><rect x="212" y="56" width="58" height="20" rx="4"/>
+          </g>
+          <g text-anchor="middle" style="font-family:var(--fuente);font-size:10.5px;fill:var(--tinta)">
+            <text x="31" y="69.5">+ Add</text><text x="76" y="69.5">Labels</text><text x="180" y="69.5">Checklist</text>
+            <text x="125" y="69.5" style="font-weight:700">Dates</text><text x="241" y="69.5" style="font-weight:700">Members</text>
+          </g>
+          <!-- Members y Due date -->
+          <g style="font-family:var(--fuente);font-size:10px;font-weight:700;fill:var(--gris)">
+            <text x="12" y="106">Members</text><text x="110" y="106">Due date</text><text x="12" y="148">Description</text>
+          </g>
+          <circle cx="21" cy="121" r="9" style="fill:var(--acento)"/>
+          <text x="21" y="124" text-anchor="middle" style="font-family:var(--fuente);font-size:8px;font-weight:700;fill:var(--blanco)">MD</text>
+          <circle cx="43" cy="121" r="9" style="fill:var(--panel)"/>
+          <text x="43" y="125" text-anchor="middle" style="font-family:var(--fuente);font-size:12px;font-weight:700;fill:var(--tinta)">+</text>
+          <rect x="110" y="111" width="74" height="19" rx="4" style="fill:var(--panel)"/>
+          <rect x="115" y="116" width="9" height="9" rx="2" style="fill:var(--acento)"/>
+          <path d="M117 120.5l1.8 1.8 3.4-3.6" style="fill:none;stroke:var(--blanco);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round"/>
+          <text x="130" y="124.5" style="font-family:var(--fuente);font-size:10.5px;font-weight:600;fill:var(--tinta)">Nov 18</text>
+          <g style="fill:var(--linea)"><rect x="12" y="156" width="230" height="5" rx="2.5"/><rect x="12" y="166" width="180" height="5" rx="2.5"/><rect x="12" y="176" width="110" height="5" rx="2.5"/></g>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="241" cy="88" r="8"/><circle cx="125" cy="88" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="241" y="92">E</text><text x="125" y="92">F</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+
+    <p class="consejo"><strong>Recomendación:</strong> en los cinco minutos del comienzo de la clase, abran el tablero: ¿qué está en curso?, ¿qué se atrasó?, ¿quién toma la próxima tarjeta?</p>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> cada integrante tiene un <b>rol</b> y sus tareas. En el tablero, cada <b>tarjeta</b> es una tarea con responsable y fecha, y pasa de lista en lista hasta <b>Hecho</b>.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 35, hoja 2 de 2">35 · 2/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 36 · Hoja 1 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-36" aria-labelledby="t36">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t36"><span class="tit__num">36.</span> El repositorio del equipo</h2>
+      <p class="tit__sub">Colaboradores, .gitignore y pull antes del push</p>
+    </div>
+
+    <p class="texto">Quien tiene el rol Repositorio crea el repositorio del grupo en <span class="etq etq--github">GitHub</span>, público y con README (TP7), y suma a los demás como <strong>colaboradores</strong>: así todos pueden hacer <code>git push</code>. Todo el grupo trabaja en <code>main</code>.</p>
+
+    <div class="esquema-par">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 206" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq36a">
+          <title id="esq36a">La página del repositorio luciagomez/tp10-faro. A: la pestaña Settings. B: a la izquierda, en la sección Access, Collaborators. C: el botón verde Add people. D: en la ventana Add a collaborator to tp10-faro, el usuario mateodiaz escrito en el buscador y el botón Add mateodiaz to this repository.</title>
+          <rect x="1" y="1" width="338" height="204" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <text x="12" y="21" style="font-family:var(--fuente);font-size:12.5px;font-weight:700;fill:var(--tinta)">luciagomez / tp10-faro</text>
+          <!-- Pestañas -->
+          <g style="font-family:var(--fuente);font-size:11px;fill:var(--gris)">
+            <text x="12" y="41">&lt;&gt; Code</text><text x="62" y="41">Issues</text><text x="104" y="41">Pull requests</text>
+          </g>
+          <text x="184" y="41" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--tinta)">Settings</text>
+          <rect x="182" y="45" width="46" height="2.5" style="fill:var(--naranja)"/>
+          <path d="M1 50h338" style="stroke:var(--linea);stroke-width:1.2"/>
+          <!-- Barra lateral -->
+          <text x="12" y="70" style="font-family:var(--fuente);font-size:10px;font-weight:700;letter-spacing:.06em;fill:var(--gris)">Access</text>
+          <rect x="10" y="78" width="94" height="20" rx="4" style="fill:var(--acento-claro)"/>
+          <rect x="10" y="78" width="3" height="20" style="fill:var(--acento)"/>
+          <text x="18" y="92" style="font-family:var(--fuente);font-size:11.5px;font-weight:700;fill:var(--tinta)">Collaborators</text>
+          <g style="fill:var(--linea)"><rect x="12" y="110" width="76" height="5" rx="2.5"/><rect x="12" y="124" width="64" height="5" rx="2.5"/></g>
+          <!-- Contenido -->
+          <text x="122" y="73" style="font-family:var(--fuente);font-size:13px;font-weight:700;fill:var(--tinta)">Manage access</text>
+          <rect x="262" y="60" width="68" height="20" rx="5" style="fill:var(--ok)"/>
+          <text x="296" y="73.5" text-anchor="middle" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--blanco)">Add people</text>
+          <!-- Ventana para agregar -->
+          <rect x="122" y="104" width="208" height="92" rx="6" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.4"/>
+          <text x="132" y="122" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--tinta)">Add a collaborator to tp10-faro</text>
+          <rect x="132" y="130" width="188" height="20" rx="4" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.6"/>
+          <text x="138" y="144" style="font-family:var(--fuente-codigo);font-size:11px;fill:var(--tinta)">mateodiaz</text>
+          <rect x="132" y="162" width="188" height="24" rx="5" style="fill:var(--ok)"/>
+          <text x="226" y="178" text-anchor="middle" textLength="172" lengthAdjust="spacingAndGlyphs" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--blanco)">Add mateodiaz to this repository</text>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="239" cy="37" r="8"/><circle cx="112" cy="88" r="8"/><circle cx="251" cy="70" r="8"/><circle cx="327" cy="174" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="239" y="41">A</text><text x="112" y="92">B</text><text x="251" y="74">C</text><text x="327" y="178">D</text>
+          </g>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="s36a">
+        <h3 id="s36a">Sumar a los colaboradores</h3>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>En el repositorio, <strong lang="en">Settings</strong> <span class="sin-corte">(configuración) <span class="marca">A</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span>En <strong lang="en">Access</strong>, <strong lang="en">Collaborators</strong> <span class="sin-corte">(colaboradores) <span class="marca">B</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span><strong lang="en">Add people</strong> (agregar <span class="sin-corte">personas) <span class="marca">C</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span>El usuario del compañero → <strong lang="en">Add mateodiaz to this repository</strong> (agregarlo) <span class="marca">D</span>.</span></li>
+        </ol>
+        <p class="esquema-nota__p esquema-nota__p--sep">A cada uno le llega un mail: <strong lang="en">View invitation</strong> → <strong lang="en">Accept invitation</strong> (aceptar). Después, <code>git clone</code>.</p>
+      </section>
+    </div>
+
+    <div class="ej ej--gitignore">
+      <figure class="codigo codigo--neutro" id="ej-36">
+        <figcaption><span class="codigo__archivo">.gitignore</span></figcaption>
+        <pre tabindex="0" aria-label="Contenido de .gitignore"><code>node_modules/</code></pre>
+      </figure>
+      <aside class="esquema-nota" aria-labelledby="n36a">
+        <h3 id="n36a">El archivo <code>.gitignore</code></h3>
+        <p class="esquema-nota__p">Lista lo que Git no sube. La carpeta <code class="cod-carpeta">node_modules</code> (TP6) se arma de nuevo con <code>npm install</code>: no va al repositorio. Lo pide el TP final. Se crea en VS Code y se sube con un commit.</p>
+      </aside>
+    </div>
+
+    <section class="seccion" aria-labelledby="s36b">
+      <h3 class="subtitulo" id="s36b">Todos en <code>main</code>: la rutina</h3>
+      <ol class="secuencia ciclo ciclo--equipo" aria-label="La rutina en equipo, en cuatro pasos">
+        <li><h3>Al empezar</h3><code>git pull</code><p>Traemos lo que subieron los demás.</p></li>
+        <li><h3>Trabajar y guardar</h3><code>git add .</code><code>git commit -m "…"</code><p>Un commit por cambio.</p></li>
+        <li><h3>Antes de subir</h3><code>git pull --no-edit</code><p>Traemos lo nuevo y Git lo une con lo nuestro.</p></li>
+        <li><h3>Subir</h3><code>git push</code><p>Los demás lo traen con <code>git pull</code>.</p></li>
+      </ol>
+      <p class="texto texto--ciclo texto--no-edit"><code>--no-edit</code>: si hay commits nuevos de los dos lados, <code>git pull</code> los une con un commit nuevo (<span lang="en">Merge branch 'main'…</span>) y no abre el editor para escribir su mensaje.</p>
+    </section>
+
+    <section class="seccion" aria-labelledby="s36e">
+      <h3 class="subtitulo" id="s36e">Si te olvidás del pull: push rechazado</h3>
+      <p class="texto texto--ciclo">Sofía subió un commit y Mateo no hizo <code>git pull</code> antes de su push: GitHub lo rechaza (<span lang="en">rejected</span>). No se pierde nada.</p>
+      <figure class="terminal">
+        <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+        <pre tabindex="0" aria-label="Terminal: un git push rechazado y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git push</span>
+To https://github.com/luciagomez/tp10-faro.git
+ ! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs to 'https://github.com/luciagomez/tp10-faro.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
+        <p class="terminal__nota"><span lang="en">fetch first</span>: primero hay que traer lo nuevo, como dicen las líneas <span lang="en">hint</span>: <code>git pull --no-edit</code> y otra vez <code>git push</code>.</p>
+      </figure>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 36, hoja 1 de 2">36 · 1/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 36 · Hoja 2 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-36b" aria-labelledby="t36b">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t36b"><span class="tit__num">36.</span> El repositorio del equipo<span class="sr-only"> (sigue)</span></h2>
+      <p class="tit__sub">Conflictos e issues · sigue</p>
+    </div>
+
+    <section class="panel panel--pila" aria-labelledby="s36c">
+      <h3 class="subtitulo" id="s36c">Cuando dos cambian la misma línea: conflicto</h3>
+      <p class="panel__texto">Con cambios en líneas distintas, Git los une solo. Si dos cambiaron <strong>la misma línea</strong>, Git no sabe con cuál quedarse: hay un <strong>conflicto</strong> y nos pregunta. Lucía y Mateo cambiaron el título del README; Lucía subió primero y, después del <code>git pull --no-edit</code>, Mateo vio esto en VS Code:</p>
+      <figure class="esquema esquema--conflicto">
+        <svg viewBox="0 0 460 150" style="max-width:520px;margin:0 auto" role="img" aria-labelledby="esq36b">
+          <title id="esq36b">VS Code con README.md en conflicto. Arriba del conflicto, las opciones Aceptar cambio actual (A), Aceptar cambio entrante (B), Aceptar ambos cambios (C) y Comparar cambios. Renglón 1: menor menor HEAD, cambio actual. Renglón 2, en verde: # Panel de YoLo, el título de Mateo. Renglón 3: los signos igual. Renglón 4, en celeste: # YoLo · Grupo Faro, el título de Lucía, que llegó de GitHub. Renglón 5: mayor mayor y el código del commit, cambio entrante.</title>
+          <rect x="1" y="1" width="458" height="148" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <path d="M7 1h446a6 6 0 0 1 6 6v18H1V7a6 6 0 0 1 6-6z" style="fill:var(--panel)"/>
+          <path d="M8 25V9a3 3 0 0 1 3-3h92a3 3 0 0 1 3 3v16z" style="fill:var(--blanco)"/>
+          <text x="16" y="20" style="font-family:var(--fuente-codigo);font-size:11px;font-weight:700;fill:var(--tinta)">README.md</text>
+          <!-- Opciones (CodeLens) -->
+          <g style="font-family:var(--fuente);font-size:9.5px;fill:var(--gris)">
+            <text x="34" y="54" textLength="98" lengthAdjust="spacingAndGlyphs">Aceptar cambio actual</text>
+            <text x="138" y="54">|</text>
+            <text x="146" y="54" textLength="106" lengthAdjust="spacingAndGlyphs">Aceptar cambio entrante</text>
+            <text x="258" y="54">|</text>
+            <text x="266" y="54" textLength="98" lengthAdjust="spacingAndGlyphs">Aceptar ambos cambios</text>
+            <text x="370" y="54">|</text>
+            <text x="378" y="54" textLength="74" lengthAdjust="spacingAndGlyphs">Comparar cambios</text>
+          </g>
+          <!-- Renglones -->
+          <g style="fill:var(--ok-claro)"><rect x="28" y="60" width="430" height="32"/></g>
+          <g style="fill:var(--acento-claro)"><rect x="28" y="108" width="430" height="32"/></g>
+          <g text-anchor="end" style="font-family:var(--fuente-codigo);font-size:10.5px;fill:var(--gris)">
+            <text x="21" y="72">1</text><text x="21" y="88">2</text><text x="21" y="104">3</text><text x="21" y="120">4</text><text x="21" y="136">5</text>
+          </g>
+          <g style="font-family:var(--fuente-codigo);font-size:11px;fill:var(--tinta)">
+            <text x="34" y="72">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<tspan style="font-family:var(--fuente);font-size:10px;font-style:italic;fill:var(--gris)"> (Cambio actual)</tspan></text>
+            <text x="34" y="88" style="font-weight:700">#&#160;Panel de YoLo</text>
+            <text x="34" y="104">=======</text>
+            <text x="34" y="120" style="font-weight:700">#&#160;YoLo · Grupo Faro</text>
+            <text x="34" y="136">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 893cf184001235d8ad695702e4904597e4df5708<tspan style="font-family:var(--fuente);font-size:10px;font-style:italic;fill:var(--gris)"> (Cambio entrante)</tspan></text>
+          </g>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="83" cy="37" r="8"/><circle cx="199" cy="37" r="8"/><circle cx="315" cy="37" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="83" y="41">A</text><text x="199" y="41">B</text><text x="315" y="41">C</text>
+          </g>
+        </svg>
+      </figure>
+      <div class="ej ej--conflicto">
+        <ol class="puntos puntos--pasos" aria-label="Resolver el conflicto">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span>Arriba, lo nuestro: el <strong>cambio actual</strong>. Abajo, lo que llegó de GitHub: el <strong>cambio entrante</strong>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span>Elegir <span class="marca">A</span> <span class="marca">B</span> o <span class="marca">C</span>, o escribir a mano cómo queda y borrar las marcas <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> y <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span>Guardar (<kbd>Ctrl</kbd> + <kbd>S</kbd>); en la terminal, <code>git add .</code>, <code>git commit -m "…"</code> y <code>git push</code>.</span></li>
+        </ol>
+        <figure class="terminal">
+          <figcaption><span class="terminal__titulo">Terminal</span></figcaption>
+          <pre tabindex="0" aria-label="Terminal: git pull --no-edit con un conflicto y su salida"><code><span class="t-cmd"><span class="t-prompt" aria-hidden="true">$ </span>git pull --no-edit</span>
+From https://github.com/luciagomez/tp10-faro
+   2842fb3..893cf18  main       -&gt; origin/main
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+          <p class="terminal__nota">Mateo eligió “Aceptar cambio entrante”, guardó, hizo el commit y lo subió.</p>
+        </figure>
+      </div>
+      <p class="consejo"><strong>Para que haya menos conflictos:</strong> <code>git pull</code> seguido, commits chicos y cada uno con sus tareas del tablero.</p>
+    </section>
+
+    <div class="esquema-par esquema-par--issues">
+      <figure class="esquema">
+        <svg viewBox="0 0 340 200" style="max-width:380px;margin:0 auto" role="img" aria-labelledby="esq36c">
+          <title id="esq36c">Los issues en GitHub. A la izquierda, la página del repositorio: A, la pestaña Issues; B, el botón verde New issue; debajo, el issue Cambiar el título del panel, número 1, abierto y asignado a mateodiaz, con F: el botón Close issue. A la derecha, la página Create new issue: C, el título Cambiar el título del panel; la descripción; D, en Assignees, Assign yourself; E, el botón verde Create.</title>
+          <!-- Página del repositorio -->
+          <rect x="1" y="1" width="150" height="198" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <text x="10" y="20" style="font-family:var(--fuente);font-size:10.5px;font-weight:700;fill:var(--tinta)">luciagomez / tp10-faro</text>
+          <g style="font-family:var(--fuente);font-size:10.5px;fill:var(--gris)"><text x="10" y="38">Code</text><text x="84" y="38">Pull requests</text></g>
+          <text x="42" y="38" style="font-family:var(--fuente);font-size:10.5px;font-weight:700;fill:var(--tinta)">Issues</text>
+          <rect x="40" y="42" width="34" height="2.5" style="fill:var(--naranja)"/>
+          <path d="M1 47h150" style="stroke:var(--linea);stroke-width:1.2"/>
+          <rect x="70" y="54" width="62" height="18" rx="4" style="fill:var(--ok)"/>
+          <text x="101" y="66.5" text-anchor="middle" style="font-family:var(--fuente);font-size:10.5px;font-weight:700;fill:var(--blanco)">New issue</text>
+          <rect x="8" y="82" width="135" height="108" rx="5" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.2"/>
+          <g style="font-family:var(--fuente);font-size:10.5px;font-weight:700;fill:var(--tinta)"><text x="15" y="99">Cambiar el título</text><text x="15" y="112">del panel <tspan style="font-weight:400;fill:var(--gris)">#1</tspan></text></g>
+          <rect x="15" y="120" width="36" height="14" rx="7" style="fill:var(--ok)"/>
+          <text x="33" y="130.5" text-anchor="middle" style="font-family:var(--fuente);font-size:9px;font-weight:700;fill:var(--blanco)">Open</text>
+          <circle cx="63" cy="127" r="6" style="fill:var(--acento)"/>
+          <text x="73" y="130.5" style="font-family:var(--fuente);font-size:9.5px;fill:var(--gris)">mateodiaz</text>
+          <rect x="15" y="156" width="72" height="20" rx="4" style="fill:var(--blanco);stroke:var(--linea);stroke-width:1.4"/>
+          <text x="51" y="170" text-anchor="middle" style="font-family:var(--fuente);font-size:10.5px;font-weight:600;fill:var(--tinta)">Close issue</text>
+          <!-- Flecha -->
+          <path d="M155 100h10M159 94l6 6-6 6" style="fill:none;stroke:var(--acento);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/>
+          <!-- Página nueva -->
+          <rect x="169" y="1" width="170" height="198" rx="6" style="fill:var(--blanco);stroke:var(--tinta);stroke-width:2"/>
+          <text x="179" y="21" style="font-family:var(--fuente);font-size:12px;font-weight:700;fill:var(--tinta)">Create new issue</text>
+          <g style="font-family:var(--fuente);font-size:10px;font-weight:600;fill:var(--tinta)"><text x="179" y="40">Add a title</text><text x="179" y="80">Add a description</text></g>
+          <rect x="179" y="45" width="140" height="19" rx="4" style="fill:var(--blanco);stroke:var(--acento);stroke-width:1.6"/>
+          <text x="184" y="58" textLength="128" lengthAdjust="spacingAndGlyphs" style="font-family:var(--fuente);font-size:10px;fill:var(--tinta)">Cambiar el título del panel</text>
+          <rect x="179" y="85" width="150" height="36" rx="4" style="fill:var(--panel);stroke:var(--linea);stroke-width:1"/>
+          <g style="fill:var(--linea)"><rect x="185" y="93" width="120" height="4" rx="2"/><rect x="185" y="103" width="90" height="4" rx="2"/></g>
+          <text x="179" y="138" style="font-family:var(--fuente);font-size:10px;font-weight:700;fill:var(--tinta)">Assignees</text>
+          <text x="179" y="152" style="font-family:var(--fuente);font-size:10px;fill:var(--gris)">No one – <tspan style="font-weight:700;fill:var(--acento-numero)">Assign yourself</tspan></text>
+          <rect x="267" y="168" width="62" height="21" rx="4" style="fill:var(--ok)"/>
+          <text x="298" y="182" text-anchor="middle" style="font-family:var(--fuente);font-size:11px;font-weight:700;fill:var(--blanco)">Create</text>
+          <!-- Letras -->
+          <g style="fill:var(--tinta);stroke:var(--blanco);stroke-width:1.5">
+            <circle cx="57" cy="57" r="8"/><circle cx="140" cy="63" r="8"/><circle cx="327" cy="55" r="8"/><circle cx="299" cy="148" r="8"/><circle cx="256" cy="178" r="8"/><circle cx="98" cy="166" r="8"/>
+          </g>
+          <g class="tt tt--claro" text-anchor="middle" style="font-size:11px;font-weight:700">
+            <text x="57" y="61">A</text><text x="140" y="67">B</text><text x="327" y="59">C</text><text x="299" y="152">D</text><text x="256" y="182">E</text><text x="98" y="170">F</text>
+          </g>
+        </svg>
+      </figure>
+      <section class="esquema-nota" aria-labelledby="s36d">
+        <h3 id="s36d">Issues: las tareas del repositorio</h3>
+        <p class="esquema-nota__p">Un <strong>issue</strong> es una tarea o un error del código, con número (<code>#1</code>, <code>#2</code>…) y responsable. El tablero organiza todo el proyecto; los issues, el código.</p>
+        <ol class="puntos puntos--pasos">
+          <li><span class="puntos__n" aria-hidden="true">1</span><span><strong lang="en">Issues</strong> <span class="marca">A</span> → <strong lang="en">New issue</strong> (nuevo <span class="sin-corte">issue) <span class="marca">B</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">2</span><span>Título con un verbo <span class="marca">C</span>; <strong lang="en">Assignees</strong> → <strong lang="en">Assign yourself</strong> (asignártelo) <span class="marca">D</span>; <strong lang="en">Create</strong> <span class="sin-corte">(crear) <span class="marca">E</span>.</span></span></li>
+          <li><span class="puntos__n" aria-hidden="true">3</span><span>El número, al final del mensaje del commit: <code>"Cambio el título del panel (#1)"</code>. GitHub lo muestra en el issue.</span></li>
+          <li><span class="puntos__n" aria-hidden="true">4</span><span>Con la tarea terminada, <strong lang="en">Close issue</strong> (cerrar <span class="sin-corte">issue) <span class="marca">F</span>.</span></span></li>
+        </ol>
+      </section>
+    </div>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> todos en <b>main</b>, con <b>git pull</b> al empezar y <b>git pull -&zwnj;-no-edit</b> antes de cada push. Si dos cambian la misma línea hay un <b>conflicto</b>: elegimos qué queda y hacemos commit.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 36, hoja 2 de 2">36 · 2/2</span>
+    </footer>
+  </article>
+
+  <!-- =================== LÁMINA 37 =================== -->
+  <article class="lamina lamina--compacta lamina--densa" id="pag-37" aria-labelledby="t37">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t37"><span class="tit__num">37.</span> Documentar el proyecto</h2>
+      <p class="tit__sub">El README y la bitácora</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-documento"/></svg>
+      <p>Documentar es escribir para otros y para nosotros. El <strong>README</strong> explica el proyecto a alguien que no lo conoce: qué es, cómo se instala y cómo se usa. La <strong>bitácora</strong> cuenta, clase por clase, qué hicimos, qué problemas tuvimos y qué decidimos. Los dos son archivos Markdown (<code>.md</code>, TP7) del repositorio.</p>
+    </div>
+
+    <section class="seccion" aria-labelledby="s37a">
+      <h3 class="subtitulo" id="s37a">El README del proyecto</h3>
+      <div class="ej ej--doc">
+        <figure class="codigo codigo--neutro" id="ej-37a">
+          <figcaption><span class="codigo__archivo">README.md</span></figcaption>
+          <pre tabindex="0" aria-label="Las primeras secciones de README.md"><code># YoLo · Grupo Faro
+
+## Qué es
+Una app web para manejar el robot YoLo desde el navegador.
+Es el TP final de Redes I y Software II.
+
+## Integrantes y roles
+- Lucía Gómez: repositorio
+- Mateo Díaz: coordinación
+- Sofía Ruiz: documentación
+
+## Esquema de red
+Pendiente.</code></pre>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n37a">
+          <h3 id="n37a">Las secciones que pide el TP final</h3>
+          <ul class="pf__lista">
+            <li>Qué es el proyecto, integrantes y roles.</li>
+            <li>Esquema de red.</li>
+            <li>Requisitos e instalación (<code>npm install</code>) y extensiones de VS Code.</li>
+            <li>Cómo ejecutarlo y manual de uso.</li>
+            <li>Una captura de la app funcionando.</li>
+          </ul>
+          <p class="esquema-nota__p esquema-nota__p--sep">Ya armamos todas las secciones. Completamos lo que ya sabemos y el resto queda en “Pendiente.” hasta el TP final: en el ejemplo siguen Instalación, Cómo se usa y Captura.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="seccion" aria-labelledby="s37b">
+      <h3 class="subtitulo" id="s37b">La bitácora: una entrada por clase</h3>
+      <div class="ej ej--doc">
+        <figure class="codigo codigo--neutro" id="ej-37b">
+          <figcaption><span class="codigo__archivo">BITACORA.md</span></figcaption>
+          <pre tabindex="0" aria-label="Contenido de BITACORA.md"><code># Bitácora · Grupo Faro
+
+## 28/10
+- **Qué hicimos:** armamos el tablero y el repositorio, y subimos la plantilla de YoLo.
+- **Problemas:** el push de Mateo fue rechazado y tuvimos un conflicto en el README.
+- **Qué decidimos:** hacer `git pull --no-edit` antes de cada push.</code></pre>
+        </figure>
+        <aside class="esquema-nota" aria-labelledby="n37b">
+          <h3 id="n37b">Cómo se escribe</h3>
+          <ul class="pf__lista">
+            <li>Al final de cada clase, con la fecha.</li>
+            <li>Tres partes: qué hicimos, qué problemas tuvimos y qué decidimos.</li>
+            <li>Concreta: “tuvimos un conflicto en el README” sirve; “trabajamos” no dice nada.</li>
+            <li>La escribe quien tiene el rol Documentación, con lo que cuenta el grupo. Commit y push antes de irse.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> el <b>README</b> explica el proyecto a quien no lo conoce; la <b>bitácora</b> cuenta, clase por clase, qué hicimos, qué problemas tuvimos y qué decidimos. Los dos están en el repositorio y se actualizan con commits.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 37">37</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 1 =================== -->
+  <article class="lamina lamina--act" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la carpeta</h2>
+        <p>TP N°9 — Gestión de proyecto y trabajo en equipo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> Resolvé cada punto en la carpeta, con lápiz y sin usar la computadora.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> El equipo y el tablero</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Nombrá los tres roles del equipo y qué hace cada uno. Si el grupo es de dos, ¿cómo se reparten?</div></li>
+          <li><b class="act__letra">b)</b><div>Una tarjeta del tablero dice “README”. Reescribila como una buena tarea: con un verbo, un responsable y una fecha.</div></li>
+          <li><b class="act__letra">c)</b><div>Relacioná: el tablero / el grupo de mensajes / la bitácora → qué hicimos y qué decidimos / quién hace qué y para cuándo / avisos rápidos.</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> El repositorio del equipo</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Lucía creó el repositorio del grupo. ¿Qué tiene que hacer para que Mateo pueda hacer <code>git push</code>? ¿Y Mateo?</div></li>
+          <li><b class="act__letra">b)</b><div>¿Para qué sirve el archivo <code>.gitignore</code>? ¿Por qué lleva <code>node_modules/</code>?</div></li>
+          <li><b class="act__letra">c)</b><div>Ordená: <code>git push</code> / <code>git pull</code> / cambiar archivos / <code>git add .</code> / <code>git commit -m "…"</code> / <code>git pull --no-edit</code>. ¿Para qué sirve el segundo pull?</div></li>
+          <li><b class="act__letra">d)</b><div>Mateo hizo <code>git pull --no-edit</code> y su <code>README.md</code> quedó así. ¿Qué título escribió Mateo y cuál llegó de GitHub? Escribí cómo queda el archivo si elige “Aceptar cambio entrante”.
+            <figure class="codigo codigo--neutro">
+              <figcaption><span class="codigo__archivo">README.md</span></figcaption>
+              <pre tabindex="0" aria-label="README.md con un conflicto"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+# Panel de YoLo
+=======
+# YoLo · Grupo Faro
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 893cf184001235d8ad695702e4904597e4df5708</code></pre>
+            </figure>
+          </div></li>
+          <li><b class="act__letra">e)</b><div>¿Para qué sirve un issue? ¿Cómo se vincula con un commit y cómo se cierra?</div></li>
+        </ol>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> Documentar el proyecto</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>¿Para quién se escribe el README? Nombrá tres secciones que pide el TP final.</div></li>
+          <li><b class="act__letra">b)</b><div>¿Qué se anota en cada entrada de la bitácora? ¿Cuándo se escribe?</div></li>
+          <li><b class="act__letra">c)</b><div>¿Qué le falta a esta entrada? Reescribila: <code>## 4/11 · Trabajamos en la app.</code></div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 9</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES · Parte 2 =================== -->
+  <article class="lamina lamina--act lamina--act-densa lamina--compu" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°9</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Práctica en la computadora</h2>
+        <p>TP N°9 — Gestión de proyecto y trabajo en equipo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> En grupo (2 o 3, los mismos del TP final), armen el tablero y el repositorio del TP final. Todos en la rama <code>main</code>. Se evalúa cómo se organizan y cómo trabajan, no el código.</p>
+
+    <ol class="acts">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Preparamos el TP final</h3>
+        <ol class="act__items act__items--2col">
+          <li><b class="act__letra">1</b><div>Lean juntos la guía del TP final y repartan los roles (lámina 35).</div></li>
+          <li><b class="act__letra">2</b><div>En Trello, el tablero <code>TP10 · nombre del grupo</code>, con las listas Pendiente, En curso y Hecho: una tarjeta por tarea de las 6 etapas de la guía, con responsable y fecha. Compártanlo con el docente.</div></li>
+          <li><b class="act__letra">3</b><div>El rol Repositorio crea en GitHub <code>tp10-nombre-del-grupo</code>, público y con README, y suma a los demás como colaboradores. Cada uno acepta la invitación y lo clona.</div></li>
+          <li><b class="act__letra">4</b><div>El rol Repositorio copia adentro la plantilla de YoLo (o la versión del TP8 que elija el grupo) y crea <code>.gitignore</code> con <code>node_modules/</code>. Commit y push. Los demás, <code>git pull</code>.</div></li>
+          <li><b class="act__letra">5</b><div>Cada uno crea un issue con una tarea chica de la app y se lo asigna. La hace, sube su commit con el número del issue en el mensaje y cierra el issue.</div></li>
+          <li><b class="act__letra">6</b><div>Provoquen un conflicto: dos cambian el título del <code>README.md</code> y hacen commit. Uno sube; el otro hace <code>git pull --no-edit</code>, lo resuelve en VS Code y sube.</div></li>
+          <li><b class="act__letra">7</b><div>El <code>README.md</code> con las secciones de la guía (qué es, integrantes y roles; el resto, “Pendiente.”) y <code>BITACORA.md</code> con la entrada de la clase. Commit y push.</div></li>
+        </ol>
+      </li>
+    </ol>
+
+    <section class="panel" aria-label="Para tener en cuenta">
+      <ol class="puntos">
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>En el laboratorio, cada clase: <code>git config --global</code> (TP7), <code>git clone</code> del repositorio e iniciar sesión en GitHub y en Trello. Antes de irte, <code>git push</code>.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span><code>git pull</code> al empezar y <code>git pull --no-edit</code> antes de cada <code>git push</code>. Todos hacen commits.</span></li>
+        <li><span class="puntos__n" aria-hidden="true">!</span><span>La versión del TP8 de un integrante se baja de su repositorio con <strong lang="en">&lt;&gt; Code → Download ZIP</strong>: así no se copia su carpeta <code class="cod-carpeta">.git</code>.</span></li>
+      </ol>
+    </section>
+
+    <section class="entrega" aria-labelledby="ent-1">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="ent-1">Entrega</h3>
+        <div class="entrega__cols">
+          <div>
+            <p>Una por grupo. En Classroom, con <strong>Agregar o crear → Vínculo</strong>, el <strong>link del repositorio</strong> (<code>https://github.com/luciagomez/tp10-faro</code>) y el <strong>del tablero</strong> (<code>https://trello.com/b/…</code>).</p>
+            <p class="entrega__sub--sep">La Parte 1, cada uno en su carpeta.</p>
+          </div>
+          <div>
+            <p class="entrega__sub">En el repositorio y en el tablero se tiene que ver:</p>
+            <ul class="entrega__lista">
+              <li>Todos como colaboradores, con sus commits.</li>
+              <li>La plantilla y el <code>.gitignore</code>.</li>
+              <li>Un issue cerrado por integrante.</li>
+              <li>El conflicto resuelto, con su commit.</li>
+              <li>El <code>README.md</code> con sus secciones y <code>BITACORA.md</code>.</li>
+              <li>El tablero de las 6 etapas, compartido con el docente.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 9</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

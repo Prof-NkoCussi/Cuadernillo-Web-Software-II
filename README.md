@@ -36,7 +36,7 @@ Un cuadernillo web para leer desde el celular y trabajar en la computadora. Se o
 | 6 | Configuración del ambiente de desarrollo | ✅ Disponible |
 | 7 | Git y GitHub · Control de versiones | ✅ Disponible |
 | 8 | Primeros pasos con HTML y CSS en VS Code | ✅ Disponible |
-| 9 | Gestión de proyecto y trabajo en equipo | Próximamente |
+| 9 | Gestión de proyecto y trabajo en equipo | ✅ Disponible |
 | 10 | Trabajo Integrador Final | Próximamente |
 | 11 | Instalación y configuración de un SO servidor | Próximamente |
 | 12 | Administración remota de servidores | Próximamente |
