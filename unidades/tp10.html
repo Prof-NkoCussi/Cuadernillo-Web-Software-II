@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP N°10 — Proyecto integrador YoLo · Software II</title>
+  <meta name="description" content="TP N°10 de Software II: el proyecto integrador YoLo, trabajo final de Redes I y de Software II. El mapa del proyecto, los archivos del repositorio, el trabajo del equipo en main, la ruta de trabajo en 6 etapas, la entrega, la evaluación y la defensa. Prof. Nicolás A. Cussi.">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="preload" href="../assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body data-tp="10">
+
+<!-- ====== Íconos ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-terminal" viewBox="0 0 48 48">
+      <rect x="4" y="7" width="40" height="34" rx="4" style="fill:var(--ac2, var(--acento-claro))"/>
+      <path d="M8 7h32a4 4 0 0 1 4 4v5H4v-5a4 4 0 0 1 4-4z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="4"/>
+      <path d="M4 16h40M12 23l7 6-7 6M23 35h12"/>
+    </symbol>
+    <!-- Robot con cámara, sobre ruedas -->
+    <symbol id="i-robot" viewBox="0 0 48 48">
+      <path d="M24 13V7M20 7h8"/>
+      <rect x="7" y="13" width="34" height="21" rx="4" style="fill:var(--blanco)"/>
+      <circle cx="24" cy="23.5" r="6.5" style="fill:var(--ac)"/>
+      <circle cx="24" cy="23.5" r="2"/>
+      <circle cx="14" cy="38.5" r="5" style="fill:var(--blanco)"/>
+      <circle cx="34" cy="38.5" r="5" style="fill:var(--blanco)"/>
+    </symbol>
+    <symbol id="i-carpeta" viewBox="0 0 48 48">
+      <path d="M4 12a3 3 0 0 1 3-3h11l4 5h19a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" style="fill:var(--ac)"/>
+      <path d="M4 20h40"/>
+    </symbol>
+    <symbol id="i-editor" viewBox="0 0 48 48">
+      <path d="M7 7h34a3 3 0 0 1 3 3v4H4v-4a3 3 0 0 1 3-3z" style="fill:var(--ac)"/>
+      <rect x="4" y="7" width="40" height="34" rx="3"/>
+      <path d="M4 14h40M10 21h14M15 27h18M15 33h11"/>
+    </symbol>
+    <!-- Lista con tildes: la entrega -->
+    <symbol id="i-lista" viewBox="0 0 48 48">
+      <rect x="9" y="7" width="30" height="37" rx="3" style="fill:var(--ac)"/>
+      <rect x="17" y="3.5" width="14" height="7" rx="2" style="fill:currentColor"/>
+      <path d="M15 21l3 3 5-6M27 21h6M15 33l3 3 5-6M27 33h6"/>
+    </symbol>
+    <symbol id="i-importante" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="21" style="fill:var(--ac);stroke:none"/>
+      <path d="M24 12v15M24 35v.5" style="stroke:var(--blanco);stroke-width:5.5"/>
+    </symbol>
+    <symbol id="i-foco" viewBox="0 0 48 48">
+      <path d="M24 2.5v4M10 8.5l2.8 2.8M38 8.5l-2.8 2.8M4 22h4M40 22h4"/>
+      <path d="M24 12a10 10 0 0 0-6.2 17.8c1.4 1.2 2.2 2.6 2.2 4.2v1h8v-1c0-1.6.8-3 2.2-4.2A10 10 0 0 0 24 12z" style="fill:var(--ac)"/>
+      <path d="M20 39h8M21.5 43h5"/>
+    </symbol>
+    <symbol id="i-subir" viewBox="0 0 48 48">
+      <path d="M6 30v8a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3v-8"/>
+      <path d="M24 31V7M15 16l9-9 9 9" style="stroke:var(--ac);stroke-width:3.4"/>
+    </symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>
+    </symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24">
+      <path d="M20 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra">
+  <div class="barra__fila">
+    <a class="boton barra__volver" href="../index.html"><svg aria-hidden="true" focusable="false"><use href="#i-atras"/></svg><span>Índice</span></a>
+    <span class="barra__titulo">TP N°10 — Proyecto integrador YoLo</span>
+    <button class="boton" type="button" data-imprimir aria-label="Guardar en PDF">
+      <svg aria-hidden="true" focusable="false"><use href="#i-descarga"/></svg><span><span class="boton__largo">Guardar </span>PDF</span>
+    </button>
+  </div>
+  <nav class="partes" aria-label="Partes del TP N°10">
+    <a href="#pag-38">38 · El proyecto</a>
+    <a href="#profundizar">Para profundizar</a>
+    <a href="#actividades">Actividades</a>
+    <a href="#entrega">Entrega y evaluación</a>
+  </nav>
+</header>
+
+<main id="contenido" class="laminas">
+  <h1 class="sr-only">TP N°10 — Proyecto integrador YoLo</h1>
+
+  <!-- =================== LÁMINA 38 =================== -->
+  <article class="lamina lamina--densa" id="pag-38" aria-labelledby="t38">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="t38"><span class="tit__num">38.</span> El proyecto desde Software II</h2>
+      <p class="tit__sub">El mapa, los archivos y el trabajo en main</p>
+    </div>
+
+    <div class="intro">
+      <svg class="ico ico--xl" aria-hidden="true" focusable="false"><use href="#i-robot"/></svg>
+      <p>El TP10 es el trabajo final de Redes I y de Software II: un mismo proyecto, una misma entrega y una misma defensa. El grupo sigue con el tablero y el repositorio que armó en el TP9. En Software II se mira cómo usan las herramientas: el repositorio, el tablero y la documentación.</p>
+    </div>
+
+    <div class="mapa">
+      <section class="panel panel--pila" aria-labelledby="s38a">
+        <h3 class="subtitulo" id="s38a">El mapa del proyecto</h3>
+        <figure class="esquema esquema--yolo">
+          <svg viewBox="0 0 420 320" role="img" aria-labelledby="yl-t yl-d">
+            <title id="yl-t">Mapa del proyecto YoLo</title>
+            <desc id="yl-d">Todo está dentro de la red Wi-Fi del robot, que configuran ustedes. Arriba a la izquierda, la app web: HTML, CSS y fetch; la arman ustedes. Arriba a la derecha, el servidor: Node.js más Express, en el puerto 3000. Abajo a la derecha, el broker MQTT: Mosquitto, en el puerto 1883. Abajo a la izquierda, el robot YoLo v1: una ESP32-CAM, con motores y cámara. Flecha 1, de la app al servidor, por HTTP. Flecha 2, del servidor al broker, por MQTT. Flecha 3, del broker al robot, por MQTT. Con línea punteada, el video va del robot a la app por HTTP (MJPEG): directo, sin pasar por el servidor.</desc>
+            <defs>
+              <marker id="yl-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto"><path class="yl-punta" d="M0 0 10 5 0 10z"/></marker>
+            </defs>
+            <rect class="yl-red" x="1" y="1" width="418" height="318" rx="14"/>
+            <circle class="yl-wifi-punto" cx="22" cy="26" r="2.2"/>
+            <path class="yl-wifi" d="M17 21.5a7 7 0 0 1 10 0M13.5 18a12 12 0 0 1 17 0M10 14.5a17 17 0 0 1 24 0"/>
+            <text class="yl-red-rot" x="40" y="27">Red Wi-Fi del robot <tspan class="yl-red-sub">(la configuran ustedes)</tspan></text>
+
+            <rect class="yl-caja yl-caja--pide" x="14" y="42" width="140" height="92" rx="9"/>
+            <text class="esq-rot" x="84" y="67" text-anchor="middle">App web</text>
+            <text class="esq-txt" x="84" y="87" text-anchor="middle">HTML, CSS y fetch</text>
+            <text class="yl-nota" x="84" y="106" text-anchor="middle">(la arman ustedes)</text>
+
+            <rect class="yl-caja yl-caja--responde" x="266" y="42" width="140" height="92" rx="9"/>
+            <text class="esq-rot" x="336" y="67" text-anchor="middle">Servidor</text>
+            <text class="esq-txt" x="336" y="87" text-anchor="middle">Node.js + Express</text>
+            <rect class="yl-pill" x="293" y="98" width="86" height="21" rx="10.5"/>
+            <text class="yl-pill-txt" x="336" y="113" text-anchor="middle">puerto 3000</text>
+
+            <rect class="yl-caja yl-caja--responde" x="266" y="214" width="140" height="92" rx="9"/>
+            <text class="esq-rot" x="336" y="239" text-anchor="middle">Broker MQTT</text>
+            <text class="esq-txt" x="336" y="259" text-anchor="middle">Mosquitto</text>
+            <rect class="yl-pill" x="293" y="270" width="86" height="21" rx="10.5"/>
+            <text class="yl-pill-txt" x="336" y="285" text-anchor="middle">puerto 1883</text>
+
+            <rect class="yl-caja yl-caja--pide" x="14" y="214" width="140" height="92" rx="9"/>
+            <text class="esq-rot" x="84" y="239" text-anchor="middle">Robot YoLo v1</text>
+            <text class="esq-txt" x="84" y="259" text-anchor="middle">ESP32-CAM</text>
+            <text class="esq-txt" x="84" y="278" text-anchor="middle">motores y cámara</text>
+
+            <path class="yl-flecha" d="M156 88H262" marker-end="url(#yl-punta)"/>
+            <circle class="esq-num" cx="172" cy="70" r="8"/><text class="esq-num-txt" x="172" y="74" text-anchor="middle">1</text>
+            <rect class="yl-tag" x="186" y="60" width="52" height="20" rx="10"/>
+            <text class="yl-tag-txt" x="212" y="74.5" text-anchor="middle">HTTP</text>
+
+            <path class="yl-flecha" d="M336 136V210" marker-end="url(#yl-punta)"/>
+            <circle class="esq-num" cx="358" cy="158" r="8"/><text class="esq-num-txt" x="358" y="162" text-anchor="middle">2</text>
+            <rect class="yl-tag" x="348" y="172" width="52" height="20" rx="10"/>
+            <text class="yl-tag-txt" x="374" y="186.5" text-anchor="middle">MQTT</text>
+
+            <path class="yl-flecha" d="M264 262H158" marker-end="url(#yl-punta)"/>
+            <rect class="yl-tag" x="184" y="234" width="52" height="20" rx="10"/>
+            <text class="yl-tag-txt" x="210" y="248.5" text-anchor="middle">MQTT</text>
+            <circle class="esq-num" cx="250" cy="244" r="8"/><text class="esq-num-txt" x="250" y="248" text-anchor="middle">3</text>
+
+            <path class="yl-video" d="M84 212V138" marker-end="url(#yl-punta)"/>
+            <rect class="yl-tag yl-tag--video" x="96" y="163" width="146" height="22" rx="11"/>
+            <text class="yl-tag-txt" x="169" y="178.5" text-anchor="middle">Video: HTTP (MJPEG)</text>
+            <text class="yl-nota" x="100" y="203">directo, sin pasar por el servidor</text>
+          </svg>
+          <figcaption>La app web es lo que está en el repositorio del grupo. Cómo viaja cada mensaje se ve en Redes I.</figcaption>
+        </figure>
+      </section>
+
+      <section class="panel panel--pila" aria-labelledby="s38b">
+        <h3 class="subtitulo" id="s38b">Los archivos del repositorio</h3>
+        <div class="carpeta">
+          <p class="carpeta__raiz"><svg class="ico ico--carpeta" aria-hidden="true" focusable="false"><use href="#i-carpeta"/></svg>tp10-grupo-1</p>
+          <ul class="carpeta__arch carpeta__arch--def">
+            <li><code>index.html</code><span>La estructura de la app: los botones y el recuadro del video.</span></li>
+            <li><code>styles.css</code><span>El diseño: colores, letras, tamaños y ubicación (TP8).</span></li>
+            <li><code>app.js</code><span>Lo que hacen los botones. En el TP final, el <code>fetch</code> de cada comando: se programa en Programación II.</span></li>
+            <li><code>README.md</code><span>Qué es el proyecto, cómo se instala y cómo se usa (TP9, lámina 37).</span></li>
+            <li><code>BITACORA.md</code><span>Una entrada por clase: qué hicimos, qué problemas tuvimos y qué decidimos (TP9, lámina 37).</span></li>
+            <li><code class="cod-carpeta">img</code><span>Las imágenes de la app y las del README: el esquema de red y la captura.</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <section class="seccion" aria-labelledby="s38c">
+      <h3 class="subtitulo" id="s38c">El equipo trabaja en <code>main</code></h3>
+      <ol class="secuencia ciclo ciclo--cinco" aria-label="El trabajo del equipo, en cinco pasos">
+        <li><h3>Al empezar</h3><span class="etq etq--trello">Trello</span><p>Cada uno toma su tarjeta y la pasa a En curso.</p></li>
+        <li><h3>Traer lo nuevo</h3><code>git pull</code><p>Traemos lo que subió el compañero.</p></li>
+        <li><h3>Trabajar y guardar</h3><code>git add .</code><code>git commit -m "…"</code><p>Un commit por cambio, con un mensaje claro.</p></li>
+        <li><h3>Subir</h3><code>git pull --no-edit</code><code>git push</code><p>Antes de subir, traemos lo nuevo. Si hay un conflicto, lo resolvemos (TP9, lámina 36).</p></li>
+        <li><h3>Al terminar</h3><span class="etq etq--trello">Trello</span><p>La tarjeta pasa a Hecho. Al final de la clase, la bitácora.</p></li>
+      </ol>
+    </section>
+
+    <aside class="idea" aria-label="Idea clave">
+      <span class="idea__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-foco"/></svg></span>
+      <p><strong>Idea clave:</strong> el TP10 es un solo proyecto con Redes I. En Software II se mira el trabajo en equipo: cada tarea en el <b>tablero</b>, los <b>commits</b> de los dos en <b>main</b> y el <b>README</b> y la <b>bitácora</b> al día.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num" aria-label="Lámina 38">38</span>
+    </footer>
+  </article>
+
+  <!-- =================== PARA PROFUNDIZAR =================== -->
+  <article class="lamina lamina--pf lamina--pf-denso" id="profundizar" aria-labelledby="tpf">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <div class="tit">
+      <h2 class="tit__h" id="tpf"><span class="tit__num">+</span> Para profundizar</h2>
+      <p class="tit__sub">Para la defensa: el README, los commits y las preguntas</p>
+    </div>
+
+    <div class="pf-grid">
+      <section class="pf pf--ancho" aria-labelledby="pf-readme">
+        <p class="pf__etiqueta">Lámina 38 · Etapa 5</p>
+        <h3 class="pf__titulo" id="pf-readme">El README completo</h3>
+        <div class="pf__cols pf__cols--lado">
+          <figure class="codigo codigo--neutro" id="ej-pf-readme">
+            <figcaption><span class="codigo__archivo">README.md</span></figcaption>
+            <pre tabindex="0" aria-label="Esqueleto de README.md con las secciones del checklist"><code># YoLo · GRUPO 1
+
+## Qué es
+Qué hace la app.
+Es el TP final de Redes I y Software II.
+
+## Integrantes y roles
+- Lucía Gómez: repositorio
+- Mateo Díaz: coordinación
+
+## Esquema de red
+![Esquema de red](img/esquema-red.png)
+
+## Instalación
+Requisitos, `npm install` y extensiones de VS Code.
+
+## Cómo se usa
+Cómo se ejecuta y qué hace cada botón.
+
+## Captura
+![La app funcionando](img/captura.png)</code></pre>
+          </figure>
+          <div class="pf__texto">
+            <p>Son las secciones del TP9, ahora completas.</p>
+            <div class="pf__caja">
+              <h4>Las imágenes</h4>
+              <p>Van en la carpeta <code class="cod-carpeta">img</code> y se muestran con <code>![texto](img/archivo.png)</code>: el texto entre corchetes describe la imagen.</p>
+            </div>
+            <div class="pf__caja pf__caja--consejo">
+              <h4>Para probarlo</h4>
+              <p>Que alguien de otro grupo siga el README.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pf" aria-labelledby="pf-commits">
+        <p class="pf__etiqueta">Lámina 38 · Etapa 6</p>
+        <h3 class="pf__titulo" id="pf-commits">Los commits de cada integrante</h3>
+        <ul class="pf__lista">
+          <li><strong>Commits:</strong> en la página del repositorio, arriba de la lista de archivos, está el enlace con la cantidad de commits (por ejemplo, <strong lang="en">24 Commits</strong>). Cada commit muestra su mensaje, quién lo hizo y cuándo. Con el filtro <strong lang="en">All users</strong> (todos los usuarios) se ven los de una persona.</li>
+          <li><strong lang="en">Insights → Contributors</strong> (estadísticas → quiénes aportaron): un gráfico por integrante con sus commits en <code>main</code>.</li>
+        </ul>
+        <div class="pf__caja pf__caja--importante">
+          <h4><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>Para que cuenten</h4>
+          <p>GitHub le suma el commit a la cuenta que tiene ese mail. Por eso hay que hacer <code>git config --global</code> con el mail privado (TP7) al empezar cada clase. Contributors no cuenta los commits de unión <span class="sin-corte">(<code>Merge branch 'main'…</code>).</span></p>
+        </div>
+      </section>
+
+      <section class="pf" aria-labelledby="pf-defensa">
+        <p class="pf__etiqueta">Etapa 6 · Defensa</p>
+        <h3 class="pf__titulo" id="pf-defensa">Preguntas de Software II para la defensa</h3>
+        <ul class="defensa__preguntas">
+          <li><span>Con el README, ¿cómo instala y usa el proyecto otra persona?</span> <span class="donde">Para profundizar · TP9, lámina 37</span></li>
+          <li><span>¿Cómo se organizaron en Trello? ¿Quién hizo cada tarea?</span> <span class="donde">TP9, lámina 35</span></li>
+          <li><span>¿Cómo resolvieron un conflicto?</span> <span class="donde">TP9, lámina 36</span></li>
+          <li><span>¿Qué hizo cada uno? Muéstrenlo en GitHub y en el tablero.</span> <span class="donde">Para profundizar</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 10</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES EN LA COMPUTADORA · Hoja 1 =================== -->
+  <article class="lamina lamina--act lamina--compu lamina--densa" id="actividades" aria-labelledby="act-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-1">Actividades para hacer en la computadora</h2>
+        <p>TP N°10 — Proyecto integrador YoLo · En grupo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <p class="consigna"><strong>Consigna:</strong> En grupo, van a hacer andar a YoLo: un robot con cámara que se maneja desde una página web, sobre una red que arman ustedes. Al final lo defienden en vivo.</p>
+
+    <div class="tpfinal">
+      <section class="panel" aria-labelledby="tf10">
+        <div class="panel__cab"><h3 class="subtitulo" id="tf10">¿Qué es el TP final?</h3></div>
+        <p>El TP10 es el trabajo final de <strong>Redes I</strong> y de <strong>Software II</strong>. Es uno solo y vale para las dos materias: un mismo proyecto, una misma entrega y una misma defensa.</p>
+        <p>No hay teoría nueva. Van a usar lo que ya vieron en el año, pero todo junto y funcionando de verdad:</p>
+        <ul class="pf__lista">
+          <li><strong>De Redes I:</strong> HTTP, puertos, API REST, JSON, MQTT y la configuración del router.</li>
+          <li><strong>De Software II:</strong> el ambiente de desarrollo, HTML y CSS, Git y GitHub, el tablero de Trello y la documentación.</li>
+          <li><strong>De Programación II:</strong> JavaScript, para programar los botones.</li>
+        </ul>
+        <table class="datos">
+          <caption class="sr-only">Datos del TP final</caption>
+          <tbody>
+            <tr><th scope="row">Grupos</th><td>De 2 integrantes</td></tr>
+            <tr><th scope="row">Cierre</th><td>Defensa oral con el robot funcionando</td></tr>
+            <tr><th scope="row">Fechas</th><td>En Classroom</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="panel" aria-labelledby="ob10">
+        <div class="panel__cab"><h3 class="subtitulo" id="ob10">El objetivo</h3></div>
+        <p>Entender cómo se comunican las partes de un sistema conectado y demostrarlo haciéndolo andar. No alcanza con que el robot se mueva: tienen que poder explicar <strong>qué viaja, por dónde y con qué protocolo</strong>.</p>
+        <p>Al terminar el TP, el grupo tiene que poder:</p>
+        <ol class="objetivos">
+          <li>Configurar un router con una red Wi-Fi propia y direcciones IP fijas o reservadas.</li>
+          <li>Comprobar que el robot y el servidor responden.</li>
+          <li>Programar los botones de la app para que manden los comandos con <code>fetch</code> y JSON.</li>
+          <li>Diseñar la app con HTML y CSS y mostrar el video del robot.</li>
+          <li>Trabajar en equipo en GitHub: commits claros.</li>
+          <li>Documentar el proyecto para que otra persona lo pueda instalar y usar.</li>
+          <li>Explicar y defender cada decisión en forma oral.</li>
+        </ol>
+      </section>
+    </div>
+
+    <aside class="esquema-nota esquema-nota--importante" aria-labelledby="n10">
+      <h3 id="n10"><svg class="ico tit-ico" aria-hidden="true" focusable="false"><use href="#i-importante"/></svg>La bitácora</h3>
+      <p class="esquema-nota__p">Al final de cada clase, anoten en la bitácora (<code>BITACORA.md</code>) qué hicieron, qué problemas tuvieron y qué decidieron. Eso también se evalúa.</p>
+    </aside>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 10</span>
+    </footer>
+  </article>
+
+  <!-- =================== ACTIVIDADES EN LA COMPUTADORA · Hoja 2 =================== -->
+  <article class="lamina lamina--act lamina--compu lamina--densa" id="actividades-2" aria-labelledby="act-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-editor"/></svg>
+      <div>
+        <h2 id="act-2">Actividades para hacer en la computadora</h2>
+        <p>TP N°10 — Proyecto integrador YoLo · En grupo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <section class="ruta" aria-labelledby="ru10">
+      <h3 class="subtitulo" id="ru10">Ruta de trabajo</h3>
+      <p class="ruta__intro">El trabajo se organiza en 6 etapas, cada una con su entregable. Se trabaja en las horas de Redes I y de Software II.</p>
+    </section>
+
+    <ol class="acts acts--2col">
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">1-</span> Arranque</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Arman el grupo y reparten roles.</div></li>
+          <li><b class="act__letra">b)</b><div>Ven el mapa del proyecto (lámina 38) y dibujan el esquema de red.</div></li>
+          <li><b class="act__letra">c)</b><div>Reciben el kit y la app.</div></li>
+          <li><b class="act__letra">d)</b><div>Revisan y completan el tablero del TP9.</div></li>
+        </ol>
+        <p class="etapa__entregable"><span>Entregable</span> Esquema de red dibujado y tablero al día.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">2-</span> La red</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Configuran el router (Wi-Fi, DHCP, IP fijas o reservadas).</div></li>
+          <li><b class="act__letra">b)</b><div>Preparan el ambiente de desarrollo.</div></li>
+        </ol>
+        <p class="etapa__entregable"><span>Entregable</span> Red funcionando.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">3-</span> La app</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Reestructuran la app y la diseñan con HTML y CSS.</div></li>
+          <li><b class="act__letra">b)</b><div>Trabajan en el repositorio del TP9.</div></li>
+        </ol>
+        <p class="etapa__entregable"><span>Entregable</span> Repositorio con los primeros commits.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">4-</span> Integración</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Programan el <code>fetch</code> de los botones, suman el video y corrigen errores.</div></li>
+        </ol>
+        <p class="etapa__entregable"><span>Entregable</span> Los 5 comandos funcionando y el video visible.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">5-</span> Documentación</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Escriben el README y el informe y cierran la bitácora.</div></li>
+        </ol>
+        <p class="etapa__entregable"><span>Entregable</span> Documentación completa.</p>
+      </li>
+      <li class="act">
+        <h3 class="act__titulo"><span class="act__num">6-</span> Defensa</h3>
+        <ol class="act__items">
+          <li><b class="act__letra">a)</b><div>Muestran el robot funcionando y explican el proyecto.</div></li>
+        </ol>
+        <p class="etapa__entregable"><span>Entregable</span> Demo en vivo y entrega final.</p>
+      </li>
+    </ol>
+
+    <section class="entrega" aria-labelledby="entrega10">
+      <svg class="ico ico--l" aria-hidden="true" focusable="false"><use href="#i-subir"/></svg>
+      <div>
+        <h3 id="entrega10">Entrega</h3>
+        <p>Cada etapa tiene su entregable. Antes de la defensa, revisen el checklist de entrega, en la hoja «Entrega y evaluación».</p>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 10</span>
+    </footer>
+  </article>
+
+  <!-- =================== ENTREGA Y EVALUACIÓN · Hoja 1 =================== -->
+  <article class="lamina lamina--act lamina--compu lamina--densa lamina--entrega" id="entrega" aria-labelledby="ent-1">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lista"/></svg>
+      <div>
+        <h2 id="ent-1">Entrega y evaluación</h2>
+        <p>TP N°10 — Proyecto integrador YoLo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>1 de 2</span>
+    </header>
+
+    <section class="recibe" aria-labelledby="rec10">
+      <h3 class="ent__tit" id="rec10">Qué reciben y qué hacen ustedes</h3>
+      <div class="recibe__cols">
+        <div class="recibe__col">
+          <h4>Lo reciben listo</h4>
+          <ul class="pf__lista">
+            <li>El robot armado y programado</li>
+            <li>El servidor Node.js y el broker MQTT funcionando</li>
+            <li>Una app web básica, para usar de punto de partida</li>
+            <li>Una lámina de referencia y una guía por clase</li>
+          </ul>
+        </div>
+        <div class="recibe__col recibe__col--hacen">
+          <h4>Lo hacen ustedes</h4>
+          <ul class="pf__lista">
+            <li>Configurar el router: red Wi-Fi propia, DHCP e IP fijas o reservadas</li>
+            <li>Probar que el robot y el servidor responden</li>
+            <li>Programar el <code>fetch</code> de cada botón y mostrar la respuesta del servidor</li>
+            <li>Reestructurar y diseñar la app con HTML y CSS, con el video del robot</li>
+            <li>Versionar en GitHub, organizarse en Trello y documentar todo</li>
+          </ul>
+        </div>
+      </div>
+      <p class="recibe__desafio"><strong>Desafío opcional:</strong> si terminan antes, pueden agregar al servidor un endpoint <code>GET /api/estado</code> que muestre el estado del robot.</p>
+    </section>
+
+    <section class="chequeo" aria-labelledby="chk10">
+      <h3 class="ent__tit" id="chk10">Checklist de entrega</h3>
+      <p>Antes de la defensa, revisen que tengan todo:</p>
+      <div class="chequeo__cols">
+        <div>
+          <h4>Repositorio en GitHub</h4>
+          <ul class="checklist">
+            <li>Un commit por cambio, con mensajes claros</li>
+          </ul>
+        </div>
+        <div>
+          <h4>README.md</h4>
+          <ul class="checklist">
+            <li>Qué es el proyecto, integrantes y roles</li>
+            <li>Esquema de red</li>
+            <li>Requisitos e instalación <span class="sin-corte">(<code>npm install</code>)</span> y extensiones de VS Code</li>
+            <li>Cómo ejecutarlo y manual de uso</li>
+            <li>Una captura de la app funcionando</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Otros entregables</h4>
+          <ul class="checklist">
+            <li>Tablero de Trello al día, con responsables y fechas</li>
+            <li><code>BITACORA.md</code> con una entrada por clase</li>
+            <li>Informe breve: el proyecto, la red, cómo se organizaron y qué dificultades tuvieron</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 10</span>
+    </footer>
+  </article>
+
+  <!-- =================== ENTREGA Y EVALUACIÓN · Hoja 2 =================== -->
+  <article class="lamina lamina--act lamina--compu lamina--densa lamina--entrega" id="entrega-2" aria-labelledby="ent-2">
+    <div class="cab" aria-hidden="true">
+      <svg class="cab__logo"><use href="#i-terminal"/></svg>
+      <div class="cab__marca"><b>SOFTWARE II</b><span>5.º AÑO</span></div>
+      <div class="cab__lema"><span class="cab__lema-largo">TRABAJO PRÁCTICO </span><span class="cab__lema-corto">TP </span><span class="cab__lema-n">N°10</span></div>
+      <span class="cab__raya"></span>
+    </div>
+
+    <header class="act-banda">
+      <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lista"/></svg>
+      <div>
+        <h2 id="ent-2">Entrega y evaluación</h2>
+        <p>TP N°10 — Proyecto integrador YoLo</p>
+      </div>
+      <span class="act-banda__parte">Parte<br>2 de 2</span>
+    </header>
+
+    <section class="evalua" aria-labelledby="ev10">
+      <h3 class="ent__tit" id="ev10">Cómo se evalúa</h3>
+      <p>Se evalúa todo el recorrido, no solo el día de la defensa. GitHub y Trello muestran quién hizo cada commit y cada tarea, así que <strong>cada integrante tiene que aportar</strong>.</p>
+      <div class="evalua__cols">
+        <div>
+          <h4><strong>Redes I</strong> mira tres cosas:</h4>
+          <ul class="pf__lista">
+            <li>Que la app funcione y se comunique con el servidor.</li>
+            <li>Que en la defensa los comandos lleguen al robot con una conexión estable, y que sepan explicar qué protocolo interviene en cada tramo.</li>
+            <li>Que la documentación tenga el esquema de red, el manual de uso y el código.</li>
+          </ul>
+        </div>
+        <div>
+          <h4><strong>Software II</strong> reparte la nota así:</h4>
+          <table class="tabla-nota">
+            <caption class="sr-only">Cómo reparte la nota Software II: parte, peso y qué se mira</caption>
+            <thead><tr><th scope="col">Parte</th><th scope="col">Peso</th><th scope="col">Qué se mira</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Producto</th><td class="tabla-nota__peso">40 %</td><td>La app funciona, el repositorio está ordenado y el README alcanza para instalar el proyecto</td></tr>
+              <tr><th scope="row">Proceso</th><td class="tabla-nota__peso">35 %</td><td>Todos hacen commits; tablero y bitácora al día; cumplen el plan</td></tr>
+              <tr><th scope="row">Defensa</th><td class="tabla-nota__peso">25 %</td><td>Cada integrante explica y responde preguntas</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="defensa" aria-labelledby="df10">
+      <h3 class="ent__tit" id="df10">La defensa</h3>
+      <p>Muestran el robot funcionando en vivo y explican el proyecto. Cada integrante tiene que poder responder preguntas como estas:</p>
+      <ul class="defensa__preguntas">
+        <li><span>¿Qué protocolo viaja entre la app y el servidor? ¿Y entre el servidor y el robot?</span> <span class="donde">Lámina 38</span></li>
+        <li><span>¿En qué puerto escucha el servidor? ¿Y el broker?</span> <span class="donde">Lámina 38</span></li>
+        <li><span>¿Qué IP tiene el robot y cómo se la asignaron?</span></li>
+        <li><span>¿Qué hace el <code>fetch</code> de un botón? ¿Qué JSON manda y qué código de respuesta vuelve?</span></li>
+        <li><span>¿Por qué el video no pasa por el servidor?</span></li>
+        <li><span>¿Qué hiciste vos, cuál fue tu rol en el grupo?</span> <span class="donde">Su trabajo</span></li>
+      </ul>
+    </section>
+
+    <section class="reglas" aria-labelledby="rg10">
+      <h3 class="ent__tit" id="rg10">Reglas y cuidados</h3>
+      <ul class="pf__lista reglas__lista">
+        <li><strong>El robot no se abre.</strong> No se desconectan cables ni se tocan las placas. El trabajo es de red y de software.</li>
+        <li><strong>Las baterías las maneja solo el docente.</strong> Si notan que el robot se reinicia o anda lento, avisen: probablemente necesita carga.</li>
+        <li><strong>Prueben el robot en el piso o con las ruedas en el aire</strong>, nunca al borde de la mesa.</li>
+        <li><strong>La red del robot es solo para el proyecto.</strong> No la conecten a otras redes ni cambien la configuración de otro grupo.</li>
+        <li><strong>Si se traban, pregunten.</strong> Los errores son parte del trabajo: antes de preguntar, revisen la pestaña Red del navegador y lean el código de respuesta.</li>
+      </ul>
+    </section>
+
+    <footer class="pie">
+      <span class="pie__linea"></span>
+      <span>Software II — Prof. Nicolás A. Cussi</span>
+      <span class="pie__linea"></span>
+      <span class="pie__num">TP 10</span>
+    </footer>
+  </article>
+</main>
+
+<script src="../assets/js/actividades.js"></script>
+<script src="../assets/js/ejemplos.js"></script>
+</body>
+</html>

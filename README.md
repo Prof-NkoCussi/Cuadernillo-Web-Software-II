@@ -37,7 +37,7 @@ Un cuadernillo web para leer desde el celular y trabajar en la computadora. Se o
 | 7 | Git y GitHub · Control de versiones | ✅ Disponible |
 | 8 | Primeros pasos con HTML y CSS en VS Code | ✅ Disponible |
 | 9 | Gestión de proyecto y trabajo en equipo | ✅ Disponible |
-| 10 | Trabajo Integrador Final | Próximamente |
+| 10 | Proyecto integrador YoLo | ✅ Disponible |
 | 11 | Instalación y configuración de un SO servidor | Próximamente |
 | 12 | Administración remota de servidores | Próximamente |
 
